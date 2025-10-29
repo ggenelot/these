@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Or use this test set of ids that have small files (To use, delete the '#' in the next line)
 item_ids = [12706085]
-item_ids = [17714843,153788] #test items
+#item_ids = [17714843,153788] #test items
 folder_path = "data/raw/"
 
 
