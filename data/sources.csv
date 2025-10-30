@@ -1,6 +1,7 @@
 name	creator	category	download_link	source_type	file_type	license
-BD_TOPO	IGN	topography				
-STORM synthetic cyclones	Bloemdall	climate				
-filosofi	INSEE	economic				
+BD_TOPO	IGN	topography	https://data.geopf.fr/telechargement/download/BDTOPO/BDTOPO_3-5_TOUSTHEMES_GPKG_RGAF09UTM20_R02_2025-09-15/BDTOPO_3-5_TOUSTHEMES_GPKG_RGAF09UTM20_R02_2025-09-15.7z		geopackage	
+STORM synthetic cyclones	Bloemdall	climate	https://api.figshare.com/v2/file/download/36391536		text	
+filosofi	INSEE	economic	https://www.insee.fr/fr/statistiques/fichier/6215138/Filosofi2017_carreaux_200m_gpkg.zip		geopackage	
 OSM	OpenStreetMap	land use				
 Corine Land Cover		land use				
+OpenTopo		topography				

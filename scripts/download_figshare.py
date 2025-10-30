@@ -28,6 +28,7 @@ print('Files available' + str(file_info))
 #Download each file to a subfolder named for the article id and save with the file name
 for k in file_info:
     print('Downloading '+k['name'])
+    print("Download URL : "+BASE_URL + '/file/download/' + str(k['id']))
     response = requests.get(BASE_URL + '/file/download/' + str(k['id']), headers=api_call_headers)
     dir_path = Path(folder_path) / str(k['item_id'])
     dir_path.mkdir(parents=True, exist_ok=True)
