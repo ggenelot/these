@@ -14,7 +14,7 @@ def download_elevation():
     API_KEY = os.getenv("OPENTOPO_API_KEY")
 
     if not API_KEY:
-        raise ValueError("❌ No API key found! Please set OPENTOPO_API_KEY as an environment variable.")
+        raise ValueError("No API key found! Please set OPENTOPO_API_KEY as an environment variable.")
 
     # -----------------------------------------------------------
     # 2. Define the area of interest
