@@ -8,12 +8,4 @@ Hello world
    :caption: Contents:
 
    download_data
-
-Hurricane function documentation
-===================================================
-
-.. automodule:: hurricanes
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
+   hurricanes
