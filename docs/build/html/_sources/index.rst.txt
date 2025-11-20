@@ -8,8 +8,6 @@ Hello world
    :caption: Contents:
 
    download_data
-   download_INSEE
-   download_OSM
 
 Hurricane function documentation
 ===================================================

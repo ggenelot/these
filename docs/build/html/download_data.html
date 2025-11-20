@@ -19,7 +19,9 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="download_INSEE module" href="download_INSEE.html" />
+    <link rel="prev" title="TC damage spatial analysis documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,16 +43,19 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">download_data module</a><ul>
-<li><a class="reference internal" href="#download_data.download_ESA"><code class="docutils literal notranslate"><span class="pre">download_ESA()</span></code></a></li>
-<li><a class="reference internal" href="#download_data.download_elevation"><code class="docutils literal notranslate"><span class="pre">download_elevation()</span></code></a></li>
-<li><a class="reference internal" href="#download_data.download_figshare"><code class="docutils literal notranslate"><span class="pre">download_figshare()</span></code></a></li>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">download_data module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download_data.download_ESA"><code class="docutils literal notranslate"><span class="pre">download_ESA()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download_data.download_elevation"><code class="docutils literal notranslate"><span class="pre">download_elevation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download_data.download_figshare"><code class="docutils literal notranslate"><span class="pre">download_figshare()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download_data.download_filosofi"><code class="docutils literal notranslate"><span class="pre">download_filosofi()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="download_INSEE.html">download_INSEE module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_OSM.html">download_OSM module</a></li>
 </ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -80,24 +85,85 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="download_data.download_ESA">
 <span class="sig-prename descclassname"><span class="pre">download_data.</span></span><span class="sig-name descname"><span class="pre">download_ESA</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/download_data.html#download_ESA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#download_data.download_ESA" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Download ESA WorldCover products via Terrascope Catalogue API.</p>
+<p>The function:
+1. Authenticates interactively to the Terrascope platform.
+2. Filters products in the ESA WorldCover 10m 2020 collection, optionally within a bounding box.
+3. Downloads all matching products to <cite>data/raw/ESA_worldcover</cite>.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Registration and interactive authentication are required.</p></li>
+<li><p>Non-interactive authentication with username/password is also supported.</p></li>
+<li><p>Bounding box for Martinique example: (-61.3, 14.2, -60.75, 15.0).</p></li>
+</ul>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="download_data.download_elevation">
 <span class="sig-prename descclassname"><span class="pre">download_data.</span></span><span class="sig-name descname"><span class="pre">download_elevation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/download_data.html#download_elevation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#download_data.download_elevation" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Download a Digital Elevation Model (DEM) from OpenTopography and inspect it.</p>
+<p>The function:
+1. Loads the OpenTopography API key from the environment variable <cite>OPENTOPO_API_KEY</cite>.
+2. Defines a bounding box (or optionally reads from a shapefile) for the area of interest.
+3. Downloads the COP30 DEM as a GeoTIFF to <cite>data/raw/elevation/cop30_dem.tif</cite>.
+4. Opens the DEM using <cite>rasterio</cite> and prints metadata, including CRS, resolution, and bounds.
+5. Displays the DEM using <cite>rasterio.plot.show</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – If the API key is not found in the environment.</p></li>
+<li><p><strong>SystemExit</strong> – If the API request fails.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="download_data.download_figshare">
 <span class="sig-prename descclassname"><span class="pre">download_data.</span></span><span class="sig-name descname"><span class="pre">download_figshare</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/download_data.html#download_figshare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#download_data.download_figshare" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Download files from Figshare given a list of article/item IDs.</p>
+<p>The function:
+1. Sets up the API base URL and authentication headers.
+2. Collects file metadata for each item ID.
+3. Downloads all files into <cite>data/raw/&lt;item_id&gt;/&lt;filename&gt;</cite> structure.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Requires a Figshare personal access token stored in the environment variable <cite>FIGSHARE_TOKEN</cite>.</p></li>
+<li><p>You can modify <cite>item_ids</cite> to include your desired Figshare article IDs.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>requests.exceptions.RequestException</strong> – If the API request fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="download_data.download_filosofi">
+<span class="sig-prename descclassname"><span class="pre">download_data.</span></span><span class="sig-name descname"><span class="pre">download_filosofi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/download_data.html#download_filosofi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#download_data.download_filosofi" title="Link to this definition"></a></dt>
+<dd><p>Download the INSEE Filosofi 2017 dataset and save it to <cite>data/raw</cite> relative to the repository root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em><em>, </em><em>optional</em>) – URL of the dataset to download. If not provided, defaults to the official INSEE URL.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Uses <cite>requests</cite> with a progress bar if available.</p></li>
+<li><p>Falls back to <cite>urllib</cite> if <cite>requests</cite> fails.</p></li>
+<li><p>Saves the file using the original filename from the URL.</p></li>
+</ul>
+</dd></dl>
 
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="TC damage spatial analysis documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="download_INSEE.html" class="btn btn-neutral float-right" title="download_INSEE module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
