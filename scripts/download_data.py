@@ -143,4 +143,72 @@ def download_ESA():
     # download the products to the given directory 
     catalogue.download_products(products, "data/raw/ESA_worldcover")
 
+from pathlib import Path
+import sys
+import logging
+from urllib.parse import urlparse
+import shutil
+
+def download_filosofi(url: str = None) -> None:
+    """
+    Download a file and save it to data/raw relative to the repository root.
+    If `requests` is available, uses it with a progress bar; otherwise falls back to urllib.
+    """
+
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+
+    # Default URL if none provided
+    default_url = "https://www.insee.fr/fr/statistiques/fichier/6215138/Filosofi2017_carreaux_200m_gpkg.zip"
+    url = url or default_url
+
+    # Determine target directory (assumes script is in <repo>/scripts/)
+    repo_root = Path(__file__).resolve().parent.parent
+    out_dir = repo_root / "data" / "raw"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Determine filename
+    fname = Path(urlparse(url).path).name or "downloaded.file"
+    dest = out_dir / fname
+
+    if dest.exists():
+        logging.info("File already exists: %s", dest)
+        return
+
+    # Try using requests first
+    try:
+        import requests
+        from tqdm import tqdm
+
+        logging.info("Using requests to download %s -> %s", url, dest)
+        with requests.get(url, stream=True, timeout=30) as r:
+            r.raise_for_status()
+            total = int(r.headers.get("content-length") or 0)
+            chunk_size = 8192
+            with dest.open("wb") as f, tqdm(
+                total=(total if total else None),
+                unit="B",
+                unit_scale=True,
+                desc=dest.name,
+            ) as pbar:
+                for chunk in r.iter_content(chunk_size=chunk_size):
+                    if not chunk:
+                        continue
+                    f.write(chunk)
+                    pbar.update(len(chunk))
+        logging.info("Saved to %s", dest)
+
+    except Exception:
+        # fallback to urllib
+        import urllib.request
+        logging.info("Falling back to urllib to download %s -> %s", url, dest)
+        with urllib.request.urlopen(url, timeout=30) as r, dest.open("wb") as f:
+            shutil.copyfileobj(r, f)
+        logging.info("Saved to %s", dest)
+
+
+if __name__ == "__main__":
+    # Optionally pass URL as the first argument
+    download_file(sys.argv[1] if len(sys.argv) > 1 else None)
+
+
 #download_figshare()
