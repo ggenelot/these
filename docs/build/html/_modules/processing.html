@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>processing &#8212; TC damage spatial analysis  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for processing</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rioxarray</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio</span><span class="w"> </span><span class="kn">import</span> <span class="n">features</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<div class="viewcode-block" id="hello_world">
+<a class="viewcode-back" href="../processing.html#processing.hello_world">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="binary_vector_to_raster">
+<a class="viewcode-back" href="../processing.html#processing.binary_vector_to_raster">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">binary_vector_to_raster</span><span class="p">(</span><span class="n">input_vector</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">reference</span><span class="p">):</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">reference</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
+
+    <span class="n">geom</span> <span class="o">=</span> <span class="p">[</span><span class="n">shapes</span> <span class="k">for</span> <span class="n">shapes</span> <span class="ow">in</span> <span class="n">input_vector</span><span class="o">.</span><span class="n">geometry</span><span class="p">]</span>
+
+    <span class="c1"># Rasterize vector using the shape and coordinate system of the raster</span>
+    <span class="n">rasterized</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">rasterize</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span>
+                                <span class="n">out_shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">,</span>
+                                <span class="n">fill</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                                <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span><span class="p">,</span>
+                                <span class="n">all_touched</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                <span class="n">default_value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                                <span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="c1"># Turning it into a DataArray</span>
+    <span class="n">xarray</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">rasterized</span><span class="p">,</span>
+    <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span>
+    <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">reference</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">reference</span><span class="o">.</span><span class="n">y</span><span class="p">},</span>
+    <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">xarray</span></div>
+
+
+<div class="viewcode-block" id="class_vector_to_raster">
+<a class="viewcode-back" href="../processing.html#processing.class_vector_to_raster">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">class_vector_to_raster</span><span class="p">(</span><span class="n">input_vector</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span>  <span class="n">reference</span><span class="p">):</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">reference</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
+
+    <span class="n">geom</span> <span class="o">=</span> <span class="p">[</span><span class="n">shapes</span> <span class="k">for</span> <span class="n">shapes</span> <span class="ow">in</span> <span class="n">input_vector</span><span class="o">.</span><span class="n">geometry</span><span class="p">]</span>
+
+    <span class="c1"># Rasterize vector using the shape and coordinate system of the raster</span>
+    <span class="n">rasterized</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">rasterize</span><span class="p">(</span>
+                                <span class="p">((</span><span class="n">geom</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">geom</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">input_vector</span><span class="o">.</span><span class="n">geometry</span><span class="p">,</span> <span class="n">input_vector</span><span class="p">[</span><span class="n">column_name</span><span class="p">])),</span>
+                                <span class="n">out_shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">,</span>
+                                <span class="n">fill</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                                <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span><span class="p">,</span>
+                                <span class="n">all_touched</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                <span class="n">default_value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                                <span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="c1"># Turning it into a DataArray</span>
+    <span class="n">xarray</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">rasterized</span><span class="p">,</span>
+    <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span>
+    <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">reference</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">reference</span><span class="o">.</span><span class="n">y</span><span class="p">},</span>
+    <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">xarray</span></div>
+
+
+<div class="viewcode-block" id="road_distance">
+<a class="viewcode-back" href="../processing.html#processing.road_distance">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">road_distance</span><span class="p">(</span><span class="n">input_vector</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">reference</span><span class="p">):</span> 
+
+    <span class="c1"># Rasterize road geometries to a binary mask (1 = road, 0 = background)</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">reference</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
+    <span class="n">roads_raster</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">rasterize</span><span class="p">(</span>
+        <span class="p">((</span><span class="n">geom</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="n">input_vector</span><span class="o">.</span><span class="n">geometry</span><span class="p">),</span>
+        <span class="n">out_shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+        <span class="n">fill</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+        <span class="n">all_touched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Build coordinate grid of pixel centers from the reference</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">ys</span> <span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>  <span class="c1"># shapes = (ny, nx)</span>
+
+    <span class="n">road_mask</span> <span class="o">=</span> <span class="n">roads_raster</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">road_mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="c1"># No roads: return array of NaNs</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Coordinates of road pixels and all pixels</span>
+        <span class="n">road_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="n">road_mask</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="n">road_mask</span><span class="p">]))</span>
+        <span class="n">all_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span>
+
+        <span class="c1"># Use scipy cKDTree to compute nearest-neighbour distances</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">cKDTree</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;scipy is required for distance computation (install scipy).&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="n">road_pts</span><span class="p">)</span>
+        <span class="n">dists</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">all_pts</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">dists</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="c1"># Return as an xarray DataArray with the same coords as the reference</span>
+    <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span> <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">reference</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">reference</span><span class="o">.</span><span class="n">y</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">TC damage spatial analysis</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Gabriel Genelot.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
