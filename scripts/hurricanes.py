@@ -1,5 +1,42 @@
 import xarray as xr
 import numpy as np
+import geopandas as gpd
+from shapely.geometry import Point
+
+def track_in_geometry(df, geometry, tc_col='TC number', year_col='Year',
+                            lat_col='Latitude', lon_col='Longitude', new_col='in_geometry'):
+    """
+    Adds a boolean column indicating if any point of each hurricane track (identified by TC_number and Year)
+    is inside the given geometry.
+    
+    Parameters:
+    - df: pandas.DataFrame with hurricane tracks.
+    - geometry: shapely.geometry object (Polygon, MultiPolygon, etc.).
+    - tc_col: column for tropical cyclone number.
+    - year_col: column for year of the hurricane.
+    - lat_col, lon_col: names of latitude and longitude columns.
+    - new_col: name of the boolean column to add.
+    
+    Returns:
+    - df with new boolean column added.
+    """
+    # Create a temporary hurricane ID by combining TC_number and Year
+    df['_hurricane_id'] = df[tc_col].astype(str) + "_" + df[year_col].astype(str)
+    
+    # Function to check for a single hurricane
+    def check_hurricane(group):
+        points = gpd.GeoSeries([Point(lon, lat) for lon, lat in zip(group[lon_col], group[lat_col])])
+        group[new_col] = points.within(geometry).any()
+        return group
+    
+    # Apply to each hurricane track
+    df = df.groupby('_hurricane_id', group_keys=False).apply(check_hurricane)
+    
+    # Drop the temporary ID column
+    df = df.drop(columns=['_hurricane_id'])
+    
+    return df
+
 
 
 
