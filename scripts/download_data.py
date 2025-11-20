@@ -5,7 +5,11 @@ from pathlib import Path
 from terracatalogueclient import Catalogue 
 import rasterio
 from rasterio.plot import show
-import geopandas as gpd
+from pathlib import Path
+import sys
+import logging
+from urllib.parse import urlparse
+import shutil
 
 def download_elevation():
     """
@@ -133,11 +137,7 @@ def download_ESA():
     catalogue.download_products(products, "data/raw/ESA_worldcover")
 
 
-from pathlib import Path
-import sys
-import logging
-from urllib.parse import urlparse
-import shutil
+
 
 def download_filosofi(url: str = None) -> None:
     """
