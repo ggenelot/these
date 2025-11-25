@@ -253,7 +253,9 @@ def polygon_from_point_radius(lat_center, lon_center, radius_km, n_points=64):
     if radius_km <= 0:
         raise ValueError("radius_km must be positive")
     bearings = np.linspace(0, 360, num=n_points, endpoint=False)
-    coords = [_destination_point(lat_center, lon_center, b, radius_km) for b in bearings]
+    coords_latlon = [_destination_point(lat_center, lon_center, b, radius_km) for b in bearings]
+    # shapely expects (x, y) -> (lon, lat)
+    coords = [(lon, lat) for lat, lon in coords_latlon]
     return Polygon(coords)
 
 def track_to_ds(track, resolution=0.05):
