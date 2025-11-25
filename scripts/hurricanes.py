@@ -1,10 +1,12 @@
+import math
+
 import xarray as xr
 import numpy as np
 import geopandas as gpd
-from shapely.geometry import Point
+from shapely.geometry import Point, Polygon
 
-def track_in_geometry(df, geometry, tc_col='TC number', year_col='Year',
-                            lat_col='Latitude', lon_col='Longitude', new_col='in_geometry'):
+def filter_track_in_geometry(df, geometry, tc_col='TC number', year_col='Year',
+                            lat_col='Latitude', lon_col='Longitude', new_col='in_geometry', return_filtered=True):
     """
     Adds a boolean column indicating if any point of each hurricane track (identified by TC_number and Year)
     is inside the given geometry.
@@ -35,6 +37,10 @@ def track_in_geometry(df, geometry, tc_col='TC number', year_col='Year',
     # Drop the temporary ID column
     df = df.drop(columns=['_hurricane_id'])
     
+    if return_filtered:
+        df=df[df["in_geometry"]==True]
+        df = df.drop(columns="in_geometry")
+
     return df
 
 def filter_track(df, column, condition, tc_col = 'TC number', year_col='Year', return_filtered = True):
@@ -205,6 +211,50 @@ def mask_points_within_distance(da, lat_center, lon_center, max_distance_km):
         coords={"lat": da.lat, "lon": da.lon},
         name="mask_within_distance"
     )
+
+
+def _destination_point(lat, lon, bearing_deg, distance_km, radius_km=6371.0):
+    """
+    Compute destination point from a start point, bearing, and distance on a sphere.
+
+    Returns (lat, lon) in degrees.
+    """
+    lat1 = math.radians(lat)
+    lon1 = math.radians(lon)
+    bearing = math.radians(bearing_deg)
+    angular_distance = distance_km / radius_km
+
+    lat2 = math.asin(
+        math.sin(lat1) * math.cos(angular_distance)
+        + math.cos(lat1) * math.sin(angular_distance) * math.cos(bearing)
+    )
+
+    lon2 = lon1 + math.atan2(
+        math.sin(bearing) * math.sin(angular_distance) * math.cos(lat1),
+        math.cos(angular_distance) - math.sin(lat1) * math.sin(lat2),
+    )
+
+    return math.degrees(lat2), math.degrees((lon2 + math.pi) % (2 * math.pi) - math.pi)
+
+
+def polygon_from_point_radius(lat_center, lon_center, radius_km, n_points=64):
+    """
+    Build an approximate circular polygon around a point with a geodesic radius.
+
+    Parameters
+    ----------
+    lat_center, lon_center : float
+        Center coordinates in degrees.
+    radius_km : float
+        Radius of the circle in kilometers.
+    n_points : int
+        Number of points to sample along the circle.
+    """
+    if radius_km <= 0:
+        raise ValueError("radius_km must be positive")
+    bearings = np.linspace(0, 360, num=n_points, endpoint=False)
+    coords = [_destination_point(lat_center, lon_center, b, radius_km) for b in bearings]
+    return Polygon(coords)
 
 def track_to_ds(track, resolution=0.05):
     """

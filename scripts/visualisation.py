@@ -173,7 +173,6 @@ def plot_track_points(
     cmap: str = "viridis",
     markersize: float = 25,
     alpha: float = 0.9,
-    legend: bool = True,
     **plot_kwargs,
 ):
     """
@@ -194,14 +193,13 @@ def plot_track_points(
             cmap=cmap,
             markersize=markersize,
             alpha=alpha,
-            legend=legend,
+            legend=False,
             **plot_kwargs,
         )
     else:
         points.plot(ax=ax, color="C1", markersize=markersize, alpha=alpha, **plot_kwargs)
 
-    ax.set_xlabel("Longitude")
-    ax.set_ylabel("Latitude")
+    ax.set_axis_off()
     ax.set_title("Hurricane track points")
     return ax
 
