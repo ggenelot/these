@@ -37,6 +37,33 @@ def track_in_geometry(df, geometry, tc_col='TC number', year_col='Year',
     
     return df
 
+def filter_track(df, column, condition, tc_col = 'TC Number', year_col='Year'):
+
+    # Create a temporary hurricane ID by combining TC_number and Year
+    df['_hurricane_id'] = df[tc_col].astype(str) + "_" + df[year_col].astype(str)
+
+    # Function to check for a single hurricane track
+    def check_hurricane(group):
+        # Compute boolean mask within the group
+        condition_mask = condition(group[column])
+        
+        # Flag = True if ANY row satisfies the condition
+        flag = condition_mask.any()
+        
+        # Assign result as a new column for all rows in the group
+        group[f'{column}_condition_met'] = flag
+        return group
+    
+    # Apply to each hurricane track
+    df = df.groupby('_hurricane_id', group_keys=False).apply(check_hurricane)
+    
+    # Drop the temporary ID column
+    df = df.drop(columns=['_hurricane_id'])
+    
+    return df
+
+
+
 
 
 
