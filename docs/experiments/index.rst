@@ -7,9 +7,6 @@ This section contains documentation for various experiments and case studies.
     :maxdepth: 2
     :caption: Contents:
 
-    experiment_1
-    experiment_2
-    experiment_3
 
 Overview
 --------

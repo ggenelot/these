@@ -11,9 +11,6 @@ Contents
     :maxdepth: 2
     :caption: Table of Contents
 
-    method1
-    method2
-    method3
 
 Indices and tables
 -------------------
