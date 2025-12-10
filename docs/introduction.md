@@ -1,7 +1,7 @@
 # Introduction
 
 
-```{figure} ../_static/test_image.jpg
+```{figure} _static/test_image.jpg
 ---
 name: fig-carte-risque
 width: 80%
