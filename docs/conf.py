@@ -21,6 +21,15 @@ exclude_patterns = []
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 
+# -- Options for figure numbering --------------------------------------------
+
+numfig = True
+numfig_format = {
+    "figure": "Figure %s",
+    "table": "Table %s",
+}
+
+
 # -- Path to project code ----------------------------------------------------
 
 import os
