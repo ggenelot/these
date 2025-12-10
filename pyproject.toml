@@ -22,12 +22,14 @@ dependencies = [
 
 [project.optional-dependencies]
 
-# Documentation (Read the Docs)
+
 docs = [
-  "sphinx",
-  "myst-nb",
+  "sphinx>=7.4,<8.3",
+  "myst-parser>=2.0,<3.1",
+  "myst-nb>=1.1,<1.4",
   "sphinx-rtd-theme",
 ]
+
 
 # Développement
 dev = [
