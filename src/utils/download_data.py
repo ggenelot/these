@@ -78,8 +78,9 @@ def download_figshare():
 
     Notes
     -----
-    - Requires a Figshare personal access token stored in the environment variable `FIGSHARE_TOKEN`.
-    - You can modify `item_ids` to include your desired Figshare article IDs.
+    - Requires a Figshare personal access token stored in env var
+      ``FIGSHARE_TOKEN``.
+    - You can modify ``item_ids`` to include your desired Figshare article IDs.
 
     Raises
     ------
@@ -123,7 +124,8 @@ def download_ESA():
 
     The function:
     1. Authenticates interactively to the Terrascope platform.
-    2. Filters products in the ESA WorldCover 10m 2020 collection, optionally within a bounding box.
+    2. Filters products in the ESA WorldCover 10m 2020 collection,
+       optionally within a bounding box.
     3. Downloads all matching products to `data/raw/ESA_worldcover`.
 
     Notes
@@ -145,12 +147,13 @@ def download_ESA():
 
 def download_filosofi(url: str = None) -> None:
     """
-    Download the INSEE Filosofi 2017 dataset and save it to `data/raw` relative to the repository root.
+    Download the INSEE Filosofi 2017 dataset and save it to ``data/raw``.
 
     Parameters
     ----------
     url : str, optional
-        URL of the dataset to download. If not provided, defaults to the official INSEE URL.
+        URL of the dataset to download. If not provided, defaults to the
+        official INSEE URL.
 
     Notes
     -----
@@ -159,7 +162,10 @@ def download_filosofi(url: str = None) -> None:
     - Saves the file using the original filename from the URL.
     """
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-    default_url = "https://www.insee.fr/fr/statistiques/fichier/6215138/Filosofi2017_carreaux_200m_gpkg.zip"
+    default_url = (
+        "https://www.insee.fr/fr/statistiques/fichier/"
+        "6215138/Filosofi2017_carreaux_200m_gpkg.zip"
+    )
     url = url or default_url
     repo_root = Path(__file__).resolve().parent.parent
     out_dir = repo_root / "data" / "raw"

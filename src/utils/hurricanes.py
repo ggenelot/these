@@ -17,8 +17,8 @@ def filter_track_in_geometry(
     return_filtered=True,
 ):
     """
-    Adds a boolean column indicating if any point of each hurricane track (identified by TC_number and Year)
-    is inside the given geometry.
+    Adds a boolean column indicating if any point of each hurricane track
+    (identified by TC_number and Year) is inside the given geometry.
 
     Parameters:
     - df: pandas.DataFrame with hurricane tracks.
@@ -49,7 +49,7 @@ def filter_track_in_geometry(
     df = df.drop(columns=["_hurricane_id"])
 
     if return_filtered:
-        df = df[df[new_col] == True]
+        df = df[df[new_col]]
         df = df.drop(columns=new_col)
 
     return df
@@ -82,7 +82,7 @@ def filter_track(
 
     # Return only the filtered values
     if return_filtered:
-        df = df[df[f"{column}_condition_met"] == True]
+        df = df[df[f"{column}_condition_met"]]
         df = df.drop(columns=f"{column}_condition_met")
 
     return df
