@@ -8,12 +8,12 @@ Contents
 --------
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Table of Contents
 
-    ../../notebooks/download_OSM
-    ../../notebooks/export
-    ../../notebooks/merge_data
-    ../../notebooks/modeling_damages
-    ../../notebooks/tropical_storms
+    Download OSM <../../notebooks/download_OSM>
+    Export data <../../notebooks/export>
+    Merge data <../../notebooks/merge_data>
+    Modeling damages <../../notebooks/modeling_damages>
+    Tropical storms <../../notebooks/tropical_storms>
 
