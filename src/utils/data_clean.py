@@ -6,8 +6,6 @@ import zipfile
 from pathlib import Path
 
 import py7zr
-
-#!/usr/bin/env python3
 """
 Copy contents of the 'raw' folder into 'processed' (same project root),
 preserving folder structure, and unzip any .zip files found inside 'processed'.
