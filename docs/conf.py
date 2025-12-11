@@ -11,6 +11,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "myst_nb",   # Active automatiquement .md + notebooks
+    "sphinxcontrib.mermaid",
 ]
 
 templates_path = ["_templates"]
