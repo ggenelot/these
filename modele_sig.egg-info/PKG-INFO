@@ -2,7 +2,26 @@ Metadata-Version: 2.4
 Name: modele-sig
 Version: 0.1.0
 Summary: Open-science tools for hurricane and geospatial processing
-Author: Your Name
+Author: Gabriel Genelot
 Requires-Python: >=3.9
 License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: geopandas
+Requires-Dist: shapely
+Requires-Dist: rasterio
+Requires-Dist: xarray
+Provides-Extra: docs
+Requires-Dist: sphinx<8.3,>=7.4; extra == "docs"
+Requires-Dist: myst-parser<3.1,>=2.0; extra == "docs"
+Requires-Dist: myst-nb<1.4,>=1.1; extra == "docs"
+Requires-Dist: sphinx-rtd-theme; extra == "docs"
+Requires-Dist: sphinxcontrib-bibtex>=2.5; extra == "docs"
+Requires-Dist: furo; extra == "docs"
+Requires-Dist: sphinxcontrib-mermaid; extra == "docs"
+Provides-Extra: myst-enable-extensions
+Requires-Dist: colon_fence; extra == "myst-enable-extensions"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
 Dynamic: license-file

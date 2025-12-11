@@ -4,14 +4,8 @@ pyproject.toml
 modele_sig.egg-info/PKG-INFO
 modele_sig.egg-info/SOURCES.txt
 modele_sig.egg-info/dependency_links.txt
+modele_sig.egg-info/requires.txt
 modele_sig.egg-info/top_level.txt
-scripts/__init__.py
-scripts/data_clean.py
-scripts/data_process.py
-scripts/download_OSM.py
-scripts/download_data.py
-scripts/hurricanes.py
-scripts/processing.py
 tests/test_blank_raster.py
 tests/test_filter_track.py
 tests/test_harversine.py
