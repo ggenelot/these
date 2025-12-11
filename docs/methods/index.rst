@@ -11,10 +11,8 @@ Contents
     :maxdepth: 1
     :caption: Table of Contents
 
-    Download OSM <../../notebooks/download_OSM.ipynb>
-    Export data <../../notebooks/export.ipynb>
-    Merge data <../../notebooks/merge_data.ipynb>
-    Modeling damages <../../notebooks/modeling_damages.ipynb>
-    Tropical storms <../../notebooks/tropical_storms.ipynb>
-
-```{nbinclude} ../../notebooks/export.ipynb
+    ../../notebooks/download_OSM.ipynb
+    ../../notebooks/export.ipynb
+    ../../notebooks/merge_data.ipynb
+    ../../notebooks/modeling_damages.ipynb
+    ../../notebooks/tropical_storms.ipynb
