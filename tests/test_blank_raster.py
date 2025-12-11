@@ -1,5 +1,5 @@
 import pandas as pd
-from scripts.hurricanes import blank_raster_from_track
+from src.hurricanes import blank_raster_from_track
 
 def test_blank_raster_shape():
     df = pd.DataFrame({

@@ -1,5 +1,5 @@
 import numpy as np
-from scripts.hurricanes import haversine_distance
+from src.hurricanes import haversine_distance
 
 def test_haversine_zero_distance():
     dist = haversine_distance(10, 20, 10, 20)

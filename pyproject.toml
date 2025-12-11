@@ -46,8 +46,7 @@ dev = [
   "ruff",
 ]
 
-[tool.setuptools]
-packages = ["scripts"]
 
-[tool.setuptools.package-dir]
-scripts = "scripts"
+[tool.setuptools.packages.find]
+where = ["src"]
+

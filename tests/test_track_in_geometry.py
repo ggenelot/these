@@ -1,6 +1,6 @@
 import pandas as pd
 from shapely.geometry import Polygon
-from scripts.hurricanes import filter_track_in_geometry
+from src.hurricanes import filter_track_in_geometry
 
 def test_track_in_geometry():
     df = pd.DataFrame({

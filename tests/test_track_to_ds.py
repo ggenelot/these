@@ -1,5 +1,5 @@
 import pandas as pd
-from scripts.hurricanes import track_to_ds
+from src.hurricanes import track_to_ds
 
 def test_track_to_ds_dimensions():
     df = pd.DataFrame({

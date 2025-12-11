@@ -12,7 +12,9 @@ extensions = [
     "sphinx.ext.viewcode",
     "myst_nb",   # Active automatiquement .md + notebooks
     "sphinxcontrib.mermaid",
+    "spinx.ext.autosummary",
 ]
+autosummary_generate = True
 
 # MyST / Markdown
 myst_enable_extensions = [
@@ -74,4 +76,4 @@ bibtex_reference_style = "author_year"
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath("../../scripts"))
+sys.path.insert(0, os.path.abspath("../src"))
