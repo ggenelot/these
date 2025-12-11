@@ -184,7 +184,7 @@ D'autre part, des questions épistémiques sur l'intérêt de ce type de modéli
 
 ## Méthodologie
 
-On simule l'effet du passage d'un cyclone sur une île des petites Antilles. On peut décomposer cette approche en quatre phases principales. D'abord, on crée une représentation de l'île avec des données choisies, avec un maillage dense. On définit des fonctions de dommage, c'est-à-dire l'effet du passage du cyclone et de ses composantes (vent, vague, précipitation) sur les données choisies (destruction de l'habitat, changement d'usage). On réalise des simulations du passage de cyclones à l'aide de cyclones synthétiques, et on évalue le niveau de dommage. On peut renouveler la simulation en faisant varier la représentation initiale de l'île, c'est-à-dire en faisant des choix d'aménagement différents. 
+On simule l'effet du passage d'un cyclone sur une île des petites Antilles. On peut décomposer cette approche en quatre phases principales. D'abord, on crée une représentation de l'île avec des données choisies, avec un maillage dense. On définit des fonctions de dommage, c'est-à-dire l'effet du passage du cyclone et de ses composantes (vent, vague, précipitation) sur les données choisies (destruction de l'habitat, changement d'usage). On réalise des simulations du passage de cyclones à l'aide de cyclones synthétiques, et on évalue le niveau de dommage. On peut renouveler la simulation en faisant varier la représentation initiale de l'île, c'est-à-dire en faisant des choix d'aménagement différents. Une version simplifiée du modèle, tel qu'il est envisagé aujourd'hui, est disponible en figure {numref}`fig-modele`.
 
 ### Choix des données et représentations
 
@@ -206,4 +206,60 @@ On modélise les fonctions de dommage, c'est-à-dire qu'on définit la relation 
 On simule le passage d'un cyclone et on observe les évolutions de nos variables. On recommence les opérations 1 à 3 avec différentes options d'aménagement pour les comparer.
 
 
+
+```mermaid
+:caption: Représentation simplifiée du modèle envisagé
+:name: fig-modele
+
+graph TD;
+
+S1{STORM} -->|cyclones synthétiques| M
+S2{SSP ? } -->|evolution économique| M
+S3{INSEE} -->|densité, pauvreté| S
+S4{OSM} -->|route, usage des sols, bati| S
+S5{IGN} -->|élévation, pente| T
+S6{SHOM} -->|coraux, bathy| T
+S7{Entretiens}--> |besoins, vulnérabilité, scénarios de dév| A
+
+
+subgraph input[input]
+M[Climato]
+S[socio-éco]
+T[Topographie]
+A[Aménagement]
+end
+
+M --> |intensité| C
+T --> |augmente| Al
+A --> |atténue| Al
+S --> |distribue| En
+A --> |augmente| En 
+
+subgraph modele[Représentation]
+
+C[Cyclone] 
+Al[Aléa]
+C --> Al 
+
+En[Enjeu]
+
+Ri[Risque]
+Al -->|influence| Ri
+En -->|influence| Ri
+
+end
+
+Ri --> Ca
+
+Al --> Ca
+En --> Ca
+
+subgraph output[output]
+
+Ca[Carte]
+end
+
+
+
+```
 
