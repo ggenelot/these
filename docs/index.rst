@@ -18,6 +18,11 @@ Ma thèse cherche à modéliser les dommages liés au changement climatique, not
    results/index
    6_discussion
    7_perspectives
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Ressources
+
    8_liste_figures
    9_bibliographie
    api

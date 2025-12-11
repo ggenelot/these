@@ -27,6 +27,7 @@ autodoc_mock_imports = [
     "rioxarray",
     "matplotlib",
     "osmnx",
+    "terracatalogueclient",
 ]
 
 

@@ -10,5 +10,4 @@ API du code
    utils.processing
    utils.visualisation
    utils.download_data
-   utils.download_INSEE
    utils.download_OSM
