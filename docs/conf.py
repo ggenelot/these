@@ -32,9 +32,10 @@ autodoc_mock_imports = [
 ]
 
 
-# MyST / Markdown
 myst_enable_extensions = [
-    "colon_fence",  # needed for ::: and mermaid code fences
+    "colon_fence",
+    "linkify",
+    "substitution",
 ]
 # Allow ```mermaid fences in addition to ```{mermaid}
 myst_fence_as_directive = ["mermaid"]
