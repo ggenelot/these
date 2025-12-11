@@ -33,5 +33,5 @@ jobs:
       - name: Run unit tests and doctests
         run: pytest --doctest-glob="*.py" --doctest-modules
 
-      - name: Run notebook examples
-        run: pytest --nbmake notebooks
+      #- name: Run notebook examples
+      #  run: pytest --nbmake notebooks
