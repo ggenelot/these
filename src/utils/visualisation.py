@@ -56,7 +56,11 @@ def tracks_to_points_gdf(
     """
     gdf = df.copy()
 
-    if track_id_col not in gdf.columns and tc_col in gdf.columns and year_col in gdf.columns:
+    if (
+        track_id_col not in gdf.columns
+        and tc_col in gdf.columns
+        and year_col in gdf.columns
+    ):
         gdf[track_id_col] = gdf[tc_col].astype(str) + "_" + gdf[year_col].astype(str)
 
     if sort_by is None:
@@ -138,7 +142,12 @@ def plot_tracks(
     color_by : str, optional
         Column to color lines by; solid color if None.
     """
-    lines = data if isinstance(data, gpd.GeoDataFrame) and data.geom_type.isin(["LineString", "MultiLineString"]).all() else tracks_to_lines_gdf(data)
+    lines = (
+        data
+        if isinstance(data, gpd.GeoDataFrame)
+        and data.geom_type.isin(["LineString", "MultiLineString"]).all()
+        else tracks_to_lines_gdf(data)
+    )
 
     if ax is None:
         _, ax = plt.subplots(figsize=(8, 6))
@@ -179,7 +188,11 @@ def plot_track_points(
     """
     Plot hurricane track points (e.g., by intensity).
     """
-    points = data if isinstance(data, gpd.GeoDataFrame) and data.geom_type.isin(["Point"]).all() else tracks_to_points_gdf(data)
+    points = (
+        data
+        if isinstance(data, gpd.GeoDataFrame) and data.geom_type.isin(["Point"]).all()
+        else tracks_to_points_gdf(data)
+    )
 
     if ax is None:
         _, ax = plt.subplots(figsize=(8, 6))
@@ -198,7 +211,9 @@ def plot_track_points(
             **plot_kwargs,
         )
     else:
-        points.plot(ax=ax, color="C1", markersize=markersize, alpha=alpha, **plot_kwargs)
+        points.plot(
+            ax=ax, color="C1", markersize=markersize, alpha=alpha, **plot_kwargs
+        )
 
     ax.set_axis_off()
     ax.set_title("Hurricane track points")

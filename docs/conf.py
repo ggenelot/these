@@ -1,21 +1,22 @@
 # Configuration file for the Sphinx documentation builder.
 
-project = 'SIG et prospective'
-copyright = '2025, Gabriel Genelot'
-author = 'Gabriel Genelot'
+import os
+import sys
+
+project = "SIG et prospective"
+copyright = "2025, Gabriel Genelot"
+author = "Gabriel Genelot"
 
 # -- General configuration ---------------------------------------------------
 
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "myst_nb",   # Active automatiquement .md + notebooks
+    "myst_nb",  # Active automatiquement .md + notebooks
     "sphinxcontrib.mermaid",
-    "sphinx.ext.autosummary",
 ]
-autosummary_generate = True
-
 autosummary_generate = True
 autodoc_default_options = {
     "members": True,
@@ -88,7 +89,4 @@ bibtex_reference_style = "author_year"
 
 
 # -- Path to project code ----------------------------------------------------
-
-import os
-import sys
 sys.path.insert(0, os.path.abspath("../src"))

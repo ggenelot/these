@@ -1,13 +1,12 @@
 import argparse
 import logging
 import shutil
+import sys
 import zipfile
 from pathlib import Path
-import sys
-import subprocess
+
 import py7zr
 
-#!/usr/bin/env python3
 """
 Copy contents of the 'raw' folder into 'processed' (same project root),
 preserving folder structure, and unzip any .zip files found inside 'processed'.
@@ -76,10 +75,26 @@ def main():
     default_src = project_root / "data/raw"
     default_dst = project_root / "data/processed"
 
-    parser = argparse.ArgumentParser(description="Copy raw -> processed and unzip files")
-    parser.add_argument("--src", type=Path, default=default_src, help="Source raw folder")
-    parser.add_argument("--dst", type=Path, default=default_dst, help="Destination processed folder")
-    parser.add_argument("--keep-zips", action="store_true", help="Keep .zip files after extraction")
+    parser = argparse.ArgumentParser(
+        description="Copy raw -> processed and unzip files"
+    )
+    parser.add_argument(
+        "--src",
+        type=Path,
+        default=default_src,
+        help="Source raw folder",
+    )
+    parser.add_argument(
+        "--dst",
+        type=Path,
+        default=default_dst,
+        help="Destination processed folder",
+    )
+    parser.add_argument(
+        "--keep-zips",
+        action="store_true",
+        help="Keep .zip files after extraction",
+    )
     args = parser.parse_args()
 
     try:
@@ -99,7 +114,7 @@ if __name__ == "__main__":
         p = Path(__file__).resolve()
         project_root = p.parents[1]
         raw = project_root / "data" / "raw"
-        processed = project_root / "data" / "processed" /"Filosofi2017"
+        processed = project_root / "data" / "processed" / "Filosofi2017"
         z = raw / "Filosofi2017_carreaux_200m_gpkg.zip"
 
         if not z.exists():
@@ -113,7 +128,8 @@ if __name__ == "__main__":
                 zf.extractall(processed)
             logging.info("Zip extraction complete: %s", z)
 
-            # After extracting the zip, look for any .7z archives and extract them in place
+            # After extracting the zip, look for any .7z archives and extract them
+            # in place
             for sev in processed.rglob("*.7z"):
                 try:
                     logging.info("Found 7z archive, extracting: %s", sev)
@@ -135,7 +151,7 @@ if __name__ == "__main__":
             logging.error("Failed to extract %s: %s", z, e)
 
     if __name__ == "__main__":
-        # main() already runs above; run the specific extraction to ensure the geopackage is in processed
+        # main() already runs above; ensure the geopackage is in processed
         extract_filosofi_zip()
 
         def extract_bdtopo_7z():
@@ -158,11 +174,10 @@ if __name__ == "__main__":
             except Exception as e:
                 logging.error("Failed to extract %s: %s", src, e)
 
-
         if __name__ == "__main__":
             extract_bdtopo_7z()
 
-            # remove specific leftover .7z files (and any other top-level .7z in processed) to keep workspace clean
+            # remove specific leftover .7z files (and other top-level .7z in processed)
             p = Path(__file__).resolve()
             project_root = p.parents[1]
             processed = project_root / "data" / "processed"

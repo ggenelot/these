@@ -1,26 +1,26 @@
-import os
-import requests
 import json
-from pathlib import Path
-from terracatalogueclient import Catalogue 
-import rasterio
-from rasterio.plot import show
-from pathlib import Path
-import sys
 import logging
-from urllib.parse import urlparse
+import os
 import shutil
+from pathlib import Path
+from urllib.parse import urlparse
+
+import rasterio
+import requests
+from rasterio.plot import show
+from terracatalogueclient import Catalogue
+
 
 def download_elevation():
     """
     Download a Digital Elevation Model (DEM) from OpenTopography and inspect it.
 
     The function:
-    1. Loads the OpenTopography API key from the environment variable `OPENTOPO_API_KEY`.
-    2. Defines a bounding box (or optionally reads from a shapefile) for the area of interest.
-    3. Downloads the COP30 DEM as a GeoTIFF to `data/raw/elevation/cop30_dem.tif`.
-    4. Opens the DEM using `rasterio` and prints metadata, including CRS, resolution, and bounds.
-    5. Displays the DEM using `rasterio.plot.show`.
+    1. Loads the OpenTopography API key from env var ``OPENTOPO_API_KEY``.
+    2. Defines a bounding box (or optionally reads from a shapefile).
+    3. Downloads the COP30 DEM to ``data/raw/elevation/cop30_dem.tif``.
+    4. Prints metadata (CRS, resolution, bounds).
+    5. Displays the DEM with ``rasterio.plot.show``.
 
     Raises
     ------
@@ -32,7 +32,9 @@ def download_elevation():
     API_KEY = os.getenv("OPENTOPO_API_KEY")
 
     if not API_KEY:
-        raise ValueError("No API key found! Please set OPENTOPO_API_KEY as an environment variable.")
+        raise ValueError(
+            "No API key found! Please set OPENTOPO_API_KEY as an environment variable."
+        )
 
     bbox = (-61.25, 14.35, -60.75, 14.95)
     dataset = "COP30"
@@ -76,8 +78,9 @@ def download_figshare():
 
     Notes
     -----
-    - Requires a Figshare personal access token stored in the environment variable `FIGSHARE_TOKEN`.
-    - You can modify `item_ids` to include your desired Figshare article IDs.
+    - Requires a Figshare personal access token stored in env var
+      ``FIGSHARE_TOKEN``.
+    - You can modify ``item_ids`` to include your desired Figshare article IDs.
 
     Raises
     ------
@@ -86,31 +89,33 @@ def download_figshare():
     """
     item_ids = [12706085]
     folder_path = "data/raw/"
-    BASE_URL = 'https://api.figshare.com/v2'
-    api_call_headers = {'Authorization': 'token $env:FIGSHARE_TOKEN'}
+    BASE_URL = "https://api.figshare.com/v2"
+    api_call_headers = {"Authorization": "token $env:FIGSHARE_TOKEN"}
     file_info = []
 
-    print('Retrieving metadata')
+    print("Retrieving metadata")
     for i in item_ids:
-        r = requests.get(BASE_URL + '/articles/' + str(i) + '/files')
+        r = requests.get(BASE_URL + "/articles/" + str(i) + "/files")
         r.raise_for_status()
         file_metadata = json.loads(r.text)
         for j in file_metadata:
-            j['item_id'] = i
+            j["item_id"] = i
             file_info.append(j)
-    print('Files available' + str(file_info))
+    print("Files available" + str(file_info))
 
     for k in file_info:
-        print('Downloading '+k['name'])
-        response = requests.get(BASE_URL + '/file/download/' + str(k['id']), headers=api_call_headers)
+        print("Downloading " + k["name"])
+        response = requests.get(
+            BASE_URL + "/file/download/" + str(k["id"]), headers=api_call_headers
+        )
         response.raise_for_status()
-        dir_path = Path(folder_path) / str(k['item_id'])
+        dir_path = Path(folder_path) / str(k["item_id"])
         dir_path.mkdir(parents=True, exist_ok=True)
-        file_path = dir_path / k['name']
+        file_path = dir_path / k["name"]
         file_path.write_bytes(response.content)
-        print(k['name']+ ' downloaded')
+        print(k["name"] + " downloaded")
 
-    print('All files have been downloaded in '+ str(folder_path))
+    print("All files have been downloaded in " + str(folder_path))
 
 
 def download_ESA():
@@ -119,7 +124,8 @@ def download_ESA():
 
     The function:
     1. Authenticates interactively to the Terrascope platform.
-    2. Filters products in the ESA WorldCover 10m 2020 collection, optionally within a bounding box.
+    2. Filters products in the ESA WorldCover 10m 2020 collection,
+       optionally within a bounding box.
     3. Downloads all matching products to `data/raw/ESA_worldcover`.
 
     Notes
@@ -133,20 +139,21 @@ def download_ESA():
     catalogue = Catalogue().authenticate()
     bounds = (-61.3, 14.2, -60.75, 15.0)
     geometry = Polygon.from_bounds(*bounds)
-    products = catalogue.get_products("urn:eop:VITO:ESA_WorldCover_10m_2020_V1", geometry=geometry)
+    products = catalogue.get_products(
+        "urn:eop:VITO:ESA_WorldCover_10m_2020_V1", geometry=geometry
+    )
     catalogue.download_products(products, "data/raw/ESA_worldcover")
-
-
 
 
 def download_filosofi(url: str = None) -> None:
     """
-    Download the INSEE Filosofi 2017 dataset and save it to `data/raw` relative to the repository root.
+    Download the INSEE Filosofi 2017 dataset and save it to ``data/raw``.
 
     Parameters
     ----------
     url : str, optional
-        URL of the dataset to download. If not provided, defaults to the official INSEE URL.
+        URL of the dataset to download. If not provided, defaults to the
+        official INSEE URL.
 
     Notes
     -----
@@ -155,7 +162,10 @@ def download_filosofi(url: str = None) -> None:
     - Saves the file using the original filename from the URL.
     """
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-    default_url = "https://www.insee.fr/fr/statistiques/fichier/6215138/Filosofi2017_carreaux_200m_gpkg.zip"
+    default_url = (
+        "https://www.insee.fr/fr/statistiques/fichier/"
+        "6215138/Filosofi2017_carreaux_200m_gpkg.zip"
+    )
     url = url or default_url
     repo_root = Path(__file__).resolve().parent.parent
     out_dir = repo_root / "data" / "raw"
@@ -176,12 +186,15 @@ def download_filosofi(url: str = None) -> None:
             r.raise_for_status()
             total = int(r.headers.get("content-length") or 0)
             chunk_size = 8192
-            with dest.open("wb") as f, tqdm(
-                total=(total if total else None),
-                unit="B",
-                unit_scale=True,
-                desc=dest.name,
-            ) as pbar:
+            with (
+                dest.open("wb") as f,
+                tqdm(
+                    total=(total if total else None),
+                    unit="B",
+                    unit_scale=True,
+                    desc=dest.name,
+                ) as pbar,
+            ):
                 for chunk in r.iter_content(chunk_size=chunk_size):
                     if not chunk:
                         continue
@@ -191,10 +204,11 @@ def download_filosofi(url: str = None) -> None:
 
     except Exception:
         import urllib.request
+
         logging.info("Falling back to urllib to download %s -> %s", url, dest)
         with urllib.request.urlopen(url, timeout=30) as r, dest.open("wb") as f:
             shutil.copyfileobj(r, f)
         logging.info("Saved to %s", dest)
 
 
-#def download_osm()
+# def download_osm()

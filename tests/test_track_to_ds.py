@@ -1,14 +1,18 @@
 import pandas as pd
-from src.hurricanes import track_to_ds
+
+from utils.hurricanes import track_to_ds
+
 
 def test_track_to_ds_dimensions():
-    df = pd.DataFrame({
-        "Latitude": [0, 0.5],
-        "Longitude": [0, 0.5],
-        "Maximum wind speed": [100, 80],
-        "Radius to maximum winds": [200, 200],
-        "Time step": [0, 1],
-    })
+    df = pd.DataFrame(
+        {
+            "Latitude": [0, 0.5],
+            "Longitude": [0, 0.5],
+            "Maximum wind speed": [100, 80],
+            "Radius to maximum winds": [200, 200],
+            "Time step": [0, 1],
+        }
+    )
 
     ds = track_to_ds(df, resolution=1.0)
 

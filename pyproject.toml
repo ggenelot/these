@@ -44,11 +44,35 @@ myst_enable_extensions = [
 dev = [
   "pytest",
   "ruff",
+  "flake8",
+  "nbmake",
+  "py7zr",
+  "osmnx",
+  "terracatalogueclient",
+  "matplotlib",
+  "rioxarray",
+  "folium",
+  "earth-osm",
 ]
 
 
+[tool.flake8]
+max-line-length = 100
+
+
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "src", "scripts" = "scripts"}
+
+[tool.ruff]
+line-length = 88
+exclude = ["build", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
+[tool.black]
+line-length = 88
 
 [tool.setuptools.packages.find]
 where = ["src"]
