@@ -46,6 +46,9 @@ dev = [
   "ruff",
   "flake8",
   "nbmake",
+  "py7zr",
+  "osmnx",
+  "terracatalogueclient",
 ]
 
 

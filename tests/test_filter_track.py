@@ -1,5 +1,5 @@
 import pandas as pd
-from src.hurricanes import filter_track
+from src.utils.hurricanes import filter_track
 
 
 def test_filter_track_basic():

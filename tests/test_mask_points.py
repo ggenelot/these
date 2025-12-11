@@ -1,5 +1,6 @@
 import pandas as pd
-from src.hurricanes import blank_raster_from_track, mask_points_within_distance
+
+from utils.hurricanes import blank_raster_from_track, mask_points_within_distance
 
 
 def test_mask_points():
