@@ -12,7 +12,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "myst_nb",   # Active automatiquement .md + notebooks
     "sphinxcontrib.mermaid",
-    "spinx.ext.autosummary",
+    "sphinx.ext.autosummary",
 ]
 autosummary_generate = True
 
