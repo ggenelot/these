@@ -50,6 +50,9 @@ dev = [
   "osmnx",
   "terracatalogueclient",
   "matplotlib",
+  "rioxarray",
+  "folium",
+  "earth-osm",
 ]
 
 
