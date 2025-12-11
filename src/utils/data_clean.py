@@ -14,10 +14,22 @@ preserving folder structure, and unzip any .zip files found inside 'processed'.
 """
 
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-
-
 def copy_raw_to_processed(src: Path, dst: Path) -> None:
+    """
+    Copy everything under ``src`` into ``dst`` preserving the folder structure.
+
+    Parameters
+    ----------
+    src : Path
+        Source directory (e.g., ``data/raw``).
+    dst : Path
+        Destination directory (e.g., ``data/processed``). Created if missing.
+
+    Raises
+    ------
+    FileNotFoundError
+        If ``src`` does not exist or is not a directory.
+    """
     if not src.exists() or not src.is_dir():
         raise FileNotFoundError(f"Source raw directory not found: {src}")
     dst.mkdir(parents=True, exist_ok=True)
@@ -33,6 +45,16 @@ def copy_raw_to_processed(src: Path, dst: Path) -> None:
 
 
 def unzip_in_place(root: Path, remove_zip: bool = True) -> None:
+    """
+    Recursively unzip all ``*.zip`` files under ``root``.
+
+    Parameters
+    ----------
+    root : Path
+        Base directory to search for zips.
+    remove_zip : bool, default True
+        If True, delete each archive after successful extraction.
+    """
     for z in root.rglob("*.zip"):
         try:
             logging.info("Unzipping: %s", z)
@@ -48,6 +70,7 @@ def unzip_in_place(root: Path, remove_zip: bool = True) -> None:
 
 
 def main():
+    """CLI entry point to copy raw data to processed and unzip archives."""
     p = Path(__file__).resolve()
     project_root = p.parents[1]  # script is expected in <project>/scripts/
     default_src = project_root / "data/raw"

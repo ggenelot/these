@@ -21,4 +21,3 @@ Ma thèse cherche à modéliser les dommages liés au changement climatique, not
    8_liste_figures
    9_bibliographie
    api
-   modules

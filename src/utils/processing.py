@@ -4,10 +4,19 @@ import geopandas as gpd
 from rasterio import features
 import numpy as np
 
-def hello_world():
-    print("Hello")
-
 def binary_vector_to_raster(input_vector, layer_name, reference):
+    """
+    Rasterize a binary vector layer to match a reference raster grid.
+
+    Parameters
+    ----------
+    input_vector : geopandas.GeoDataFrame
+        Vector geometries to burn into the raster (1 where geometry exists).
+    layer_name : str
+        Name for the output DataArray.
+    reference : xarray.DataArray
+        Raster providing grid shape, transform, and coords.
+    """
 
     shape = (reference.sizes["y"], reference.sizes["x"])
     transform = reference.rio.transform()
@@ -35,6 +44,20 @@ def binary_vector_to_raster(input_vector, layer_name, reference):
     return xarray
 
 def class_vector_to_raster(input_vector, layer_name, column_name,  reference):
+    """
+    Rasterize a categorical vector layer using values from a column.
+
+    Parameters
+    ----------
+    input_vector : geopandas.GeoDataFrame
+        Vector geometries with class values.
+    layer_name : str
+        Name for the output DataArray.
+    column_name : str
+        Column containing class values to burn into the raster.
+    reference : xarray.DataArray
+        Raster providing grid shape, transform, and coords.
+    """
 
     shape = (reference.sizes["y"], reference.sizes["x"])
     transform = reference.rio.transform()
@@ -63,6 +86,23 @@ def class_vector_to_raster(input_vector, layer_name, column_name,  reference):
     return xarray
 
 def road_distance(input_vector, layer_name, reference): 
+    """
+    Compute distance (in map units) from each raster cell to the nearest road.
+
+    Parameters
+    ----------
+    input_vector : geopandas.GeoDataFrame
+        Road geometries.
+    layer_name : str
+        Name for the output DataArray.
+    reference : xarray.DataArray
+        Raster providing grid shape, transform, and coords.
+
+    Returns
+    -------
+    xarray.DataArray
+        Distance raster with same shape/coords as ``reference``.
+    """
 
     # Rasterize road geometries to a binary mask (1 = road, 0 = background)
     shape = (reference.sizes["y"], reference.sizes["x"])
