@@ -30,6 +30,7 @@ docs = [
   "sphinx-rtd-theme",
   "sphinxcontrib-bibtex>=2.5",
   "furo",
+  "sphinxcontrib.mermaid",
 
 ]
 
