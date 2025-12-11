@@ -11,6 +11,12 @@ Contents
     :maxdepth: 2
     :caption: Table of Contents
 
+    ../../notebooks/download_OSM
+    ../../notebooks/export
+    ../../notebooks/merge_data
+    ../../notebooks/modeling_damages
+    ../../notebooks/tropical_storms
+
 
 Indices and tables
 -------------------
