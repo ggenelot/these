@@ -14,6 +14,22 @@ extensions = [
     "sphinxcontrib.mermaid",
 ]
 
+# MyST / Markdown
+myst_enable_extensions = [
+    "colon_fence",  # needed for ::: and mermaid code fences
+]
+# Allow ```mermaid fences in addition to ```{mermaid}
+myst_fence_as_directive = ["mermaid"]
+
+# Mermaid rendering
+mermaid_version = "10.9.1"  # version bundled via sphinxcontrib-mermaid CDN
+mermaid_init_js = """
+mermaid.initialize({
+  startOnLoad: true,
+  securityLevel: "loose"
+});
+"""
+
 templates_path = ["_templates"]
 exclude_patterns = []
 
