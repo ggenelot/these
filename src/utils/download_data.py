@@ -16,11 +16,11 @@ def download_elevation():
     Download a Digital Elevation Model (DEM) from OpenTopography and inspect it.
 
     The function:
-    1. Loads the OpenTopography API key from the environment variable `OPENTOPO_API_KEY`.
-    2. Defines a bounding box (or optionally reads from a shapefile) for the area of interest.
-    3. Downloads the COP30 DEM as a GeoTIFF to `data/raw/elevation/cop30_dem.tif`.
-    4. Opens the DEM using `rasterio` and prints metadata, including CRS, resolution, and bounds.
-    5. Displays the DEM using `rasterio.plot.show`.
+    1. Loads the OpenTopography API key from env var ``OPENTOPO_API_KEY``.
+    2. Defines a bounding box (or optionally reads from a shapefile).
+    3. Downloads the COP30 DEM to ``data/raw/elevation/cop30_dem.tif``.
+    4. Prints metadata (CRS, resolution, bounds).
+    5. Displays the DEM with ``rasterio.plot.show``.
 
     Raises
     ------

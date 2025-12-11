@@ -20,11 +20,9 @@ def binary_vector_to_raster(input_vector, layer_name, reference):
     shape = (reference.sizes["y"], reference.sizes["x"])
     transform = reference.rio.transform()
 
-    geom = [shapes for shapes in input_vector.geometry]
-
     # Rasterize vector using the shape and coordinate system of the raster
     rasterized = features.rasterize(
-        geom,
+        list(input_vector.geometry),
         out_shape=shape,
         fill=0,
         out=None,
@@ -63,8 +61,6 @@ def class_vector_to_raster(input_vector, layer_name, column_name, reference):
 
     shape = (reference.sizes["y"], reference.sizes["x"])
     transform = reference.rio.transform()
-
-    geom = [shapes for shapes in input_vector.geometry]
 
     # Rasterize vector using the shape and coordinate system of the raster
     rasterized = features.rasterize(

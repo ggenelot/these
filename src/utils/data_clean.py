@@ -129,7 +129,8 @@ if __name__ == "__main__":
                 zf.extractall(processed)
             logging.info("Zip extraction complete: %s", z)
 
-            # After extracting the zip, look for any .7z archives and extract them in place
+            # After extracting the zip, look for any .7z archives and extract them
+            # in place
             for sev in processed.rglob("*.7z"):
                 try:
                     logging.info("Found 7z archive, extracting: %s", sev)
@@ -151,7 +152,7 @@ if __name__ == "__main__":
             logging.error("Failed to extract %s: %s", z, e)
 
     if __name__ == "__main__":
-        # main() already runs above; run the specific extraction to ensure the geopackage is in processed
+        # main() already runs above; ensure the geopackage is in processed
         extract_filosofi_zip()
 
         def extract_bdtopo_7z():
@@ -177,7 +178,7 @@ if __name__ == "__main__":
         if __name__ == "__main__":
             extract_bdtopo_7z()
 
-            # remove specific leftover .7z files (and any other top-level .7z in processed) to keep workspace clean
+            # remove specific leftover .7z files (and other top-level .7z in processed)
             p = Path(__file__).resolve()
             project_root = p.parents[1]
             processed = project_root / "data" / "processed"
