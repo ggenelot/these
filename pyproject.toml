@@ -50,10 +50,7 @@ dev = [
 
 
 [tool.setuptools]
-package-dir = {"" = "src"}
-
-[tool.setuptools.package-dir]
-scripts = "scripts"
+package-dir = {"" = "src", "scripts" = "scripts"}
 
 [tool.ruff]
 select = ["E", "F", "I"]   # erreurs, fautes, imports
