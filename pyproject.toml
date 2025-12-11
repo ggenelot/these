@@ -51,3 +51,12 @@ packages = ["scripts"]
 
 [tool.setuptools.package-dir]
 scripts = "scripts"
+
+[tool.ruff]
+select = ["E", "F", "I"]   # erreurs, fautes, imports
+ignore = []
+line-length = 88
+
+[tool.black]
+line-length = 88
+
