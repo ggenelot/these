@@ -1,7 +1,10 @@
 download\_data module
 =====================
 
-.. automodule:: download_data
+.. automodule:: utils.download_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
    :members:
    :show-inheritance:
    :undoc-members:

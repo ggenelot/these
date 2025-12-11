@@ -1,7 +1,10 @@
 download\_OSM module
 ====================
 
-.. automodule:: download_OSM
+.. automodule:: utils.download_OSM
+   :members:
+   :undoc-members:
+   :show-inheritance:
    :members:
    :show-inheritance:
    :undoc-members:

@@ -1,7 +1,10 @@
 download\_INSEE module
 ======================
 
-.. automodule:: download_INSEE
+.. automodule:: utils.download_INSEE
+   :members:
+   :undoc-members:
+   :show-inheritance:
    :members:
    :show-inheritance:
    :undoc-members:
