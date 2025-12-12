@@ -263,6 +263,11 @@ end
 
 ```
 
+## Figures
+
+```{listoffigures}
+
+
 ## Références  
 
 ```{bibliography}
