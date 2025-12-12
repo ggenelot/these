@@ -265,5 +265,4 @@ end
 
 ## Références 
 
-.. bibliography::
-   :filter: cited
+```{bibliography}
