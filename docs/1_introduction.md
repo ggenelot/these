@@ -263,10 +263,6 @@ end
 
 ```
 
-## Figures
-
-```{listoffigures}
-
 
 ## Références  
 
