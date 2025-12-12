@@ -262,3 +262,8 @@ end
 
 
 ```
+
+## Références 
+
+.. bibliography::
+   :filter: cited
