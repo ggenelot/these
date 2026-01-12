@@ -173,7 +173,7 @@ def download_filosofi(url: str = None) -> None:
         "6215138/Filosofi2017_carreaux_200m_gpkg.zip"
     )
     url = url or default_url
-    repo_root = Path(__file__).resolve().parent.parent
+    repo_root = Path(__file__).resolve().parent.parent.parent
     out_dir = repo_root / "data" / "raw"
     out_dir.mkdir(parents=True, exist_ok=True)
     fname = Path(urlparse(url).path).name or "downloaded.file"
