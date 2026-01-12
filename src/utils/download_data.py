@@ -59,6 +59,8 @@ def download_elevation():
         print(f"API error ({response.status_code}): {response.text}")
         exit()
 
+    os.makedirs("data/raw/elevation", exist_ok=True)
+
     with rasterio.open(output_tif) as src:
         print("\n--- DEM Metadata ---")
         print("Projection:", src.crs)
