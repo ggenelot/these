@@ -36,6 +36,9 @@ def download_elevation():
             "No API key found! Please set OPENTOPO_API_KEY as an environment variable."
         )
 
+    os.makedirs("data/raw/elevation", exist_ok=True)
+
+
     bbox = (-61.25, 14.35, -60.75, 14.95)
     dataset = "COP30"
     output_tif = "data/raw/elevation/cop30_dem.tif"
@@ -50,6 +53,7 @@ def download_elevation():
     print(f"Downloading {dataset} DEM from OpenTopography...")
     print("URL:", url)
 
+
     response = requests.get(url)
     if response.status_code == 200:
         with open(output_tif, "wb") as f:
@@ -59,7 +63,7 @@ def download_elevation():
         print(f"API error ({response.status_code}): {response.text}")
         exit()
 
-    os.makedirs("data/raw/elevation", exist_ok=True)
+    
 
     with rasterio.open(output_tif) as src:
         print("\n--- DEM Metadata ---")
@@ -211,6 +215,12 @@ def download_filosofi(url: str = None) -> None:
         with urllib.request.urlopen(url, timeout=30) as r, dest.open("wb") as f:
             shutil.copyfileobj(r, f)
         logging.info("Saved to %s", dest)
+
+#download_elevation()
+#download_ESA()
+#download_figshare()
+download_filosofi()
+
 
 
 # def download_osm()
