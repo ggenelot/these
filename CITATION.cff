@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+title: "Thèse en cours : prospective de l'aménagement du territoire pour le risque cyclonique"
+message: "If you use this work, please cite it using the information below."
+type: generic
+authors:
+  - given-names: Gabriel
+    family-names: Genelot
+    orcid: https://orcid.org/0000-0002-4596-7763
+repository-code: https://github.com/ggenelot/these
+license: CC-BY-4.0
+abstract: >
+  This repository contains research notes, analysis, and supporting software
+  developed as part of an open PhD thesis. The content is a work in progress
+  and may evolve over time.
+  
