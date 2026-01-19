@@ -1,4 +1,4 @@
-# Welcome to the Methods Documentation
+# Méthodes
 
 ## Contents
 
@@ -6,6 +6,7 @@
 :maxdepth: 1
 :caption: Table of Contents
 
+preparation_terrain
 ../../notebooks/download_OSM.ipynb
 ../../notebooks/export.ipynb
 ../../notebooks/merge_data.ipynb
