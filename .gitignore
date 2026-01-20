@@ -6,6 +6,8 @@ data/external/*
 cache/*
 scripts/cache/*
 
+.vscode/*
+
 # Python
 __pycache__/
 *.pyc
