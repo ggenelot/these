@@ -6,6 +6,7 @@ On cherche ici à faire une première représentation du socio-écosystème que 
 
 On utilise le cadre conceptuel proposé par {numref}`pellegrinMecaniquesJeuPour`, qui décompose les socio-écosystèmes en quatre composants principaux : les acteurs humains, les ressources, les institutions et les processus écologiques. 
 
+{numref}`etienneModelisationDaccompagnementDemarche2010`
 ### Les acteurs humains
 
 Pour représenter les choix d'aménagement du territoire et / ou d'usage des sols, on peut s'intéresser à deux types d'acteurs. D'une part, les acteurs décisionnels, et d'autre part, les acteurs impliqués. 
@@ -13,6 +14,14 @@ Pour représenter les choix d'aménagement du territoire et / ou d'usage des sol
 Les acteurs décisionnels représentent les acteurs participant à la prise de décision : on peut citer notamment la collectivité territoriale, les communes, la préfecture. 
 
 Les acteurs impliqués peuvent être les habitants, qui sont eux-mêmes distingués selon leurs caractéristiques. 
+
+On retient généralement 6 types d'acteurs dans un processus ComMod, dont 4 font partie du socio-écosystème {numref}`etienneModelisationDaccompagnementDemarche2010` : 
+
+- les profanes, qui ont une connaissance empirique sur le système; 
+- les chercheurs, qui ont une "connaissance académique, organisée et validée", 
+- les techniciens, qui ont une "connaissance formalisée mais essentiellement fondée sur la connaissance et la typologie d'un grand nombre de situation
+- la catégorie institutionnel, qui porte une connaissance politique et économique du système
+
 
 ### Les ressources
 
