@@ -34,3 +34,6 @@ Cette section reprend sûrement les éléments décrit plus haut comme acteurs d
 
 Les processus écologiques ne le sont pas vraiment, dans le sens où l'élément non humain / social introduit dans le modèle n'est pas un écosystème mais un phénomène physique (le passage d'un cyclone tropical). 
 
+## Références
+
+```{bibliography}
