@@ -1,4 +1,4 @@
 Liste des figures
-=================
+==================
 
-```{listoffigures}
+.. listoffigures::
