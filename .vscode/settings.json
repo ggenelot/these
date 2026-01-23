@@ -1,0 +1,12 @@
+{
+  "pandoc.cite.bibliography": "../docs/references.bib", 
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.wordBasedSuggestions": "off",
+  "markdown.suggest.paths.enabled": false,
+  "markdown.suggest.references.enabled": false,
+  "editor.suggest.showUsers": false
+}
