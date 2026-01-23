@@ -4,9 +4,10 @@
 
 ```{toctree}
 :maxdepth: 1
-:caption: Table of Contents
+:caption: Sommaire
 
-approche-COMMOD
 limitations-df
+approche-COMMOD
+fiche-pratique-COMMOD
 ```
 
