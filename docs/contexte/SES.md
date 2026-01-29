@@ -1,13 +1,23 @@
 # Représentation du socio-écosystème
 
-On cherche ici à faire une première représentation du socio-écosystème que l'on va modéliser à l'aide de l'approche ComMod. 
+On cherche ici à faire une première représentation du socio-écosystème que l'on va modéliser à l'aide de l'approche ComMod. Il est à noter que cette approche est généralement réalisée avec des acteurs; l'objectif de la réflexion ici n'est donc pas d'arriver à une version définitive du socio-écosystème, mais plutôt d'élaguer les concepts pour mieux identifier des acteurs potentiels qui permettront en retour de concevoir le SES à travers un processus COMMOD.  
 
-## composants du système 
+## composants du système  
 
 On utilise le cadre conceptuel proposé par {numref}`pellegrinMecaniquesJeuPour`, qui décompose les socio-écosystèmes en quatre composants principaux : les acteurs humains, les ressources, les institutions et les processus écologiques. 
+Par ailleurs, on suit les recommandations de {numref}`etienneStepStepGuidelines2016`, qui donnent des conseils pratiques pour conceptualiser un SES avec la méthode PARDI. Cette méthode, pour Problèmes, Acteurs, Ressources, Dynamiques et Interactions, permet de détailler les éléments du socio-écosystème à travers une grille standardisée.  
+Les réflexions qui suivent s'inscrivent dans cette démarche.  
 
-{numref}`etienneModelisationDaccompagnementDemarche2010`
-### Les acteurs humains
+### Problème
+
+Le problème abordé ici est celui des choix d'aménagement du territoire martiniquais en vue de son adaptation au risque cyclonique dans un contexte de changement climatique. 
+
+On s'intéresse en particulier à imaginer les scénarios possibles et à évaluer leurs conséquences sur les impacts de futurs cyclones tropicaux.  
+
+Cette démarche correspond à des lacunes identifiées dans la littérature. D'une part, la nécessité de faire de la prospective pour l'adaptation au changement climatique. D'autre part, de compléter la littérature grise sur les effets du changement climatique au contexte et aux enjeux de territoires ultra-marins. Enfin, de mieux modéliser le risque cyclonique dans sa globalité, en comprenant ses interactions avec les sociétés. 
+
+
+### Acteurs  
 
 Pour représenter les choix d'aménagement du territoire et / ou d'usage des sols, on peut s'intéresser à deux types d'acteurs. D'une part, les acteurs décisionnels, et d'autre part, les acteurs impliqués. 
 
@@ -19,7 +29,7 @@ On retient généralement 6 types d'acteurs dans un processus ComMod, dont 4 fon
 
 - les profanes, qui ont une connaissance empirique sur le système; 
 - les chercheurs, qui ont une "connaissance académique, organisée et validée", 
-- les techniciens, qui ont une "connaissance formalisée mais essentiellement fondée sur la connaissance et la typologie d'un grand nombre de situation
+- les techniciens, qui ont une "connaissance formalisée mais essentiellement fondée sur la connaissance et la typologie d'un grand nombre de situation"
 - la catégorie institutionnel, qui porte une connaissance politique et économique du système
 
 
@@ -33,7 +43,11 @@ Ce constat nous amène à deux autres ressources, en ce sens qu'elles ne sont pa
 
 La capacité de transformation désigne la vitesse à laquelle un territoire peut se transformer. Concrétement, c'est le temps pour changer d'usage des sols sur un espace donné. Dans une certaine mesure, elle peut être assimilé à du temps et / ou à de l'argent, ou en tout cas de la capacité d'investissement (notamment dans les cas où l'adaptation est réalisée par des investissements publics limités).
 
-L'impact désigne les effets négatifs des cyclones tropicaux. Ceux-ci sont à déterminer. 
+L'impact désigne les effets négatifs des cyclones tropicaux. Ceux-ci sont à déterminer. Des exemples peuvent inclure des destructions matérielles (nombre de batiments inutilisables, surface détruite), des dommages humains (décès, blessés, impacts autres tels que impact psychologique, réduction de l'accès aux soins, à l'éducation), des dommages écosystémiques (dégradation de la mangrove, de barrières de corail, de forêts; pollution d'écosystèmes par la dégradation d'infrastructure anthropiques). 
+
+### Dynamiques 
+
+### Interactions
 
 ### Les institutions 
 
