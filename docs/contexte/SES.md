@@ -1,5 +1,33 @@
 # Représentation du socio-écosystème
 
+> **Abstract**
+>
+> **Objet de la page**  
+> Décrire en 2–3 phrases ce que traite la page, son périmètre exact et sa place dans l’ensemble du travail.
+> Cette page présente une première version du cadrage du socio-écosystème. Elle explicite les éléments de choix de ce qui est inclu ou exclu dans la modélisation.
+>
+> **Objectif(s)**  
+> - Identifier les éléments à prendre en compte dans la démarche de modélisation
+> - Raffiner les questions de recherche et les méthodes au regard d'éléments concrets
+> - Identifier des acteurs / éléments à obsever sur le terrain
+>
+> **Question(s) / Problème(s) traité(s)**  
+> - Quel est le système étudié ? 
+>
+> **Hypothèse(s) / Angle d’analyse**  
+> On applique le cadre conceptuel PARDI au contexte des impacts des cyclones tropicaux en Martinique
+>
+> **Contribution attendue**  
+> - Clarification du socio-écosystème étudié
+> - Base pour utiliser une méthodologie ComMod
+>
+> **Statut**  
+> `en cours`
+>
+> **Mots-clés**  
+> `ComMod`, `Socio-écosystème`, `méthodologie`, `conceptualisation`
+
+
 On cherche ici à faire une première représentation du socio-écosystème que l'on va modéliser à l'aide de l'approche ComMod. Il est à noter que cette approche est généralement réalisée avec des acteurs; l'objectif de la réflexion ici n'est donc pas d'arriver à une version définitive du socio-écosystème, mais plutôt d'élaguer les concepts pour mieux identifier des acteurs potentiels qui permettront en retour de concevoir le SES à travers un processus COMMOD.  
 
 ## composants du système  
