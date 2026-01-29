@@ -30,7 +30,7 @@
 
 On cherche ici à faire une première représentation du socio-écosystème que l'on va modéliser à l'aide de l'approche ComMod. Il est à noter que cette approche est généralement réalisée avec des acteurs; l'objectif de la réflexion ici n'est donc pas d'arriver à une version définitive du socio-écosystème, mais plutôt d'élaguer les concepts pour mieux identifier des acteurs potentiels qui permettront en retour de concevoir le SES à travers un processus COMMOD.  
 
-## composants du système  
+## Composants du système  
 
 On utilise le cadre conceptuel proposé par {cite:p}`pellegrinMecaniquesJeuPour`, qui décompose les socio-écosystèmes en quatre composants principaux : les acteurs humains, les ressources, les institutions et les processus écologiques. 
 Par ailleurs, on suit les recommandations de {cite:p}`etienneStepStepGuidelines2016`, qui donnent des conseils pratiques pour conceptualiser un SES avec la méthode PARDI. Cette méthode, pour Problèmes, Acteurs, Ressources, Dynamiques et Interactions, permet de détailler les éléments du socio-écosystème à travers une grille standardisée.  
