@@ -32,8 +32,8 @@ On cherche ici à faire une première représentation du socio-écosystème que 
 
 ## composants du système  
 
-On utilise le cadre conceptuel proposé par {numref}`pellegrinMecaniquesJeuPour`, qui décompose les socio-écosystèmes en quatre composants principaux : les acteurs humains, les ressources, les institutions et les processus écologiques. 
-Par ailleurs, on suit les recommandations de {numref}`etienneStepStepGuidelines2016`, qui donnent des conseils pratiques pour conceptualiser un SES avec la méthode PARDI. Cette méthode, pour Problèmes, Acteurs, Ressources, Dynamiques et Interactions, permet de détailler les éléments du socio-écosystème à travers une grille standardisée.  
+On utilise le cadre conceptuel proposé par {cite:p}`pellegrinMecaniquesJeuPour`, qui décompose les socio-écosystèmes en quatre composants principaux : les acteurs humains, les ressources, les institutions et les processus écologiques. 
+Par ailleurs, on suit les recommandations de {cite:p}`etienneStepStepGuidelines2016`, qui donnent des conseils pratiques pour conceptualiser un SES avec la méthode PARDI. Cette méthode, pour Problèmes, Acteurs, Ressources, Dynamiques et Interactions, permet de détailler les éléments du socio-écosystème à travers une grille standardisée.  
 Les réflexions qui suivent s'inscrivent dans cette démarche.  
 
 ### Problème
