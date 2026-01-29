@@ -87,4 +87,6 @@ Les processus écologiques ne le sont pas vraiment, dans le sens où l'élément
 
 ## Références
 
+
 ```{bibliography}
+:filter: docname in docnames
