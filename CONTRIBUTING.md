@@ -15,7 +15,11 @@ L’ensemble constitue un **objet scientifique évolutif**, non encore stabilis�
 
 Les idées, analyses, textes et productions présents dans ce dépôt peuvent être réutilisés, en tout ou en partie, à des fins de recherche, d’enseignement ou de publication, à condition de faire une citation explicite, correcte et conforme aux usages académiques de ce travail et de son auteur.
 
-Toute réutilisation doit mentionner la source de manière suffisamment précise pour permettre l’identification du dépôt, de la version concernée et, le cas échéant, du DOI associé : doi.org/10.5281/zenodo.18298318
+Toute réutilisation doit mentionner la source de manière suffisamment précise pour permettre l’identification du dépôt, de la version concernée et du DOI associé : https://doi.org/10.5281/zenodo.18298318
+
+Suggestion de citation : 
+
+> Genelot, G. Thèse en cours : prospective de l'aménagement du territoire pour le risque cyclonique. https://doi.org/10.5281/zenodo.18298318
 
 Une réutilisation substantielle ou structurante du contenu doit être signalée et discutée préalablement avec l’auteur principal.
 
