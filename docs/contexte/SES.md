@@ -53,7 +53,7 @@ Les acteurs décisionnels représentent les acteurs participant à la prise de d
 
 Les acteurs impliqués peuvent être les habitants, qui sont eux-mêmes distingués selon leurs caractéristiques. 
 
-On retient généralement 6 types d'acteurs dans un processus ComMod, dont 4 font partie du socio-écosystème {numref}`etienneModelisationDaccompagnementDemarche2010` : 
+On retient généralement 6 types d'acteurs dans un processus ComMod, dont 4 font partie du socio-écosystème {cite:p}`etienneModelisationDaccompagnementDemarche2010` : 
 
 - les profanes, qui ont une connaissance empirique sur le système; 
 - les chercheurs, qui ont une "connaissance académique, organisée et validée", 
