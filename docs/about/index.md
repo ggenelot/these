@@ -7,6 +7,6 @@
 :caption: Table of Contents
 
 README
-../../CONTRIBUTING.MD
-../../LICENSE
+LICENSE
+CONTRIBUTING
 ```
