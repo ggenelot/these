@@ -6,7 +6,7 @@
 :maxdepth: 1
 :caption: Table of Contents
 
-../../README.md
+README
 ../../CONTRIBUTING.MD
 ../../LICENSE
 ```
