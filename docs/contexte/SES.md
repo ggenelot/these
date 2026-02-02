@@ -44,6 +44,16 @@ On s'intéresse en particulier à imaginer les scénarios possibles et à évalu
 
 Cette démarche correspond à des lacunes identifiées dans la littérature. D'une part, la nécessité de faire de la prospective pour l'adaptation au changement climatique. D'autre part, de compléter la littérature grise sur les effets du changement climatique au contexte et aux enjeux de territoires ultra-marins. Enfin, de mieux modéliser le risque cyclonique dans sa globalité, en comprenant ses interactions avec les sociétés. 
 
+La nécessité d'évaluer spécifiquement les effets du changement climatique sur les territoires ultra-marins est soulignée depuis longtemps par des rapports nationaux, notamment ceux de l'Observatoire National des Effets du Réchauffement Climatique (ONERC). En effet, déjà en 2012, celui-ci poussait en faveur de deux actions de recherche. 
+
+D'une part, la nécessité d' "ancrer l'analyse des imapcts du changement climatique dans les dynamiques territoiriales des outre-mer" pour évaluer les solutions "aux problèmes actuels et futurs" {cite:p}`onercOutremerFaceAu2012`
+
+D'autre part, la nécessité de l'évaluation économique de l'action publique, et notamment de la prise en compte des pertes liées à l'absence d'investissement. 
+
+> L’argument économique reste souvent un puissant levier politique et de mobilisation des acteurs privés. Il y a donc un réel intérêt à développer des évaluations des pertes et des coûts associés à la gestion et à l’anticipation des impacts des aléas (analyses coûts/bénéfices, coûts supplémentaires, systèmes assurantiels, innovations technologiques, etc.). Un effort particulier doit être fait dans les territoires ultramarins, souvent laissés en marge.
+{cite:p}`onercOutremerFaceAu2012`
+
+Ainsi, la question de l'adaptation des territoires au changement climatique est centrale. Celle ci nécessite une approche **ancrée** dans les territoires et permettant de comparer différents scénarios, avec différentes modalités d'action. 
 
 ### Acteurs  
 
