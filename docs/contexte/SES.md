@@ -44,6 +44,12 @@ On s'intéresse en particulier à imaginer les scénarios possibles et à évalu
 
 Cette démarche correspond à des lacunes identifiées dans la littérature. D'une part, la nécessité de faire de la prospective pour l'adaptation au changement climatique. D'autre part, de compléter la littérature grise sur les effets du changement climatique au contexte et aux enjeux de territoires ultra-marins. Enfin, de mieux modéliser le risque cyclonique dans sa globalité, en comprenant ses interactions avec les sociétés. 
 
+Les modèles qui évaluent les impacts des cyclones tropicaux actuellement ne prennent pas l'adaptation en compte. On peut par exemple citer {cite:p}`mendelsohnImpactClimateChange2012`
+
+> « Adaptation policy is also not explicitly modelled. To some extent adaptation is captured in the sensitivity of damage to income and population. However, some countries have active adaptation policies and programmes that may reduce damage even more. »
+
+Dans cet exemple, l'adaptation n'est pas explicitement prise en compte. Elle est approximée par des valeurs numériques d'autres grandeurs. Par ailleurs, nous défendons ici que, comme processus de décision et de concertation plus que comme conséquence des conditions d'un système, l'adaptation ne peut pas être modélisée comme une fonction de variables quantitatives. Elle nécessité, pour être représentée, des techniques différentes. C'est ce point qui nous pousse vers la modélisation d'accompagnement. 
+
 La nécessité d'évaluer spécifiquement les effets du changement climatique sur les territoires ultra-marins est soulignée depuis longtemps par des rapports nationaux, notamment ceux de l'Observatoire National des Effets du Réchauffement Climatique (ONERC). En effet, déjà en 2012, celui-ci poussait en faveur de deux actions de recherche. 
 
 D'une part, la nécessité d' "ancrer l'analyse des imapcts du changement climatique dans les dynamiques territoiriales des outre-mer" pour évaluer les solutions "aux problèmes actuels et futurs" {cite:p}`onercOutremerFaceAu2012`
