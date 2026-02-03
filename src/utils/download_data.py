@@ -5,6 +5,7 @@ import shutil
 from pathlib import Path
 from urllib.parse import urlparse
 
+
 import rasterio
 import requests
 from rasterio.plot import show
@@ -219,7 +220,7 @@ def download_filosofi(url: str = None) -> None:
 #download_elevation()
 #download_ESA()
 #download_figshare()
-download_filosofi()
+#download_filosofi()
 
 
 
