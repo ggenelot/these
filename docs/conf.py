@@ -3,8 +3,8 @@
 import os
 import sys
 
-project = "SIG et prospective"
-copyright = "2025, Gabriel Genelot"
+project = "Prospective spatiale des impacts cycloniques"
+copyright = "2025, Gabriel Genelot, https://doi.org/10.5281/zenodo.18298318"
 author = "Gabriel Genelot"
 
 # -- General configuration ---------------------------------------------------
@@ -37,7 +37,7 @@ include_patterns = [
     '../notebooks/*.ipynb',   # ajouter explicitement l'accès aux notebooks externes
 ]
 
-
+nb_execution_mode = "off"
 
 myst_enable_extensions = [
     "colon_fence",
