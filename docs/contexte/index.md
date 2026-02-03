@@ -4,8 +4,11 @@
 
 ```{toctree}
 :maxdepth: 1
-:caption: Table of Contents
+:caption: Sommaire
 
+limitations-df
+approche-COMMOD
+fiche-pratique-COMMOD
 SES
 ```
 
