@@ -200,7 +200,7 @@ Le niveau de granularité n'est pas encore défini ; il devrait être de l'ord
 
 On modélise les fonctions de dommage, c'est-à-dire qu'on définit la relation entre le passage d'un cyclone et les autres variables. En d'autres termes, on écrit une fonction mathématique qui donne les impacts à partir du cyclone. Cette représentation se fait de deux manières. D'une part, on se base sur la revue de littérature pour mobiliser des fonctions de dommage existantes et les adapter aux données spatiales. D'autre part, des entretiens permettent d'inclure des données qualitatives dans les fonctions de dommage.
 
-
+(intro-simulation)=
 ### Simulation et itération
 
 On simule le passage d'un cyclone et on observe les évolutions de nos variables. On recommence les opérations 1 à 3 avec différentes options d'aménagement pour les comparer.
@@ -259,7 +259,7 @@ subgraph output[output]
 Ca[Carte]
 end
 
-
+Voir {ref}`intro-simulation`
 
 ```
 

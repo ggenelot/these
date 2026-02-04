@@ -16,7 +16,21 @@ extensions = [
     "sphinx.ext.viewcode",
     "myst_nb",  # Active automatiquement .md + notebooks
     "sphinxcontrib.mermaid",
+    "sphinx.ext.autosectionlabel", # Hover
+    "sphinx_hoverxref", # Hover
 ]
+
+
+# Configuration for hover
+hoverxref_roles = ["ref", "numref"]
+hoverxref_auto_ref = True
+hoverxref_domains = ["std"]
+hoverxref_mathjax = True
+hoverxref_modal_hover_delay = 300
+autosectionlabel_prefix_document = True
+
+
+
 autosummary_generate = True
 autodoc_default_options = {
     "members": True,
