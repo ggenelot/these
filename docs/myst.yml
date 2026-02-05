@@ -1,5 +1,4 @@
 version: 1
 project:
   title: "SIG et prospective"
-site:
-  template: book
+site: {}
