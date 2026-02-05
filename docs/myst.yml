@@ -17,5 +17,7 @@ project:
   github: ggenelot/these
 site:
   template: book-theme
+  parts:
+    primary_sidebar_footer: primary-sidebar-footer.md
 
   
