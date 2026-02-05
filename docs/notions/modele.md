@@ -70,7 +70,14 @@ Le processus de modélisation a lui aussi différents fonctions. Commenges et al
 D'une part, il y a une rationalité substantive. On retrouve là le rôle du modèle de fournir un résultat.
 > « la fonction de méthodes de modélisation est de fournir une rationalité substantielle dans les processus de prise de décision. Le modèle conduit les décideurs vers une décision rationnelle en identifiant les politiques qui pourraient produire des résultats optimaux (Ascher 1981) » ([Commenges et al., 2016, p. 2](zotero://select/library/items/PDAJRB8I)) ([pdf](zotero://open-pdf/library/items/E4NH2EK6?page=3&annotation=P9S8AABZ))
 Dans une autre perspective, la modélisation a une fonction de rationalité procédurale : elle permet d'améliorer le processus de prise de décision.
-> « Dans la seconde perspective, la fonction de la modélisation est de fournir une rationalité procédurale, c’est-à-dire d’améliorer le processus décisionnel luimême. Une grande partie de de la littérature sur Decision Support Systems (DSS) tombe dans cette catégorie, en faisant valoir que le processus de décision et son résultat (la décision ellemême) sont deux questions liées mais distinctes (Shim et al. 2002). » ([Commenges et al., 2016, p. 2](zotero://select/library/items/PDAJRB8I)) ([pdf](zotero://open-pdf/library/items/E4NH2EK6?page=3&annotation=ZSHUN25U))
+> ([Commenges et al., 2016, p. 2](zotero://select/library/items/PDAJRB8I)) ([pdf](zotero://open-pdf/library/items/E4NH2EK6?page=3&annotation=ZSHUN25U))
+
+
+:::{quote}
+ « Dans la seconde perspective, la fonction de la modélisation est de fournir une rationalité procédurale, c’est-à-dire d’améliorer le processus décisionnel luimême. Une grande partie de de la littérature sur Decision Support Systems (DSS) tombe dans cette catégorie, en faisant valoir que le processus de décision et son résultat (la décision ellemême) sont deux questions liées mais distinctes (Shim et al. 2002). » 
+— {cite:p}`@commengesLexpertiseEstelleSoluble2016`
+:::
+
 
 Enfin, les auteurs proposent une troisième perspective.
 > « Nous proposons ici une troisième perspective fondée sur les prémisses suivantes :
