@@ -9,6 +9,11 @@ project:
     - modélisation d'accompagnement
     - aménagement du territoire
     - usage du sol
+  authors:
+    - name: Gabriel Genelot
+      orcid: https://orcid.org/0000-0002-4596-7763
+  doi: https://doi.org/10.5281/zenodo.18298318
+
   github: ggenelot/these
 site:
   template: book-theme
