@@ -1,6 +1,4 @@
-SIG et prospective : évaluer spatialement les impacts
-des cyclones tropicaux aux Petites Antilles
-===========================================
+## SIG et prospective : évaluer spatialement les impacts des cyclones tropicaux aux Petites Antilles
 
 Ce site est pensé comme une thèse vivante. Il contient de manière évolutive le code source de l'analyse de données et la rédaction au fur et à mesure de l'évolution des réflexions. 
 
