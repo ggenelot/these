@@ -8,7 +8,8 @@ build:
   commands:
     - npm install -g mystmd
     - bash -lc "cd docs && ls -la && test -f myst.yml && myst build --html && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
-
+    - myst build --all
+    
 python:
   install:
     - method: pip
