@@ -7,9 +7,10 @@ build:
     nodejs: "22"
   commands:
     - npm install -g mystmd
-    - bash -lc "cd docs && ls -la && test -f myst.yml && myst build --html && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
-    - myst build --all
-    
+    - bash -lc "cd docs && myst build --all"
+    - bash -lc "mkdir -p $READTHEDOCS_OUTPUT/html && cp -r docs/_build/html/. $READTHEDOCS_OUTPUT/html"
+    - bash -lc "mkdir -p $READTHEDOCS_OUTPUT/html/exports && cp -r docs/_build/exports/. $READTHEDOCS_OUTPUT/html/exports"
+
 python:
   install:
     - method: pip
