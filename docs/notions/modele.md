@@ -1,9 +1,13 @@
 ---
-title: My PDF
+title: Modèle
 exports:
   - format: pdf
     template: arxiv_two_column
     output: exports/my-document.pdf
+    id: my-document-export
+downloads:
+  - id: my-document-export
+    title: A PDF of this document
 ---
 
 # Modèle
