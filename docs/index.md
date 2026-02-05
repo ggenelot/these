@@ -4,6 +4,9 @@ Ce site est pensé comme une thèse vivante. Il contient de manière évolutive 
 
 Ma thèse cherche à modéliser les dommages liés au changement climatique, notamment ceux des cyclones aux Petites Antilles en associant des méthodes d'analyse spatiale et de prospective. Cette méthode devrait permettre de prendre en compte l'adaptation au changement climatique et la distribution spatiale des dommages. On construit un modèle régional en utilisant des données physiques et sociales spatialisées, puis on évalue les dommages causés par des cyclones synthétiques pour comparer différents scénarios d'aménagement. 
 
+:::{toc}
+:::
+
 .. toctree::
    :maxdepth: 2
    :caption: Sommaire
