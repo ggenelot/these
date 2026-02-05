@@ -8,6 +8,10 @@ build:
   commands:
     - npm install -g mystmd
     - cd docs
+    - pwd
+    - ls -la
+    - test -f myst.yml || (echo "myst.yml introuvable dans docs/" && exit 1)
+    - sed -n '1,120p' myst.yml
     - myst build --html
     - mkdir -p $READTHEDOCS_OUTPUT/html/
     - cp -r _build/html/. "$READTHEDOCS_OUTPUT/html"
