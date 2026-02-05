@@ -58,11 +58,10 @@ Il y a donc des opérations successives d'abstraction et de confrontation au ph�
 Cette médiation peut d'ailleurs être la finalité du processus de modélisation, comme c'est le cas dans les démarches de modélisation d'accompagnement
 :::{epigraph}
 Le premier chapitre a introduit les différentes finalités d’usage des modèles dans un processus de modélisation d’accompagnement : 
-
- – rendre visible des points de vue hétérogènes et les mettre en débat ;
- – interroger la cohérence de ces points de vue et les conséquences de leur simulation conjointe par rapport au monde réel tel que vécu par les participants ;
- – proposer un support pour explorer de manière collective des scénarios par des simulations sur un monde virtuel. 
- — @etienneModelisationDaccompagnementDemarche2010
+– rendre visible des points de vue hétérogènes et les mettre en débat ;
+– interroger la cohérence de ces points de vue et les conséquences de leur simulation conjointe par rapport au monde réel tel que vécu par les participants ;
+– proposer un support pour explorer de manière collective des scénarios par des simulations sur un monde virtuel. 
+— @etienneModelisationDaccompagnementDemarche2010
 :::
 
 Ici, on se sert de la modélisation non pas pour avoir une représentation du phénomène, mais bien une représentation des représentations du phénomène par les différents acteurs. Présenté autrement, le phénomène que l'on cherche à représenter n'est pas un phénomène physique existant en dehors des représentations des acteurs; au contraire, c'est la diversité des représentations distinctes et complémentaires d'un même objet.
@@ -87,7 +86,7 @@ Le processus de modélisation a lui aussi différents fonctions. Commenges et al
 
 D'une part, il y a une rationalité substantive. On retrouve là le rôle du modèle de fournir un résultat.
 :::{epigraph}
-> « la fonction de méthodes de modélisation est de fournir une rationalité substantielle dans les processus de prise de décision. Le modèle conduit les décideurs vers une décision rationnelle en identifiant les politiques qui pourraient produire des résultats optimaux (Ascher 1981) » 
+la fonction de méthodes de modélisation est de fournir une rationalité substantielle dans les processus de prise de décision. Le modèle conduit les décideurs vers une décision rationnelle en identifiant les politiques qui pourraient produire des résultats optimaux (Ascher 1981) » 
 — @commengesLexpertiseEstelleSoluble2016
 :::
 
