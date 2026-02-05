@@ -25,9 +25,9 @@ Pour mieux répondre à des questions
 Donc un bon modèle est un modèle permettant de répondre à des questions
 
 > « Meadows et al. (1974) argue that the ‘usefulness’ of the model is more important than its ability to perfectly reproduce time series data (pp 24–25). » ([Purvis et al., 2022, p. 164](zotero://select/library/items/SGHLU58X)) ([pdf](zotero://open-pdf/library/items/M4TWDMJU?page=14&annotation=PCABEBS8))
-
+>
 > « Similarly, Ford (2010) argues that a more pragmatic question than “is the model valid?” is “is the model useful?” (p 163). This is a common modelling philosophy, and one that we share; » ([Purvis et al., 2022, p. 164](zotero://select/library/items/SGHLU58X)) ([pdf](zotero://open-pdf/library/items/M4TWDMJU?page=14&annotation=IVQFGV27))
-
+>
 > « Levins (1966) argues “all models leave out a lot and are in that sense false, incomplete, inadequate; the validation of a model is not that it is ‘true’ but that it generates testable hypotheses relevant to important problems” (p 430). » ([Purvis et al., 2022, p. 165](zotero://select/library/items/SGHLU58X)) ([pdf](zotero://open-pdf/library/items/M4TWDMJU?page=15&annotation=8D7LZJJ7))
 
 Avant tout un objet permettant de répondre à des questions à propos d'un autre objet
@@ -74,7 +74,7 @@ Dans une autre perspective, la modélisation a une fonction de rationalité proc
 
 Enfin, les auteurs proposent une troisième perspective.
 > « Nous proposons ici une troisième perspective fondée sur les prémisses suivantes :
-
-1/ nous considérons que les modèles n’ont pas de valeur intrinsèque, qu’ils « dérivent leur valeur uniquement de leurs utilisations » (Larkey & Sproull 1981 : p.236) ; 
-
-2/ nous rejetons, au moins en partie, les perspectives positivistes et reconnaissons que les dispositifs quantitatifs d’évaluation, dont la modélisation, ont un effet limité sur le processus d’élaboration des politiques publiques (Owens et al. 2004). » ([Commenges et al., 2016, p. 2](zotero://select/library/items/PDAJRB8I)) ([pdf](zotero://open-pdf/library/items/E4NH2EK6?page=3&annotation=I4SJFMA9))
+>
+> 1/ nous considérons que les modèles n’ont pas de valeur intrinsèque, qu’ils « dérivent leur valeur uniquement de leurs utilisations » (Larkey & Sproull 1981 : p.236) ; 
+> 
+> 2/ nous rejetons, au moins en partie, les perspectives positivistes et reconnaissons que les dispositifs quantitatifs d’évaluation, dont la modélisation, ont un effet limité sur le processus d’élaboration des politiques publiques (Owens et al. 2004). » ([Commenges et al., 2016, p. 2](zotero://select/library/items/PDAJRB8I)) ([pdf](zotero://open-pdf/library/items/E4NH2EK6?page=3&annotation=I4SJFMA9))
