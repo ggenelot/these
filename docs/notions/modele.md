@@ -1,3 +1,11 @@
+---
+title: My PDF
+exports:
+  - format: pdf
+    template: arxiv_two_column
+    output: exports/my-document.pdf
+---
+
 # Modèle
 
 Ce document présente quelques éléments de définition autour de la notion de modèle. 
