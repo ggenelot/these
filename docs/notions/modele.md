@@ -73,7 +73,7 @@ Dans une autre perspective, la modélisation a une fonction de rationalité proc
 > ([Commenges et al., 2016, p. 2](zotero://select/library/items/PDAJRB8I)) ([pdf](zotero://open-pdf/library/items/E4NH2EK6?page=3&annotation=ZSHUN25U))
 
 
-:::{quote}
+:::{epigraph}
  « Dans la seconde perspective, la fonction de la modélisation est de fournir une rationalité procédurale, c’est-à-dire d’améliorer le processus décisionnel luimême. Une grande partie de de la littérature sur Decision Support Systems (DSS) tombe dans cette catégorie, en faisant valoir que le processus de décision et son résultat (la décision ellemême) sont deux questions liées mais distinctes (Shim et al. 2002). » 
 — @commengesLexpertiseEstelleSoluble2016
 :::
