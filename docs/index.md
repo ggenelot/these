@@ -1,3 +1,5 @@
+# Accueil
+
 ## SIG et prospective : évaluer spatialement les impacts des cyclones tropicaux aux Petites Antilles
 
 Ce site est pensé comme une thèse vivante. Il contient de manière évolutive le code source de l'analyse de données et la rédaction au fur et à mesure de l'évolution des réflexions. 
@@ -6,25 +8,3 @@ Ma thèse cherche à modéliser les dommages liés au changement climatique, not
 
 :::{toc}
 :::
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Sommaire
-
-   1_introduction
-   2_state_of_the_art
-   contexte/index
-   methods/index
-   experiments/index
-   results/index
-   6_discussion
-   7_perspectives
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Ressources
-
-   about/index
-   8_liste_figures
-   9_bibliographie
-   api
