@@ -1,5 +1,23 @@
 version: 1
 project:
-  title: "SIG et prospective"
+  title: "Géoprospective du risque cyclonique en Martinique"
+  description: "Thèse en cours : modélisation d'accompagnement des liens entre les choix d'aménagement du territoire et le risque cyclonique à long terme en Martinique"
+  keywords: 
+    - cyclone
+    - Martinique
+    - prospective
+    - modélisation d'accompagnement
+    - aménagement du territoire
+    - usage du sol
+  authors:
+    - name: Gabriel Genelot
+      orcid: https://orcid.org/0000-0002-4596-7763
+  doi: https://doi.org/10.5281/zenodo.18298318
+  license: CC-BY-4.0
+  github: ggenelot/these
 site:
   template: book-theme
+  parts:
+    primary_sidebar_footer: primary-sidebar-footer.md
+
+  
