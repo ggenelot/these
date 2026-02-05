@@ -7,10 +7,9 @@ build:
     nodejs: "22"
   commands:
     - npm install -g mystmd
-    - myst build --html
+    - myst build docs --html
     - mkdir -p $READTHEDOCS_OUTPUT/html/
-    - cp -r _build/html/. "$READTHEDOCS_OUTPUT/html"
-    - rm -rf _build
+    - cp -r docs/_build/html/. "$READTHEDOCS_OUTPUT/html"
 
 python:
   install:
