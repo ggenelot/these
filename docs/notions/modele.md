@@ -1,11 +1,6 @@
 ---
 parts:
-  kind: "Notebook Tutorial"
-  date: (
-    (title: "Published", date: datetime(year: 2023, month: 08, day: 21)),
-    (title: "Accepted", date: datetime(year: 2022, month: 12, day: 10)),
-    (title: "Submitted", date: datetime(year: 2022, month: 12, day: 10)),
-  )
+  kind: "Fiche-notion"
   abstract: >
     Cette fiche présente le concept de modèle.
   keypoints:
