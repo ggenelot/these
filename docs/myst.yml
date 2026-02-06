@@ -24,9 +24,6 @@ project:
   github: ggenelot/these
 site:
   template: book-theme
-  options:
-    show_myst_footer: false
-    show_myst_header: false
   parts:
     primary_sidebar_footer: primary-sidebar-footer.md
 extends:
