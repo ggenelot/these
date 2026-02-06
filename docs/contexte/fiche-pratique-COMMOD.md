@@ -1,3 +1,29 @@
+---
+parts:
+  kind: "Méthodologie"
+  abstract: >
+    Cette fiche pratique présente les intérêts de la démarche de modélisation
+    d'accompagnement (processus ComMod), à destination de personnes issues du
+    monde de la modélisation intégrée. Elle décrit ses principales
+    caractéristiques et en quoi elle peut être complémentaire de méthodes de
+    modélisation quantitative telles que la simulation numérique ou
+    l'optimisation.
+  keypoints:
+    - Le modèle est utilisé comme outil de médiation entre acteurs.
+    - La démarche outille le processus de décision autant que les résultats.
+  acknowledgments: >
+    Merci aux contributeurs de Jupyter Book.
+exports:
+  - format: pdf
+    template: lapreprint-typst
+    output: commod.pdf
+    id: commod
+downloads:
+  - id: commod
+    title: "PDF"
+---
+
+
 # Introduction à l'approche COMMOD pour les modélisateur.ices intégré.e.s
 
 Cette page est une introduction rapide et informelle à la modélisation d'accompagnement, à destination de modélisateur.ice.s issu.e.s de techniques de modélisation quantitatives telles que la modélisation intégrée, notamment avec une formation ingénieur / mathématiques appliquées. Le but est d'introduire à l'approche ComMod, montrer comment elle se distingue et complète des techniques quantitatives et de montrer des cas d'usage de cette technique. 
@@ -32,7 +58,7 @@ Dans une démarche de modélisation d'accompagnement, le rôle explicatif du mod
 
 ### Concrétement, quelles pratiques ? 
 
-Les techniques liées à la recherche autour des socio-écosystèmes sont très variées. Un bon aperçu est donné dans biggsRoutledgeHandbookResearch2021 .
+Les techniques liées à la recherche autour des socio-écosystèmes sont très variées. Un bon aperçu est donné dans @biggsRoutledgeHandbookResearch2021 .
 
 L'approche ComMod repose sur deux éléments centraux : la participation d'acteurs pour une coproduction du modèle, et le recours à des cycles successifs permettant d'affiner le modèle. 
 

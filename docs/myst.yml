@@ -1,6 +1,7 @@
 version: 1
 project:
   title: "Géoprospective du risque cyclonique en Martinique"
+  subtitle: "Quels effets des aménagements du territoire actuel sur le risque cyclonique au long terme ?"
   description: "Thèse en cours : modélisation d'accompagnement des liens entre les choix d'aménagement du territoire et le risque cyclonique à long terme en Martinique"
   keywords: 
     - cyclone
@@ -12,6 +13,12 @@ project:
   authors:
     - name: Gabriel Genelot
       orcid: https://orcid.org/0000-0002-4596-7763
+      corresponding: true
+      email: gabriel.genelot@minesparis.psl.eu
+      affiliations:
+        - institution: Mines Paris - PSL 
+          ror: https://ror.org/00dxbgs74
+          department: Centre de Mathématiques Appliquées
   doi: https://doi.org/10.5281/zenodo.18298318
   license: CC-BY-4.0
   github: ggenelot/these
