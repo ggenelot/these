@@ -8,18 +8,12 @@ build:
   commands:
     - npm install -g mystmd
     - bash -lc "mkdir -p $HOME/.local/bin && curl -L https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ && mv typst-*/typst $HOME/.local/bin/typst"
-    # Debug: vérifier que RTD lit bien le bon frontmatter + purger cache templates
-    - bash -lc "export PATH=$HOME/.local/bin:$PATH && cd docs && typst --version && rm -rf _build/templates && sed -n '1,120p' contexte/fiche-pratique-COMMOD.md"
-    # Build PDF puis HTML
     - bash -lc "export PATH=$HOME/.local/bin:$PATH && cd docs && myst build --pdf"
     - bash -lc "export PATH=$HOME/.local/bin:$PATH && cd docs && myst build --html"
-    # Debug: vérifier que le PDF existe bien dans le site statique
-    - bash -lc "cd docs && ls -la _build/html/exports || true && find _build/html -maxdepth 3 -name 'commod.pdf' -print || true"
     - bash -lc "cd docs && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
 
 python:
   install:
     - method: pip
       path: .[docs]
-
 
