@@ -14,7 +14,6 @@ downloads:
     title: PDF
 ---
 
-
 # Introduction à l'approche COMMOD pour les modélisateur.ices intégré.e.s
 
 Cette page est une introduction rapide et informelle à la modélisation d'accompagnement, à destination de modélisateur.ice.s issu.e.s de techniques de modélisation quantitatives telles que la modélisation intégrée, notamment avec une formation ingénieur / mathématiques appliquées. Le but est d'introduire à l'approche ComMod, montrer comment elle se distingue et complète des techniques quantitatives et de montrer des cas d'usage de cette technique. 
