@@ -28,7 +28,7 @@ Un modèle est un objet conceptuel permettant de représenter de manière abstra
 C'est un objet conceptuel, qui peut prendre plusieurs formes
 cet objet devient un artefact qui comprend d'autres choses
 
-:::{quote}
+:::{epigraph}
 Pour nous, un processus de modélisation est un processus d’écriture de connaissances et d’hypothèses hétérogènes qui sont distribuées dans un même artefact afin de les faire fonctionner ensemble.
 — @etienneModelisationDaccompagnementDemarche2010, p72
 :::
@@ -38,7 +38,7 @@ Le modèle est ainsi l'objet dans lequel se rencontrent des choses très différ
 c'est donc un objet qui permet de matérialiser (de manière physique ou scripturale : jeu, ensemble d'équation, schéma, ...) un phénomène.
 Cet objet est souvent conçu comme exclusivement quantitatif.
 
-:::{quote}
+:::{epigraph}
 Le modèle est défini la représentation quantitative et sélective d’un objet, d’un phénomène ou d’un système susceptible d’être confrontés à des observations empiriques (Varenne 2009).
 — @commengesLexpertiseEstelleSoluble2016
 :::
@@ -49,7 +49,7 @@ Cette approche, si elle est commune, limite le concept de modèle aux seules rep
 
 Enfin, cet objet forme une représentation du **fonctionnement** de systèmes d'intérêt
 
-:::{quote}
+:::{epigraph}
 Porteurs d’une forme de compréhension de systèmes réels (de référence) au sein desquels s’imbriquent dynamiques sociales et biophysiques, les modèles sont des représentations du fonctionnement de ces systèmes.
 — @etienneModelisationDaccompagnementDemarche2010
 :::
@@ -59,7 +59,7 @@ Pour mieux répondre à des questions
 
 Donc un bon modèle est un modèle permettant de répondre à des questions
 
-:::{quote}
+:::{epigraph}
 Meadows et al. (1974) argue that the ‘usefulness’ of the model is more important than its ability to perfectly reproduce time series data (pp 24–25)
 — @purvisMultiscaleIntegratedAssessment2022, p.164
 :::
