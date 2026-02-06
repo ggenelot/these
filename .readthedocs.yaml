@@ -7,7 +7,8 @@ build:
     nodejs: "22"
   commands:
     - npm install -g mystmd
-    - bash -lc "cd docs && ls -la && myst build --pdf && test -f myst.yml && myst build --html && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
+    - bash -lc "curl -L https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ && sudo mv typst-*/typst /usr/local/bin/typst && typst --version"
+    - bash -lc "cd docs && myst --version && myst build --pdf && myst build --html && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
 
 python:
   install:
