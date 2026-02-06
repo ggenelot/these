@@ -7,7 +7,7 @@ parts:
 exports:
   - format: pdf
     template: lapreprint-typst
-    output: exports/commod.pdf
+    output: commod.pdf
     id: commod
 downloads:
   - id: commod
