@@ -219,8 +219,7 @@ On simule le passage d'un cyclone et on observe les évolutions de nos variables
 
 
 ```mermaid
-:caption: Représentation simplifiée du modèle envisagé
-:name: fig-modele
+
 
 graph TD;
 
