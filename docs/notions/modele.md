@@ -27,7 +27,12 @@ Ce document présente quelques éléments de définition autour de la notion de 
 Un modèle est un objet conceptuel permettant de représenter de manière abstraite un phénomène, dans le but de mieux le comprendre.
 C'est un objet conceptuel, qui peut prendre plusieurs formes
 cet objet devient un artefact qui comprend d'autres choses
-> « Pour nous, un processus de modélisation est un processus d’écriture de connaissances et d’hypothèses hétérogènes qui sont distribuées dans un même artefact afin de les faire fonctionner ensemble. » ([Étienne, 2010, p. 72](zotero://select/library/items/PUEBVM7Y)) ([pdf](zotero://open-pdf/library/items/2VSD6G4X?page=74&annotation=CS5EVAMZ))
+
+:::{quote}
+Pour nous, un processus de modélisation est un processus d’écriture de connaissances et d’hypothèses hétérogènes qui sont distribuées dans un même artefact afin de les faire fonctionner ensemble.
+— @etienneModelisationDaccompagnementDemarche2010, p72
+:::
+
 
 Le modèle est ainsi l'objet dans lequel se rencontrent des choses très différentes.
 c'est donc un objet qui permet de matérialiser (de manière physique ou scripturale : jeu, ensemble d'équation, schéma, ...) un phénomène.
