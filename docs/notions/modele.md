@@ -9,7 +9,7 @@ parts:
     Merci aux contributeurs de Jupyter Book.
 exports:
   - format: pdf
-    template: arxiv_two_column
+    template: lapreprint-typst
     output: modele.pdf
     id: modele
 downloads:
