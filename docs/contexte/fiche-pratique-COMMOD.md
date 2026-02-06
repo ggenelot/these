@@ -1,9 +1,9 @@
 ---
 parts:
-  abstract: "Résumé court (2–5 lignes)."
+  abstract: "Cette fiche pratique explique les intérêts de la démarche de modélisation d'accompagnement (processus ComMod), à destination de personnes issu.e.s du monde de la modélisation intégrée. Elle présente les principales caractéristiques d'une telle démarche, et en quoi elle peut s'avérer complémentaires de méthodes de modélisation quantiative telles que la simulation numérique ou l'optimisation."
   keypoints: "La modélisation d'accompagnement recentre le modèle comme outil de médiation entre les acteurs"
   acknoledgments: "Les contributeurs de jupyter book"
-  kind: "Original research"
+  kind: "Méthodologie"
 exports:
   - format: pdf
     template: lapreprint-typst
