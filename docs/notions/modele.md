@@ -1,14 +1,22 @@
 ---
-title: Modèle
+parts:
+  kind: "Fiche-Notion"
+  abstract: >
+    Cette fiche présente le concept de modèle.
+  keypoints:
+    - Un modèle est une représentation abstraite d'un phénomène
+  acknowledgments: >
+    Merci aux contributeurs de Jupyter Book.
 exports:
   - format: pdf
     template: arxiv_two_column
-    output: exports/my-document.pdf
-    id: my-document-export
+    output: modele.pdf
+    id: modele
 downloads:
-  - id: my-document-export
-    title: A PDF of this document
+  - id: modele
+    title: "PDF"
 ---
+
 
 # Modèle
 
