@@ -7,7 +7,7 @@ build:
     nodejs: "22"
   commands:
     - npm install -g mystmd
-    - bash -lc "cd docs && ls -la && myst buid --pdf && test -f myst.yml && myst build --html && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
+    - bash -lc "cd docs && ls -la && myst build --pdf && test -f myst.yml && myst build --html && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
 
 python:
   install:
