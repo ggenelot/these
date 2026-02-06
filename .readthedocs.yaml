@@ -9,7 +9,6 @@ build:
     - npm install -g mystmd
     - bash -lc "mkdir -p $HOME/.local/bin && curl -L https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ && mv typst-*/typst $HOME/.local/bin/typst"
     - bash -lc "export PATH=$HOME/.local/bin:$PATH && cd docs && myst build --pdf && myst build --html && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
-    - bash -lc "cd docs && myst --version && myst build --pdf && myst build --html && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
 
 python:
   install:
