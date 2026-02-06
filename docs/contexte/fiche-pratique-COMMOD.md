@@ -1,18 +1,28 @@
 ---
 parts:
-  abstract: "Résumé court (2–5 lignes)."
-  keypoints: "La modélisation d'accompagnement recentre le modèle comme outil de médiation entre les acteurs"
-  acknoledgments: "Les contributeurs de jupyter book"
-  kind: "Original research"
+  kind: "Méthodologie"
+  abstract: >
+    Cette fiche pratique présente les intérêts de la démarche de modélisation
+    d'accompagnement (processus ComMod), à destination de personnes issues du
+    monde de la modélisation intégrée. Elle décrit ses principales
+    caractéristiques et en quoi elle peut être complémentaire de méthodes de
+    modélisation quantitative telles que la simulation numérique ou
+    l'optimisation.
+  keypoints:
+    - Le modèle est utilisé comme outil de médiation entre acteurs.
+    - La démarche outille le processus de décision autant que les résultats.
+  acknowledgments: >
+    Merci aux contributeurs de Jupyter Book.
 exports:
   - format: pdf
     template: lapreprint-typst
-    output: _build/html/exports/commod.pdf
+    output: commod.pdf
     id: commod
 downloads:
   - id: commod
-    title: PDF
+    title: "PDF"
 ---
+
 
 # Introduction à l'approche COMMOD pour les modélisateur.ices intégré.e.s
 
