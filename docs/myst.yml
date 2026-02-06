@@ -17,8 +17,8 @@ project:
       email: gabriel.genelot@minesparis.psl.eu
       affiliations:
         - institution: Mines Paris - PSL 
-          department: Centre de Mathémariques Appliquées
           ror: https://ror.org/00dxbgs74
+          department: Centre de Mathématiques Appliquées
   doi: https://doi.org/10.5281/zenodo.18298318
   license: CC-BY-4.0
   github: ggenelot/these
