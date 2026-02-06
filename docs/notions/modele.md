@@ -25,8 +25,10 @@ Ce document présente quelques éléments de définition autour de la notion de 
 ## Définition
 
 Un modèle est un objet conceptuel permettant de représenter de manière abstraite un phénomène, dans le but de mieux le comprendre.
-C'est un objet conceptuel, qui peut prendre plusieurs formes
-cet objet devient un artefact qui comprend d'autres choses
+
+### C'est un objet conceptuel ... 
+
+#### cet objet devient un artefact qui comprend d'autres choses
 
 :::{epigraph}
 Pour nous, un processus de modélisation est un processus d’écriture de connaissances et d’hypothèses hétérogènes qui sont distribuées dans un même artefact afin de les faire fonctionner ensemble.
@@ -36,6 +38,9 @@ Pour nous, un processus de modélisation est un processus d’écriture de conna
 
 Le modèle est ainsi l'objet dans lequel se rencontrent des choses très différentes.
 c'est donc un objet qui permet de matérialiser (de manière physique ou scripturale : jeu, ensemble d'équation, schéma, ...) un phénomène.
+
+#### Un objet quantitatif
+
 Cet objet est souvent conçu comme exclusivement quantitatif.
 
 :::{epigraph}
@@ -47,6 +52,8 @@ Le modèle est défini la représentation quantitative et sélective d’un obje
 On utilise ici l'acceptation la plus commune du modèle, qui est celle de jeux d'équation mathématiques qui permet de traduire un phénomène dans un langage formel, en vue de réaliser des simulations numériques.
 Cette approche, si elle est commune, limite le concept de modèle aux seules représentations quantitatives.
 
+### ... permettant de représenter ...
+
 Enfin, cet objet forme une représentation du **fonctionnement** de systèmes d'intérêt
 
 :::{epigraph}
@@ -54,8 +61,11 @@ Porteurs d’une forme de compréhension de systèmes réels (de référence) au
 — @etienneModelisationDaccompagnementDemarche2010
 :::
 
+### ... de manière abstraite un phénomène ...
 qui est une abstraction de celui-ci
-Pour mieux répondre à des questions
+
+
+### ...p our mieux répondre à des questions.
 
 Donc un bon modèle est un modèle permettant de répondre à des questions
 
@@ -75,6 +85,8 @@ Avant tout un objet permettant de répondre à des questions à propos d'un autr
 
 
 ## Caractéristiques
+
+### Un rôle de médiation à plusieurs niveaux
 
 Une des Caractéristiques principales d'un modèle est son rôle de médiation. Celui-ci a lieu à différentes échelles. 
 D'abord, un processus de médiation réciproque a lieu entre l'observateur et le modèle
@@ -113,6 +125,9 @@ À la suite de nombreux auteurs, nous acceptons l’idée que les dispositifs q
 
 
 C'est là un facteur de crédibilité de la science ou de l'expertise face aux profanes. Cette lecture est très présente dans la conception qu'ont les modélisateurs de leur rôle et de celui des modèles dans le débat public. On a ainsi d'un côté les experts, et de l'autre les non-experts. Cette logique là donne le pouvoir aux premiers, en pronant un gouvernement technique / expert. (voir notion de gouvernance / la gouvernance par les nombres + citer mon mémoire)
+
+### La modélisation, un processus très particulier
+
 Cette médiation est particulièrement visible lors de la modélisation, c'est à dire le processus qui permet d'arriver à un modèle.
 
 
