@@ -49,7 +49,7 @@ Dans une démarche de modélisation d'accompagnement, le rôle explicatif du mod
 
 ### Concrétement, quelles pratiques ? 
 
-Les techniques liées à la recherche autour des socio-écosystèmes sont très variées. Un bon aperçu est donné dans biggsRoutledgeHandbookResearch2021 .
+Les techniques liées à la recherche autour des socio-écosystèmes sont très variées. Un bon aperçu est donné dans @biggsRoutledgeHandbookResearch2021 .
 
 L'approche ComMod repose sur deux éléments centraux : la participation d'acteurs pour une coproduction du modèle, et le recours à des cycles successifs permettant d'affiner le modèle. 
 
