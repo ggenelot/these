@@ -9,8 +9,11 @@ project:
       children:
         - file: 3_contexte/approche-COMMOD.md
         - file: 3_contexte/SES.md
+        - file: 3_contexte/limitations-df.md
+        - file: 3_contexte/fiche-pratique-COMMOD.md
     - file: 4_methodes/index.md
       children:
+        - file: 4_methodes/preparation_terrain/md
     - file: 5_resultats/index.md
       children:
     - file: 6_discussion/index.md
