@@ -1,6 +1,8 @@
 ---
 parts:
   abstract: "Résumé court (2–5 lignes)."
+  keypoints: "La modélisation d'accompagnement recentre le modèle comme outil de médiation entre les acteurs"
+  acknoledgments: "Les contributeurs de jupyter book"
 exports:
   - format: pdf
     template: lapreprint-typst
