@@ -1,0 +1,8 @@
+version: 1
+project:
+  toc:
+    - file: index.md
+    - file: 3_contexte/index.md
+      children:
+        - file: approche-COMMOD.md
+        - file: 3_contexte/SES.md
