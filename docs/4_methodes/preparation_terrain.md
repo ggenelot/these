@@ -11,3 +11,16 @@ description: Fiche expliquant le choix des méthodes de terrain, leur applicatio
 ---
 
 # Terrain
+
+## Objectifs et cadre théorique
+
+## Méthodes
+
+### Terrain d'observation
+
+### Entretiens-semi-directifs
+
+### Photographie
+
+## Résultats attendus
+
