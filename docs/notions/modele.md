@@ -38,20 +38,32 @@ Le modèle est ainsi l'objet dans lequel se rencontrent des choses très différ
 c'est donc un objet qui permet de matérialiser (de manière physique ou scripturale : jeu, ensemble d'équation, schéma, ...) un phénomène.
 Cet objet est souvent conçu comme exclusivement quantitatif.
 
-> « Le modèle est défini la représentation quantitative et sélective d’un objet, d’un phénomène ou d’un système susceptible d’être confrontés à des observations empiriques (Varenne 2009). » ([Commenges et al., 2016, p. 2](zotero://select/library/items/PDAJRB8I)) ([pdf](zotero://open-pdf/library/items/E4NH2EK6?page=3&annotation=B27QS5DE))
+:::{quote}
+Le modèle est défini la représentation quantitative et sélective d’un objet, d’un phénomène ou d’un système susceptible d’être confrontés à des observations empiriques (Varenne 2009).
+— @commengesLexpertiseEstelleSoluble2016
+:::
+
 
 On utilise ici l'acceptation la plus commune du modèle, qui est celle de jeux d'équation mathématiques qui permet de traduire un phénomène dans un langage formel, en vue de réaliser des simulations numériques.
 Cette approche, si elle est commune, limite le concept de modèle aux seules représentations quantitatives.
 
 Enfin, cet objet forme une représentation du **fonctionnement** de systèmes d'intérêt
 
-> « Porteurs d’une forme de compréhension de systèmes réels (de référence) au sein desquels s’imbriquent dynamiques sociales et biophysiques, les modèles sont des représentations du fonctionnement de ces systèmes. » ([“La modélisation d'accompagnement. Une démarche participative en appui au développement durable”, 2010, p. 71](zotero://select/library/items/PUEBVM7Y)) ([pdf](zotero://open-pdf/library/items/2VSD6G4X?page=73&annotation=GK2DNB9X))
+:::{quote}
+Porteurs d’une forme de compréhension de systèmes réels (de référence) au sein desquels s’imbriquent dynamiques sociales et biophysiques, les modèles sont des représentations du fonctionnement de ces systèmes.
+— @etienneModelisationDaccompagnementDemarche2010
+:::
+
 qui est une abstraction de celui-ci
 Pour mieux répondre à des questions
 
 Donc un bon modèle est un modèle permettant de répondre à des questions
 
-> « Meadows et al. (1974) argue that the ‘usefulness’ of the model is more important than its ability to perfectly reproduce time series data (pp 24–25). » ([Purvis et al., 2022, p. 164](zotero://select/library/items/SGHLU58X)) ([pdf](zotero://open-pdf/library/items/M4TWDMJU?page=14&annotation=PCABEBS8))
+:::{quote}
+Meadows et al. (1974) argue that the ‘usefulness’ of the model is more important than its ability to perfectly reproduce time series data (pp 24–25)
+— @purvisMultiscaleIntegratedAssessment2022, p.164
+:::
+
 >
 > « Similarly, Ford (2010) argues that a more pragmatic question than “is the model valid?” is “is the model useful?” (p 163). This is a common modelling philosophy, and one that we share; » ([Purvis et al., 2022, p. 164](zotero://select/library/items/SGHLU58X)) ([pdf](zotero://open-pdf/library/items/M4TWDMJU?page=14&annotation=IVQFGV27))
 >
