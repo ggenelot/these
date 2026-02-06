@@ -2,8 +2,8 @@ version: 1
 project:
   toc:
     - file: index.md
-    - file: 1_preabule/index.md
-      children:
+    - file: 1_preambule/index.md
+      children: 1_preambule/utilisation.md
     - file: 2_introduction/introduction.md
     - file: 3_contexte/index.md
       children:
