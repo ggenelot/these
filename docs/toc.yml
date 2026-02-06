@@ -2,7 +2,19 @@ version: 1
 project:
   toc:
     - file: index.md
+    - file: 1_preabule/index.md
+      children:
+    - file: 2_introduction/introduction.md
     - file: 3_contexte/index.md
       children:
-        - file: approche-COMMOD.md
+        - file: 3_contexte/approche-COMMOD.md
         - file: 3_contexte/SES.md
+    - file: 4_methodes/index.md
+      children:
+    - file: 5_resultats/index.md
+      children:
+    - file: 6_discussion/index.md
+      children:
+    - file: 7_conclusion/index.md
+      children:
+    
