@@ -4,6 +4,7 @@ project:
     - file: index.md
     - file: 1_preambule/index.md
       children: 1_preambule/utilisation.md
+      children: 1_preambule/these-ouverte.md
     - file: 2_introduction/introduction.md
     - file: 3_contexte/index.md
       children:
