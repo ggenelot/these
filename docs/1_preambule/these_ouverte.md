@@ -8,8 +8,16 @@ L'ouverture est un principe fondamental de la recherche scientifique. Depuis lon
 
 Dans une première partie, nous montrerons qu'une telle démarche s'inscrit dans une longue tradition scientifique, et nous aborderons ses bénéfices potentiels. Nous verrons ensuite que celle-ci présente des risques, qui interrogent sur le fonctionnement de la recherche. Enfin, nous aurons une troisième partie. 
 
-## 
+## Une démarche résolument inscrite dans les valeurs de la science
 
-## Deuxième partie
+### Une longue tradition
+
+### Les principaux bénéfices attendus 
+
+### Exemples et contre-exemples
+
+## Des menaces limitées, mais révélatrice de paradoxes
+
+
 
 ## Troisième partie
