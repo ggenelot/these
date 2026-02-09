@@ -20,4 +20,8 @@ project:
       children:
     - file: 7_conclusion/index.md
       children:
+    - file: notions/index.md
+      children:
+        - file: notions/modele.md
+        - file: notions/commod.md
     
