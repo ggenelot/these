@@ -19,7 +19,6 @@ project:
     - file: 6_discussion/index.md
       children:
     - file: 7_conclusion/index.md
-      children:
     - file: notions/index.md
       children:
         - file: notions/modele.md
