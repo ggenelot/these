@@ -30,6 +30,9 @@ Dans un premier temps, nous reviendrons sur le cadre théorique du terrain. Apr�
 
 ## Méthodes
 
+Un panel de méthodes.
+@olivierdesardanRigueurQualitatif2018 définit six types de productions de données issues de l'enquête de terrain : l'insertion, les entretiens, les observations, les procédés de recension, les sources écrites et les données audiovisuelles. Celles-ci sont souvent combinées pour produire des données de terrain, dans une enquête qui est " *fondamentalement polymorphe* ".
+
 ### Terrain d'observation
 
 ### Entretiens-semi-directifs
