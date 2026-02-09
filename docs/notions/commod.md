@@ -136,6 +136,8 @@ D --> B
 D --> C
 
 ```
+
+Tentative de légende du schéma.
 :::
 
 C'est intéressant parce qu'on voit clairement la finalité : implémenter des solutions; mais aussi les différentes niveaux de  : on veut construire des modèles collectifs, prioriser les problèmes, définir des problèmes complexes
