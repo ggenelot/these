@@ -8,6 +8,14 @@ parts:
     - Le terrain permet de mieux cadrer la problématique (approche PARDI) et d'identifier des acteurs clés pour un processus ComMod
     - "On combine trois méthodes : le terrain d'observation, les entretiens semi-directifs et la photographie"
 description: Fiche expliquant le choix des méthodes de terrain, leur application concrète et les résultats attendus. 
+exports:
+  - format: pdf
+    template: lapreprint-typst
+    output: terrain.pdf
+    id: terrain
+downloads:
+  - id: terrain
+    title: "PDF"
 ---
 
 # Terrain
