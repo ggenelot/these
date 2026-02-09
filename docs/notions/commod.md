@@ -192,7 +192,7 @@ soit l’appui à une négociation dans le cadre d’un processus qui vise expli
 
 Niveau d'autonomie
 
-![image.png](../assets/image_1761754738890_0.png) ([pdf](zotero://open-pdf/library/items/2VSD6G4X?page=77&annotation=8KEIZGDX))  
+([pdf](zotero://open-pdf/library/items/2VSD6G4X?page=77&annotation=8KEIZGDX))  
 ([Étienne, 2010, p. 75](zotero://select/library/items/PUEBVM7Y))
 
 quantitatifs et qualitatifs
