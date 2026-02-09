@@ -35,9 +35,9 @@ On en retiendra ici deux choses.
 D'abord, le terrain permet de découvrir des choses qui "*échappent aux autres moyens d'investigation*".
 A travers l'exemple de Humboldt et la notion de paysage, celui-ci nous dit : 
 
-:::quote
-Le terrain ne sert pas seulement à recueillir des données et à assurer l'authenticité factuelle des enseignements de la discipline : il est le vecteur d'une saisie globale que rien ne peut remplacer. 
-:::
+
+> Le terrain ne sert pas seulement à recueillir des données et à assurer l'authenticité factuelle des enseignements de la discipline : il est le vecteur d'une saisie globale que rien ne peut remplacer. 
+
 Un point important ici est que le terrain n'est pas une confirmation ex-post des *enseignements*, mais bien une approche permettant d'appréhender d'autres éléments qui étaient insaissisables avec les autres techniques. Le terrain n'est donc pas une technique permettant de *valider* des modèles théoriques, mais bien une technique originale. Dans notre cas, il ne s'agit pas de confronter les résultats d'un modèle avec un terrain; mais bien d'introduire les éclairages et apprentissages du terrain au sein du modèle. 
 C'est cette motivation qui nous pousse à introduire des démarches qualitatives, et notamment de terrain, au sein d'une thèse préparée dans un laboratoire de mathématiques appliquées. 
 
