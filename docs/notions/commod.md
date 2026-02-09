@@ -100,6 +100,10 @@ Aussi appelé Companion Modelling ou participatory modeling
 
 > « Each step of the iterative process is designed to support specific goals and outcomes (bottom), towards the implementation of solutions to complex landscape and environmental problems. Facilitation and Assessment activities run across the entire process to support inclusion and representation, as well as adaptation of tools, participation and learning structures, and valuation with new insights. » ([Zellner, 2024, p. 3](zotero://select/library/items/WCPDJJBY)) ([pdf](zotero://open-pdf/library/items/AHDYV65T?page=3&annotation=VF6BUBFM))
 
+:::{figure}
+:label: my-figure
+:align: left
+
 ```mermaid
 
 flowchart LR
@@ -132,6 +136,7 @@ D --> B
 D --> C
 
 ```
+:::
 
 C'est intéressant parce qu'on voit clairement la finalité : implémenter des solutions; mais aussi les différentes niveaux de  : on veut construire des modèles collectifs, prioriser les problèmes, définir des problèmes complexes
 
