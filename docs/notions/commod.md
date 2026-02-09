@@ -94,16 +94,48 @@ Aussi appelé Companion Modelling ou participatory modeling
 
 ## Caractéristiques
 
-un framework / workflow formalisé par le collectif COMMOD
+### un framework / workflow formalisé par le collectif COMMOD
 
-Processus itératif autour de grandes étapes
+#### Processus itératif autour de grandes étapes
 
 > « Each step of the iterative process is designed to support specific goals and outcomes (bottom), towards the implementation of solutions to complex landscape and environmental problems. Facilitation and Assessment activities run across the entire process to support inclusion and representation, as well as adaptation of tools, participation and learning structures, and valuation with new insights. » ([Zellner, 2024, p. 3](zotero://select/library/items/WCPDJJBY)) ([pdf](zotero://open-pdf/library/items/AHDYV65T?page=3&annotation=VF6BUBFM))
 
-![image.png](../assets/image_1762245699378_0.png) ([pdf](zotero://open-pdf/library/items/AHDYV65T?page=3&annotation=8G7VG963))  
-([Zellner, 2024, p. 3](zotero://select/library/items/WCPDJJBY)) Schéma décrivant la Méthodologie de la modélisation participante. C'est intéressant parce qu'on voit clairement la finalité : implémenter des solutions; mais aussi les différentes niveaux de  : on veut construire des modèles collectifs, prioriser les problèmes, définir des problèmes complexes
+```mermaid
 
-le processus de modélisation se fait en plusieurs étapes.
+flowchart LR
+
+  %% Main row
+  subgraph MAIN[ ]
+    A((Define complex problem)) --> B((Prioritize concerns)) --> C((Build collective model and scenarios)) --> D((Run simulations and deliberate tradeoffs)) --> E((Implement solutions))
+  end
+
+  %% Notes row
+  subgraph NOTES[ ]
+    direction LR
+    A_notes["Problem scope & boundaries<br/>Stakeholder analysis<br/>Variables of interest"]
+    B_notes["Diversity of values<br/>Representation of individual & collective priorities"]
+    C_notes["Complex knowledge co-generation<br/>Collective creativity<br/>Explicit formalization"]
+    D_notes["Exploration of scenarios & solution space<br/>Visualization of impacts<br/>Further model development<br/>Re-prioritization<br/>Problem re-formulation"]
+    E_notes["Agreement on solution<br/>Pathways for physical implementation<br/>Governance structures"]
+  end
+
+  %% Vertical links (keep columns aligned)
+  A --- A_notes
+  B --- B_notes
+  C --- C_notes
+  D --- D_notes
+  E --- E_notes
+
+
+%% Feedback
+D --> B
+D --> C
+
+```
+
+C'est intéressant parce qu'on voit clairement la finalité : implémenter des solutions; mais aussi les différentes niveaux de  : on veut construire des modèles collectifs, prioriser les problèmes, définir des problèmes complexes
+
+#### le processus de modélisation se fait en plusieurs étapes.
 
 Le premier point qui est intéressant c'est la finalité, qui est clairement définie: implémenter des solutions. A la différences d'autres modèles qui peuvent chercher seulement à représenter des phénomènes, les modèles issus de la modélisation d'accompagnement visent à avoir un effet transformateur sur le phénomène, notamment à travers la recherche de *solutions*.
 
@@ -111,7 +143,7 @@ Un deuxième point qui est important c'est celui de la décomposition en étape.
 
 Enfin, l'itération est centrale. Chaque phase éclaire les autres, et à travers des itérations successives de toutes les phases, on affine progressivement le modèle (au sens large, y compris la définition du problème ou des priorités).
 
-un nouveau rôle pour les modélisateur.ices : celui de l'accompagnement
+#### un nouveau rôle pour les modélisateur.ices : celui de l'accompagnement
 
 Etienne et Al. 2010 définissent trois rôles distincts dans la construction du modèle
 
@@ -129,7 +161,7 @@ l'informaticien produit le modèle de simulation
 
 approcher la production scientifique de savoir non scientifiques
 
-La remise en question de savoirs descendants
+### La remise en question de savoirs descendants
 
 > « Ces changements sont profonds car, d’une part, ils remettent en cause les approches descendantes classiques dans la formulation et la mise en œuvre des Projets et, d’autre part, ils reconnaissent la capacité des acteurs locaux à gérer euxmêmes leurs ressources et à orienter leur développement. » ([Étienne, 2010, p. 109](zotero://select/library/items/PUEBVM7Y)) ([pdf](zotero://open-pdf/library/items/2VSD6G4X?page=111&annotation=6KUCGHXB))
 
@@ -149,7 +181,7 @@ soit la production de connaissances (à destination des chercheurs et des acteur
 
 soit l’appui à une négociation dans le cadre d’un processus qui vise explicitement une transformation des pratiques d’interactions avec la ressource ou une transformation des formes d’interactions socioéconomiques. » ([“La modélisation d'accompagnement. Une démarche participative en appui au développement durable”, 2010, p. 12](zotero://select/library/items/PUEBVM7Y)) ([pdf](zotero://open-pdf/library/items/2VSD6G4X?page=14&annotation=53N548RA))
 
-une variété de techniques et de méthodes
+### une variété de techniques et de méthodes
 
 Niveau d'autonomie
 
