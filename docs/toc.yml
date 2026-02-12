@@ -23,4 +23,5 @@ project:
       children:
         - file: notions/modele.md
         - file: notions/commod.md
+        - file: notions/adaptation.md
     
