@@ -9,6 +9,7 @@
 - Created: 2026-02-06
 - Closed: 2026-02-06
 - Merged: 2026-02-06
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/24
 
 ### Description
@@ -24,6 +25,7 @@ _No description provided._
 - Created: 2026-02-06
 - Closed: 2026-02-06
 - Merged: 2026-02-06
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/23
 
 ### Description
@@ -39,6 +41,7 @@ _No description provided._
 - Created: 2026-02-06
 - Closed: 2026-02-06
 - Merged: 2026-02-06
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/21
 
 ### Description
@@ -54,6 +57,7 @@ _No description provided._
 - Created: 2026-02-06
 - Closed: 2026-02-06
 - Merged: 2026-02-06
+- Base branch: edition/metadata
 - URL: https://github.com/ggenelot/these/pull/22
 
 ### Description
@@ -69,6 +73,7 @@ _No description provided._
 - Created: 2026-02-05
 - Closed: 2026-02-05
 - Merged: 2026-02-05
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/19
 
 ### Description
@@ -83,6 +88,7 @@ _No description provided._
 - Author: @ggenelot
 - Created: 2026-02-05
 - Closed: 2026-02-05
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/18
 
 ### Description
@@ -97,6 +103,7 @@ _No description provided._
 - Author: @ggenelot
 - Created: 2026-02-04
 - Closed: 2026-02-05
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/16
 
 ### Description
@@ -112,6 +119,7 @@ _No description provided._
 - Created: 2026-02-04
 - Closed: 2026-02-05
 - Merged: 2026-02-05
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/17
 
 ### Description
@@ -127,6 +135,7 @@ _No description provided._
 - Created: 2026-01-20
 - Closed: 2026-02-03
 - Merged: 2026-02-03
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/13
 
 ### Description
@@ -142,6 +151,7 @@ Create a working file explaining how the ComMod approach is relevant to prospect
 - Created: 2026-01-19
 - Closed: 2026-02-03
 - Merged: 2026-02-03
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/12
 
 ### Description
@@ -157,6 +167,7 @@ Rédaction d'un document pour cadrer le terrain, ses objectifs et ses méthodes.
 - Created: 2025-12-12
 - Closed: 2026-02-03
 - Merged: 2026-02-03
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/10
 
 ### Description
@@ -172,6 +183,7 @@ _No description provided._
 - Created: 2026-01-20
 - Closed: 2026-02-03
 - Merged: 2026-02-03
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/14
 
 ### Description
@@ -187,6 +199,7 @@ _No description provided._
 - Created: 2026-02-02
 - Closed: 2026-02-02
 - Merged: 2026-02-02
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/15
 
 ### Description
@@ -202,6 +215,7 @@ _No description provided._
 - Created: 2026-01-19
 - Closed: 2026-01-19
 - Merged: 2026-01-19
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/11
 
 ### Description
@@ -217,6 +231,7 @@ Fixed some bugs related to changes in the file structure + added a citation file
 - Created: 2025-12-12
 - Closed: 2025-12-12
 - Merged: 2025-12-12
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/9
 
 ### Description
@@ -232,6 +247,7 @@ _No description provided._
 - Created: 2025-12-11
 - Closed: 2025-12-12
 - Merged: 2025-12-12
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/7
 
 ### Description
@@ -247,6 +263,7 @@ Moved notebooks to the method zone
 - Created: 2025-12-12
 - Closed: 2025-12-12
 - Merged: 2025-12-12
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/8
 
 ### Description
@@ -262,6 +279,7 @@ _No description provided._
 - Created: 2025-12-11
 - Closed: 2025-12-11
 - Merged: 2025-12-11
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/6
 
 ### Description
@@ -277,6 +295,7 @@ _No description provided._
 - Created: 2025-12-11
 - Closed: 2025-12-11
 - Merged: 2025-12-11
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/5
 
 ### Description
@@ -291,6 +310,7 @@ Changed source for utils
 - Author: @ggenelot
 - Created: 2025-12-11
 - Closed: 2025-12-11
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/4
 
 ### Description
@@ -305,6 +325,7 @@ New pull request to check that it works with RTD PR versions.
 - Author: @ggenelot
 - Created: 2025-12-11
 - Closed: 2025-12-11
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/3
 
 ### Description
@@ -320,6 +341,7 @@ _No description provided._
 - Created: 2025-12-11
 - Closed: 2025-12-11
 - Merged: 2025-12-11
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/2
 
 ### Description
@@ -335,6 +357,7 @@ Changed a typo
 - Created: 2025-12-11
 - Closed: 2025-12-11
 - Merged: 2025-12-11
+- Base branch: main
 - URL: https://github.com/ggenelot/these/pull/1
 
 ### Description
