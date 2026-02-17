@@ -1,7 +1,6 @@
 # Changelog
 
-## [v0.1.3] - 2026-02-17
-### Changement de version // restructuration du sommaire // ajout de pages méthodologiques
+## [v0.1.3] - 2026-02-17 - Changement de version // restructuration du sommaire // ajout de pages méthodologiques
 
 Pas de changement majeur dans cette version, essentiellement une restructuration de la forme + quelques avancées sur le fond : 
 
@@ -27,26 +26,21 @@ Pas de changement majeur dans cette version, essentiellement une restructuration
 
 **Full Changelog**: https://github.com/ggenelot/these/compare/v0.1.2...v0.1.3
 
-
-
 ---
 
-## [v0.1.2] - 2026-01-19
-### Work in progress - release to change metadata in zenodo
+## [v0.1.2] - 2026-01-19 - Work in progress - release to change metadata in zenodo
 
 _No release notes provided._
 
 ---
 
-## [v0.1.1] - 2026-01-19
-### Work in progress - release for Zenodo
+## [v0.1.1] - 2026-01-19 - Work in progress - release for Zenodo
 
-Simple release to trigger zenodo DOI activation. 
+Simple release to trigger zenodo DOI activation.
 
 ---
 
-## [v0.1.0] - 2025-12-16
-### First draft
+## [v0.1.0] - 2025-12-16 - First draft
 
 First draft version, that reflects some of the work done in the first 3 month of the PhD track and give a first structure of the repo. 
 
