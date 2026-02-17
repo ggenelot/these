@@ -36,6 +36,7 @@ jobs:
             const merged = pr.merged_at ? pr.merged_at.slice(0, 10) : null;
             const url = pr.html_url;
             const labels = (pr.labels || []).map(l => l.name).join(', ') || 'none';
+            const headBranch = pr.head?.ref || 'unknown';
             const baseBranch = pr.base?.ref || 'unknown';
             const body = (pr.body || '').trim() || '_No description provided._';
 
@@ -61,7 +62,8 @@ jobs:
               `- Closed: ${closed}\n` +
               (merged ? `- Merged: ${merged}\n` : '') +
               `- Labels: ${labels}\n` +
-              `- Base branch: ${baseBranch}\n` +
+              `- Source branch: ${headBranch}\n` +
+              `- Target branch: ${baseBranch}\n` +
               `- URL: ${url}\n`;
 
             const block =

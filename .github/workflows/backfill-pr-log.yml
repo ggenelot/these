@@ -46,6 +46,7 @@ jobs:
 
             for (const pr of allPRs) {
               const state = pr.merged_at ? 'merged' : 'closed';
+              const headBranch = pr.head?.ref || 'unknown';
               const baseBranch = pr.base?.ref || 'unknown';
               const mergedLine = pr.merged_at
                 ? `- Merged: ${pr.merged_at.slice(0,10)}\n`
@@ -59,7 +60,8 @@ jobs:
                 `- Created: ${pr.created_at.slice(0,10)}\n` +
                 `- Closed: ${pr.closed_at.slice(0,10)}\n` +
                 mergedLine +
-                `- Base branch: ${baseBranch}\n` +
+                `- Source branch: ${headBranch}\n` +
+                `- Target branch: ${baseBranch}\n` +
                 `- URL: ${pr.html_url}\n\n` +
                 `### Description\n\n` +
                 `${pr.body || '_No description provided._'}\n\n`;
