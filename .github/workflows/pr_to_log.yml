@@ -1,4 +1,4 @@
-name: Append closed PRs to PR_LOG
+name: Log closed PRs to PR_LOG (newest first)
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  append-pr:
+  log-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Append PR block to PR_LOG.md
+      - name: Insert PR block at top of PR_LOG.md
         uses: actions/github-script@v7
         env:
           LOG_FILE: PR_LOG.md
@@ -28,28 +28,29 @@ jobs:
             const pr = context.payload.pull_request;
 
             const number = pr.number;
-            const title = pr.title?.trim() || 'Untitled';
+            const title = (pr.title || 'Untitled').trim();
             const author = pr.user?.login || 'unknown';
             const state = pr.merged ? 'merged' : 'closed';
-            const created = (pr.created_at || '').slice(0,10);
-            const closed = (pr.closed_at || '').slice(0,10);
-            const merged = pr.merged_at ? pr.merged_at.slice(0,10) : null;
+            const created = (pr.created_at || '').slice(0, 10);
+            const closed = (pr.closed_at || '').slice(0, 10);
+            const merged = pr.merged_at ? pr.merged_at.slice(0, 10) : null;
             const url = pr.html_url;
             const labels = (pr.labels || []).map(l => l.name).join(', ') || 'none';
             const body = (pr.body || '').trim() || '_No description provided._';
 
-            // Idempotence : ne pas dupliquer si déjà loguée
             const marker = `PR #${number} —`;
-            if (fs.existsSync(logPath)) {
-              const existing = fs.readFileSync(logPath, 'utf8');
-              if (existing.includes(marker)) {
-                core.info(`PR #${number} already logged, skipping.`);
-                return;
-              }
+
+            const header = '# PR log\n\n';
+            let existing = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : header;
+
+            if (!existing.startsWith('# PR log')) {
+              existing = header + existing.trimStart();
             }
 
-            if (!fs.existsSync(logPath)) {
-              fs.writeFileSync(logPath, '# PR log\n\n', 'utf8');
+            // Idempotence: skip if already logged
+            if (existing.includes(marker) || existing.includes(url)) {
+              core.info(`PR #${number} already logged, skipping.`);
+              return;
             }
 
             const meta =
@@ -62,13 +63,20 @@ jobs:
               `- URL: ${url}\n`;
 
             const block =
-              `\n---\n\n` +
+              `---\n\n` +
               `## ${title}\n\n` +
               `${meta}\n` +
               `### Description\n\n` +
-              `${body}\n`;
+              `${body}\n\n`;
 
-            fs.appendFileSync(logPath, block, 'utf8');
+            // Insert just after the header blank line => newest first
+            const insertPos = existing.indexOf('\n\n');
+            const updated =
+              existing.slice(0, insertPos + 2) +
+              block +
+              existing.slice(insertPos + 2);
+
+            fs.writeFileSync(logPath, updated, 'utf8');
 
       - name: Commit changes
         run: |
