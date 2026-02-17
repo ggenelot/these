@@ -10,7 +10,7 @@ Pas de changement majeur dans cette version, essentiellement une restructuration
 - ajout d'identifiants : DOI, ORCID, mail, etc, pour faciliter l'attribution et la collaboration
 
 
-## What's Changed
+### What's Changed
 * Add reference to about documents : readme, license, contributing by @ggenelot in https://github.com/ggenelot/these/pull/15
 * First draft of a socio-ecosystem representation by @ggenelot in https://github.com/ggenelot/these/pull/14
 * Fixing list of figures issues by @ggenelot in https://github.com/ggenelot/these/pull/10
