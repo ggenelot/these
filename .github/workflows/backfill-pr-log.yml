@@ -1,0 +1,74 @@
+name: Backfill PR_LOG from existing closed PRs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate PR_LOG.md (newest first)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            const { owner, repo } = context.repo;
+
+            let page = 1;
+            const per_page = 100;
+            let allPRs = [];
+
+            while (true) {
+              const { data } = await github.rest.pulls.list({
+                owner,
+                repo,
+                state: 'closed',
+                per_page,
+                page
+              });
+              if (data.length === 0) break;
+              allPRs = allPRs.concat(data);
+              page++;
+            }
+
+            // Trier par date de fermeture DESC (récentes en haut)
+            allPRs.sort((a, b) =>
+              new Date(b.closed_at) - new Date(a.closed_at)
+            );
+
+            let output = '# PR log\n\n';
+
+            for (const pr of allPRs) {
+              const state = pr.merged_at ? 'merged' : 'closed';
+              const mergedLine = pr.merged_at
+                ? `- Merged: ${pr.merged_at.slice(0,10)}\n`
+                : '';
+
+              output +=
+                `---\n\n` +
+                `## ${pr.title}\n\n` +
+                `- PR #${pr.number} — ${state}\n` +
+                `- Author: @${pr.user?.login}\n` +
+                `- Created: ${pr.created_at.slice(0,10)}\n` +
+                `- Closed: ${pr.closed_at.slice(0,10)}\n` +
+                mergedLine +
+                `- URL: ${pr.html_url}\n\n` +
+                `### Description\n\n` +
+                `${pr.body || '_No description provided._'}\n\n`;
+            }
+
+            fs.writeFileSync('PR_LOG.md', output);
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add PR_LOG.md
+          git commit -m "docs(pr-log): backfill from existing PRs" || exit 0
+          git push
