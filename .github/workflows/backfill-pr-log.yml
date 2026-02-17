@@ -37,7 +37,7 @@ jobs:
               page++;
             }
 
-            // Trier par date de fermeture DESC (récentes en haut)
+            // Sort by closed date DESC (newest first).
             allPRs.sort((a, b) =>
               new Date(b.closed_at) - new Date(a.closed_at)
             );
@@ -45,22 +45,46 @@ jobs:
             let output = '# PR log\n\n';
 
             for (const pr of allPRs) {
-              const state = pr.merged_at ? 'merged' : 'closed';
-              const mergedLine = pr.merged_at
-                ? `- Merged: ${pr.merged_at.slice(0,10)}\n`
+              const { data: details } = await github.rest.pulls.get({
+                owner,
+                repo,
+                pull_number: pr.number
+              });
+
+              const state = details.merged_at ? 'merged' : 'closed';
+              const headBranch = details.head?.ref || 'unknown';
+              const baseBranch = details.base?.ref || 'unknown';
+              const milestone = details.milestone?.title || 'none';
+              const labels = (details.labels || []).map(l => l.name).join(', ') || 'none';
+              const commits = typeof details.commits === 'number' ? details.commits : 'unknown';
+              const hasDiffStats =
+                typeof details.additions === 'number' &&
+                typeof details.deletions === 'number' &&
+                typeof details.changed_files === 'number';
+              const diffSummary = hasDiffStats
+                ? `+${details.additions} / -${details.deletions} across ${details.changed_files} file(s)`
+                : 'unavailable';
+              const mergedLine = details.merged_at
+                ? `- Merged: ${details.merged_at.slice(0,10)}\n`
                 : '';
 
               output +=
                 `---\n\n` +
-                `## ${pr.title}\n\n` +
-                `- PR #${pr.number} — ${state}\n` +
-                `- Author: @${pr.user?.login}\n` +
-                `- Created: ${pr.created_at.slice(0,10)}\n` +
-                `- Closed: ${pr.closed_at.slice(0,10)}\n` +
+                `## ${details.title}\n\n` +
+                `- PR #${details.number} — ${state}\n` +
+                `- Author: @${details.user?.login}\n` +
+                `- Created: ${details.created_at.slice(0,10)}\n` +
+                `- Closed: ${details.closed_at.slice(0,10)}\n` +
                 mergedLine +
-                `- URL: ${pr.html_url}\n\n` +
+                `- Source branch: ${headBranch}\n` +
+                `- Target branch: ${baseBranch}\n` +
+                `- Milestone: ${milestone}\n` +
+                `- Labels: ${labels}\n` +
+                `- Diff summary: ${diffSummary}\n` +
+                `- Commits: ${commits}\n` +
+                `- URL: ${details.html_url}\n\n` +
                 `### Description\n\n` +
-                `${pr.body || '_No description provided._'}\n\n`;
+                `${details.body || '_No description provided._'}\n\n`;
             }
 
             fs.writeFileSync('PR_LOG.md', output);
