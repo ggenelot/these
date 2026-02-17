@@ -1,0 +1,86 @@
+name: Sync release notes to CHANGELOG
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update CHANGELOG.md from release notes
+        uses: actions/github-script@v7
+        env:
+          CHANGELOG_FILE: CHANGELOG.md
+        with:
+          script: |
+            const fs = require('fs');
+
+            const changelogPath = process.env.CHANGELOG_FILE || 'CHANGELOG.md';
+            const rel = context.payload.release;
+
+            const tag = rel.tag_name;
+            const name = rel.name || tag;
+            const body = (rel.body || '').trim();
+            const publishedAt = (rel.published_at || '').slice(0, 10); // YYYY-MM-DD
+
+            if (!body) {
+              core.warning('Release body is empty; skipping changelog update.');
+              return;
+            }
+
+            // Read existing changelog (or create a minimal header)
+            let existing = '';
+            if (fs.existsSync(changelogPath)) {
+              existing = fs.readFileSync(changelogPath, 'utf8');
+            } else {
+              existing = '# Changelog\n\n';
+            }
+
+            // Idempotency: if this tag already present, skip
+            const marker = `## [${tag}]`;
+            if (existing.includes(marker)) {
+              core.info(`Changelog already contains ${marker}; skipping.`);
+              return;
+            }
+
+            // Ensure header
+            if (!existing.startsWith('# Changelog')) {
+              existing = '# Changelog\n\n' + existing.trimStart();
+            }
+
+            // Build entry
+            const entry =
+              `\n## [${tag}] - ${publishedAt}\n` +
+              `### ${name}\n\n` +
+              `${body}\n\n---\n`;
+
+            // Insert after first header line
+            const idx = existing.indexOf('\n');
+            const updated =
+              existing.slice(0, idx + 1) +
+              entry +
+              existing.slice(idx + 1).trimStart();
+
+            fs.writeFileSync(changelogPath, updated, 'utf8');
+            core.setOutput('updated', 'true');
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "docs(changelog): add release notes for ${{ github.event.release.tag_name }}"
+          git push
