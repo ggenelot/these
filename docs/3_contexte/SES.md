@@ -27,6 +27,7 @@
 > **Mots-clés**  
 > `ComMod`, `Socio-écosystème`, `méthodologie`, `conceptualisation`
 
+A faire évoluer en fonction des observations du terrain
 
 On cherche ici à faire une première représentation du socio-écosystème que l'on va modéliser à l'aide de l'approche ComMod. Il est à noter que cette approche est généralement réalisée avec des acteurs; l'objectif de la réflexion ici n'est donc pas d'arriver à une version définitive du socio-écosystème, mais plutôt d'élaguer les concepts pour mieux identifier des acteurs potentiels qui permettront en retour de concevoir le SES à travers un processus COMMOD.  
 
