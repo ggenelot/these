@@ -222,6 +222,7 @@ def download_filosofi(url: str = None) -> None:
 #download_figshare()
 #download_filosofi()
 
-
+def download_osm_data():
+    return "hello"
 
 # def download_osm()
