@@ -1,4 +1,4 @@
-Test code cell
+# Test code cell
 
 ```{code-cell} python
 hello = "hello"
