@@ -21,9 +21,6 @@ exports:
 downloads:
   - id: commod
     title: "PDF"
-kernelspec:
-  name: python3
-  display_name: 'Python 3'
 ---
 
 
@@ -33,12 +30,6 @@ Cette page est une introduction rapide et informelle à la modélisation d'accom
 
 Elle se décline en deux partie : d'abord, une présentation générale de l'approche ComMod, suivie d'une section de questions - réponses, qui se veut un peu plus concrète. 
 
-```{code-cell} python
-hello = "hello"
-there = "there"
-phrase = f"{hello}, {there}!"
-print(phrase)
-```
 
 
 ## Qu'est-ce que la démarche COMMOD ? 
