@@ -21,6 +21,9 @@ exports:
 downloads:
   - id: commod
     title: "PDF"
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
 ---
 
 
