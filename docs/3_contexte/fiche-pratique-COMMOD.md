@@ -31,6 +31,7 @@ Cette page est une introduction rapide et informelle à la modélisation d'accom
 Elle se décline en deux partie : d'abord, une présentation générale de l'approche ComMod, suivie d'une section de questions - réponses, qui se veut un peu plus concrète. 
 
 
+
 ## Qu'est-ce que la démarche COMMOD ? 
 
 
