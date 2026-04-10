@@ -222,7 +222,180 @@ def download_filosofi(url: str = None) -> None:
 #download_figshare()
 #download_filosofi()
 
-def download_osm_data():
-    return "hello"
+def download_osm_data(
+    bbox: tuple[float, float, float, float],
+    output_dir: str | Path | None = None,
+    file_format: str = "gpkg",
+    show_progress: bool = True,
+    verbose: bool = True,
+) -> dict[str, str | None]:
+    """
+    Download OSM layers for a hurricane situation map from a bounding box.
+
+    Parameters
+    ----------
+    bbox : tuple[float, float, float, float]
+        Bounding box as ``(west, south, east, north)`` in EPSG:4326.
+    output_dir : str | Path, optional
+        Output folder. Defaults to ``<repo>/data/raw/osm``.
+    file_format : str, default "gpkg"
+        Vector output format: ``"gpkg"``, ``"geojson"``, or ``"shp"``.
+    show_progress : bool, default True
+        Display a progress bar over requested layers when ``tqdm`` is available.
+    verbose : bool, default True
+        Print detailed runtime information (counts, timings, output paths).
+
+    Returns
+    -------
+    dict[str, str | None]
+        Mapping from layer name (``coastline``, ``roads``, ``mangrove``) to
+        file path. Value is ``None`` when no feature is found for that layer.
+    """
+    try:
+        import osmnx as ox
+    except ImportError as exc:
+        raise ImportError(
+            "download_osm_data requires osmnx. Install it with `pip install osmnx`."
+        ) from exc
+
+    import pandas as pd
+    from shapely.geometry import box
+    from time import perf_counter
+
+    if len(bbox) != 4:
+        raise ValueError("bbox must have 4 values: (west, south, east, north).")
+
+    west, south, east, north = bbox
+    if west >= east or south >= north:
+        raise ValueError(
+            "Invalid bbox order. Expected (west < east, south < north)."
+        )
+
+    valid_formats = {"gpkg": ".gpkg", "geojson": ".geojson", "shp": ".shp"}
+    fmt = file_format.lower()
+    if fmt not in valid_formats:
+        raise ValueError("file_format must be one of: 'gpkg', 'geojson', 'shp'.")
+
+    repo_root = Path(__file__).resolve().parent.parent.parent
+    out_dir = (
+        Path(output_dir) if output_dir is not None else repo_root / "data/raw/osm"
+    )
+    out_dir.mkdir(parents=True, exist_ok=True)
+    aoi = box(west, south, east, north)
+
+    layers = {
+        "coastline": {"natural": "coastline"},
+        "roads": {"highway": True},
+        "mangrove": {
+            "wetland": "mangrove",
+            "landuse": "mangrove",
+            "natural": "mangrove",
+        },
+    }
+
+    saved_files: dict[str, str | None] = {}
+    layer_items = list(layers.items())
+    start_total = perf_counter()
+    n_saved = 0
+
+    if verbose:
+        print("Starting OSM download for hurricane situation map")
+        print(f"  bbox (west, south, east, north): {bbox}")
+        print(f"  output directory: {out_dir.resolve()}")
+        print(f"  output format: {fmt}")
+
+    iterator = layer_items
+    if show_progress:
+        try:
+            from tqdm.auto import tqdm
+
+            iterator = tqdm(
+                layer_items,
+                total=len(layer_items),
+                desc="Downloading OSM layers",
+                unit="layer",
+            )
+        except Exception:
+            if verbose:
+                print("tqdm is not available, continuing without progress bar.")
+
+    for idx, (layer_name, tags) in enumerate(iterator, start=1):
+        layer_start = perf_counter()
+        if verbose:
+            print(f"[{idx}/{len(layer_items)}] Requesting layer: {layer_name}")
+        try:
+            gdf = ox.features_from_polygon(aoi, tags)
+        except Exception as exc:
+            logging.exception("Failed to download '%s': %s", layer_name, exc)
+            saved_files[layer_name] = None
+            if verbose:
+                print(f"  -> failed to query '{layer_name}'.")
+            continue
+
+        gdf = gdf.reset_index(drop=True)
+        if "geometry" in gdf.columns:
+            gdf = gdf[gdf.geometry.notna()].copy()
+
+        if layer_name == "mangrove" and not gdf.empty:
+            mask = pd.Series(False, index=gdf.index)
+            for col in ("wetland", "landuse", "natural"):
+                if col in gdf.columns:
+                    values = gdf[col].fillna("").astype(str).str.lower()
+                    mask = mask | values.str.contains("mangrove")
+            gdf = gdf[mask].copy()
+
+        if gdf.empty:
+            logging.warning("No '%s' feature found in bbox %s.", layer_name, bbox)
+            saved_files[layer_name] = None
+            if verbose:
+                elapsed = perf_counter() - layer_start
+                print(f"  -> no features found ({elapsed:.1f}s).")
+            continue
+
+        out_path = out_dir / f"{layer_name}{valid_formats[fmt]}"
+        try:
+            if fmt == "gpkg":
+                gdf.to_file(out_path, driver="GPKG")
+            elif fmt == "geojson":
+                gdf.to_file(out_path, driver="GeoJSON")
+            else:
+                gdf.to_file(out_path)
+        except Exception as exc:
+            logging.exception(
+                "Failed to save '%s' layer to %s: %s", layer_name, out_path, exc
+            )
+            saved_files[layer_name] = None
+            if verbose:
+                print(f"  -> failed to write '{layer_name}'.")
+            continue
+
+        saved_files[layer_name] = str(out_path)
+        n_saved += 1
+        if verbose:
+            elapsed = perf_counter() - layer_start
+            geom_counts = gdf.geometry.geom_type.value_counts().to_dict()
+            file_size_mb = out_path.stat().st_size / (1024 * 1024)
+            print(
+                f"  -> saved {len(gdf)} features to {out_path.name} "
+                f"({file_size_mb:.2f} MB, {elapsed:.1f}s)"
+            )
+            print(f"  -> geometry types: {geom_counts}")
+
+    if verbose:
+        total_elapsed = perf_counter() - start_total
+        print("OSM download finished")
+        print(f"  saved {n_saved}/{len(layer_items)} layer(s) in {total_elapsed:.1f}s")
+        for layer_name in layers:
+            path = saved_files.get(layer_name)
+            status = path if path else "not saved"
+            print(f"  - {layer_name}: {status}")
+
+    return saved_files
 
 # def download_osm()
+download_osm_data(
+    bbox=(-61.25, 14.35, -60.75, 14.95),
+    file_format="gpkg",
+)
+
+
