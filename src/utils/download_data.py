@@ -2,9 +2,45 @@ import json
 import logging
 import os
 import shutil
+import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
+
+def _bootstrap_gdal_proj_env() -> None:
+    """
+    Populate GDAL/PROJ env vars early to avoid import-time warnings on Windows.
+    """
+    env_prefix = Path(os.environ.get("CONDA_PREFIX", sys.prefix))
+    proj_candidates = [
+        env_prefix / "Library/share/proj",
+        env_prefix / "share/proj",
+    ]
+    gdal_candidates = [
+        env_prefix / "Library/share/gdal",
+        env_prefix / "share/gdal",
+    ]
+
+    if not os.getenv("PROJ_LIB"):
+        for candidate in proj_candidates:
+            if candidate.exists():
+                os.environ["PROJ_LIB"] = str(candidate)
+                break
+
+    if not os.getenv("PROJ_DATA"):
+        for candidate in proj_candidates:
+            if candidate.exists():
+                os.environ["PROJ_DATA"] = str(candidate)
+                break
+
+    if not os.getenv("GDAL_DATA"):
+        for candidate in gdal_candidates:
+            if candidate.exists():
+                os.environ["GDAL_DATA"] = str(candidate)
+                break
+
+
+_bootstrap_gdal_proj_env()
 
 import rasterio
 import requests
@@ -262,6 +298,16 @@ def download_osm_data(
     from shapely.geometry import box
     from time import perf_counter
 
+    def _set_env_if_missing(var_name: str, candidates: list[Path]) -> str | None:
+        """Set env var to first existing candidate path if currently missing."""
+        if os.getenv(var_name):
+            return None
+        for candidate in candidates:
+            if candidate.exists():
+                os.environ[var_name] = str(candidate)
+                return str(candidate)
+        return None
+
     if len(bbox) != 4:
         raise ValueError("bbox must have 4 values: (west, south, east, north).")
 
@@ -275,6 +321,20 @@ def download_osm_data(
     fmt = file_format.lower()
     if fmt not in valid_formats:
         raise ValueError("file_format must be one of: 'gpkg', 'geojson', 'shp'.")
+
+    # Fix common Windows conda setups where GDAL/PROJ data vars are unset.
+    env_prefix = Path(os.environ.get("CONDA_PREFIX", sys.prefix))
+    proj_candidates = [
+        env_prefix / "Library/share/proj",
+        env_prefix / "share/proj",
+    ]
+    gdal_candidates = [
+        env_prefix / "Library/share/gdal",
+        env_prefix / "share/gdal",
+    ]
+    gdal_set = _set_env_if_missing("GDAL_DATA", gdal_candidates)
+    proj_set = _set_env_if_missing("PROJ_LIB", proj_candidates)
+    _set_env_if_missing("PROJ_DATA", proj_candidates)
 
     repo_root = Path(__file__).resolve().parent.parent.parent
     out_dir = (
@@ -298,11 +358,30 @@ def download_osm_data(
     start_total = perf_counter()
     n_saved = 0
 
+    fetch_from_polygon = getattr(ox, "features_from_polygon", None)
+    if fetch_from_polygon is None and hasattr(ox, "features"):
+        fetch_from_polygon = getattr(ox.features, "features_from_polygon", None)
+    if fetch_from_polygon is None:
+        fetch_from_polygon = getattr(ox, "geometries_from_polygon", None)
+    if fetch_from_polygon is None and hasattr(ox, "geometries"):
+        fetch_from_polygon = getattr(ox.geometries, "geometries_from_polygon", None)
+    if fetch_from_polygon is None:
+        raise AttributeError(
+            "No compatible polygon query function found in osmnx. "
+            "Expected one of: features_from_polygon, geometries_from_polygon."
+        )
+
     if verbose:
         print("Starting OSM download for hurricane situation map")
+        print(f"  osmnx version: {getattr(ox, '__version__', 'unknown')}")
+        print(f"  query function: {fetch_from_polygon.__name__}")
         print(f"  bbox (west, south, east, north): {bbox}")
         print(f"  output directory: {out_dir.resolve()}")
         print(f"  output format: {fmt}")
+        if gdal_set:
+            print(f"  GDAL_DATA was unset; using: {gdal_set}")
+        if proj_set:
+            print(f"  PROJ_LIB was unset; using: {proj_set}")
 
     iterator = layer_items
     if show_progress:
@@ -324,7 +403,7 @@ def download_osm_data(
         if verbose:
             print(f"[{idx}/{len(layer_items)}] Requesting layer: {layer_name}")
         try:
-            gdf = ox.features_from_polygon(aoi, tags)
+            gdf = fetch_from_polygon(aoi, tags)
         except Exception as exc:
             logging.exception("Failed to download '%s': %s", layer_name, exc)
             saved_files[layer_name] = None
@@ -392,10 +471,5 @@ def download_osm_data(
 
     return saved_files
 
-# def download_osm()
-download_osm_data(
-    bbox=(-61.25, 14.35, -60.75, 14.95),
-    file_format="gpkg",
-)
 
 
