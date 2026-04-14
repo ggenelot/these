@@ -2,10 +2,10 @@
 exports:
   - format: pdf
     template: lapreprint-typst
-    output: exports/intro.pdf
-    id: intro
+    output: exports/intro_new.pdf
+    id: intro_new
 downloads:
-  - id: intro
+  - id: intro_new
     title: introduction
 ---
 
