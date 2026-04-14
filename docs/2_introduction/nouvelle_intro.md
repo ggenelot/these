@@ -2,11 +2,10 @@
 exports:
   - format: pdf
     template: lapreprint-typst
-    output: exports/intro_new.pdf
-    id: intro_new
+    output: exports/intro.pdf
+    id: intro
 downloads:
-  - id: intro_new
-    title: introduction
+  - id: intro
 ---
 
 # Introduction générale
