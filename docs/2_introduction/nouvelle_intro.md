@@ -1,3 +1,14 @@
+---
+exports:
+  - format: pdf
+    template: lapreprint-typst
+    output: exports/intro.pdf
+    id: intro
+downloads:
+  - id: intro
+    title: introduction
+---
+
 # Introduction générale
 
 % amener le lecteur au sujet
