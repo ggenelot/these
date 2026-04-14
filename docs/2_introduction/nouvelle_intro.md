@@ -53,9 +53,16 @@ assurances
 
 % poser l'originalité de sa thèse
 
+Nous tentons donc ici de répondre à la question suivante : quels effets systémiques auront des choix d'aménagement du territoire pour l'adaptation au risque cyclonique ?
+
+Cette question se décline en sous-questions :
+
+- d'abord, comment évaluer l'adaptation ?
+
 par rapport à l'aménagement : l'apport du futur / prospective
 par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation
 
 % affirmer le sérieux de sa démarche
 
 = plan ? 
+
