@@ -40,7 +40,6 @@ D'adaptation ensuite. L'adaptation, c'est une modification souhaitée d'un syst�
 
 D'aménagement du territoire enfin. Ce terme désigne immédiatement l'action d'aménager, c'est à dire d'organiser, un territoire, c'est à dire un espace que l'on s'est préalablement approprié. C'est ainsi l'incarnation dans l'espace de la politique publique, mais aussi de ses limites et ses failles.
 
-
 % se démarquer intelligemment
 
 littérature sur le risque
@@ -62,7 +61,26 @@ Cette question se décline en sous-questions :
 par rapport à l'aménagement : l'apport du futur / prospective
 par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation
 
+qu'est-ce qu'un modèle pour l'adaptation ? à quelles questions doit-il répondre ? quelles en seraient les limites ? Les nouvelles perspectives?
+
 % affirmer le sérieux de sa démarche
 
-= plan ? 
+= plan ?
 
+Dans un premier temps, nous prendrons le temps de décrire notre objet d'étude.
+
+Tout d'abord, nous reviendrons sur une brève histoire de la modélisation prospective. Nous y montrerons que les modèles actuels, principalement tournés vers la mitigation, souffrent de contrainte structurelles qui ne leur permet pas de bien représenter des politiques d'adaptation. Nous détaillerons ces limitations et tenterons d'identifier des caractéristiques nécessaire à des modèles pour l'adaptation.
+
+Nous décrirons ensuite l'aléa cyclonique dans le bassin nord-atlantique. Nous détaillerons ainsi les mécanismes qui produisent des cyclones, leur évolution et les canaux par lequels ils peuvent provoquer des dommages.
+
+Nous décrirons d'abord plusieurs sites d'intérêt en Martinique, sous la forme d'études de cas. Au travers de la notion de paysages, nous y définirons notre socio-écosystème. A travers des exemples localisés, nous décrirons les éléments qui composeront le système pris en compte dans le reste de la thèse, en clarifiant les choix de sélection ou d'exclusion d'élément ou de relations entre ces éléments.
+
+Dans un second temps, nous tenterons de modéliser un socio-écosystème.
+
+Tout d'abord dans une perspective statique. A travers un croisement de données spatiales (zonage de risque et de régimes d'urbanismes) et de données socio-économiques, nous caractériserons la distribution du risque cyclonique par zone et selon d'autres caractéristiques (âge moyen, revenu, etc.).
+
+Ensuite, nous modéliserons les éléments retenu dans le chapitre (site d'intérêt). Dans cette phase, nous cherchons à représenter les effets de mesures d'aménagement.
+
+Enfin, nous faisons tourner ce modèle avec différents scénarios de d'adaptation et/ou d'intensité de cyclones tropicaux.
+
+Dans une troisième partie, [TROISIEME PARTIE ?]
