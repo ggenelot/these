@@ -2,12 +2,7 @@
 
 ## Sommaire
 
-```{toctree}
-:maxdepth: 1
-:caption: Sommaire
-
-limitations-df
-approche-COMMOD
-fiche-pratique-COMMOD
-SES
-```
+- [Limites des fonctions de dommage](limitations-df.md)
+- [Apport de l'approche ComMod](approche-COMMOD.md)
+- [Fiche pratique COMMOD](fiche-pratique-COMMOD.md)
+- [Représentation du socio-écosystème](SES.md)

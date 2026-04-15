@@ -6,8 +6,7 @@ ComMod, pour *Companion modelling*, ou encore *participatory modelling*, ou en f
 
 ### Essais de définition 
 
-Une première définition est donnée par {numref}`@zellnerParticipatoryModelingCollaborative2024`
- : 
+Une première définition est donnée par {cite:t}`zellnerParticipatoryModelingCollaborative2024` :
  
  > PM is a collaborative approach to formalize shared representations of a problem using a wide range of qualitative and quantitative modeling techniques (e.g., rich pictures, mapping and geographic information systems, causal diagraming, agent-based and system dynamic modeling, integrated assessment modeling, etc.)
 
