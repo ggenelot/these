@@ -64,9 +64,15 @@ assurances
 
 Nous tentons donc ici de répondre à la question suivante : quels effets systémiques auront des choix d'aménagement du territoire pour l'adaptation au risque cyclonique ?
 
+En effet, l'aménagement est au coeur de la politique locale. Compétence de la commune ou de l'intercommunalité, c'est, comme nous l'avons écrit plus haut, l'expression matérielle et spatiale d'un projet de société. Loin d'être un simple outil technique ou réglementaire, elle fixe dans le temps long des orientations profondes. C'est le cas de choix d'adaptation, qui reflètent à la fois des opportunités techniques et un choix de société pour le futur. L'objet de ce travail est précisément d'éclairer les conséquences de tels ou tels choix d'adaptation, pour informer la prise de décision.
+
 Cette question se décline en sous-questions :
 
-- d'abord, comment évaluer l'adaptation ?
+- d'abord, quelles sont les options disponibles ?
+- ensuite, quels effets systémiques ont chacune de ces options ? Nous nous intéressons ici en particulier à deux types d'effets. 
+D'une part, aux effets en cascade. En effet, les aménagement ont des conséquences directes sur les éléments qui les composent ou sont en relation directe avec eux. Ces conséquences sont déjà difficile à percevoir. Par ailleurs, ces conséquences (ou perturbations) sur d'autres éléments auront elles aussi des conséquences sur d'autres éléments, et ainsi de suite. L'approche systémique permet de s'intéresser à ces phénomènes. Plus que de caractériser précisément telle ou telle relation / conséquence, ce qui nous intéresse ici c'est les effets systémiques des choix d'aménagement.
+D'autre part, aux effets de distribution. En utilisant une approche spatiale avec une résolution fine, nous cherchons à désagréger les résultats pour avoir une vision fine des impacts à la fois du risque cyclonique, mais aussi des effets de politiques d'aménagement. Nous ne cherchons pas à qualifier l'exposition globale d'un territoire, en obtenant une valeur monétaire agrégée de dommages matériels, par exemple. Au contraire, nous cherchons à voir les effets distributionnels de politiques d'aménagement. Ce questionnement ce décline sous plusieurs questions : qui est le plus exposé ? quel augmentation ou diminution de l'exposition au risque provoque une mesure ? pour qui ? Ainsi, nous cherchons à décomposer les effets par publics, pour identifier d'éventuels mécanismes d'adaptation. On entend par là des mesures qui en permettant l'adaptation d'un groupe spécifique exposerait davantages d'autres groupes.
+- enfin, comment ces effets s'articulent-ils entre eux ?
 
 par rapport à l'aménagement : l'apport du futur / prospective
 par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation
