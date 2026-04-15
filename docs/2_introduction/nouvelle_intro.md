@@ -1,4 +1,10 @@
 ---
+parts:
+  abstract: >
+    A travers cette thèse, nous mobilisons des méthodes et matériaux variés (données qualitatives issues du terrain, données spatiales, données climatologique) pour évaluer les effets systèmique de projets d'adaptation du littoral au risque cyclonique. Nous nous intéressons à plusieurs cas d'étude en Martinique.
+  keypoints:
+    - Quels sont les effets systémique de l'adaptation au risque cyclonique ? 
+    - Nous associons des données qualitatives et quantitatives, dans une démarche de prospective spatialisée
 exports:
   - format: pdf
     template: lapreprint-typst
