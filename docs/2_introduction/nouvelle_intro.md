@@ -81,7 +81,7 @@ Ce genre d'exercice prospectif est aussi souvent porté par des assurances. On p
 
 ### Réflexions autour de l'aménagement
 
-Nous tentons donc ici de répondre à la question suivante : quels effets systémiques auront des choix d'aménagement du territoire pour l'adaptation au risque cyclonique ?
+Nous tentons donc ici de répondre à la question suivante : quels seront les effets systémiques de choix d'aménagement du territoire pour l'adaptation au risque cyclonique ?
 
 En effet, l'aménagement est au coeur de la politique locale. Compétence de la commune ou de l'intercommunalité, c'est, comme nous l'avons écrit plus haut, l'expression matérielle et spatiale d'un projet de société. Loin d'être un simple outil technique ou réglementaire, elle fixe dans le temps long des orientations profondes. C'est le cas de choix d'adaptation, qui reflètent à la fois des opportunités techniques et un choix de société pour le futur. L'objet de ce travail est précisément d'éclairer les conséquences de tels ou tels choix d'adaptation, pour informer la prise de décision.
 
@@ -98,7 +98,7 @@ par rapport à la prospective : la recherche de méthodes spatialisées ; des te
 
 ### Réflexions autour de la prospective
 
-qu'est-ce qu'un modèle pour l'adaptation ? à quelles questions doit-il répondre ? quelles en seraient les limites ? Les nouvelles perspectives?
+% qu'est-ce qu'un modèle pour l'adaptation ? à quelles questions doit-il répondre ? quelles en seraient les limites ? Les nouvelles perspectives?
 
 Derrière ces questions d'aménagement se cachent des interrogations sur le rôle d'un modèle et ses évolutions potentielles pour devenir un outil d'aide à l'adaptation au changement climatique. Elles pourraient se résumer dans la question de recherche suivante : quelles caractéristiques sont requises par un modèle de prospective permettant l'adapatation ?
 
