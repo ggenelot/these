@@ -20,6 +20,8 @@ L'aménagement du territoire est à la fois un outil et un état de fait. Oeuvre
 
 C'est une manière de répondre à des questions épistémologiques qui traversent le monde de la modélisation prospective. Comment mieux prendre en compte la spatialité des phénomènes ? Comment aborder la question de la justice climatique ? Comment représenter des mesures d'adaptation ?
 
+## Description des principaux termes utilisés
+
 aménagmenent du territoire
 risque cyclonique
 changement climatique
@@ -42,15 +44,23 @@ accompagnement
 
 Avant d'aller plus loin, commençons par définir les termes de notre sujet. De quoi allons-nous parler ?
 
+### Modélisation prospective
+
 De modélisation d'abord. La modélisation désigne l'action de construction d'un modèle, c'est à dire une représentation schématique d'un phénomène, dans le but de rendre celui-ci intelligible. Il s'agit ici de modélisation prospective, et il convient de définir les deux termes pour bien les distinguer l'un de l'autre.
 La modélisation fabrique des modèles; outils pour mieux comprendre un phénomène. On pense souvent à des simulations numériques, ensembles d'opérations qui permettent de simuler numériquement un phénomène d'intérêt, mais ce ne sont pas tous les modèles. Ainsi, la plupart des disciplines scientifiques utilisent des modèles. Plus généralement, bien d'autres objets que des outils informatiques permettent d'abstraire un phénomène pour mieux le comprendre. Ainsi, une carte est une représentation simplifiée de la distribution spatiale d'objets (les reliefs, par exemple); c'est en soi un modèle. De la même manière, un schéma, ou même une métaphore peuvent être considérés comme des modèles.
 La prospective est une discipline visant à explorer les futurs possibles pour éclairer la décision actuelle. Elle se distingue de la prévision, qui a une perspective déterministe. Ainsi, la prévision s'attache à approximer le mieux possible la valeur future d'une variable : on cherche par exemple à savoir, avec le plus de précision possible, quelle quantité de pluie va tomber demain. La prospective fait l'hypothèse qu'il y a plusieurs futurs possible, dont la réalisation dépend de décisions, et non de paramètres. Le but est ainsi d'identifier des ensembles cohérents d'actions ou de conditions, appelés scénarios, et d'explorer quel serait le futur dans ces conditions. On n'obtiens pas de prévisions sur l'état futur du monde, mais plutôt une indication sur les actions à entreprendre aujourd'hui pour tendre vers le futur souhaité.
 
+### Adaptation
+
 D'adaptation ensuite. L'adaptation, c'est une modification souhaitée d'un système pour faire face à une perturbation. Dans notre cas, le système est la bande littorale en Martinique, et la perturbation est le changement climatique. Plus précisément, à travers différents canaux, celui-ci induit plusieurs perturbations, notamment l'augmentation de la puissance des vagues, le recul du trait de côte et une surcôte marine.
+
+### Aménagement du territoire
 
 D'aménagement du territoire enfin. Ce terme désigne immédiatement l'action d'aménager, c'est à dire d'organiser, un territoire, c'est à dire un espace que l'on s'est préalablement approprié. C'est ainsi l'incarnation dans l'espace de la politique publique, mais aussi de ses limites et ses failles.
 
-% se démarquer intelligemment
+## Littérature
+
+% se démarquer intelligemment / correspond à la doxa dans le plan de dissertation
 
 littérature sur le risque
 
@@ -63,6 +73,12 @@ prospective énergétique = besoin de mieux prendre en compte des éléments qua
 assurances
 
 % poser l'originalité de sa thèse
+
+## Problématique
+
+% correspond à l'intitulé du sujet dans le plan de dissertation
+
+### Réflexions autour de l'aménagement
 
 Nous tentons donc ici de répondre à la question suivante : quels effets systémiques auront des choix d'aménagement du territoire pour l'adaptation au risque cyclonique ?
 
@@ -79,6 +95,8 @@ D'autre part, aux effets de distribution. En utilisant une approche spatiale ave
 par rapport à l'aménagement : l'apport du futur / prospective
 par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation
 
+### Réflexions autour de la prospective
+
 qu'est-ce qu'un modèle pour l'adaptation ? à quelles questions doit-il répondre ? quelles en seraient les limites ? Les nouvelles perspectives?
 
 Derrière ces questions d'aménagement se cachent des interrogations sur le rôle d'un modèle et ses évolutions potentielles pour devenir un outil d'aide à l'adaptation au changement climatique. Elles pourraient se résumer dans la question de recherche suivante : quelles caractéristiques sont requises par un modèle de prospective permettant l'adapatation ?
@@ -88,10 +106,11 @@ Ici encore, elles se déclinent en différentes sous-questions :
 - comment intégrer la justice climatique dans un exercice de prospective ? Le changement climatique ne va pas toucher de la même manière tous les pays / groupes sociaux. De la même manière, les politiques publiques associées ont le potentiels de corriger des inégalités, ou au contraire de les accentuer. Prendre en compte cette dimension dans les exercices de prospective apparait dès lors comme une nécessité pour tendre vers un futur désirable. Cependant, cette volonté soulève de nouvelles questions. Comment représenter la justice climatique ? Quels indicateurs prendre en compte ? Une participation élargie à l'exercice de modélisation permet-elle de mieux prendre en compte une pluralité de point de vue ?
 - comment intégrer des éléments qualitatifs ? Les politiques d'adaptation sont par essence locales, spécifiques et situées. A la différences de politiques de mitigation classiques, qui s'appuient sur des éléments quantitatifs (limitation des émissions de CO2e, taxe carbone, etc.), les politiques d'adaptation passent souvent par des canaux différents. Pour garder un intérêt, les modèles doivent donc intégrer ces éléments. Se posent dès lors différentes questions. Comment intégrer des éléments qualitatifs ? Comment les coupler à des données quatitatives ?
 
+% introduire une partie sur le paradoxe / contre-paradoxe (enjeu) ? 
+
+## Plan
 
 % affirmer le sérieux de sa démarche
-
-= plan ?
 
 Dans un premier temps, nous prendrons le temps de décrire notre objet d'étude.
 
