@@ -56,7 +56,9 @@ littérature sur le risque
 
 évaluation des dommages climatiques
 
-prospective énergétique
+littérature grise sur l'adaptation : besoin d'avoir plus de connaissances scientifiques / besoin d'avoir des outils qui permettent d'éclairer la politique publique /
+
+prospective énergétique = besoin de mieux prendre en compte des éléments qualitatifs / spatiaux / d'adaptation / justice climatique + une interrogation sur le rôle et la place des modèles
 
 assurances
 
@@ -78,6 +80,14 @@ par rapport à l'aménagement : l'apport du futur / prospective
 par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation
 
 qu'est-ce qu'un modèle pour l'adaptation ? à quelles questions doit-il répondre ? quelles en seraient les limites ? Les nouvelles perspectives?
+
+Derrière ces questions d'aménagement se cachent des interrogations sur le rôle d'un modèle et ses évolutions potentielles pour devenir un outil d'aide à l'adaptation au changement climatique. Elles pourraient se résumer dans la question de recherche suivante : quelles caractéristiques sont requises par un modèle de prospective permettant l'adapatation ?
+
+Ici encore, elles se déclinent en différentes sous-questions :
+
+- comment intégrer la justice climatique dans un exercice de prospective ? Le changement climatique ne va pas toucher de la même manière tous les pays / groupes sociaux. De la même manière, les politiques publiques associées ont le potentiels de corriger des inégalités, ou au contraire de les accentuer. Prendre en compte cette dimension dans les exercices de prospective apparait dès lors comme une nécessité pour tendre vers un futur désirable. Cependant, cette volonté soulève de nouvelles questions. Comment représenter la justice climatique ? Quels indicateurs prendre en compte ? Une participation élargie à l'exercice de modélisation permet-elle de mieux prendre en compte une pluralité de point de vue ?
+- comment intégrer des éléments qualitatifs ? Les politiques d'adaptation sont par essence locales, spécifiques et situées. A la différences de politiques de mitigation classiques, qui s'appuient sur des éléments quantitatifs (limitation des émissions de CO2e, taxe carbone, etc.), les politiques d'adaptation passent souvent par des canaux différents. Pour garder un intérêt, les modèles doivent donc intégrer ces éléments. Se posent dès lors différentes questions. Comment intégrer des éléments qualitatifs ? Comment les coupler à des données quatitatives ?
+
 
 % affirmer le sérieux de sa démarche
 
