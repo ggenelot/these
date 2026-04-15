@@ -22,25 +22,13 @@ C'est une manière de répondre à des questions épistémologiques qui traverse
 
 ## Description des principaux termes utilisés
 
-aménagmenent du territoire
-risque cyclonique
-changement climatique
-adaptation
+% aménagmenent du territoire / risque cyclonique / changement climatique / adaptation
 
-Martinique
-peuplement
-informalité
-justice climatique
+% Martinique / peuplement / informalité / justice climatique
 
-modélisation
-prospective
-monographie
-appui aux décisions publiques
+% modélisation / prospective / monographie / appui aux décisions publiques
 
-données qualitatives et quantitatives
-SIG
-savoirs situés
-accompagnement
+% données qualitatives et quantitatives / SIG / savoirs situés / accompagnement
 
 Avant d'aller plus loin, commençons par définir les termes de notre sujet. De quoi allons-nous parler ?
 
@@ -107,6 +95,38 @@ Ici encore, elles se déclinent en différentes sous-questions :
 - comment intégrer des éléments qualitatifs ? Les politiques d'adaptation sont par essence locales, spécifiques et situées. A la différences de politiques de mitigation classiques, qui s'appuient sur des éléments quantitatifs (limitation des émissions de CO2e, taxe carbone, etc.), les politiques d'adaptation passent souvent par des canaux différents. Pour garder un intérêt, les modèles doivent donc intégrer ces éléments. Se posent dès lors différentes questions. Comment intégrer des éléments qualitatifs ? Comment les coupler à des données quatitatives ?
 
 % introduire une partie sur le paradoxe / contre-paradoxe (enjeu) ?
+
+## Méthode
+
+% description des différentes méthodes utilisées : construction du modèle, terrain, etc.
+
+Pour répondre à ces questions, nous deployons plusieurs méthodes, qualitatives et quantitatives. Celles-ci incluent une phase de terrain, l'apport de données qualitatives à l'aide de techniques de modélisation d'accompagnement, et la construction d'un modèle permettant de faire de la prospective au niveau d'un territoire.
+
+Cette démarche se veut profondément interdisciplinaire. On cherche donc à mobiliser des outils issus de différentes cultures académiques, en faisant l'hypothèse que ces différentes perspectives permettent d'éclairer leurs angles morts respectifs. Cette approche est par essence très exploratoire. Les incompatibilités, frictions et échecs sont donc à la fois des résultats attendus et des pistes de nouvelles réflexions sur les causes profondes de ces (in)compatibilités entre approches qualitatives et quantitatives.
+
+### Le terrain comme ancrage
+
+S'incrivant dans une démarche de géographe, cette thèse cherche à partir de la pratique du terrain.
+
+Une première phase de terrain exploratoire a été réalisée entre février et avril 2026, principalement en Martinique. Elle a permis de mieux cerner la problématique ainsi que le socio-écosystème de référence.
+
+Une deuxième phase de terrain à venir ? là on est dans le cas un peu bizarre de rédiger l'intro au début qui est que je ne sais pas encore ce que j'aurais fait à l'avenir
+
+### La variété comme ouverture
+
+Le parti pris méthodologique est que la variété des données comme des méthodes est à la fois une ressource et un défi. Une ressource puisqu'en croisant des perspectives, on suppose que l'on peut mettre en évidence des phénomènes qui sont invisible par une seule source. Un défi, car les méthodologies variées sont parfois diamétralement opposées, et que les matériaux associés ne sont pas nécessairement aisés à combiner.
+
+De cette approche résulte le choix de matériaux.
+
+D'une part, des matériaux purement qualitatifs, issus de la démarche de terrain. Ce sont essentiellement des entretiens semi-directifs, des notes de terrain et des photographie.
+
+A cela s'ajoutent des données hybrides. Ce sont notamment les documents publiés par les différents acteurs et institutions qui traitent de l'aménagement de l'espace ou du risque.
+
+Enfin, des données quantitatives classiques sont également mobilisées. Ce sont essentiellement des données spatialisées, notamment des données sur l'évolution des cyclones (blooemendall, TRACC); des données de géographie physique (relief, couverture des sols); des données socio-économiques (DVF, filosofi)
+
+### La prospective comme ligne de mire
+
+L'apport principal de ce travail de thèse consiste en l'aggrégation de ces données variées dans un modèle permettant d'évaluer les effets systémiques de choix d'adaptation du territoire.
 
 ## Plan
 
