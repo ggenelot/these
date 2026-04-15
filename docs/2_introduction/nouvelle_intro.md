@@ -1,8 +1,11 @@
 ---
 exports:
   - format: pdf
+    template: lapreprint-typst
     output: exports/intro.pdf
     id: intro
+downloads:
+  - id: intro
 ---
 
 # Introduction générale
@@ -84,7 +87,7 @@ En effet, l'aménagement est au coeur de la politique locale. Compétence de la 
 Cette question se décline en sous-questions :
 
 - d'abord, quelles sont les options disponibles ?
-- ensuite, quels effets systémiques ont chacune de ces options ? Nous nous intéressons ici en particulier à deux types d'effets. 
+- ensuite, quels effets systémiques ont chacune de ces options ? Nous nous intéressons ici en particulier à deux types d'effets.
 D'une part, aux effets en cascade. En effet, les aménagement ont des conséquences directes sur les éléments qui les composent ou sont en relation directe avec eux. Ces conséquences sont déjà difficile à percevoir. Par ailleurs, ces conséquences (ou perturbations) sur d'autres éléments auront elles aussi des conséquences sur d'autres éléments, et ainsi de suite. L'approche systémique permet de s'intéresser à ces phénomènes. Plus que de caractériser précisément telle ou telle relation / conséquence, ce qui nous intéresse ici c'est les effets systémiques des choix d'aménagement.
 D'autre part, aux effets de distribution. En utilisant une approche spatiale avec une résolution fine, nous cherchons à désagréger les résultats pour avoir une vision fine des impacts à la fois du risque cyclonique, mais aussi des effets de politiques d'aménagement. Nous ne cherchons pas à qualifier l'exposition globale d'un territoire, en obtenant une valeur monétaire agrégée de dommages matériels, par exemple. Au contraire, nous cherchons à voir les effets distributionnels de politiques d'aménagement. Ce questionnement ce décline sous plusieurs questions : qui est le plus exposé ? quel augmentation ou diminution de l'exposition au risque provoque une mesure ? pour qui ? Ainsi, nous cherchons à décomposer les effets par publics, pour identifier d'éventuels mécanismes d'adaptation. On entend par là des mesures qui en permettant l'adaptation d'un groupe spécifique exposerait davantages d'autres groupes.
 - enfin, comment ces effets s'articulent-ils entre eux ?
@@ -103,7 +106,7 @@ Ici encore, elles se déclinent en différentes sous-questions :
 - comment intégrer la justice climatique dans un exercice de prospective ? Le changement climatique ne va pas toucher de la même manière tous les pays / groupes sociaux. De la même manière, les politiques publiques associées ont le potentiels de corriger des inégalités, ou au contraire de les accentuer. Prendre en compte cette dimension dans les exercices de prospective apparait dès lors comme une nécessité pour tendre vers un futur désirable. Cependant, cette volonté soulève de nouvelles questions. Comment représenter la justice climatique ? Quels indicateurs prendre en compte ? Une participation élargie à l'exercice de modélisation permet-elle de mieux prendre en compte une pluralité de point de vue ?
 - comment intégrer des éléments qualitatifs ? Les politiques d'adaptation sont par essence locales, spécifiques et situées. A la différences de politiques de mitigation classiques, qui s'appuient sur des éléments quantitatifs (limitation des émissions de CO2e, taxe carbone, etc.), les politiques d'adaptation passent souvent par des canaux différents. Pour garder un intérêt, les modèles doivent donc intégrer ces éléments. Se posent dès lors différentes questions. Comment intégrer des éléments qualitatifs ? Comment les coupler à des données quatitatives ?
 
-% introduire une partie sur le paradoxe / contre-paradoxe (enjeu) ? 
+% introduire une partie sur le paradoxe / contre-paradoxe (enjeu) ?
 
 ## Plan
 
