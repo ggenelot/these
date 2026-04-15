@@ -50,15 +50,22 @@ D'aménagement du territoire enfin. Ce terme désigne immédiatement l'action d'
 
 % se démarquer intelligemment / correspond à la doxa dans le plan de dissertation
 
+Ces questions ont déjà été traité par de la littérature académique ou de la littérature grise.
+
+D'une part, il existe une demande de la part de la littérature grise pour une plus grande connaissance en terme d'adaptation au changement climatique. On peut notamment citer le Plan National d'Adaptation au Changement Climatique, mais aussi le rapport de la Cour des Comptes etc.
+% littérature grise sur l'adaptation : besoin d'avoir plus de connaissances scientifiques / besoin d'avoir des outils qui permettent d'éclairer la politique publique
+
+D'autre part, il existe de la littérature scientifique sur ce sujet.
+Du côté de la géographie, on peut retrouver de nombreux travaux, notamment ceux du Dr Saffache / Audrey Pastel / travaux de littoralistes notamment
+Du côté de l'évolution de l'aléa, on peut citer un certain nombre de travaux de météo france.
+
 littérature sur le risque
 
-évaluation des dommages climatiques
+Par ailleurs, ce travail s'inscrit conceptuellement dans la lignée de l'évaluation des dommages climatiques. Il fait notamment suite à [mon mémoire], qui propose une approche critique de l'utilisation de fonctions de dommage dans les modèles intégrés. Cette réflexion s'appuie sur la monétarisation des impacts et sur l'absence de données plus spatialisées.
 
-littérature grise sur l'adaptation : besoin d'avoir plus de connaissances scientifiques / besoin d'avoir des outils qui permettent d'éclairer la politique publique /
+De manière plus générale, une réflexion globale émerge au sein de la modélisation prospective, sur le besoin de mieux prendre en compte des éléments qualitatifs / spatiaux / d'adaptation / justice climatique + une interrogation sur le rôle et la place des modèles.
 
-prospective énergétique = besoin de mieux prendre en compte des éléments qualitatifs / spatiaux / d'adaptation / justice climatique + une interrogation sur le rôle et la place des modèles
-
-assurances
+Ce genre d'exercice prospectif est aussi souvent porté par des assurances. On peut notamment citer les travaux de la CCR, qui cherchent à évaluer le coût du changement climatique. Cette approche est néanmoins restreinte aux biens assurés, ce qui ne permet d'avoir qu'une fraction des impacts.
 
 % poser l'originalité de sa thèse
 
