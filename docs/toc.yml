@@ -5,17 +5,19 @@ project:
     - file: 1_preambule/index.md
       children:
         - file: 1_preambule/utilisation.md
-    - file: 2_introduction/introduction.md
     - file: 2_introduction/nouvelle_intro.md
     - file: 3_contexte/index.md
       children:
-        - file: 3_contexte/approche-COMMOD.md
-        - file: 3_contexte/SES.md
-        - file: 3_contexte/limitations-df.md
-        - file: 3_contexte/fiche-pratique-COMMOD.md
+        - file: 3_contexte/prospective.md
+        - file: 3_contexte/cyclones.md
+        - file: 3_contexte/amenagement.md
+        - file: 3_contexte/martinique.md
+        - file: 3_contexte/risque.md
     - file: 4_methodes/index.md
       children:
-        - file: 4_methodes/preparation_terrain.md
+        - file: 4_methodes/etude-cas.md
+        - file: 4_methodes/systeme.md
+        - file: 4_methodes/modele.md
     - file: 5_resultats/index.md
     - file: 6_discussion/index.md
     - file: 7_conclusion/index.md
