@@ -145,20 +145,38 @@ L'apport principal de ce travail de thèse consiste en l'aggrégation de ces don
 
 % affirmer le sérieux de sa démarche
 
-Dans un premier temps, nous prendrons le temps de décrire notre objet d'étude.
+
+### Cadre historique et conceptuel
+
+La première partie s'attache à décrire plus précisement les objets de notre étude.
 
 Tout d'abord, nous reviendrons sur une brève histoire de la modélisation prospective. Nous y montrerons que les modèles actuels, principalement tournés vers la mitigation, souffrent de contrainte structurelles qui ne leur permet pas de bien représenter des politiques d'adaptation. Nous détaillerons ces limitations et tenterons d'identifier des caractéristiques nécessaire à des modèles pour l'adaptation.
 
-Nous décrirons ensuite l'aléa cyclonique dans le bassin nord-atlantique. Nous détaillerons ainsi les mécanismes qui produisent des cyclones, leur évolution et les canaux par lequels ils peuvent provoquer des dommages.
+Nous décrirons ensuite l'aléa cyclonique dans le bassin nord-atlantique. Nous détaillerons ainsi les mécanismes qui produisent des cyclones, leur évolution et les canaux par lequels ils peuvent provoquer des dommages. Nous nous intéresserons également aux autres risques côtiers, tels que l'érosion et le recul du trait de côte.
+
+Nous définierons ensuite les concepts d'aménagement, de spatialité et d'action publique. Nous y développerons l'idée que l'aménagement permet d'incarner l'action publique dans l'espace, mais aussi dans le quotidien de ses habitants. Dès lors, étudier la spatialité de l'action publique permet de mettre en évidence sa portée, y compris dans ses marges où elle ne parvient pas aux effets anticipés.
+
+Nous nous intéresserons ensuite plus précisément à la Martinique. Nous développerons l'idée qu'au delà de son exposition à de nombreux aléas naturels, la Martinique présente un contexte socio-historique qui conditionne son adaptation au changement climatique. Nous nous intéresserons en particulier aux formes de peuplement et à l'origine, notamment au prisme de l'histoire coloniale. Nous montrerons que ces formes structurent encore l'espace martiniquais. En écho au concept de plantationocène de Malcom Ferdinand, nous tenterons de relier usage de sols et justice climatique.
+
+Enfin, nous aborderons de manière plus conceptuelle le champ lexical du risque. Pour ancrer notre travail dans un cadre conceptuel rigoureux, nous détaillerons des réflexions autour des notions de risque, de résilience, d'adaptation et de justice climatique.
+
+### De l'espace au modèle : intégrer la spatialité et le qualitatif
+
+Dans une seconde partie, nous proposons une modélisation du socio-écosystème littoral martiniquais. Nous nous appuyons pour cela sur une démarche en plusieurs étapes, qui va du plus proche du phénomène étudié au plus abstrait.
 
 Nous décrirons d'abord plusieurs sites d'intérêt en Martinique, sous la forme d'études de cas. Au travers de la notion de paysages, nous y définirons notre socio-écosystème. A travers des exemples localisés, nous décrirons les éléments qui composeront le système pris en compte dans le reste de la thèse, en clarifiant les choix de sélection ou d'exclusion d'élément ou de relations entre ces éléments.
 
-Dans un second temps, nous tenterons de modéliser un socio-écosystème.
+Dans un second temps, nous sélectionnerons des éléments clés pour réaliser un modèle conceptuel. Loin de toute formalisation informatique, ce modèle intermédiaire met en évidence les éléments et relations qui nous paraissent nécessaires et pertinents pour représenter les dynamiques de la zone littoral face au risque cyclonique. Cette partie nous permettra également de préciser la portée et les questions associées à notre exercice de prospective. En effet, cette phase se fait sous la forme d'aller retour entre un questionnement et le choix de ce qui constitue notre système. 
+
+Dans un troisième temps, nous implémentons ce système sous la forme de simulation numériques. Il s'agit de simulation multi-agents (agent-based modelling), où chaque élement du système (zone habitable, enrochement, mangrove, etc.) réagit à une perturbation (houle cyclonique, etc.) selon des caractéristiques qui lui sont propres.
+
+
+### Expériementations et interprétations
+
+Dans une troisième partie, nous utilisons le modèle construit précédemment pour répondre à nos questions.
 
 Tout d'abord dans une perspective statique. A travers un croisement de données spatiales (zonage de risque et de régimes d'urbanismes) et de données socio-économiques, nous caractériserons la distribution du risque cyclonique par zone et selon d'autres caractéristiques (âge moyen, revenu, etc.).
 
-Ensuite, nous modéliserons les éléments retenu dans le chapitre (site d'intérêt). Dans cette phase, nous cherchons à représenter les effets de mesures d'aménagement.
+Ensuite, dans une démarche dynamique, d'évaluation de politiques d'adaptation. Nous éxecutons des simulations avec différents scénarios d'adaptation et/ou d'intensité de cyclones tropicaux. Ces simulations nous permettent d'évaluer les effets systèmiques sur du moyen et long-terme. 
 
-Enfin, nous faisons tourner ce modèle avec différents scénarios de d'adaptation et/ou d'intensité de cyclones tropicaux.
 
-Dans une troisième partie, [TROISIEME PARTIE ?]
