@@ -62,7 +62,7 @@ D'une part, il existe une demande de la part de la littérature grise pour une p
 % littérature grise sur l'adaptation : besoin d'avoir plus de connaissances scientifiques / besoin d'avoir des outils qui permettent d'éclairer la politique publique
 
 D'autre part, il existe de la littérature scientifique sur ce sujet.
-Du côté de la géographie, on peut retrouver de nombreux travaux, notamment ceux du Dr Saffache / Audrey Pastel / travaux de littoralistes notamment
+Du côté de la géographie, on peut retrouver de nombreux travaux, notamment ceux du Dr Saffache / Audrey Pastel / travaux de littoralistes notamment. On peut notamment citer la récente thèse d'Audrey Pastel, qui montre que l'adaptation au changement climatique est un moteur de recomposition spatiale, et permet de traiter des enjeux qui dépassent la seule adaptation au changement climatique @pastel_adaptation_2023 . 
 Du côté de l'évolution de l'aléa, on peut citer un certain nombre de travaux de météo france.
 
 littérature sur le risque
