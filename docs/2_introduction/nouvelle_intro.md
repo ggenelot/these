@@ -7,7 +7,7 @@ parts:
     - Nous associons des données qualitatives et quantitatives, dans une démarche de prospective spatialisée
 exports:
   - format: pdf
-    template: lapreprint-typst
+    template: arxiv_two_column
     output: exports/intro.pdf
     id: intro
 downloads:
