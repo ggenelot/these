@@ -58,7 +58,12 @@ D'aménagement du territoire enfin. Ce terme désigne immédiatement l'action d'
 
 Ces questions ont déjà été traité par de la littérature académique ou de la littérature grise.
 
-D'une part, il existe une demande de la part de la littérature grise pour une plus grande connaissance en terme d'adaptation au changement climatique. On peut notamment citer le Plan National d'Adaptation au Changement Climatique, mais aussi le rapport de la Cour des Comptes etc.
+D'une part, il existe une demande de la part de la littérature grise pour une plus grande connaissance en terme d'adaptation au changement climatique. 
+Ainsi, dès 2012, l'observatoire national des effets du réchauffement climatique (ONERC), publie des rapports sur la question. Le rapport généraliste sur l'adaptation appelle à adopter une approche d'analyse coût-bénéfice dans les évolutions réglementaires et dans la gestion du trait de côte @onerc_ladaptation_2012. Cette approche se précise dans le rapport sur les outre-mer, qui appelle notamment à appréhender les choix d'aménagement de manière globale @onerc_outre-mer_2012. Enfin, le rapport sur le littoral appelle à "un meilleur suivi sur le long terme des phénomènes naturels, de leurs conséquences et des coûts des indemnités qu’ils induisent [permettant] de préciser les mesures de réduction de vulnérabilité à mettre en place afin de prévenir les risques et de s’adapter au changement climatique notamment sur le littoral" @onerc_littoral_2015.
+Dans les différents aspects de la gestion du littoral, les risqques posés par le changement climatique sont importants, et nécessitent des actions. Ces rapports, qui cadrent les futures politiques publiques face au changement climatique, montrent qu'il faut plus de connaissances pour prendre de bonnes décisions aujourd'hui.
+Ces différents rapports institutionnels appelent donc à une meilleure compréhension des effets du changement climatique sur les littoraux, et à une évaluation des options d'adaptation possible ainsi que de leurs conséquences et leurs coûts.
+
+On peut notamment citer le Plan National d'Adaptation au Changement Climatique, mais aussi le rapport de la Cour des Comptes etc.
 % littérature grise sur l'adaptation : besoin d'avoir plus de connaissances scientifiques / besoin d'avoir des outils qui permettent d'éclairer la politique publique
 
 D'autre part, il existe de la littérature scientifique sur ce sujet.
