@@ -19,7 +19,7 @@ parts:
     Le risque est avant tout construit par les choix de sociétés. 
 exports:
   - format: pdf
-    template: ./templates/these-chapitre
+    template: lapreprint-typst
     output: exports/chapitre-2.pdf
 ---
 
