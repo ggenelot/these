@@ -1,0 +1,68 @@
+\\documentclass[11pt]{article}
+
+% Encodage et qualité typographique
+\\usepackage[T1]{fontenc}
+\\usepackage[utf8]{inputenc}
+\\usepackage[french]{babel}
+\\usepackage{lmodern}
+\\usepackage{microtype}
+
+% Mise en page sobre et lisible
+\\usepackage[a4paper,margin=2.8cm]{geometry}
+\\usepackage{parskip}
+\\usepackage{setspace}
+\\setstretch{1.06}
+
+% Palette discrète pour la hiérarchie visuelle
+\\usepackage{xcolor}
+\\definecolor{TheseTitle}{HTML}{111111}
+\\definecolor{TheseMetaTitle}{HTML}{2B2B2B}
+\\definecolor{TheseMetaText}{HTML}{333333}
+\\definecolor{TheseRule}{HTML}{D0D0D0}
+
+% IMPORTS MyST/JTeX (macros, packages, etc.)
+[- IMPORTS -]
+
+% Bloc éditorial court, propre, et conditionnel
+\\newcommand{\\EditorialSection}[2]{%
+  \\par\\vspace{0.85em}%
+  {\\noindent\\large\\bfseries\\color{TheseMetaTitle} #1\\par}%
+  \\vspace{0.25em}%
+  {\\noindent\\color{TheseMetaText} #2\\par}%
+}
+
+\\begin{document}
+
+% --- Tête de chapitre ---
+{\\noindent\\LARGE\\bfseries\\color{TheseTitle} [- doc.title -]\\par}
+\\vspace{0.8em}
+\\noindent\\color{TheseRule}\\rule{\\textwidth}{0.5pt}
+
+[%- if parts.abstract %]
+\\EditorialSection{Résumé}{[- parts.abstract -]}
+[%- endif %]
+
+[%- if parts.problematic %]
+\\EditorialSection{Problématique}{[- parts.problematic -]}
+[%- endif %]
+
+[%- if parts.literature_note %]
+\\EditorialSection{Littérature mobilisée}{[- parts.literature_note -]}
+[%- endif %]
+
+[%- if doc.keywords %]
+\\EditorialSection{Mots-clés}{[- doc.keywords | join(', ') -]}
+[%- endif %]
+
+[%- if parts.partial_conclusion %]
+\\EditorialSection{Conclusion partielle}{[- parts.partial_conclusion -]}
+[%- endif %]
+
+\\vspace{1.1em}
+\\noindent\\color{TheseRule}\\rule{\\textwidth}{0.5pt}
+\\vspace{1.2em}
+
+% --- Corps du chapitre ---
+[- CONTENT -]
+
+\\end{document}
