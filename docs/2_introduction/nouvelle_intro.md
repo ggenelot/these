@@ -7,7 +7,7 @@ parts:
     - Nous associons des données qualitatives et quantitatives, dans une démarche de prospective spatialisée
 exports:
   - format: pdf
-    template: lapreprint-typst
+    template: lapreprint
     output: exports/intro.pdf
     id: intro
 downloads:
@@ -18,15 +18,19 @@ downloads:
 
 % amener le lecteur au sujet
 
-Les modèles intégrés sont des outils de politique publique essentiels, notamment dans la gouvernance climatique. Ceux-ci se sont essentiellement concentrés sur la mitigation du changement climatique, notamment les émissions de gaz à effet de serre. Ces modèles sont très globaux, et ne permettent pas de prendre en compte les spécificités locales nécessaires à l'adaptation.
+Les zones littorales des régions tropicales sont particulièrement exposées aux effets du changement climatique. D'une part, les aléas sont renforcés : cyclones plus fréquents ou plus intense, fragilisation du littoral par l'érosion, etc. D'autre part, les enjeux sont concentrés en zone côtière. Des mutations de l'organisation spatiale sont dès lors inévitables. Plannifiées ou subies, certaines sont déjà encore, tandis que la préparation de l'avenir nécessite de penser la recomposition spatiale. Si ces transformations constituent un risque de renforcer des situations inégalitaires, elles sont aussi une opprtunité de penser l'adaptation comme outil de justice climatique. Pour celà, il est nécessaire de comprendre les effets systémiques, à moyen et à long-terme, des décisions d'aujourd'hui.
+
+La modélisation prospective cherche justement à proposer des éclairages sur les effets de politiques publiques. En particulier, les modèles intégrés jouent un rôle de premier plan dans la gouvernance climatique. Ceux-ci se sont essentiellement concentrés sur la mitigation du changement climatique, notamment les émissions de gaz à effet de serre. Ces modèles sont très globaux, et ne permettent pas de prendre en compte les spécificités locales nécessaires à l'adaptation.
 
 A l'inverse, les effets du changement climatique renforcent des risques en Martinique, et nécessitent de s'y préparer. Adapter les territoires par des mesures d'aménagement de l'espace semble un des outils disponibles. Or, les risques sont étroitement liés les uns aux autres, ainsi qu'à des caractéristiques socio-historiques anciennnes. Il y a donc une nécessité d'avoir des outils permettant de prendre des décisions éclairées sur les effets systèmiques de mesures d'adaptation, pour éviter la maladaptation.
 
 L'aménagement du territoire est à la fois un outil et un état de fait. Oeuvre de la politique publique, par le biais de ses différents documents d'aménagment ou de stratégie (PLU, SCoT, PPRN, etc.) c'est la matérialisation physique d'un projet de société. Etat de fait, c'est aussi le constat de dynamiques anciennes, de rapports de force présents ou historiques. C'est ainsi une entrée permettant d'appréhender le risque à travers ces outils habituels (zonages réglementaires, etc.). On y voit les effets désirés de politiques publiques, comme le fait de rendre des zones inconstructibles, mais aussi ceux induits, tels que l'habitat informel. Entrer dans la question de l'adaptation par l'espace permet donc à la fois de s'intégrer dans l'écosystème du risque et de l'aménagement, mais aussi de percepvoir les éléments qui échappent à ces politiques publiques.
 
-C'est une manière de répondre à des questions épistémologiques qui traversent le monde de la modélisation prospective. Comment mieux prendre en compte la spatialité des phénomènes ? Comment aborder la question de la justice climatique ? Comment représenter des mesures d'adaptation ?
-
 ## Description des principaux termes utilisés
+
+:::{tip} Introduction des différents termes
+J'introduis trois termes : modélisation, adapatation et aménagement. J'en profite pour en donner une définition particulière, ainsi que les enjeux associés
+:::
 
 % aménagmenent du territoire / risque cyclonique / changement climatique / adaptation
 
@@ -54,17 +58,38 @@ D'aménagement du territoire enfin. Ce terme désigne immédiatement l'action d'
 
 ## Littérature
 
+:::{tip} expliquer ce qui existe / les trous dans la littérature
+L'objectif de cette partie c'est de montrer en quoi ma thèse correspond à un trou dans la littérature / des pistes for further research. L'idée est donc de dire : ça a été fait, mais ... (et ma thèse est l'intersection de ces "mais")
+:::
+
 % se démarquer intelligemment / correspond à la doxa dans le plan de dissertation
 
 Ces questions ont déjà été traité par de la littérature académique ou de la littérature grise.
 
-D'une part, il existe une demande de la part de la littérature grise pour une plus grande connaissance en terme d'adaptation au changement climatique. On peut notamment citer le Plan National d'Adaptation au Changement Climatique, mais aussi le rapport de la Cour des Comptes etc.
-% littérature grise sur l'adaptation : besoin d'avoir plus de connaissances scientifiques / besoin d'avoir des outils qui permettent d'éclairer la politique publique
+D'une part, il existe une demande de la part de la littérature grise pour une plus grande connaissance en terme d'adaptation au changement climatique.
+Ainsi, dès 2012, l'observatoire national des effets du réchauffement climatique (ONERC), publie des rapports sur la question. Le rapport généraliste sur l'adaptation appelle à adopter une approche d'analyse coût-bénéfice dans les évolutions réglementaires et dans la gestion du trait de côte @onerc_ladaptation_2012. Cette approche se précise dans le rapport sur les outre-mer, qui appelle notamment à appréhender les choix d'aménagement de manière globale @onerc_outre-mer_2012. Enfin, le rapport sur le littoral appelle à "un meilleur suivi sur le long terme des phénomènes naturels, de leurs conséquences et des coûts des indemnités qu’ils induisent [permettant] de préciser les mesures de réduction de vulnérabilité à mettre en place afin de prévenir les risques et de s’adapter au changement climatique notamment sur le littoral" @onerc_littoral_2015.
+De manière plus récente encore, la demande de ressources pour l'adaptation par des institutions publiques se fait plus fort. Ainsi, la cour des Comptes a consacré son rapport annuel 2024 au sujet de la transition écologique, avec une emphase particulière sur l'adaptation @noauthor_20250916-transition-ecologique_nodate. La publication du troisième Plan National d'Adapatation au Changement Climatique (PNACC3) va également dans ce sens. On y retrouve des mesures qui appellent à plus de recherche sur l'évaluation des mesures d'adapatation disponibles et de leurs effets à long-terme @noauthor_pnacc3_nodate.
+Dans les différents aspects de la gestion du littoral, les risques posés par le changement climatique sont importants, et nécessitent des actions. Ces rapports, qui cadrent les futures politiques publiques face au changement climatique, montrent qu'il faut plus de connaissances pour prendre de bonnes décisions aujourd'hui.
+Ces différents rapports institutionnels appelent donc à une meilleure compréhension des effets du changement climatique sur les littoraux, et à une évaluation des options d'adaptation possible ainsi que de leurs conséquences et leurs coûts.
 
 D'autre part, il existe de la littérature scientifique sur ce sujet.
 Du côté de la géographie, on peut retrouver de nombreux travaux, notamment ceux du Dr Saffache / Audrey Pastel / travaux de littoralistes notamment. De nombreux travaux existent sur l'évolution de la bande littoralle, et notamment autour des notions d'érosion [@nicolas-bragance_littoraux_2016], d'évolution du trait de côte
 @saffache_avancee_1999, ou d'urbanisation @pastel_coastal_2023 dans le contexte martiniquais. En particulier, on peut citer la récente thèse d'Audrey Pastel, qui montre que l'adaptation au changement climatique est un moteur de recomposition spatiale, et permet de traiter des enjeux qui dépassent la seule adaptation au changement climatique @pastel_adaptation_2023 . Elle montre que la recomposition spatiale est une nécessité, mais que les outils disponibles acutellement sont limités.
 Du côté de l'évolution de l'aléa, on peut citer un certain nombre de travaux de météo france.
+
+L'évaluation du risque cyclonique dans un contexte de changement climatique peut se décomposer en trois catégories : la description des impacts actuels; les changements des cyclones en eux-mêmes, et les changements des impacts.
+
+D'abord, des travaux documentent les impacts des cyclones tropicaux. Souvent issus de disciplines empiriques, notamment la géographie, ils décrivent les effets des cyclones.
+
+MAIS : Ces exercices offrent de précieux retours sur les événements passés. Cependant, ils ne permettent pas de se projeter dans le futur, et n'offrent donc pas d'éclairage sur les effets à long-terme de modifications des socio-écosystèmes littoraux. 
+
+D'une part, la prévision des tendances du phénomènes cyclonique en lui-même. De nombreux travaux essaient ainsi d'anticiper les effets des changement de conditions induits par le changement climatique sur les déterminants de la formation et de la vie d'un cyclone : température de l'air, de l'eau, vents, etc. Ce sont essentiellement des exercices de physique du climat, qui cherchent à savoir à quoi ressembleront des cyclones selon différents niveaux de réchauffement. Ils s'inscrivent dans une démarche qui se concentre sur l'aléa.
+
+MAIS : Ces exercices offrent des données précises et utiles sur l'évolution des phénomènes cycloniques. Cependant, ils sont restreint à des dimensions physiques (précipitations, intensité des vents, houles, etc). Ils permettent d'apprécier l'évolution de l'aléa, mais pas celle du risque, étant compris comme le croisement entre l'aléa et l'enjeu.
+
+D'autre part, les données sur les cyclones futurs sont souvent utilisées pour réaliser des exercices prospectif sur l'évolution du risque cyclonique. Ces exercices associent dès lors l'aléa (modifié, et issus de travaux mentionnés plus haut), et l'enjeu (souvent l'exposition de biens financiers, tels que des valeurs assurées).
+
+MAIS : Ces exercices s'incrivent dans une démarche d'analyse coût-bénéfice, qui rendre dans le cadre de pensée de l'action publique. Ce sont ainsi des outils utiles pour évaluer l'intérêt de mesures, notamment de mitigation. Cependant, cette approche par la monétarisation implique deux contraintes fortes : d'une part, une conception abstraite et gloable du territoire (coût total du changement climatique sur un espace), qui n'est pas compatible avec l'évaluation de politiques d'adaptation; d'autre part, cette monétarisation exclu de facto ce qui n'est pas monétaire, et tend à survaloriser les biens exposés qui ont une forte valorisation.
 
 littérature sur le risque
 
@@ -90,7 +115,7 @@ Cette question se décline en sous-questions :
 
 - d'abord, quelles sont les options disponibles ?
 - ensuite, quels effets systémiques ont chacune de ces options ? Nous nous intéressons ici en particulier à deux types d'effets.
-D'une part, aux effets en cascade. En effet, les aménagement ont des conséquences directes sur les éléments qui les composent ou sont en relation directe avec eux. Ces conséquences sont déjà difficile à percevoir. Par ailleurs, ces conséquences (ou perturbations) sur d'autres éléments auront elles aussi des conséquences sur d'autres éléments, et ainsi de suite. L'approche systémique permet de s'intéresser à ces phénomènes. Plus que de caractériser précisément telle ou telle relation / conséquence, ce qui nous intéresse ici c'est les effets systémiques des choix d'aménagement.
+D'une part, aux effets en cascade. En effet, les aménagement ont des conséquences directes sur les éléments qui les composent ou sont en relation directe avec eux. Ces conséquences sont déjà difficile à percevoir. Par ailleurs, ces conséquences (ou perturbations) sur d'autres éléments auront elles aussi des conséquences sur d'autres éléments, et ainsi de suite. L'approche systémique permet de s'intéresser à ces phénomènes. Plus que de caractériser précisément telle ou telle relation / conséquence, ce qui nous intéresse ici ce sont les effets systémiques des choix d'aménagement.
 D'autre part, aux effets de distribution. En utilisant une approche spatiale avec une résolution fine, nous cherchons à désagréger les résultats pour avoir une vision fine des impacts à la fois du risque cyclonique, mais aussi des effets de politiques d'aménagement. Nous ne cherchons pas à qualifier l'exposition globale d'un territoire, en obtenant une valeur monétaire agrégée de dommages matériels, par exemple. Au contraire, nous cherchons à voir les effets distributionnels de politiques d'aménagement. Ce questionnement ce décline sous plusieurs questions : qui est le plus exposé ? quel augmentation ou diminution de l'exposition au risque provoque une mesure ? pour qui ? Ainsi, nous cherchons à décomposer les effets par publics, pour identifier d'éventuels mécanismes d'adaptation. On entend par là des mesures qui en permettant l'adaptation d'un groupe spécifique exposerait davantages d'autres groupes.
 - enfin, comment ces effets s'articulent-ils entre eux ?
 
@@ -140,7 +165,7 @@ Enfin, des données quantitatives classiques sont également mobilisées. Ce son
 
 ### La prospective comme ligne de mire
 
-L'apport principal de ce travail de thèse consiste en l'aggrégation de ces données variées dans un modèle permettant d'évaluer les effets systémiques de choix d'adaptation du territoire.
+L'apport principal de ce travail de thèse consiste en l'aggrégation de ces données variées dans un modèle permettant d'évaluer les effets systémiques de choix d'adaptation du territoire. La dimension prospective est au coeur de la démarche. L'objectif est de pouvoir évaluer des politiques d'adaptation, et comparer entre elles différentes alternatives. 
 
 ## Plan
 
