@@ -1,0 +1,125 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LaPreprint-based chapter template (minimal derivation) %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Keep LaPreprint structure and options as close as possible.
+\documentclass[9pt
+[#- if options.venue_footer == "biorxiv" #],biorxiv[# endif -#]
+[#- if options.venue_footer == "medrxiv" #],medrxiv[# endif -#]
+[#- if options.venue_footer == "arxiv" #],arxiv[# endif -#]
+[#- if options.venue_footer == "chemrxiv" #],chemrxiv[# endif -#]
+[#- if options.venue_footer == "preprint" #],Preprint[# endif -#]
+[#- if options.theme_color == "red" #],red[# endif -#]
+[#- if options.line_spacing == "onehalfspacing" #],onehalfspacing[# endif -#]
+[#- if options.line_spacing == "doublespacing" #],doublespacing[# endif -#]
+[#- if options.line_numbers #],lineno[# endif -#]
+[#- if options.number_sections #],secnum[# endif -#]
+]{lapreprint}
+
+% Keep package set aligned with lapreprint template.
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{textgreek}
+\usepackage{gensymb}
+\usepackage[misc]{ifsym}
+\usepackage{orcidlink}
+\usepackage{listings}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{snotez}
+\usepackage{csquotes}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{float}
+\floatplacement{table}{htbp}
+\usepackage{url,hyperref}
+\urlstyle{same}
+[-IMPORTS-]
+\DeclareSIUnit\Molar{M}
+
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  natbib=true,
+  hyperref=true,
+  alldates=year,
+]{biblatex}
+\AtEveryBibitem{%
+  \clearfield{urlyear}
+  \clearfield{urlmonth}
+  \clearlist{language}
+}
+[# if doc.bibliography #]
+\addbibresource{[- doc.bibliography | join(", ") -]}
+[# endif #]
+
+% Article metadata (kept from lapreprint pattern)
+\title{[-doc.title-]}
+[# for author in doc.authors -#]
+\author[
+  [#- if author.orcid #]\orcidlink{[- author.orcid -]}[# endif -#]
+  [-- author.affiliations|join(", ", "index") --]
+  [#- if author.corresponding #]\Letter[# endif -#]
+]{[-- author.name --]}
+[# endfor #]
+
+[# for affiliation in doc.affiliations #]
+\affil[[-affiliation.index-]]{[-affiliation.value.name-]}
+[# endfor #]
+
+[# for author in doc.authors #]
+[# if author.corresponding #]
+\metadata[]{\Letter\hspace{.5ex} For correspondence}{[- author.email -]}
+[# endif #]
+[# endfor #]
+
+% Added chapter editorial metadata (minimal additions only)
+[# if parts.problematic #]
+\metadata[]{Problématique}{[-parts.problematic-]}
+[# endif #]
+[# if parts.literature_note #]
+\metadata[]{Littérature mobilisée}{[-parts.literature_note-]}
+[# endif #]
+[# if doc.keywords #]
+\metadata[]{Keywords}{[-doc.keywords|join("; ")-]}
+[# endif #]
+[# if parts.partial_conclusion #]
+\metadata[]{Conclusion partielle}{[-parts.partial_conclusion-]}
+[# endif #]
+
+[# if doc.authors -#]
+\leadauthor{[- doc.authors[0].name -]}
+[#- endif #]
+[# if doc.short_title -#]
+\shorttitle{[- doc.short_title -]}
+[#- else #]
+\shorttitle{[- doc.title -]}
+[#- endif #]
+
+\begin{document}
+\maketitle
+
+[# if parts.abstract #]
+\begin{abstract}
+[-parts.abstract-]
+\end{abstract}
+[# endif #]
+
+[-CONTENT-]
+
+\printbibliography
+
+[# if parts.appendix #]
+\begin{appendix}
+\begin{appendixbox}
+[-parts.appendix-]
+\end{appendixbox}
+\end{appendix}
+[# endif #]
+
+\end{document}

@@ -1,0 +1,42 @@
+jtex: v1
+title: LaPreprint (chapitre)
+description: Dérivation légère de lapreprint avec métadonnées éditoriales de chapitre
+version: 1.0.0
+license: MIT
+source: https://github.com/myst-templates/lapreprint
+files:
+  - template.tex
+
+doc:
+  - id: title
+    required: true
+  - id: short_title
+  - id: authors
+  - id: bibliography
+  - id: keywords
+  - id: affiliations
+
+parts:
+  - id: abstract
+  - id: problematic
+  - id: literature_note
+  - id: partial_conclusion
+  - id: appendix
+
+options:
+  - id: theme_color
+    type: choice
+    default: blue
+    choices: [blue, red]
+  - id: line_spacing
+    type: choice
+    default: single
+    choices: [single, onehalfspacing, doublespacing]
+  - id: venue_footer
+    type: choice
+    default: preprint
+    choices: [preprint, biorxiv, medrxiv, arxiv, chemrxiv]
+  - id: number_sections
+    type: boolean
+  - id: line_numbers
+    type: boolean
