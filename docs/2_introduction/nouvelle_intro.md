@@ -77,6 +77,20 @@ Du côté de la géographie, on peut retrouver de nombreux travaux, notamment ce
 @saffache_avancee_1999, ou d'urbanisation @pastel_coastal_2023 dans le contexte martiniquais. En particulier, on peut citer la récente thèse d'Audrey Pastel, qui montre que l'adaptation au changement climatique est un moteur de recomposition spatiale, et permet de traiter des enjeux qui dépassent la seule adaptation au changement climatique @pastel_adaptation_2023 . Elle montre que la recomposition spatiale est une nécessité, mais que les outils disponibles acutellement sont limités.
 Du côté de l'évolution de l'aléa, on peut citer un certain nombre de travaux de météo france.
 
+L'évaluation du risque cyclonique dans un contexte de changement climatique peut se décomposer en trois catégories : la description des impacts actuels; les changements des cyclones en eux-mêmes, et les changements des impacts.
+
+D'abord, des travaux documentent les impacts des cyclones tropicaux. Souvent issus de disciplines empiriques, notamment la géographie, ils décrivent les effets des cyclones.
+
+MAIS : Ces exercices offrent de précieux retours sur les événements passés. Cependant, ils ne permettent pas de se projeter dans le futur, et n'offrent donc pas d'éclairage sur les effets à long-terme de modifications des socio-écosystèmes littoraux. 
+
+D'une part, la prévision des tendances du phénomènes cyclonique en lui-même. De nombreux travaux essaient ainsi d'anticiper les effets des changement de conditions induits par le changement climatique sur les déterminants de la formation et de la vie d'un cyclone : température de l'air, de l'eau, vents, etc. Ce sont essentiellement des exercices de physique du climat, qui cherchent à savoir à quoi ressembleront des cyclones selon différents niveaux de réchauffement. Ils s'inscrivent dans une démarche qui se concentre sur l'aléa.
+
+MAIS : Ces exercices offrent des données précises et utiles sur l'évolution des phénomènes cycloniques. Cependant, ils sont restreint à des dimensions physiques (précipitations, intensité des vents, houles, etc). Ils permettent d'apprécier l'évolution de l'aléa, mais pas celle du risque, étant compris comme le croisement entre l'aléa et l'enjeu.
+
+D'autre part, les données sur les cyclones futurs sont souvent utilisées pour réaliser des exercices prospectif sur l'évolution du risque cyclonique. Ces exercices associent dès lors l'aléa (modifié, et issus de travaux mentionnés plus haut), et l'enjeu (souvent l'exposition de biens financiers, tels que des valeurs assurées).
+
+MAIS : Ces exercices s'incrivent dans une démarche d'analyse coût-bénéfice, qui rendre dans le cadre de pensée de l'action publique. Ce sont ainsi des outils utiles pour évaluer l'intérêt de mesures, notamment de mitigation. Cependant, cette approche par la monétarisation implique deux contraintes fortes : d'une part, une conception abstraite et gloable du territoire (coût total du changement climatique sur un espace), qui n'est pas compatible avec l'évaluation de politiques d'adaptation; d'autre part, cette monétarisation exclu de facto ce qui n'est pas monétaire, et tend à survaloriser les biens exposés qui ont une forte valorisation.
+
 littérature sur le risque
 
 Par ailleurs, ce travail s'inscrit conceptuellement dans la lignée de l'évaluation des dommages climatiques. Il fait notamment suite à [mon mémoire], qui propose une approche critique de l'utilisation de fonctions de dommage dans les modèles intégrés. Cette réflexion s'appuie sur la monétarisation des impacts et sur l'absence de données plus spatialisées.
