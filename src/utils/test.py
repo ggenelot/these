@@ -6,4 +6,4 @@ dem_path = "data/raw/elevation/precheur.tif"
 
 #download_elevation(bbox=bbox_precheur, output_tif=dem_path)
 
-create_block_diagram(dem_path, "output.png", azimuth=120, vertical_exaggeration=)
+create_block_diagram(dem_path, "output.png", azimuth=120, vertical_exaggeration=1)
