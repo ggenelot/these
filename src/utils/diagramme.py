@@ -184,6 +184,20 @@ def create_block_diagram(
     fig = plt.figure(figsize=figure_size)
     ax = fig.add_subplot(111, projection="3d")
 
+    from matplotlib.colors import LinearSegmentedColormap
+
+    cmap = LinearSegmentedColormap.from_list(
+        "custom_terrain",
+        [
+            (0.0, "#0000ff"),   # bleu (mer)
+            (0.02, "#0066cc"),  # bleu clair
+            (0.05, "#00aa55"),  # vert (bas relief)
+            (0.3, "#88cc44"),
+            (0.6, "#c2b280"),   # beige
+            (1.0, "#8b4513"),   # brun (hautes altitudes)
+        ],
+    )
+
     ax.plot_surface(
         xx,
         yy,
