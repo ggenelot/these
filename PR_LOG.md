@@ -2,6 +2,42 @@
 
 ---
 
+## Add 3D block-diagram generator for GeoTIFF DEMs
+
+- PR #43 — merged
+- Author: @ggenelot
+- Created: 2026-04-22
+- Closed: 2026-04-22
+- Merged: 2026-04-22
+- Source branch: codex/implement-initial-block-diagram-prototype-k880s4
+- Target branch: codex/implement-initial-block-diagram-prototype
+- Milestone: none
+- Labels: codex
+- Diff summary: +124 / -40 across 1 file(s)
+- Commits: 2
+- URL: https://github.com/ggenelot/these/pull/43
+
+### Description
+
+### Motivation
+- Provide a minimal, reproducible building block to generate oblique 3D block-diagrams from GeoTIFF DEMs including basic preprocessing and export. 
+- Support realistic data handling such as NoData management, optional bounding-box cropping, and reprojection of geographic rasters to a local UTM CRS.
+- Allow applying a georeferenced texture and vertical exaggeration to improve visualization quality.
+
+### Description
+- Implement a new module with core functions `load_dem` and `create_block_diagram` that read a DEM, compute pixel-center coordinates, and return elevation arrays with NoData converted to `nan`.
+- Add reprojection logic in `_load_dem_core` to convert geographic CRS rasters to a suitable local UTM CRS via `_utm_crs_from_lonlat` and `rasterio.warp.reproject`.
+- Implement optional texture reprojection with `_load_texture_on_dem_grid` to sample RGB texture onto the DEM grid and normalize it for `matplotlib` facecolors, controlled by `USE_TEXTURE` and `TEXTURE_PATH`.
+- Create 3D rendering with `matplotlib` in `create_block_diagram`, including vertical exaggeration, base plane and vertical faces to form a closed block, optional texture usage, camera control via `azimuth`/`elevation`, and image export via `Figure.savefig`.
+
+### Testing
+- No automated tests were added for this change.
+
+------
+[Codex Task](https://chatgpt.com/codex/cloud/tasks/task_e_69e8bacc81dc832a912d14fa40f512d2)
+
+---
+
 ## Add DEM-based 3D block-diagram generator (load_dem, create_block_diagram)
 
 - PR #42 — merged
