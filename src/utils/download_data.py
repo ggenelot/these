@@ -12,7 +12,9 @@ from rasterio.plot import show
 from terracatalogueclient import Catalogue
 
 
-def download_elevation():
+def download_elevation(bbox = (-61.25, 14.35, -60.75, 14.95), 
+                       dataset = "COP30",
+                       output_tif = "data/raw/elevation/cop30_dem.tif"):
     """
     Download a Digital Elevation Model (DEM) from OpenTopography and inspect it.
 
@@ -40,9 +42,7 @@ def download_elevation():
     os.makedirs("data/raw/elevation", exist_ok=True)
 
 
-    bbox = (-61.25, 14.35, -60.75, 14.95)
-    dataset = "COP30"
-    output_tif = "data/raw/elevation/cop30_dem.tif"
+
 
     url = (
         f"https://portal.opentopography.org/API/globaldem?"
