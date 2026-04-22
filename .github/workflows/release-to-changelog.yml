@@ -53,7 +53,8 @@ jobs:
             }
 
             const entry =
-              `## [${tag}] - ${publishedAt} - ${name}\n\n` +
+              `## [${tag}] - ${publishedAt}\n` +
+              `### ${name}\n\n` +
               `${body}\n\n` +
               `---\n\n`;
 
