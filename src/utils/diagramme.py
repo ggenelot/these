@@ -24,6 +24,8 @@ from rasterio.windows import from_bounds
 
 
 Bounds = Tuple[float, float, float, float]
+USE_TEXTURE = False
+TEXTURE_PATH: Optional[str] = None
 
 
 def _utm_crs_from_lonlat(lon: float, lat: float) -> CRS:
@@ -34,31 +36,69 @@ def _utm_crs_from_lonlat(lon: float, lat: float) -> CRS:
     return CRS.from_epsg(epsg)
 
 
-def load_dem(
+def _load_texture_on_dem_grid(
+    texture_path: str | Path,
+    *,
+    target_shape: Tuple[int, int],
+    target_transform,
+    target_crs: Optional[CRS],
+) -> Optional[np.ndarray]:
+    """Charger/reprojeter une texture raster sur la grille du MNT."""
+    if target_crs is None:
+        return None
+
+    texture_path = Path(texture_path)
+    if not texture_path.exists():
+        return None
+
+    dst_h, dst_w = target_shape
+    texture_rgb = np.zeros((dst_h, dst_w, 3), dtype=np.float32)
+    nodata_mask = np.zeros((dst_h, dst_w), dtype=bool)
+
+    with rasterio.open(texture_path) as tex:
+        src_crs = tex.crs
+        if src_crs is None:
+            return None
+
+        bands_to_use = [1, 2, 3] if tex.count >= 3 else [1, 1, 1]
+        tex_nodata = tex.nodata
+
+        for i, bidx in enumerate(bands_to_use):
+            src_band = tex.read(bidx).astype("float32")
+            dst_band = np.zeros((dst_h, dst_w), dtype=np.float32)
+            reproject(
+                source=src_band,
+                destination=dst_band,
+                src_transform=tex.transform,
+                src_crs=src_crs,
+                src_nodata=tex_nodata,
+                dst_transform=target_transform,
+                dst_crs=target_crs,
+                dst_nodata=np.nan,
+                resampling=Resampling.bilinear,
+            )
+            texture_rgb[:, :, i] = dst_band
+
+        # Masque des pixels invalides (hors couverture ou NoData)
+        nodata_mask = ~np.isfinite(texture_rgb).all(axis=2)
+
+        # Normalisation 0..1 pour matplotlib facecolors.
+        tex_min = np.nanpercentile(texture_rgb, 2)
+        tex_max = np.nanpercentile(texture_rgb, 98)
+        if np.isfinite(tex_min) and np.isfinite(tex_max) and tex_max > tex_min:
+            texture_rgb = (texture_rgb - tex_min) / (tex_max - tex_min)
+        texture_rgb = np.clip(texture_rgb, 0.0, 1.0)
+        texture_rgb[nodata_mask] = 0.0
+
+    return texture_rgb
+
+
+def _load_dem_core(
     dem_path: str | Path,
     *,
     bounds: Optional[Bounds] = None,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, Optional[float]]:
-    """Charger un MNT GeoTIFF en appliquant un recadrage optionnel.
-
-    Parameters
-    ----------
-    dem_path : str | pathlib.Path
-        Chemin vers le MNT GeoTIFF.
-    bounds : tuple(float, float, float, float), optional
-        Emprise de recadrage ``(xmin, ymin, xmax, ymax)`` dans le CRS du raster.
-
-    Returns
-    -------
-    z : numpy.ndarray
-        Matrice 2D des élévations (float) avec NoData converti en ``nan``.
-    x : numpy.ndarray
-        Coordonnées X des centres de pixels.
-    y : numpy.ndarray
-        Coordonnées Y des centres de pixels.
-    nodata : float or None
-        Valeur NoData déclarée dans la source.
-    """
+):
+    """Lecture DEM avec métadonnées nécessaires au rendu/alignement texture."""
     dem_path = Path(dem_path)
 
     with rasterio.open(dem_path) as src:
@@ -76,6 +116,7 @@ def load_dem(
 
     # Si le raster est en coordonnées géographiques (degrés),
     # on le reprojette en UTM local (mètres) pour homogénéiser X/Y/Z.
+    work_crs = src_crs
     if src_crs is not None and src_crs.is_geographic:
         ny_src, nx_src = z.shape
         xmin, ymin, xmax, ymax = array_bounds(ny_src, nx_src, transform)
@@ -112,6 +153,7 @@ def load_dem(
         z = np.ma.array(dst_data, mask=np.isclose(dst_data, src_nodata))
         transform = dst_transform
         nodata = src_nodata
+        work_crs = dst_crs
 
     # Convertit le masque rasterio en NaN explicites pour matplotlib.
     z = np.where(np.ma.getmaskarray(z), np.nan, np.asarray(z))
@@ -124,6 +166,35 @@ def load_dem(
     x = transform.c + (cols + 0.5) * transform.a
     y = transform.f + (rows + 0.5) * transform.e
 
+    return z, x, y, nodata, transform, work_crs
+
+
+def load_dem(
+    dem_path: str | Path,
+    *,
+    bounds: Optional[Bounds] = None,
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, Optional[float]]:
+    """Charger un MNT GeoTIFF en appliquant un recadrage optionnel.
+
+    Parameters
+    ----------
+    dem_path : str | pathlib.Path
+        Chemin vers le MNT GeoTIFF.
+    bounds : tuple(float, float, float, float), optional
+        Emprise de recadrage ``(xmin, ymin, xmax, ymax)`` dans le CRS du raster.
+
+    Returns
+    -------
+    z : numpy.ndarray
+        Matrice 2D des élévations (float) avec NoData converti en ``nan``.
+    x : numpy.ndarray
+        Coordonnées X des centres de pixels.
+    y : numpy.ndarray
+        Coordonnées Y des centres de pixels.
+    nodata : float or None
+        Valeur NoData déclarée dans la source.
+    """
+    z, x, y, nodata, _, _ = _load_dem_core(dem_path, bounds=bounds)
     return z, x, y, nodata
 
 
@@ -139,6 +210,8 @@ def create_block_diagram(
     figure_size: Tuple[float, float] = (12, 7),
     dpi: int = 200,
     base_level: Optional[float] = None,
+    use_texture: Optional[bool] = None,
+    texture_path: Optional[str | Path] = None,
 ) -> Figure:
     """Créer une vue oblique 3D simple à partir d'un MNT et exporter l'image.
 
@@ -164,6 +237,12 @@ def create_block_diagram(
         Résolution d'export.
     base_level : float, optional
         Altitude de base du bloc. Si None, prend le minimum du relief exagéré.
+    use_texture : bool, optional
+        Active l'application d'une texture raster sur la surface supérieure.
+        Si None, utilise la constante globale ``USE_TEXTURE``.
+    texture_path : str | pathlib.Path, optional
+        Chemin vers la texture géoréférencée (GeoTIFF recommandé).
+        Si None, utilise ``TEXTURE_PATH``.
 
     Returns
     -------
@@ -173,7 +252,7 @@ def create_block_diagram(
     if vertical_exaggeration <= 0:
         raise ValueError("vertical_exaggeration doit être strictement positif.")
 
-    z, x, y, _ = load_dem(dem_path, bounds=bounds)
+    z, x, y, _, dem_transform, dem_crs = _load_dem_core(dem_path, bounds=bounds)
 
     xx, yy = np.meshgrid(x, y)
     zz = z * vertical_exaggeration
@@ -184,29 +263,34 @@ def create_block_diagram(
     fig = plt.figure(figsize=figure_size)
     ax = fig.add_subplot(111, projection="3d")
 
-    from matplotlib.colors import LinearSegmentedColormap
+    use_texture_resolved = USE_TEXTURE if use_texture is None else use_texture
+    texture_path_resolved = TEXTURE_PATH if texture_path is None else texture_path
+    texture_rgb = None
+    if use_texture_resolved and texture_path_resolved:
+        texture_rgb = _load_texture_on_dem_grid(
+            texture_path_resolved,
+            target_shape=zz_top.shape,
+            target_transform=dem_transform,
+            target_crs=dem_crs,
+        )
 
-    cmap = LinearSegmentedColormap.from_list(
-        "custom_terrain",
-        [
-            (0.0, "#0000ff"),   # bleu (mer)
-            (0.02, "#0066cc"),  # bleu clair
-            (0.05, "#00aa55"),  # vert (bas relief)
-            (0.3, "#88cc44"),
-            (0.6, "#c2b280"),   # beige
-            (1.0, "#8b4513"),   # brun (hautes altitudes)
-        ],
+    top_surface_kwargs = dict(
+        linewidth=0,
+        antialiased=False,
+        rcount=min(zz.shape[0], 300),
+        ccount=min(zz.shape[1], 300),
     )
+    if texture_rgb is not None:
+        top_surface_kwargs["facecolors"] = texture_rgb
+        top_surface_kwargs["shade"] = False
+    else:
+        top_surface_kwargs["cmap"] = cmap
 
     ax.plot_surface(
         xx,
         yy,
         zz_top,
-        cmap=cmap,
-        linewidth=0,
-        antialiased=False,
-        rcount=min(zz.shape[0], 300),
-        ccount=min(zz.shape[1], 300),
+        **top_surface_kwargs,
     )
 
     # Base horizontale
