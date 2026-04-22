@@ -139,6 +139,26 @@ Ici encore, elles se déclinent en différentes sous-questions :
 
 % description des différentes méthodes utilisées : construction du modèle, terrain, etc.
 
+:::{tip}idées en vrac:
+:class: dropdown
+:open: true
+
+- le terrain permet d'avoir une approche plus large
+- le concept de socio-écosystème prend en compte les phénomènes physiques, les dynamiques humaines et la biodiversité
+- une approche globale est intéressante parce qu'elle permet de décloisonner
+- or le risque est l'intersection entre toutes ces sphères
+- l'approche par le paysage permet de bien appréhender le socio-écosystème
+- le terrain permet d'avoir une approche par le paysage et des entretiens
+- les entretiens permettent d'éclairer d'obtenir des données non quantifiables: attachement à un lieu, violence symbolique, désirs, aspirations
+- le framework PARDI permet de représenter un socio-écosystème en partant de la manière dont celui-ci est vécu
+- des données quantitatives massives et précises existent aujourd'hui
+- ces données permettent de mieux comprendre des phénomènes physiques (cyclone, submersion)
+- des modèles quantitifs permettent de facilement croiser ces données et d'en dire des choses intéressantes
+- il est difficile d'intégrer des données qualitative dans un modèle quantitatif
+- c'est pourtant peut être pertinent si on veut tirer le meilleur des deux mondes
+- les données spatiales, notamment les zonages, sont l'expression de volontées qualitative tout en étant dans un format qui est possible d'utiliser de manière quantitative
+:::
+
 Pour répondre à ces questions, nous deployons plusieurs méthodes, qualitatives et quantitatives. Celles-ci incluent une phase de terrain, l'apport de données qualitatives à l'aide de techniques de modélisation d'accompagnement, et la construction d'un modèle permettant de faire de la prospective au niveau d'un territoire.
 
 Cette démarche se veut profondément interdisciplinaire. On cherche donc à mobiliser des outils issus de différentes cultures académiques, en faisant l'hypothèse que ces différentes perspectives permettent d'éclairer leurs angles morts respectifs. Cette approche est par essence très exploratoire. Les incompatibilités, frictions et échecs sont donc à la fois des résultats attendus et des pistes de nouvelles réflexions sur les causes profondes de ces (in)compatibilités entre approches qualitatives et quantitatives.
