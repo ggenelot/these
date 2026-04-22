@@ -19,5 +19,6 @@ exports:
 ---
 
 ```{bibliography}
+:all:
 :filter: keywords % "prospective"
 ```
