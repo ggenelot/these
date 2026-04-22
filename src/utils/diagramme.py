@@ -17,10 +17,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 import rasterio
 from matplotlib.figure import Figure
+from rasterio.crs import CRS
+from rasterio.transform import array_bounds
+from rasterio.warp import Resampling, calculate_default_transform, reproject
 from rasterio.windows import from_bounds
 
 
 Bounds = Tuple[float, float, float, float]
+
+
+def _utm_crs_from_lonlat(lon: float, lat: float) -> CRS:
+    """Retourner un CRS UTM (mètres) adapté à une longitude/latitude donnée."""
+    zone = int(np.floor((lon + 180.0) / 6.0) + 1)
+    zone = min(max(zone, 1), 60)
+    epsg = 32600 + zone if lat >= 0 else 32700 + zone
+    return CRS.from_epsg(epsg)
 
 
 def load_dem(
@@ -61,6 +72,46 @@ def load_dem(
             transform = src.transform
 
         nodata = src.nodata
+        src_crs = src.crs
+
+    # Si le raster est en coordonnées géographiques (degrés),
+    # on le reprojette en UTM local (mètres) pour homogénéiser X/Y/Z.
+    if src_crs is not None and src_crs.is_geographic:
+        ny_src, nx_src = z.shape
+        xmin, ymin, xmax, ymax = array_bounds(ny_src, nx_src, transform)
+        lon_center = (xmin + xmax) / 2.0
+        lat_center = (ymin + ymax) / 2.0
+        dst_crs = _utm_crs_from_lonlat(lon_center, lat_center)
+        dst_transform, dst_width, dst_height = calculate_default_transform(
+            src_crs,
+            dst_crs,
+            nx_src,
+            ny_src,
+            xmin,
+            ymin,
+            xmax,
+            ymax,
+        )
+
+        src_nodata = nodata if nodata is not None else -9999.0
+        src_data = np.asarray(z.filled(src_nodata), dtype="float64")
+        dst_data = np.full((dst_height, dst_width), src_nodata, dtype="float64")
+
+        reproject(
+            source=src_data,
+            destination=dst_data,
+            src_transform=transform,
+            src_crs=src_crs,
+            src_nodata=src_nodata,
+            dst_transform=dst_transform,
+            dst_crs=dst_crs,
+            dst_nodata=src_nodata,
+            resampling=Resampling.bilinear,
+        )
+
+        z = np.ma.array(dst_data, mask=np.isclose(dst_data, src_nodata))
+        transform = dst_transform
+        nodata = src_nodata
 
     # Convertit le masque rasterio en NaN explicites pour matplotlib.
     z = np.where(np.ma.getmaskarray(z), np.nan, np.asarray(z))
