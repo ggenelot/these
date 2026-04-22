@@ -18,4 +18,5 @@ exports:
     output: exports/prospective.pdf
 ---
 
-biblio
+```{bibliography}
+:filter: keywords % "prospective"
