@@ -35,7 +35,18 @@ jobs:
             const closed = (pr.closed_at || '').slice(0, 10);
             const merged = pr.merged_at ? pr.merged_at.slice(0, 10) : null;
             const url = pr.html_url;
+            const milestone = pr.milestone?.title || 'none';
             const labels = (pr.labels || []).map(l => l.name).join(', ') || 'none';
+            const commits = typeof pr.commits === 'number' ? pr.commits : 'unknown';
+            const hasDiffStats =
+              typeof pr.additions === 'number' &&
+              typeof pr.deletions === 'number' &&
+              typeof pr.changed_files === 'number';
+            const diffSummary = hasDiffStats
+              ? `+${pr.additions} / -${pr.deletions} across ${pr.changed_files} file(s)`
+              : 'unavailable';
+            const headBranch = pr.head?.ref || 'unknown';
+            const baseBranch = pr.base?.ref || 'unknown';
             const body = (pr.body || '').trim() || '_No description provided._';
 
             const marker = `PR #${number} —`;
@@ -59,7 +70,12 @@ jobs:
               `- Created: ${created}\n` +
               `- Closed: ${closed}\n` +
               (merged ? `- Merged: ${merged}\n` : '') +
+              `- Source branch: ${headBranch}\n` +
+              `- Target branch: ${baseBranch}\n` +
+              `- Milestone: ${milestone}\n` +
               `- Labels: ${labels}\n` +
+              `- Diff summary: ${diffSummary}\n` +
+              `- Commits: ${commits}\n` +
               `- URL: ${url}\n`;
 
             const block =

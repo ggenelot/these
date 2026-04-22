@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate CHANGELOG.md (newest first)
         uses: actions/github-script@v7
@@ -24,38 +29,40 @@ jobs:
             let releases = [];
 
             while (true) {
-              const { data } = await github.rest.repos.listReleases({
-                owner,
-                repo,
-                per_page,
-                page
-              });
+              const { data } = await github.rest.repos.listReleases({ owner, repo, per_page, page });
               if (data.length === 0) break;
               releases = releases.concat(data);
               page++;
             }
 
-            // Trier par date de publication DESC
-            releases.sort((a, b) =>
-              new Date(b.published_at) - new Date(a.published_at)
-            );
+            releases.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
 
             let output = '# Changelog\n\n';
 
             for (const rel of releases) {
+              const date = rel.published_at.slice(0, 10);
+              const title = (rel.name || '').trim();
+              const body = (rel.body || '_No release notes provided._').trim();
+
+              const headerLine = title
+                ? `## [${rel.tag_name}] - ${date} - ${title}\n\n`
+                : `## [${rel.tag_name}] - ${date}\n\n`;
+
               output +=
-                `## [${rel.tag_name}] - ${rel.published_at.slice(0,10)}\n` +
-                `### ${rel.name || rel.tag_name}\n\n` +
-                `${rel.body || '_No release notes provided._'}\n\n` +
-                `---\n\n`;
+                headerLine +
+                body +
+                '\n\n---\n\n';
             }
 
             fs.writeFileSync('CHANGELOG.md', output);
 
-      - name: Commit
+      - name: Commit and push to current branch
         run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
           git commit -m "docs(changelog): backfill from existing releases" || exit 0
-          git push
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:$BRANCH"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
