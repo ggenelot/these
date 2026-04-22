@@ -11,3 +11,7 @@ parts:
     - aménagement
     - plannification
 ---
+
+grandes idées: 
+
+trame: 
