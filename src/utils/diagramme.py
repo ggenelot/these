@@ -293,15 +293,8 @@ def create_block_diagram(
         **top_surface_kwargs,
     )
 
-    # Base horizontale
-    ax.plot_surface(
-        xx,
-        yy,
-        np.full_like(zz_top, z_base),
-        color="#d7cfbe",
-        linewidth=0,
-        antialiased=False,
-    )
+    # Base horizontale retirée: avec mplot3d (tri de profondeur sans z-buffer),
+    # cette surface Z-constante peut apparaître "devant" le relief selon l'angle.
 
     # Faces latérales verticales pour fermer le volume.
     x0 = np.array([x[0], x[0]])

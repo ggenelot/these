@@ -13,6 +13,6 @@ create_block_diagram(dem_path,
                      use_texture=True, 
                      texture_path=sat_path, 
                      output_path="output.png", 
-                     azimuth=270, 
+                     azimuth=230, 
                      vertical_exaggeration=1
                      )
