@@ -87,6 +87,7 @@ def create_block_diagram(
     cmap: str = "terrain",
     figure_size: Tuple[float, float] = (12, 7),
     dpi: int = 200,
+    base_level: Optional[float] = None,
 ) -> Figure:
     """Créer une vue oblique 3D simple à partir d'un MNT et exporter l'image.
 
@@ -110,6 +111,8 @@ def create_block_diagram(
         Taille de la figure en pouces.
     dpi : int
         Résolution d'export.
+    base_level : float, optional
+        Altitude de base du bloc. Si None, prend le minimum du relief exagéré.
 
     Returns
     -------
@@ -123,14 +126,17 @@ def create_block_diagram(
 
     xx, yy = np.meshgrid(x, y)
     zz = z * vertical_exaggeration
+    z_min = float(np.nanmin(zz))
+    z_base = z_min if base_level is None else float(base_level)
+    zz_top = np.where(np.isnan(zz), z_base, zz)
 
     fig = plt.figure(figsize=figure_size)
     ax = fig.add_subplot(111, projection="3d")
 
-    surf = ax.plot_surface(
+    ax.plot_surface(
         xx,
         yy,
-        zz,
+        zz_top,
         cmap=cmap,
         linewidth=0,
         antialiased=False,
@@ -138,14 +144,69 @@ def create_block_diagram(
         ccount=min(zz.shape[1], 300),
     )
 
-    ax.view_init(elev=elevation, azim=azimuth)
-    ax.set_xlabel("X")
-    ax.set_ylabel("Y")
-    ax.set_zlabel("Altitude (exagérée)")
-    ax.set_title("Bloc-diagramme (prototype)")
+    # Base horizontale
+    ax.plot_surface(
+        xx,
+        yy,
+        np.full_like(zz_top, z_base),
+        color="#d7cfbe",
+        linewidth=0,
+        antialiased=False,
+    )
 
-    cbar = fig.colorbar(surf, ax=ax, shrink=0.6, pad=0.08)
-    cbar.set_label("Élévation")
+    # Faces latérales verticales pour fermer le volume.
+    x0 = np.array([x[0], x[0]])
+    x1 = np.array([x[-1], x[-1]])
+    y0 = np.array([y[0], y[0]])
+    y1 = np.array([y[-1], y[-1]])
+
+    top_left = zz_top[:, 0]
+    top_right = zz_top[:, -1]
+    top_front = zz_top[0, :]
+    top_back = zz_top[-1, :]
+
+    y_col = y[:, None]
+    x_col = x[:, None]
+    z_left = np.column_stack((np.full_like(top_left, z_base), top_left))
+    z_right = np.column_stack((np.full_like(top_right, z_base), top_right))
+    z_front = np.column_stack((np.full_like(top_front, z_base), top_front))
+    z_back = np.column_stack((np.full_like(top_back, z_base), top_back))
+
+    ax.plot_surface(
+        np.tile(x0, (len(y), 1)),
+        np.tile(y_col, (1, 2)),
+        z_left,
+        color="#b8ad97",
+        linewidth=0,
+        antialiased=False,
+    )
+    ax.plot_surface(
+        np.tile(x1, (len(y), 1)),
+        np.tile(y_col, (1, 2)),
+        z_right,
+        color="#b8ad97",
+        linewidth=0,
+        antialiased=False,
+    )
+    ax.plot_surface(
+        np.tile(x_col, (1, 2)),
+        np.tile(y0, (len(x), 1)),
+        z_front,
+        color="#a89d86",
+        linewidth=0,
+        antialiased=False,
+    )
+    ax.plot_surface(
+        np.tile(x_col, (1, 2)),
+        np.tile(y1, (len(x), 1)),
+        z_back,
+        color="#a89d86",
+        linewidth=0,
+        antialiased=False,
+    )
+
+    ax.view_init(elev=elevation, azim=azimuth)
+    ax.set_axis_off()
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
