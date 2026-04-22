@@ -17,3 +17,7 @@ exports:
     template: ./templates/these-chapitre
     output: exports/prospective.pdf
 ---
+
+
+```{bibliography}
+```
