@@ -77,18 +77,19 @@ exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
 
-html_theme = "furo"
 
-# Optionnel : quelques réglages simples
+html_theme = "sphinx_book_theme"
+
+myst_enable_extensions = [
+    "colon_fence",
+]
+
 html_theme_options = {
-    "light_css_variables": {
-        "color-brand-primary": "#3A7DCE",
-        "color-brand-content": "#3A7DCE",
-    },
-    "dark_css_variables": {
-        "color-brand-primary": "#6BA4F8",
-        "color-brand-content": "#6BA4F8",
-    },
+    "repository_url": "https://github.com/ggenelot/these",
+    "path_to_docs": "docs",
+    "use_repository_button": True,
+    "use_issues_button": True,
+    "use_edit_page_button": True,
 }
 
 
