@@ -12,3 +12,7 @@ parts:
     - peuplement
     - plantanocène
 ---
+
+:::{tip}Idées en vrac
+
+:::
