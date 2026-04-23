@@ -2,6 +2,24 @@
 
 import os
 import sys
+import warnings
+
+# Make BibTeX parsing non-fatal for malformed entries.
+# This keeps the PDF build running while still surfacing warnings.
+try:
+    import pybtex.errors as pybtex_errors
+
+    if hasattr(pybtex_errors, "set_strict_mode"):
+        pybtex_errors.set_strict_mode(False)
+    # Fallback/extra safety across pybtex versions:
+    # degrade hard errors to warnings during bib parsing.
+    if hasattr(pybtex_errors, "report_error"):
+        def _warn_only(exception):
+            warnings.warn(str(exception), RuntimeWarning)
+
+        pybtex_errors.report_error = _warn_only
+except Exception:
+    pass
 
 project = "Prospective spatiale des impacts cycloniques"
 copyright = "2025, Gabriel Genelot, https://doi.org/10.5281/zenodo.18298318"
