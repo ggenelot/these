@@ -24,6 +24,5 @@ exports:
 ---
 
 ```{bibliography}
-:all:
 :filter: keywords % "cyclones"
 ```

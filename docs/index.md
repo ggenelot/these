@@ -3,8 +3,7 @@ title: Documentation complète
 exports:
   - id: full-doc-pdf
     format: pdf
-    template: https://github.com/myst-templates/plain_typst_book
-    toc: toc.yml
+    template: plain_typst_book
     output: _build/exports/documentation-complete.pdf
 ---
 

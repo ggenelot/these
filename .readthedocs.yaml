@@ -11,7 +11,7 @@ build:
     - bash -lc "export PATH=$HOME/.local/bin:$PATH && cd docs && myst build index.md --pdf"
     - bash -lc "export PATH=$HOME/.local/bin:$PATH && cd docs && myst build --html"
     - bash -lc "cd docs && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
-    - bash -lc "cd docs && mkdir -p $READTHEDOCS_OUTPUT/pdf && cp _build/exports/documentation-complete.pdf $READTHEDOCS_OUTPUT/pdf/"
+    - bash -lc "cd docs && mkdir -p $READTHEDOCS_OUTPUT/pdf && PDF_PATH=$(find . -type f -name 'documentation-complete.pdf' | head -n 1) && if [ -z \"$PDF_PATH\" ]; then echo 'PDF documentation-complete.pdf introuvable. PDFs générés:' && find . -type f -name '*.pdf' -print && exit 1; fi && cp \"$PDF_PATH\" \"$READTHEDOCS_OUTPUT/pdf/documentation-complete.pdf\""
 
 python:
   install:
