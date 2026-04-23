@@ -14,5 +14,5 @@ parts:
 
 ```{bibliography}
 :all:
-:filter: "prospective" in keywords
+:filter: keywords % "prospective"
 ```
