@@ -7,11 +7,10 @@ build:
     nodejs: "22"
   commands:
     - npm install -g mystmd
-    - bash -lc "mkdir -p $HOME/.local/bin && curl -L https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ && mv typst-*/typst $HOME/.local/bin/typst"
-    - bash -lc "export PATH=$HOME/.local/bin:$PATH && cd docs && myst build index.md --pdf"
-    - bash -lc "export PATH=$HOME/.local/bin:$PATH && cd docs && myst build --html"
-    - bash -lc "cd docs && mkdir -p $READTHEDOCS_OUTPUT/html && cp -r _build/html/. $READTHEDOCS_OUTPUT/html"
-    - bash -lc "cd docs && mkdir -p \"$READTHEDOCS_OUTPUT/pdf\" && cp \"_build/exports/documentation-complete.pdf\" \"$READTHEDOCS_OUTPUT/pdf/documentation-complete.pdf\""
+    - bash -lc 'cd docs && myst build --html'
+    - bash -lc 'cd docs && python -m sphinx -T -M latexpdf . _build/sphinx -D language=fr -D root_doc=pdf_index'
+    - bash -lc 'cd docs && mkdir -p "$READTHEDOCS_OUTPUT/html" && cp -r _build/html/. "$READTHEDOCS_OUTPUT/html"'
+    - bash -lc 'cd docs && mkdir -p "$READTHEDOCS_OUTPUT/pdf" && PDF_PATH="$(find _build/sphinx/latex -maxdepth 1 -type f -name "*.pdf" | head -n 1)" && [ -n "$PDF_PATH" ] || { echo "PDF Sphinx introuvable"; find _build -type f -name "*.pdf" -print; exit 1; } && cp "$PDF_PATH" "$READTHEDOCS_OUTPUT/pdf/documentation-complete.pdf"'
 
 python:
   install:

@@ -78,6 +78,10 @@ html_theme_options = {
 
 html_static_path = ["_static"]
 
+# -- Options for PDF output --------------------------------------------------
+
+latex_engine = "xelatex"
+
 # -- Options for figure numbering --------------------------------------------
 
 numfig = True
