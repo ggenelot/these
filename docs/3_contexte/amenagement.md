@@ -31,14 +31,42 @@ parts:
 :::
 
 
-::::{figure}
+:::{figure}
 :name: fig-test
 :align: center
 
 ```mermaid
 flowchart TD
-A --> B
+
+I1["Prospective"]:::input
+I2["Cyclones"]:::input
+
+subgraph CH["Chapitre 3 : aménagement, spatialité et équité"]
+    direction TB
+    P["Problématique"]:::core
+    H["Hypothèse / idée directrice"]:::core
+    A1["Argument 1"]:::core
+    A2["Argument 2"]:::core
+    C["Conclusion / apport"]:::core
+
+    P --> H
+    H --> A1
+    H --> A2
+    A1 --> C
+    A2 --> C
+end
+
+O1["Concept transmis au chap. 5"]:::output
+O2["Question ouverte"]:::weak
+
+I1 --> P
+I2 --> H
+C --> O1
+C --> O2
+
+
+
 ```
 
-Schéma de test.
-::::
+Position du chapitre par rapport aux autres chapitres
+:::
