@@ -22,3 +22,8 @@ exports:
     template: ./templates/these-chapitre
     output: exports/cyclones.pdf
 ---
+
+```{bibliography}
+:all:
+:filter: keywords % "cyclones"
+```
