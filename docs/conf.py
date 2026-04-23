@@ -7,6 +7,22 @@ project = "Prospective spatiale des impacts cycloniques"
 copyright = "2025, Gabriel Genelot, https://doi.org/10.5281/zenodo.18298318"
 author = "Gabriel Genelot"
 
+PYBTEX_STRICT = os.environ.get("PYBTEX_STRICT", "").lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+
+# Parse bibliography leniently by default so malformed entries are skipped
+# as warnings instead of aborting the whole Sphinx build.
+try:
+    from pybtex.errors import set_strict_mode
+
+    set_strict_mode(PYBTEX_STRICT)
+except Exception:
+    pass
+
 # -- General configuration ---------------------------------------------------
 
 extensions = [
@@ -87,11 +103,9 @@ numfig_format = {
 }
 
 # -- Options for the bibliography --------------------------------------------
-
 extensions += [
     "sphinxcontrib.bibtex",
 ]
-
 bibtex_bibfiles = ["references.bib"]
 bibtex_reference_style = "author_year"
 #bibtex_default_style = 'unsrt'
