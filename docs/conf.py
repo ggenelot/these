@@ -6,6 +6,7 @@ import sys
 project = "Prospective spatiale des impacts cycloniques"
 copyright = "2025, Gabriel Genelot, https://doi.org/10.5281/zenodo.18298318"
 author = "Gabriel Genelot"
+language = "fr"
 
 PYBTEX_STRICT = os.environ.get("PYBTEX_STRICT", "").lower() in {
     "1",
@@ -114,3 +115,10 @@ bibtex_cite_style = "authoryear"
 
 # -- Path to project code ----------------------------------------------------
 sys.path.insert(0, os.path.abspath("../src"))
+
+# -- Options for LaTeX / PDF output -----------------------------------------
+# RTD uses the LaTeX builder to generate PDF artifacts.
+latex_engine = "xelatex"
+latex_documents = [
+    ("index", "these.tex", project, author, "manual"),
+]
