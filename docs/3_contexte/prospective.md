@@ -11,3 +11,8 @@ parts:
     - aménagement
     - plannification
 ---
+
+```{bibliography}
+:all:
+:filter: "prospective" in keywords
+```

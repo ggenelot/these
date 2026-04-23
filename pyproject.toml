@@ -28,6 +28,7 @@ docs = [
   "sphinx>=7.4,<8.3",
   "myst-parser>=2.0,<3.1",
   "myst-nb>=1.1,<1.4",
+  "sphinx-book-theme",
   "sphinx-rtd-theme",
   "sphinxcontrib-bibtex>=2.5",
   "furo",
