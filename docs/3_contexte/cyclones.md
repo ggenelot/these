@@ -25,4 +25,9 @@ exports:
 
 # Cyclones 
 
-Partie sur les cyclones. La bibliographie filtrée est ajoutée dans l'export PDF Sphinx.
+Partie sur les cyclones. La biblio devrait apparaitre ici.
+
+```{bibliography}
+:list: bullet
+:filter: keywords % "cyclone"
+```
