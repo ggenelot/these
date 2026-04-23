@@ -1,5 +1,8 @@
 version: 2
 
+formats:
+  - pdf
+
 build:
   os: ubuntu-22.04
   tools:
@@ -16,6 +19,7 @@ build:
     - cd docs && [ -f _build/sphinx/latex/documentation-complete.pdf ] || { echo "PDF Sphinx introuvable"; find _build -type f -name "*.pdf" -print; exit 1; }
     - mkdir -p "$READTHEDOCS_OUTPUT/html" "$READTHEDOCS_OUTPUT/pdf"
     - cp -r docs/_build/html/. "$READTHEDOCS_OUTPUT/html"
+    - cp "docs/_build/sphinx/latex/documentation-complete.pdf" "$READTHEDOCS_OUTPUT/html/documentation-complete.pdf"
     - cp "docs/_build/sphinx/latex/documentation-complete.pdf" "$READTHEDOCS_OUTPUT/pdf/documentation-complete.pdf"
 
 python:

@@ -2,6 +2,7 @@
 
 import os
 import sys
+import importlib
 import warnings
 
 # Make BibTeX parsing non-fatal for malformed entries.
@@ -9,15 +10,25 @@ import warnings
 try:
     import pybtex.errors as pybtex_errors
 
+    def _warn_only(exception):
+        warnings.warn(str(exception), RuntimeWarning)
+
+    # Disable strict mode when available.
     if hasattr(pybtex_errors, "set_strict_mode"):
         pybtex_errors.set_strict_mode(False)
-    # Fallback/extra safety across pybtex versions:
-    # degrade hard errors to warnings during bib parsing.
-    if hasattr(pybtex_errors, "report_error"):
-        def _warn_only(exception):
-            warnings.warn(str(exception), RuntimeWarning)
 
-        pybtex_errors.report_error = _warn_only
+    # Patch every known report_error binding used by pybtex internals.
+    for module_name in (
+        "pybtex.errors",
+        "pybtex.database",
+        "pybtex.database.input.bibtex",
+    ):
+        try:
+            module = importlib.import_module(module_name)
+            if hasattr(module, "report_error"):
+                setattr(module, "report_error", _warn_only)
+        except Exception:
+            pass
 except Exception:
     pass
 
