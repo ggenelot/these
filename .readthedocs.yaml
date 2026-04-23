@@ -11,7 +11,7 @@ build:
     - python -m pip install --upgrade --no-cache-dir .[docs]
     - cd docs && myst build --html
     - cd docs && [ -f _build/html/index.html ] || { echo "HTML index manquant"; find _build -maxdepth 3 -type f -print; exit 1; }
-    - cd docs && python -m sphinx -T -M latexpdf . _build/sphinx -D language=fr -D root_doc=pdf_index
+    - cd docs && sphinx-build -T -M latexpdf . _build/sphinx -D language=fr -D root_doc=pdf_index
     - cd docs && PDF_PATH="$(find _build/sphinx/latex -maxdepth 1 -type f -name "*.pdf" | head -n 1)" && [ -n "$PDF_PATH" ] || { echo "PDF Sphinx introuvable"; find _build -type f -name "*.pdf" -print; exit 1; }
     - mkdir -p "$READTHEDOCS_OUTPUT/html" "$READTHEDOCS_OUTPUT/pdf"
     - cp -r docs/_build/html/. "$READTHEDOCS_OUTPUT/html"
