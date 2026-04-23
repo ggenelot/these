@@ -60,10 +60,9 @@ autodoc_mock_imports = [
     "terracatalogueclient",
 ]
 
-# On autorise Sphinx à parcourir l'arborescence
+# On autorise Sphinx à parcourir l'arborescence des sources docs
 include_patterns = [
-    '**',                 # inclure tous les fichiers standards dans docs/
-    '../notebooks/*.ipynb',   # ajouter explicitement l'accès aux notebooks externes
+    "**",
 ]
 
 nb_execution_mode = "off"
@@ -86,7 +85,11 @@ mermaid.initialize({
 """
 
 templates_path = ["_templates"]
-exclude_patterns = []
+exclude_patterns = [
+    "_build",
+    "_build/**",
+    "**/.ipynb_checkpoints",
+]
 
 # -- Options for HTML output -------------------------------------------------
 
