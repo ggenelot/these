@@ -7,10 +7,15 @@ build:
     nodejs: "22"
   commands:
     - npm install -g mystmd
-    - bash -lc 'cd docs && myst build --html'
-    - bash -lc 'cd docs && python -m sphinx -T -M latexpdf . _build/sphinx -D language=fr -D root_doc=pdf_index'
-    - bash -lc 'cd docs && mkdir -p "$READTHEDOCS_OUTPUT/html" && cp -r _build/html/. "$READTHEDOCS_OUTPUT/html"'
-    - bash -lc 'cd docs && mkdir -p "$READTHEDOCS_OUTPUT/pdf" && PDF_PATH="$(find _build/sphinx/latex -maxdepth 1 -type f -name "*.pdf" | head -n 1)" && [ -n "$PDF_PATH" ] || { echo "PDF Sphinx introuvable"; find _build -type f -name "*.pdf" -print; exit 1; } && cp "$PDF_PATH" "$READTHEDOCS_OUTPUT/pdf/documentation-complete.pdf"'
+    - python -m pip install --upgrade --no-cache-dir pip setuptools
+    - python -m pip install --upgrade --no-cache-dir .[docs]
+    - cd docs && myst build --html
+    - cd docs && [ -f _build/html/index.html ] || { echo "HTML index manquant"; find _build -maxdepth 3 -type f -print; exit 1; }
+    - cd docs && python -m sphinx -T -M latexpdf . _build/sphinx -D language=fr -D root_doc=pdf_index
+    - cd docs && PDF_PATH="$(find _build/sphinx/latex -maxdepth 1 -type f -name "*.pdf" | head -n 1)" && [ -n "$PDF_PATH" ] || { echo "PDF Sphinx introuvable"; find _build -type f -name "*.pdf" -print; exit 1; }
+    - mkdir -p "$READTHEDOCS_OUTPUT/html" "$READTHEDOCS_OUTPUT/pdf"
+    - cp -r docs/_build/html/. "$READTHEDOCS_OUTPUT/html"
+    - cp "$(find docs/_build/sphinx/latex -maxdepth 1 -type f -name '*.pdf' | head -n 1)" "$READTHEDOCS_OUTPUT/pdf/documentation-complete.pdf"
 
 python:
   install:
