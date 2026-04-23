@@ -3,7 +3,6 @@ title: Documentation complète
 exports:
   - id: full-doc-pdf
     format: pdf
-    template: plain_typst_book
     output: _build/exports/documentation-complete.pdf
 ---
 
