@@ -1,3 +1,13 @@
+---
+title: Documentation complète
+exports:
+  - id: full-doc-pdf
+    format: pdf
+    template: https://github.com/myst-templates/plain_typst_book
+    toc: toc.yml
+    output: _build/exports/documentation-complete.pdf
+---
+
 # Accueil
 
 ## SIG et prospective : évaluer spatialement les impacts des cyclones tropicaux aux Petites Antilles
