@@ -28,7 +28,7 @@ exports:
 
 ## Téléchargement
 
-[Télécharger le PDF complet](documentation-complete.pdf)
+[Télécharger le PDF complet](/documentation-complete.pdf)
 
 ## SIG et prospective : évaluer spatialement les impacts des cyclones tropicaux aux Petites Antilles
 
