@@ -31,7 +31,14 @@ parts:
 :::
 
 
+::::{figure}
+:name: fig-test
+:align: center
+
 ```mermaid
 flowchart TD
 A --> B
 ```
+
+Schéma de test.
+::::
