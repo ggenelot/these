@@ -13,10 +13,10 @@ parts:
     - plantanocène
 ---
 
-:::{tip}Idées en vrac
+:::{tip} Idées en vrac
 
 - les inégalités climatiques sont dans la lignée des fractures coloniales
-- on peut appréhender le changement climatique par le concept de plantaionocène, qui permet de lier enjeux environnementaux et post-coloniaux
+- on peut appréhender le changement climatique par le concept de plantationocène, qui permet de lier enjeux environnementaux et post-coloniaux
 - la Martinique est un territoire exposé à de nombreux risques
 - cette exposition modifie la perception du risque et l'action par rapport à celui-ci
 - notamment, il peut y avoir une forme de défiance par rapport aux actions extérieures face au risque (souvenir du Chlordécone ?)
@@ -31,3 +31,5 @@ parts:
 - rapports métropole / outre-mer particuliers, chargés d'histoire
 
 :::
+
+cette partie parle de l'intersection entre enjeux environnementaux et question postcoloniale. On adopte la lecture par la double fracture environnementale et sociale et le concept de plantationocène, pour montrer que ces enjeux se répondent et se renforcent mutuellement. 
