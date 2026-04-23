@@ -43,8 +43,8 @@ I2["Cyclones"]:::input
 
 subgraph CH["Chapitre 3 : aménagement, spatialité et équité"]
     direction TB
-    P["Problématique"]:::core
-    H["Hypothèse / idée directrice"]:::core
+    P["Quelle pratique de la plannification l'aménagement révèle-t-elle ?"]:::core
+    H["L'aménagement de l'espace est la matérialisation de la volonté publique"]:::core
     A1["Argument 1"]:::core
     A2["Argument 2"]:::core
     C["Conclusion / apport"]:::core
