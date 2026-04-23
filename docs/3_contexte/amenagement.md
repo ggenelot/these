@@ -29,3 +29,9 @@ parts:
 - c'est un outil qui permet de porter à l'échelle collective les raisonnements, et pas seulement au niveau individuel, contrairement à des contraintes réglementaires batimentaires par exemple
 
 :::
+
+
+```mermaid
+flowchart TD
+A --> B
+```
