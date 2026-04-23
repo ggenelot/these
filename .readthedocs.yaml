@@ -10,17 +10,13 @@ build:
     nodejs: "22"
   commands:
     - npm install -g mystmd
-    - python -m pip install --upgrade --no-cache-dir pip setuptools
-    - python -m pip install --upgrade --no-cache-dir .[docs]
     - cd docs && myst build --html
-    - cd docs && [ -f _build/html/index.html ] || { echo "HTML index manquant"; find _build -maxdepth 3 -type f -print; exit 1; }
     - cd docs && sphinx-build -T -b latex -d _build/sphinx/doctrees -D language=fr -D root_doc=pdf_index . _build/sphinx/latex
-    - cd docs/_build/sphinx/latex && latexmk -pdf -interaction=nonstopmode -halt-on-error documentation-complete.tex
-    - cd docs && [ -f _build/sphinx/latex/documentation-complete.pdf ] || { echo "PDF Sphinx introuvable"; find _build -type f -name "*.pdf" -print; exit 1; }
+    - cd docs/_build/sphinx/latex && latexmk -pdf -interaction=nonstopmode -halt-on-error bibliographie.tex
     - mkdir -p "$READTHEDOCS_OUTPUT/html" "$READTHEDOCS_OUTPUT/pdf"
     - cp -r docs/_build/html/. "$READTHEDOCS_OUTPUT/html"
-    - cp "docs/_build/sphinx/latex/documentation-complete.pdf" "$READTHEDOCS_OUTPUT/html/documentation-complete.pdf"
-    - cp "docs/_build/sphinx/latex/documentation-complete.pdf" "$READTHEDOCS_OUTPUT/pdf/documentation-complete.pdf"
+    - cp "docs/_build/sphinx/latex/bibliographie.pdf" "$READTHEDOCS_OUTPUT/html/bibliographie.pdf"
+    - cp "docs/_build/sphinx/latex/bibliographie.pdf" "$READTHEDOCS_OUTPUT/pdf/bibliographie.pdf"
 
 python:
   install:

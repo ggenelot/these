@@ -3,7 +3,7 @@ title: Documentation complète
 exports:
   - id: full-doc-pdf
     format: pdf
-    output: _build/exports/documentation-complete.pdf
+    output: _build/exports/bibliographie.pdf
     articles:
       - index.md
       - 1_preambule/index.md
@@ -28,7 +28,7 @@ exports:
 
 ## Téléchargement
 
-[Télécharger le PDF complet](/documentation-complete.pdf)
+[Télécharger le PDF complet](/bibliographie.pdf)
 
 ## SIG et prospective : évaluer spatialement les impacts des cyclones tropicaux aux Petites Antilles
 

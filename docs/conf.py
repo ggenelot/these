@@ -114,7 +114,7 @@ html_static_path = ["_static"]
 
 latex_engine = "xelatex"
 latex_documents = [
-    ("pdf_index", "documentation-complete.tex", "Documentation complete", author, "manual"),
+    ("pdf_index", "bibliographie.tex", "Documentation complete", author, "manual"),
 ]
 
 # -- Options for figure numbering --------------------------------------------
