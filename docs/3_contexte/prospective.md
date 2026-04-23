@@ -11,3 +11,9 @@ parts:
     - aménagement
     - plannification
 ---
+
+## Bibliographie thématique: prospective
+
+```{bibliography}
+:filter: title % ".*[Pp]rospective.*" or abstract % ".*[Pp]rospective.*"
+```
