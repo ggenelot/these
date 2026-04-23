@@ -10,3 +10,10 @@ parts:
     - aménagement
     - plannification
 ---
+
+# Aménagement
+
+```{bibliography}
+:all:
+:filter: keywords % "aménagement"
+```

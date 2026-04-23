@@ -12,3 +12,10 @@ parts:
     - peuplement
     - plantanocène
 ---
+
+# Martinique
+
+```{bibliography}
+:all:
+:filter: keywords % "Martinique"
+```
