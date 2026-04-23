@@ -36,6 +36,7 @@ parts:
 :align: center
 
 ```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f6f3ee","primaryTextColor":"#222222","primaryBorderColor":"#555555","lineColor":"#666666","secondaryColor":"#e9ecef","tertiaryColor":"#ffffff","fontFamily":"Inter, Arial, sans-serif"},"flowchart":{"curve":"basis"},"deterministicIds":true}}%%
 flowchart TD
 
 I1["Prospective"]:::input
