@@ -81,6 +81,9 @@ html_static_path = ["_static"]
 # -- Options for PDF output --------------------------------------------------
 
 latex_engine = "xelatex"
+latex_documents = [
+    ("pdf_index", "documentation-complete.tex", "Documentation complete", author, "manual"),
+]
 
 # -- Options for figure numbering --------------------------------------------
 
