@@ -10,3 +10,7 @@ parts:
     - aménagement
     - plannification
 ---
+
+:::{tip}Idées en vrac
+
+:::
