@@ -164,9 +164,12 @@ class AlphaWithAnnotationsStyle(AlphaStyle):
 
         text = Text(
             text,
-            LatexOnly(r"\par\begin{quote}\small\noindent\(\rightarrow\)\enspace "),
+            LatexOnly(
+                r"\par\begin{adjustwidth}{0.42\linewidth}{0pt}"
+                r"\small\noindent\(\rightarrow\)\enspace "
+            ),
             annotation_text,
-            LatexOnly(r"\par\end{quote}"),
+            LatexOnly(r"\par\end{adjustwidth}"),
         )
         return FormattedEntry(entry.key, text, label)
 

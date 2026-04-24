@@ -333,6 +333,13 @@ def _inject_chapter_abstract(app, docname, source):
     keywords_md = (
         f"**Mots-clés :** {', '.join(keywords)}\n\n" if keywords else ""
     )
+    metadata_gap_md = ""
+    if keywords and keypoints:
+        metadata_gap_md = (
+            "```{raw} latex\n"
+            "\\vspace{0.7em}\n"
+            "```\n\n"
+        )
     keypoints_md = ""
     if keypoints:
         keypoints_md = "**Points clés :**\n\n" + "\n".join(
@@ -358,6 +365,7 @@ def _inject_chapter_abstract(app, docname, source):
         + abstract_md
         + metadata_sep_md
         + keywords_md
+        + metadata_gap_md
         + keypoints_md
         + "```{raw} latex\n"
         + "\\end{chapterabstract}\n"
