@@ -142,7 +142,7 @@ latex_elements = {
 \newenvironment{chapterabstract}{
   \par\noindent
   \begin{minipage}{\linewidth}
-  \small\itshape
+  \small
   \textbf{Résumé. }\ignorespaces
 }{
   \par
@@ -244,12 +244,24 @@ def _inject_chapter_abstract(app, docname, source):
             f"- {point}" for point in keypoints
         ) + "\n\n"
 
+    abstract_md = f"*{abstract}*\n\n" if abstract else ""
+    metadata_sep_md = ""
+    if abstract and (keywords or keypoints):
+        metadata_sep_md = (
+            "```{raw} latex\n"
+            "\\vspace{0.6em}\n"
+            "\\noindent\\rule{\\linewidth}{0.3pt}\n"
+            "\\vspace{0.6em}\n"
+            "```\n\n"
+        )
+
     abstract_block = (
         "<!-- auto-abstract -->\n\n"
         "```{raw} latex\n"
         "\\begin{chapterabstract}\n"
         "```\n\n"
-        + (f"{abstract}\n\n" if abstract else "")
+        + abstract_md
+        + metadata_sep_md
         + keywords_md
         + keypoints_md
         + "```{raw} latex\n"
