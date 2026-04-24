@@ -168,12 +168,13 @@ numfig_format = {
 # -- Options for the bibliography --------------------------------------------
 
 extensions += [
+    "bib_annotation_style",
     "sphinxcontrib.bibtex",
 ]
 
 bibtex_bibfiles = ["references.bib"]
 bibtex_reference_style = "author_year"
-#bibtex_default_style = 'unsrt'
+bibtex_default_style = "alpha_with_annotations"
 bibtex_cite_style = "authoryear"
 
 # -- Path to project code ----------------------------------------------------
