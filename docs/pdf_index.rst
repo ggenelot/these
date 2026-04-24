@@ -8,7 +8,7 @@ Documentation complete (PDF)
 
 .. raw:: latex
 
-   \part{Partie 1 - Preambule}
+   \part{Preambule}
 
 .. toctree::
    :maxdepth: 2
@@ -18,7 +18,7 @@ Documentation complete (PDF)
 
 .. raw:: latex
 
-   \part{Partie 2 - Introduction}
+   \part{Introduction}
 
 .. toctree::
    :maxdepth: 2
@@ -27,7 +27,7 @@ Documentation complete (PDF)
 
 .. raw:: latex
 
-   \part{Partie 3 - Contexte}
+   \part{Contexte}
 
 .. toctree::
    :maxdepth: 2
@@ -41,7 +41,7 @@ Documentation complete (PDF)
 
 .. raw:: latex
 
-   \part{Partie 4 - Methodes}
+   \part{Methodes}
 
 .. toctree::
    :maxdepth: 2
@@ -53,7 +53,7 @@ Documentation complete (PDF)
 
 .. raw:: latex
 
-   \part{Partie 5 - Resultats}
+   \part{Resultats}
 
 .. toctree::
    :maxdepth: 2
@@ -62,7 +62,7 @@ Documentation complete (PDF)
 
 .. raw:: latex
 
-   \part{Partie 6 - Discussion}
+   \part{Discussion}
 
 .. toctree::
    :maxdepth: 2
@@ -71,7 +71,7 @@ Documentation complete (PDF)
 
 .. raw:: latex
 
-   \part{Partie 7 - Conclusion}
+   \part{Conclusion}
 
 .. toctree::
    :maxdepth: 2
