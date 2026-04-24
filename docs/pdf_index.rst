@@ -25,7 +25,7 @@ Bibliographie dynamique
 
 .. raw:: latex
 
-   \part{Methodes}
+   \part{Modélisation}
 
 .. toctree::
    :maxdepth: 2
@@ -36,21 +36,13 @@ Bibliographie dynamique
 
 .. raw:: latex
 
-   \part{Resultats}
+   \part{Interprétation}
 
 .. toctree::
    :maxdepth: 2
 
    5_resultats/index
 
-.. raw:: latex
-
-   \part{Discussion}
-
-.. toctree::
-   :maxdepth: 2
-
-   6_discussion/index
 
 .. raw:: latex
 
