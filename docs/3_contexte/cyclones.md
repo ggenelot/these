@@ -19,7 +19,7 @@ parts:
     - l'aléa littoral (vague / submersion) a un effet d'interaction important avec d'autres phénomènes (érosion / recul du trait de côte)
 exports:
   - format: pdf
-    template: ./templates/these-chapitre
+    template: ./templates/tufte
     output: exports/cyclones.pdf
 ---
 

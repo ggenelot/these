@@ -116,6 +116,14 @@ latex_engine = "xelatex"
 latex_documents = [
     ("pdf_index", "bibliographie.tex", "Documentation complete", author, "manual"),
 ]
+latex_docclass = {
+    "manual": "tufte-book",
+}
+latex_additional_files = [
+    "../templates/tufte/tufte-book.cls",
+    "../templates/tufte/tufte-common.def",
+    "../templates/tufte/tufte-handout.cls",
+]
 
 # -- Options for figure numbering --------------------------------------------
 
