@@ -4,6 +4,9 @@ import os
 import sys
 import importlib
 import warnings
+import re
+
+import yaml
 
 # Make BibTeX parsing non-fatal for malformed entries.
 # This keeps the PDF build running while still surfacing warnings.
@@ -149,3 +152,54 @@ bibtex_cite_style = "authoryear"
 
 # -- Path to project code ----------------------------------------------------
 sys.path.insert(0, os.path.abspath("../src"))
+
+
+_FRONT_MATTER_RE = re.compile(
+    r"\A---\s*\r?\n(?P<yaml>.*?)(?:\r?\n)---\s*(?:\r?\n)?",
+    re.DOTALL,
+)
+
+
+def _inject_chapter_abstract(app, docname, source):
+    """Inject parts.abstract from Markdown frontmatter as a visible section."""
+    if app.builder.format != "latex":
+        return
+
+    src_path = app.env.doc2path(docname, base=None)
+    if not src_path.endswith(".md"):
+        return
+
+    text = source[0]
+    match = _FRONT_MATTER_RE.match(text)
+    if not match:
+        return
+
+    body = text[match.end() :]
+    if "<!-- auto-abstract -->" in body:
+        return
+
+    try:
+        metadata = yaml.safe_load(match.group("yaml")) or {}
+    except Exception:
+        return
+
+    abstract = ((metadata.get("parts") or {}).get("abstract") or "").strip()
+    if not abstract:
+        return
+
+    abstract_block = (
+        "<!-- auto-abstract -->\n\n"
+        "```{admonition} Resume\n"
+        ":class: abstract\n\n"
+        f"{abstract}\n"
+        "```\n\n"
+    )
+    prefix = text[: match.end()]
+    if not prefix.endswith(("\n", "\r")):
+        prefix += "\n"
+
+    source[0] = prefix + abstract_block + body.lstrip()
+
+
+def setup(app):
+    app.connect("source-read", _inject_chapter_abstract)
