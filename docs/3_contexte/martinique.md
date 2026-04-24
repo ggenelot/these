@@ -36,5 +36,5 @@ parts:
 cette partie parle de l'intersection entre enjeux environnementaux et question postcoloniale. On adopte la lecture par la double fracture environnementale et sociale et le concept de plantationocène, pour montrer que ces enjeux se répondent et se renforcent mutuellement.
 
 ```{bibliography}
-:filter: keywords % "aménagement"
+:filter: keywords % "martinique"
 ```

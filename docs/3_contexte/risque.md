@@ -23,7 +23,10 @@ exports:
     output: exports/chapitre-2.pdf
 ---
 
-Lalallalal
+```{bibliography}
+:list: bullet
+:filter: keywords % "risque"
+```
 
 ## Première partie
 

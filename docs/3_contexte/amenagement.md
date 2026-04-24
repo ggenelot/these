@@ -32,43 +32,7 @@ parts:
 :::
 
 
-:::{figure}
-:name: fig-test
-:align: center
-
-```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f6f3ee","primaryTextColor":"#222222","primaryBorderColor":"#555555","lineColor":"#666666","secondaryColor":"#e9ecef","tertiaryColor":"#ffffff","fontFamily":"Inter, Arial, sans-serif"},"flowchart":{"curve":"basis"},"deterministicIds":true}}%%
-flowchart TD
-
-I1["Prospective"]:::input
-I2["Cyclones"]:::input
-
-subgraph CH["Chapitre 3 : aménagement, spatialité et équité"]
-    direction TB
-    P["Quelle pratique de la plannification l'aménagement révèle-t-elle ?"]:::core
-    H["L'aménagement de l'espace est la matérialisation de la volonté publique"]:::core
-    A1["Argument 1"]:::core
-    A2["Argument 2"]:::core
-    C["Conclusion / apport"]:::core
-
-    P --> H
-    H --> A1
-    H --> A2
-    A1 --> C
-    A2 --> C
-end
-
-O1["Concept transmis au chap. 5"]:::output
-O2["Question ouverte"]:::weak
-
-I1 --> P
-I2 --> H
-C --> O1
-C --> O2
-
-
-
+```{bibliography}
+:list: bullet
+:filter: keywords % "aménagement"
 ```
-
-Position du chapitre par rapport aux autres chapitres
-:::
