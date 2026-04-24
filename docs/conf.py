@@ -129,7 +129,7 @@ latex_elements = {
   \par\noindent
   \begin{minipage}{\linewidth}
   \small\itshape
-  \textbf{Resume. }\ignorespaces
+  \textbf{Résumé. }\ignorespaces
 }{
   \par
   \end{minipage}
@@ -197,6 +197,7 @@ def _inject_chapter_abstract(app, docname, source):
         return
 
     parts = metadata.get("parts") or {}
+    chapter_title = (metadata.get("title") or "").strip()
     abstract = (parts.get("abstract") or "").strip()
 
     raw_keywords = parts.get("keywords")
@@ -221,11 +222,11 @@ def _inject_chapter_abstract(app, docname, source):
         return
 
     keywords_md = (
-        f"**Mots-cles.** {', '.join(keywords)}\n\n" if keywords else ""
+        f"**Mots-clés.** {', '.join(keywords)}\n\n" if keywords else ""
     )
     keypoints_md = ""
     if keypoints:
-        keypoints_md = "**Points cles.**\n\n" + "\n".join(
+        keypoints_md = "**Points clés.**\n\n" + "\n".join(
             f"- {point}" for point in keypoints
         ) + "\n\n"
 
@@ -246,6 +247,15 @@ def _inject_chapter_abstract(app, docname, source):
     if not prefix.endswith(("\n", "\r")):
         prefix += "\n"
     h1_match = _FIRST_H1_RE.search(body)
+    if chapter_title:
+        title_line = f"# {chapter_title}"
+        if h1_match:
+            body = title_line + body[h1_match.end() :]
+            h1_match = _FIRST_H1_RE.search(body)
+        else:
+            body = title_line + "\n\n" + body.lstrip()
+            h1_match = _FIRST_H1_RE.search(body)
+
     if h1_match:
         insert_at = h1_match.end()
         body = body[:insert_at] + "\n\n" + abstract_block + body[insert_at:].lstrip()
