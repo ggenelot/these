@@ -9,17 +9,14 @@ build:
     python: "3.12"
     nodejs: "22"
   commands:
+    - python -m pip install --upgrade pip
+    - python -m pip install -e ".[docs]"
     - npm install -g mystmd
     - cd docs && myst build --html
-    - cd docs && sphinx-build -T -b latex -d _build/sphinx/doctrees -D language=fr -D root_doc=pdf_index . _build/sphinx/latex
+    - cd docs && python -m sphinx -T -b latex -d _build/sphinx/doctrees -D language=fr -D root_doc=pdf_index . _build/sphinx/latex
     - cd docs/_build/sphinx/latex && latexmk -pdf -interaction=nonstopmode -halt-on-error bibliographie.tex
     - mkdir -p "$READTHEDOCS_OUTPUT/html" "$READTHEDOCS_OUTPUT/pdf"
     - cp -r docs/_build/html/. "$READTHEDOCS_OUTPUT/html"
     - cp "docs/_build/sphinx/latex/bibliographie.pdf" "$READTHEDOCS_OUTPUT/html/bibliographie.pdf"
     - cp "docs/_build/sphinx/latex/bibliographie.pdf" "$READTHEDOCS_OUTPUT/pdf/bibliographie.pdf"
-
-python:
-  install:
-    - method: pip
-      path: .[docs]
 
