@@ -147,6 +147,7 @@ latex_docclass = {
     "manual": "tufte-book",
 }
 latex_elements = {
+    "extraclassoptions": "nobib",
     "passoptionstopackages": r"\PassOptionsToPackage{nobottomtitles*}{titlesec}",
     "preamble": r"""
 \newenvironment{chapterabstract}{
@@ -159,10 +160,6 @@ latex_elements = {
   \end{minipage}
   \par
 }
-\makeatletter
-\providecommand\NAT@force@numbers{}
-\renewcommand\NAT@force@numbers{}
-\makeatother
 """,
 }
 latex_additional_files = [
