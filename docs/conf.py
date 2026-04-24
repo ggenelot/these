@@ -119,6 +119,9 @@ latex_documents = [
 latex_docclass = {
     "manual": "tufte-book",
 }
+latex_elements = {
+    "passoptionstopackages": r"\PassOptionsToPackage{nobottomtitles*}{titlesec}",
+}
 latex_additional_files = [
     "../templates/tufte/tufte-book.cls",
     "../templates/tufte/tufte-common.def",
