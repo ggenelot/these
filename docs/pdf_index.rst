@@ -1,20 +1,5 @@
-Documentation complete (PDF)
+Bibliographie dynamique
 ============================
-
-.. toctree::
-   :maxdepth: 2
-
-   index
-
-.. raw:: latex
-
-   \part{Preambule}
-
-.. toctree::
-   :maxdepth: 2
-
-   1_preambule/index
-   1_preambule/utilisation
 
 .. raw:: latex
 
@@ -32,7 +17,6 @@ Documentation complete (PDF)
 .. toctree::
    :maxdepth: 2
 
-   3_contexte/index
    3_contexte/prospective
    3_contexte/cyclones
    3_contexte/amenagement
@@ -46,7 +30,6 @@ Documentation complete (PDF)
 .. toctree::
    :maxdepth: 2
 
-   4_methodes/index
    4_methodes/etude-cas
    4_methodes/systeme
    4_methodes/modele

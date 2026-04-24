@@ -196,20 +196,51 @@ def _inject_chapter_abstract(app, docname, source):
     except Exception:
         return
 
-    abstract = ((metadata.get("parts") or {}).get("abstract") or "").strip()
-    if not abstract:
+    parts = metadata.get("parts") or {}
+    abstract = (parts.get("abstract") or "").strip()
+
+    raw_keywords = parts.get("keywords")
+    if raw_keywords is None:
+        raw_keywords = metadata.get("keywords")
+    if isinstance(raw_keywords, str):
+        keywords = [raw_keywords]
+    elif isinstance(raw_keywords, list):
+        keywords = [str(k).strip() for k in raw_keywords if str(k).strip()]
+    else:
+        keywords = []
+
+    raw_keypoints = parts.get("keypoints")
+    if isinstance(raw_keypoints, str):
+        keypoints = [raw_keypoints]
+    elif isinstance(raw_keypoints, list):
+        keypoints = [str(k).strip() for k in raw_keypoints if str(k).strip()]
+    else:
+        keypoints = []
+
+    if not abstract and not keywords and not keypoints:
         return
+
+    keywords_md = (
+        f"**Mots-cles.** {', '.join(keywords)}\n\n" if keywords else ""
+    )
+    keypoints_md = ""
+    if keypoints:
+        keypoints_md = "**Points cles.**\n\n" + "\n".join(
+            f"- {point}" for point in keypoints
+        ) + "\n\n"
 
     abstract_block = (
         "<!-- auto-abstract -->\n\n"
         "```{raw} latex\n"
         "\\begin{chapterabstract}\n"
         "```\n\n"
-        f"{abstract}\n\n"
-        "```{raw} latex\n"
-        "\\end{chapterabstract}\n"
-        "\\clearpage\n"
-        "```\n\n"
+        + (f"{abstract}\n\n" if abstract else "")
+        + keywords_md
+        + keypoints_md
+        + "```{raw} latex\n"
+        + "\\end{chapterabstract}\n"
+        + "\\clearpage\n"
+        + "```\n\n"
     )
     prefix = text[: match.end()]
     if not prefix.endswith(("\n", "\r")):
