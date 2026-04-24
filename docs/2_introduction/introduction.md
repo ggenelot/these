@@ -1,20 +1,10 @@
----
-exports:
-  - format: pdf
-    template: lapreprint-typst
-    output: exports/my-document.pdf
-    id: my-document-export
-downloads:
-  - id: my-document-export
-    title: A PDF of this document
----
+Introduction à reformuler
 
 # Introduction
 
 Ma thèse cherche à modéliser les dommages liés au changement climatique, notamment ceux des cyclones aux Petites Antilles en associant des méthodes d'analyse spatiale et de prospective. Cette méthode devrait permettre de prendre en compte l'adaptation au changement climatique et la distribution spatiale des dommages. On construit un modèle régional en utilisant des données physiques et sociales spatialisées, puis on évalue les dommages causés par des cyclones synthétiques pour comparer différents scénarios d'aménagement. 
 
 ```{mermaid}
-:caption: Cadre d'analyse du projet (contexte, problématique et méthodologie)
 :name: fig-intro-cadre
 
 graph TD
@@ -195,13 +185,13 @@ D'autre part, des questions épistémiques sur l'intérêt de ce type de modéli
 
 ## Méthodologie
 
-On simule l'effet du passage d'un cyclone sur une île des petites Antilles. On peut décomposer cette approche en quatre phases principales. D'abord, on crée une représentation de l'île avec des données choisies, avec un maillage dense. On définit des fonctions de dommage, c'est-à-dire l'effet du passage du cyclone et de ses composantes (vent, vague, précipitation) sur les données choisies (destruction de l'habitat, changement d'usage). On réalise des simulations du passage de cyclones à l'aide de cyclones synthétiques, et on évalue le niveau de dommage. On peut renouveler la simulation en faisant varier la représentation initiale de l'île, c'est-à-dire en faisant des choix d'aménagement différents. Une version simplifiée du modèle, tel qu'il est envisagé aujourd'hui, est disponible en figure {numref}`fig-modele`.
+On simule l'effet du passage d'un cyclone sur une île des petites Antilles. On peut décomposer cette approche en quatre phases principales. D'abord, on crée une représentation de l'île avec des données choisies, avec un maillage dense. On définit des fonctions de dommage, c'est-à-dire l'effet du passage du cyclone et de ses composantes (vent, vague, précipitation) sur les données choisies (destruction de l'habitat, changement d'usage). On réalise des simulations du passage de cyclones à l'aide de cyclones synthétiques, et on évalue le niveau de dommage. On peut renouveler la simulation en faisant varier la représentation initiale de l'île, c'est-à-dire en faisant des choix d'aménagement différents. Une version simplifiée du modèle, tel qu'il est envisagé aujourd'hui, est disponible dans le schéma ci-dessous.
 
 ### Choix des données et représentations
 
 On utilise des données spatialisées variées pour représenter les enjeux du territoire choisi. 
 
-Quatre grands types de données sont associés : topographie (élévation , pente, bathymétrie {cite:p}`institutgeographiquenationalBDTOPO2025`) ; cyclones synthétiques (précipitation, vents, marée cyclonique {cite:p}`bloemendaalSTORMIBTrACSPresent2022,bloemendaalSTORMClimateChange2023`); aménagement (usages des sols {cite:p}`zanagaESAWorldCover102022`, routes, bâtis {cite:p}`OSM`); et socio-économiques (densité de population, taux de pauvreté {cite:p}`inseeFilosofi2021`).
+Quatre grands types de données sont associés : topographie (élévation , pente, bathymétrie {cite:p}`institutgeographiquenationalBDTOPO2025`) ; cyclones synthétiques (précipitation, vents, marée cyclonique {cite:p}`bloemendaalSTORMIBTrACSPresent2022,bloemendaalSTORMClimateChange2023`); aménagement (usages des sols {cite:p}`zanagaESAWorldCover102022`, routes, bâtis {cite:p}`OSMLatestCrisis`); et socio-économiques (densité de population, taux de pauvreté {cite:p}`inseeFilosofi2021`).
 
 Le niveau de granularité n'est pas encore défini ; il devrait être de l'ordre de la dizaine de mètres ou de la centaine de mètres. Pour comparaison, les données de Filosofi sont disponibles à 200m; les données de couverture du sol à 10m; de topographie à 30m. 
 

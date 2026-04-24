@@ -1,0 +1,17 @@
+id: these-chapitre
+version: 1
+name: "Thèse — Chapitre PDF"
+description: "Template JTeX/LaTeX sobre pour chapitre avec métadonnées éditoriales en tête"
+license: MIT
+
+doc:
+  - name: title
+    required: true
+  - name: keywords
+    required: false
+
+parts:
+  - abstract
+  - problematic
+  - literature_note
+  - partial_conclusion
