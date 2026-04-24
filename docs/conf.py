@@ -308,6 +308,9 @@ def _inject_chapter_abstract(app, docname, source):
     parts = metadata.get("parts") or {}
     chapter_title = (metadata.get("title") or "").strip()
     abstract = (parts.get("abstract") or "").strip()
+    problematic = (parts.get("problematic") or "").strip()
+    literature_note = (parts.get("literature_note") or "").strip()
+    partial_conclusion = (parts.get("partial_conclusion") or "").strip()
 
     raw_keywords = parts.get("keywords")
     if raw_keywords is None:
@@ -327,7 +330,16 @@ def _inject_chapter_abstract(app, docname, source):
     else:
         keypoints = []
 
-    if not abstract and not keywords and not keypoints:
+    if not any(
+        (
+            abstract,
+            problematic,
+            literature_note,
+            partial_conclusion,
+            keywords,
+            keypoints,
+        )
+    ):
         return
 
     keywords_md = (
@@ -347,8 +359,18 @@ def _inject_chapter_abstract(app, docname, source):
         ) + "\n\n"
 
     abstract_md = f"*{abstract}*\n\n" if abstract else ""
+    chapter_fields = [
+        ("Problématique", problematic),
+        ("Littérature mobilisée", literature_note),
+        ("Apport du chapitre", partial_conclusion),
+    ]
+    chapter_fields_md = "".join(
+        f"**{label} :** {value}\n\n"
+        for label, value in chapter_fields
+        if value
+    )
     metadata_sep_md = ""
-    if abstract and (keywords or keypoints):
+    if abstract and (chapter_fields_md or keywords or keypoints):
         metadata_sep_md = (
             "```{raw} latex\n"
             "\\vspace{0.6em}\n"
@@ -364,6 +386,7 @@ def _inject_chapter_abstract(app, docname, source):
         "```\n\n"
         + abstract_md
         + metadata_sep_md
+        + chapter_fields_md
         + keywords_md
         + metadata_gap_md
         + keypoints_md
