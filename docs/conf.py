@@ -124,6 +124,17 @@ latex_docclass = {
 }
 latex_elements = {
     "passoptionstopackages": r"\PassOptionsToPackage{nobottomtitles*}{titlesec}",
+    "preamble": r"""
+\newenvironment{chapterabstract}{
+  \begin{fullwidth}
+  \vspace{-0.4em}
+  \begin{quote}\small\itshape
+  \textbf{Resume. }
+}{
+  \end{quote}
+  \end{fullwidth}
+}
+""",
 }
 latex_additional_files = [
     "../templates/tufte/tufte-book.cls",
@@ -189,9 +200,12 @@ def _inject_chapter_abstract(app, docname, source):
 
     abstract_block = (
         "<!-- auto-abstract -->\n\n"
-        "```{admonition} Resume\n"
-        ":class: abstract\n\n"
-        f"{abstract}\n"
+        "```{raw} latex\n"
+        "\\begin{chapterabstract}\n"
+        "```\n\n"
+        f"{abstract}\n\n"
+        "```{raw} latex\n"
+        "\\end{chapterabstract}\n"
         "```\n\n"
     )
     prefix = text[: match.end()]
