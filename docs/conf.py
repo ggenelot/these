@@ -330,11 +330,11 @@ def _inject_chapter_abstract(app, docname, source):
         return
 
     keywords_md = (
-        f"**Mots-clés.** {', '.join(keywords)}\n\n" if keywords else ""
+        f"**Mots-clés :** {', '.join(keywords)}\n\n" if keywords else ""
     )
     keypoints_md = ""
     if keypoints:
-        keypoints_md = "**Points clés.**\n\n" + "\n".join(
+        keypoints_md = "**Points clés :**\n\n" + "\n".join(
             f"- {point}" for point in keypoints
         ) + "\n\n"
 
