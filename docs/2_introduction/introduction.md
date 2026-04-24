@@ -7,6 +7,7 @@ Ma thèse cherche à modéliser les dommages liés au changement climatique, not
 ```{mermaid}
 :name: fig-intro-cadre
 
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f6f3ee","primaryTextColor":"#222222","primaryBorderColor":"#555555","lineColor":"#666666","secondaryColor":"#e9ecef","tertiaryColor":"#ffffff","fontFamily":"Inter, Arial, sans-serif"},"flowchart":{"curve":"basis"},"deterministicIds":true}}%%
 graph TD
     contexte --> risque
     contexte --> prospective
@@ -210,6 +211,7 @@ On simule le passage d'un cyclone et on observe les évolutions de nos variables
 
 ```mermaid
 
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f6f3ee","primaryTextColor":"#222222","primaryBorderColor":"#555555","lineColor":"#666666","secondaryColor":"#e9ecef","tertiaryColor":"#ffffff","fontFamily":"Inter, Arial, sans-serif"},"flowchart":{"curve":"basis"},"deterministicIds":true}}%%
 
 graph TD;
 

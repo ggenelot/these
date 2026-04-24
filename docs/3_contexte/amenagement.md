@@ -9,4 +9,65 @@ parts:
     - adaptation 
     - aménagement
     - plannification
+    - distribution
+    - formalité
 ---
+
+:::{tip}Idées en vrac
+
+- l'aménagement est une forme d'action publique
+- l'aménagement est l'incarnation matérielle de la volonté politiuqe
+- l'aménagement est aussi l'incarnation des limites de la volonté politiques, de ses zones d'ombre, de ses échecs
+- l'aménagement du territoire est une forme de plannification de la société
+- les choix de zonage réglementaire représentent un choix de futur souhaité / souhaitable
+- l'aménagement de l'espace se fait dans une complexité importante : les dimensions physiques et sociales se croisent en permanance
+- un bon aménagement doit prendre en compte les effets directs qu'il induit, mais aussi les effets indirects
+- aménager, même d'une manière parfaite, implique de faire des gagnants et des perdants
+- un aménagement a une effet distributif fort : il faut non seulement chercher à obtenir le meilleur effet global, mais aussi s'interroger sur les effets distributif d'un aménagement
+- aménager les territoires est une bonne stratégie pour s'adapter au changement climatique
+- c'est une manière de se prémunir contre les risques, mais aussi de repenser la société au regard de ces nouvelles configurations
+- c'est un outil qui permet de porter à l'échelle collective les raisonnements, et pas seulement au niveau individuel, contrairement à des contraintes réglementaires batimentaires par exemple
+
+:::
+
+
+:::{figure}
+:name: fig-test
+:align: center
+
+```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f6f3ee","primaryTextColor":"#222222","primaryBorderColor":"#555555","lineColor":"#666666","secondaryColor":"#e9ecef","tertiaryColor":"#ffffff","fontFamily":"Inter, Arial, sans-serif"},"flowchart":{"curve":"basis"},"deterministicIds":true}}%%
+flowchart TD
+
+I1["Prospective"]:::input
+I2["Cyclones"]:::input
+
+subgraph CH["Chapitre 3 : aménagement, spatialité et équité"]
+    direction TB
+    P["Quelle pratique de la plannification l'aménagement révèle-t-elle ?"]:::core
+    H["L'aménagement de l'espace est la matérialisation de la volonté publique"]:::core
+    A1["Argument 1"]:::core
+    A2["Argument 2"]:::core
+    C["Conclusion / apport"]:::core
+
+    P --> H
+    H --> A1
+    H --> A2
+    A1 --> C
+    A2 --> C
+end
+
+O1["Concept transmis au chap. 5"]:::output
+O2["Question ouverte"]:::weak
+
+I1 --> P
+I2 --> H
+C --> O1
+C --> O2
+
+
+
+```
+
+Position du chapitre par rapport aux autres chapitres
+:::
