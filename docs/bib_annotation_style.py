@@ -6,7 +6,7 @@ style appends it to the formatted bibliography entry.
 """
 
 from pybtex.plugin import register_plugin
-from pybtex.richtext import BaseText, Tag, Text
+from pybtex.richtext import BaseText, Text
 from pybtex.style import FormattedEntry
 from pybtex.style.formatting.alpha import Style as AlphaStyle
 from sphinxcontrib.bibtex.nodes import raw_latex
@@ -29,6 +29,7 @@ COMMENT_PREFIXES = (
     "note:",
     "remark:",
 )
+
 
 class LatexOnly(BaseText):
     """Raw LaTeX fragment for PDF-only bibliography layout adjustments."""
@@ -147,6 +148,7 @@ class AlphaWithAnnotationsStyle(AlphaStyle):
 
     def format_entry(self, label, entry, bib_data=None):
         text = Text(
+            LatexOnly(r"\noindent\hangindent=2em\hangafter=1\relax "),
             format_author(entry),
             " - ",
             field_text(entry.fields.get("year"), fallback="s. d."),
@@ -163,7 +165,7 @@ class AlphaWithAnnotationsStyle(AlphaStyle):
         text = Text(
             text,
             LatexOnly(r"\par\hspace*{2em}"),
-            Tag("em", Text("Commentaire : ", annotation_text)),
+            annotation_text,
         )
         return FormattedEntry(entry.key, text, label)
 

@@ -159,6 +159,10 @@ latex_elements = {
   \end{minipage}
   \par
 }
+\makeatletter
+\providecommand\NAT@force@numbers{}
+\renewcommand\NAT@force@numbers{}
+\makeatother
 """,
 }
 latex_additional_files = [
