@@ -41,3 +41,4 @@ Grandes idées:
 Trame du raisonnement :
 La gouvernance climatique change de phase (I.1). Orientée initialement vers la mitigation, elle doit aujourd'hui répondre à des questions d'adaptation (I.2). Pour rester pertinents, les modèles de prospective doivent permettre de répondre à ces nouvelles questions(I.3). Or, celles-ci posent des contraintes techniques difficiles : prise en compte de données qualitatives et spatiales (II). De nouvelles techniques et approches permettraient cependant de répondre à ces contraintes (III).
 
+mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coût social du carbone, monétarisation
