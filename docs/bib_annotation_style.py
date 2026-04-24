@@ -9,7 +9,6 @@ from pybtex.plugin import register_plugin
 from pybtex.richtext import BaseText, Tag, Text
 from pybtex.style import FormattedEntry
 from pybtex.style.formatting.alpha import Style as AlphaStyle
-from pybtex.style.names.plain import NameStyle
 from sphinxcontrib.bibtex.nodes import raw_latex
 
 
@@ -30,9 +29,6 @@ COMMENT_PREFIXES = (
     "note:",
     "remark:",
 )
-
-NAME_STYLE = NameStyle()
-
 
 class LatexOnly(BaseText):
     """Raw LaTeX fragment for PDF-only bibliography layout adjustments."""
@@ -104,20 +100,28 @@ def field_text(value, fallback=""):
         return Text(value)
 
 
+def format_last_name(person):
+    """Format a person with family name only."""
+    name_parts = person.rich_prelast_names + person.rich_last_names
+    if not name_parts:
+        name_parts = person.rich_lineage_names or person.rich_first_names
+    return Text(" ").join(name_parts)
+
+
 def format_people(people):
     """Format one or two names, then abbreviate longer author lists."""
     if len(people) > 2:
-        return Text(NAME_STYLE.format(people[0]).format(), " et al.")
+        return Text(format_last_name(people[0]), " et al.")
 
     if len(people) == 2:
         return Text(
-            NAME_STYLE.format(people[0]).format(),
+            format_last_name(people[0]),
             " et ",
-            NAME_STYLE.format(people[1]).format(),
+            format_last_name(people[1]),
         )
 
     if len(people) == 1:
-        return NAME_STYLE.format(people[0]).format()
+        return format_last_name(people[0])
 
     return None
 

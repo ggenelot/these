@@ -141,7 +141,7 @@ html_static_path = ["_static"]
 
 latex_engine = "xelatex"
 latex_documents = [
-    ("pdf_index", "bibliographie.tex", "Documentation complete", author, "manual"),
+    ("pdf_index", "bibliographie.tex", "Bibliographie", author, "manual"),
 ]
 latex_docclass = {
     "manual": "tufte-book",
@@ -384,7 +384,40 @@ def _inject_chapter_abstract(app, docname, source):
     source[0] = prefix + body
 
 
+def _flatten_bibtex_bullet_lists(app, doctree, docname):
+    """Render BibTeX bullet bibliographies as plain entry paragraphs in LaTeX."""
+    if app.builder.format != "latex":
+        return
+
+    for bullet_list in list(doctree.findall(docutils.nodes.bullet_list)):
+        if not bullet_list.children:
+            continue
+        if not all(
+            isinstance(item, docutils.nodes.list_item) and item.get("docname")
+            for item in bullet_list.children
+        ):
+            continue
+
+        flattened = []
+        for item in bullet_list.children:
+            children = list(item.children)
+            if not children:
+                continue
+
+            first_child = children[0]
+            for attr in ("ids", "names", "classes", "backrefs"):
+                values = item.get(attr, [])
+                if values:
+                    first_child[attr].extend(values)
+            first_child["docname"] = item.get("docname")
+            flattened.extend(children)
+
+        if flattened:
+            bullet_list.replace_self(flattened)
+
+
 def setup(app):
     BibtexDomain.resolve_xref = _resolve_xref_with_non_citation_lists
     app.connect("source-read", _convert_pandoc_citations)
     app.connect("source-read", _inject_chapter_abstract)
+    app.connect("doctree-resolved", _flatten_bibtex_bullet_lists)
