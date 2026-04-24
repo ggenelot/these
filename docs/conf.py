@@ -16,6 +16,7 @@ from sphinxcontrib.bibtex.domain import (
     format_references,
     parse_citation_targets,
 )
+from sphinx.writers.latex import CR, LaTeXTranslator
 
 # Make BibTeX parsing non-fatal for malformed entries.
 # This keeps the PDF build running while still surfacing warnings.
@@ -417,8 +418,48 @@ def _flatten_bibtex_bullet_lists(app, doctree, docname):
             bullet_list.replace_self(flattened)
 
 
+def _restore_titled_tip_admonitions(app, doctree, docname):
+    """Use the first paragraph as title for ``{tip} Custom title`` blocks."""
+    if app.builder.format != "latex":
+        return
+
+    for admonition in doctree.findall(docutils.nodes.tip):
+        if not admonition.children:
+            continue
+        first_paragraph = admonition.children[0]
+        if not isinstance(first_paragraph, docutils.nodes.paragraph):
+            continue
+        if len(first_paragraph.children) != 1:
+            continue
+
+        custom_title = first_paragraph.astext().strip()
+        if custom_title:
+            admonition["custom_title"] = custom_title
+            first_paragraph.parent.remove(first_paragraph)
+
+
+_ORIGINAL_LATEX_VISIT_TIP = LaTeXTranslator.visit_tip
+
+
+def _visit_tip_with_custom_title(self, node):
+    custom_title = node.get("custom_title")
+    if not custom_title:
+        return _ORIGINAL_LATEX_VISIT_TIP(self, node)
+
+    self.body.append(
+        CR
+        + r"\begin{sphinxadmonition}{tip}{%s:}" % self.encode(custom_title)
+        + CR
+    )
+    self.no_latex_floats += 1
+    if self.table:
+        self.table.has_problematic = True
+
+
 def setup(app):
     BibtexDomain.resolve_xref = _resolve_xref_with_non_citation_lists
+    LaTeXTranslator.visit_tip = _visit_tip_with_custom_title
     app.connect("source-read", _convert_pandoc_citations)
     app.connect("source-read", _inject_chapter_abstract)
+    app.connect("doctree-resolved", _restore_titled_tip_admonitions)
     app.connect("doctree-resolved", _flatten_bibtex_bullet_lists)
