@@ -14,7 +14,7 @@ parts:
     - formalité
 ---
 
-:::{tip}Idées en vrac
+:::{tip} Idées en vrac
 
 - l'aménagement est une forme d'action publique
 - l'aménagement est l'incarnation matérielle de la volonté politiuqe
