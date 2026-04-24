@@ -1,4 +1,5 @@
 ---
+title: Présentation d'études de cas
 parts:
   abstract: >
     Dans cette partie, nous revenons sur une brève histoire de la modélisation prospective. Nous y montrerons que les modèles actuels, principalement tournés vers la mitigation, souffrent de contrainte structurelles qui ne leur permet pas de bien représenter des politiques d’adaptation. Nous détaillerons ces limitations et tenterons d’identifier des caractéristiques nécessaire à des modèles pour l’adaptation.

@@ -14,6 +14,11 @@ parts:
   partial_conclusion: |
 exports:
   - format: pdf
-    template: ./templates/these-chapitre
+    template: ./templates/tufte
     output: exports/prospective.pdf
 ---
+
+```{bibliography}
+:list: bullet
+:filter: keywords % "prospective"
+```
