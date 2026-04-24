@@ -37,5 +37,5 @@ cette partie parle de l'intersection entre enjeux environnementaux et question p
 
 ```{bibliography}
 :list: bullet
-:filter: keywords % "aménagement"
+:filter: keywords % "martinique"
 ```
