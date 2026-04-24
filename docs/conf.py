@@ -5,8 +5,17 @@ import sys
 import importlib
 import warnings
 import re
+import logging
 
 import yaml
+import docutils.nodes
+import pybtex.plugin
+from sphinxcontrib.bibtex.domain import (
+    BibtexDomain,
+    SphinxReferenceInfo,
+    format_references,
+    parse_citation_targets,
+)
 
 # Make BibTeX parsing non-fatal for malformed entries.
 # This keeps the PDF build running while still surfacing warnings.
@@ -105,6 +114,7 @@ templates_path = ["_templates"]
 exclude_patterns = [
     "_build",
     "_build/**",
+    "2_introduction/introduction.md",
     "**/.ipynb_checkpoints",
 ]
 
@@ -186,6 +196,88 @@ _FRONT_MATTER_RE = re.compile(
     re.DOTALL,
 )
 _FIRST_H1_RE = re.compile(r"^#\s+.+$", re.MULTILINE)
+_PANDOC_CITATION_KEY_RE = (
+    r"[A-Za-z0-9_][A-Za-z0-9_:-]*(?:\.[A-Za-z0-9_][A-Za-z0-9_:-]*)*"
+)
+_PANDOC_BRACKET_CITATION_RE = re.compile(
+    rf"\[((?:@{_PANDOC_CITATION_KEY_RE}(?:[;,]\s*)?)+)\]"
+)
+_PANDOC_BARE_CITATION_RE = re.compile(rf"(?<![\w`])@({_PANDOC_CITATION_KEY_RE})")
+_FENCED_CODE_RE = re.compile(r"(^```.*?^```)", re.MULTILINE | re.DOTALL)
+_INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
+
+
+def _replace_outside_code(text, replace_func):
+    parts = _FENCED_CODE_RE.split(text)
+    for index, part in enumerate(parts):
+        if index % 2:
+            continue
+        inline_parts = _INLINE_CODE_RE.split(part)
+        inline_matches = _INLINE_CODE_RE.findall(part)
+        rebuilt = []
+        for inline_index, inline_part in enumerate(inline_parts):
+            rebuilt.append(replace_func(inline_part))
+            if inline_index < len(inline_matches):
+                rebuilt.append(inline_matches[inline_index])
+        parts[index] = "".join(rebuilt)
+    return "".join(parts)
+
+
+def _convert_pandoc_citations(app, docname, source):
+    """Convert Pandoc-style Markdown citations to sphinxcontrib-bibtex roles."""
+    src_path = app.env.doc2path(docname, base=None)
+    if not src_path.endswith(".md"):
+        return
+
+    def convert(text):
+        def replace_bracket(match):
+            keys = re.findall(rf"@({_PANDOC_CITATION_KEY_RE})", match.group(1))
+            return "{cite:p}`" + ",".join(keys) + "`"
+
+        text = _PANDOC_BRACKET_CITATION_RE.sub(replace_bracket, text)
+        return _PANDOC_BARE_CITATION_RE.sub(r"{cite:p}`\1`", text)
+
+    source[0] = _replace_outside_code(source[0], convert)
+
+
+def _resolve_xref_with_non_citation_lists(
+    self, env, fromdocname, builder, typ, target, node, contnode
+):
+    """Resolve citation references against citation, bullet, or enumerated lists."""
+    targets = parse_citation_targets(target)
+    keys = {target2.key: target2 for target2 in targets}
+    citations = {cit.key: cit for cit in self.citations if cit.key in keys}
+
+    for key in keys:
+        if key not in citations:
+            logger = logging.getLogger(__name__)
+            logger.warning('could not find bibtex key "%s"', key)
+
+    plaintext = pybtex.plugin.find_plugin("pybtex.backends", "plaintext")()
+    references = [
+        (
+            citation.entry,
+            citation.formatted_entry,
+            SphinxReferenceInfo(
+                builder=builder,
+                fromdocname=fromdocname,
+                todocname=citation.bibliography_key.docname,
+                citation_id=citation.citation_id,
+                title=(
+                    citation.tooltip_entry.text.render(plaintext).replace("\\url ", "")
+                    if citation.tooltip_entry
+                    else None
+                ),
+                pre_text=keys[citation.key].pre,
+                post_text=keys[citation.key].post,
+            ),
+        )
+        for citation in citations.values()
+    ]
+    formatted_references = format_references(self.reference_style, typ, references)
+    result_node = docutils.nodes.inline(rawsource=target)
+    result_node += formatted_references.render(self.backend)
+    return result_node
 
 
 def _inject_chapter_abstract(app, docname, source):
@@ -293,4 +385,6 @@ def _inject_chapter_abstract(app, docname, source):
 
 
 def setup(app):
+    BibtexDomain.resolve_xref = _resolve_xref_with_non_citation_lists
+    app.connect("source-read", _convert_pandoc_citations)
     app.connect("source-read", _inject_chapter_abstract)

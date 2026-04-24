@@ -205,4 +205,11 @@ Tout d'abord dans une perspective statique. A travers un croisement de données 
 
 Ensuite, dans une démarche dynamique, d'évaluation de politiques d'adaptation. Nous éxecutons des simulations avec différents scénarios d'adaptation et/ou d'intensité de cyclones tropicaux. Ces simulations nous permettent d'évaluer les effets systèmiques sur du moyen et long-terme. 
 
+## Références
+
+```{bibliography}
+:filter: docname in docnames
+:list: bullet
+```
+
 
