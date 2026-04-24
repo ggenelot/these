@@ -165,7 +165,7 @@ class AlphaWithAnnotationsStyle(AlphaStyle):
         text = Text(
             text,
             LatexOnly(
-                r"\par\begin{adjustwidth}{0.25\linewidth}{0pt}"
+                r"\par\vspace{-0.45em}\begin{adjustwidth}{0.25\linewidth}{0pt}"
                 r"\small\color{gray}\noindent\(\rightarrow\)\enspace "
             ),
             annotation_text,
