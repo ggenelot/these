@@ -126,13 +126,14 @@ latex_elements = {
     "passoptionstopackages": r"\PassOptionsToPackage{nobottomtitles*}{titlesec}",
     "preamble": r"""
 \newenvironment{chapterabstract}{
-  \begin{fullwidth}
-  \vspace{-0.4em}
-  \begin{quote}\small\itshape
-  \textbf{Resume. }
+  \par\noindent
+  \begin{minipage}{\linewidth}
+  \small\itshape
+  \textbf{Resume. }\ignorespaces
 }{
-  \end{quote}
-  \end{fullwidth}
+  \par
+  \end{minipage}
+  \par
 }
 """,
 }
@@ -169,6 +170,7 @@ _FRONT_MATTER_RE = re.compile(
     r"\A---\s*\r?\n(?P<yaml>.*?)(?:\r?\n)---\s*(?:\r?\n)?",
     re.DOTALL,
 )
+_FIRST_H1_RE = re.compile(r"^#\s+.+$", re.MULTILINE)
 
 
 def _inject_chapter_abstract(app, docname, source):
@@ -206,13 +208,20 @@ def _inject_chapter_abstract(app, docname, source):
         f"{abstract}\n\n"
         "```{raw} latex\n"
         "\\end{chapterabstract}\n"
+        "\\clearpage\n"
         "```\n\n"
     )
     prefix = text[: match.end()]
     if not prefix.endswith(("\n", "\r")):
         prefix += "\n"
+    h1_match = _FIRST_H1_RE.search(body)
+    if h1_match:
+        insert_at = h1_match.end()
+        body = body[:insert_at] + "\n\n" + abstract_block + body[insert_at:].lstrip()
+    else:
+        body = abstract_block + body.lstrip()
 
-    source[0] = prefix + abstract_block + body.lstrip()
+    source[0] = prefix + body
 
 
 def setup(app):
