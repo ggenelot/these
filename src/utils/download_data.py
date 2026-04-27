@@ -51,9 +51,12 @@ def _load_env_file(env_path: str | Path | None = None) -> None:
         print(f"[env] .env already loaded or empty: {path}")
 
 
-def download_elevation(bbox = (-61.25, 14.35, -60.75, 14.95), 
-                       dataset = "COP30",
-                       output_tif = "data/raw/elevation/cop30_dem.tif"):
+def download_elevation(
+    bbox=(-61.25, 14.35, -60.75, 14.95),
+    dataset="COP30",
+    output_tif="data/raw/elevation/cop30_dem.tif",
+    force_download=False,
+):
     """
     Download a Digital Elevation Model (DEM) from OpenTopography and inspect it.
 
@@ -71,6 +74,9 @@ def download_elevation(bbox = (-61.25, 14.35, -60.75, 14.95),
     SystemExit
         If the API request fails.
     """
+    if not force_download and _raster_covers_bbox(output_tif, bbox):
+        return Path(output_tif)
+
     _load_env_file()
     API_KEY = os.getenv("OPENTOPO_API_KEY")
 
@@ -113,6 +119,8 @@ def download_elevation(bbox = (-61.25, 14.35, -60.75, 14.95),
         print("Bounds:", src.bounds)
         show(src, title=f"OpenTopography {dataset} DEM")
 
+    return Path(output_tif)
+
 
 def _stac_datetime_to_timestamp(value: str) -> float:
     """Convert STAC datetime string to a sortable UNIX timestamp."""
@@ -142,6 +150,95 @@ def _print_raster_metadata(path: str | Path, title: str, preview: bool = False) 
         print("Bounds:", src.bounds)
         if preview:
             show(src, title=title)
+
+
+def _write_response_content(response, output_path: Path, chunk_size: int = 1024 * 1024) -> int:
+    """Write a streamed HTTP response with lightweight progress output."""
+    total = int(response.headers.get("content-length") or 0)
+    written = 0
+    next_report = 0
+
+    with output_path.open("wb") as dst:
+        for chunk in response.iter_content(chunk_size=chunk_size):
+            if not chunk:
+                continue
+            dst.write(chunk)
+            written += len(chunk)
+
+            if total:
+                percent = int((written / total) * 100)
+                if percent >= next_report:
+                    print(
+                        f"[download] {percent:3d}% "
+                        f"({written / 1_000_000:.1f}/{total / 1_000_000:.1f} MB)"
+                    )
+                    next_report += 10
+            elif written // (10 * chunk_size) > (written - len(chunk)) // (10 * chunk_size):
+                print(f"[download] {written / 1_000_000:.1f} MB written")
+
+    return written
+
+
+def _raster_covers_bbox(
+    path: str | Path,
+    bbox: tuple[float, float, float, float],
+    *,
+    max_resolution: float | None = None,
+) -> bool:
+    """Return True if a local raster covers bbox and optional resolution target."""
+    path = Path(path)
+    if not path.exists():
+        return False
+
+    try:
+        with rasterio.open(path) as src:
+            if src.crs is None:
+                print(f"[cache] Ignoring {path}: missing CRS")
+                return False
+
+            west, south, east, north = bbox
+            raster_bounds = src.bounds
+            if src.crs.to_string() != "EPSG:4326":
+                raster_bounds = transform_bounds(
+                    src.crs,
+                    "EPSG:4326",
+                    src.bounds.left,
+                    src.bounds.bottom,
+                    src.bounds.right,
+                    src.bounds.top,
+                    densify_pts=21,
+                )
+
+            covers = (
+                raster_bounds[0] <= west
+                and raster_bounds[1] <= south
+                and raster_bounds[2] >= east
+                and raster_bounds[3] >= north
+            )
+            if not covers:
+                print(f"[cache] Ignoring {path}: raster does not cover requested bbox")
+                return False
+
+            if max_resolution is not None:
+                if src.crs.is_geographic:
+                    center_lat = (south + north) / 2.0
+                    metres_per_degree = 111_320.0 * math.cos(math.radians(center_lat))
+                    approx_res_m = max(abs(src.res[0]) * metres_per_degree, abs(src.res[1]) * 111_320.0)
+                else:
+                    approx_res_m = max(abs(src.res[0]), abs(src.res[1]))
+
+                if approx_res_m > max_resolution * 1.05:
+                    print(
+                        f"[cache] Ignoring {path}: resolution {approx_res_m:.2f} m "
+                        f"is coarser than requested {max_resolution:.2f} m"
+                    )
+                    return False
+
+            print(f"[cache] Reusing local raster: {path}")
+            return True
+    except rasterio.errors.RasterioIOError as exc:
+        print(f"[cache] Ignoring unreadable raster {path}: {exc}")
+        return False
 
 
 def _copernicus_access_token(
@@ -218,6 +315,7 @@ def download_copernicus_sentinel2_image(
     client_secret: str | None = None,
     process_url="https://sh.dataspace.copernicus.eu/api/v1/process",
     use_env_proxies=False,
+    force_download=False,
     preview=False,
 ):
     """Download a Copernicus Sentinel-2 L2A true-color GeoTIFF for a bbox.
@@ -253,6 +351,9 @@ def download_copernicus_sentinel2_image(
     use_env_proxies : bool
         If True, use proxy settings from environment variables. Defaults to
         False to avoid stale local proxy settings breaking Copernicus requests.
+    force_download : bool
+        If False, reuse ``output_tif`` when it already covers ``bbox`` at a
+        compatible resolution.
     preview : bool
         If True, display the downloaded raster with ``rasterio.plot.show``.
     """
@@ -266,6 +367,15 @@ def download_copernicus_sentinel2_image(
         raise ValueError("Invalid bbox order. Expected west < east and south < north.")
 
     start_date, end_date = _date_range(start_date, end_date, days_back)
+    output_path = Path(output_tif)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    if not force_download and _raster_covers_bbox(
+        output_path,
+        bbox,
+        max_resolution=resolution,
+    ):
+        return output_path
+
     bbox_3857 = transform_bounds(
         "EPSG:4326",
         "EPSG:3857",
@@ -282,8 +392,6 @@ def download_copernicus_sentinel2_image(
         f"(width={width}, height={height}, resolution={resolution} m, crs=EPSG:3857)"
     )
 
-    output_path = Path(output_tif)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
     print(f"[copernicus] Output path: {output_path}")
 
     evalscript = """
@@ -355,12 +463,13 @@ function evaluatePixel(sample) {
         process_url,
         json=payload,
         headers={"Authorization": f"Bearer {access_token}"},
+        stream=True,
         timeout=120,
     )
     print(f"[copernicus] Process API status: {response.status_code}")
     response.raise_for_status()
-    output_path.write_bytes(response.content)
-    print(f"[copernicus] Wrote {len(response.content)} bytes")
+    written = _write_response_content(response, output_path)
+    print(f"[copernicus] Wrote {written} bytes")
 
     print(f"Download complete! File saved as: {output_path}")
     _print_raster_metadata(output_path, "Copernicus Sentinel-2 L2A true color", preview)
@@ -379,6 +488,7 @@ def download_satellite_image(
     end_date=None,
     days_back=30,
     stac_url="https://earth-search.aws.element84.com/v1/search",
+    force_download=False,
     preview=False,
 ):
     """
@@ -414,6 +524,9 @@ def download_satellite_image(
         Number of days before ``end_date`` when ``start_date`` is omitted.
     stac_url : str
         STAC API search endpoint.
+    force_download : bool
+        If False, reuse ``output_tif`` when it already covers ``bbox`` at a
+        compatible resolution.
     preview : bool
         If True, display the downloaded raster with ``rasterio.plot.show``.
     """
@@ -427,6 +540,7 @@ def download_satellite_image(
             end_date=end_date,
             days_back=days_back,
             use_env_proxies=False,
+            force_download=force_download,
             preview=preview,
         )
     if provider != "earthsearch":
@@ -443,6 +557,8 @@ def download_satellite_image(
 
     output_path = Path(output_tif)
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    if not force_download and _raster_covers_bbox(output_path, bbox):
+        return output_path
 
     datetime_filter = f"{start_date}T00:00:00Z/{end_date}T23:59:59Z"
     base_payload = {

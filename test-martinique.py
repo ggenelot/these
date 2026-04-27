@@ -22,6 +22,7 @@ download_satellite_image(
     resolution=30,
     max_cloud_cover=25,
     days_back=365,
+    force_download=False,
 )
 
 create_block_diagram(
