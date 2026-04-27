@@ -467,6 +467,15 @@ function evaluatePixel(sample) {
         timeout=120,
     )
     print(f"[copernicus] Process API status: {response.status_code}")
+    if response.status_code == 400:
+        detail = response.text[:1000].strip()
+        raise ValueError(
+            "Copernicus refused the Process API request (HTTP 400). "
+            "The requested image is probably too large for one request. "
+            f"Requested grid: {width} x {height} pixels. "
+            "Try a coarser resolution, a smaller bbox, or tile the request. "
+            f"Server response: {detail}"
+        )
     response.raise_for_status()
     written = _write_response_content(response, output_path)
     print(f"[copernicus] Wrote {written} bytes")

@@ -11,7 +11,7 @@ from utils.download_data import download_satellite_image
 
 BBOX_MARTINIQUE = (-61.30, 14.35, -60.75, 14.95)
 DEM_PATH = "data/raw/elevation/cop30_dem.tif"
-TEXTURE_PATH = "data/raw/satellite/martinique_copernicus_s2_10m.tif"
+TEXTURE_PATH = "data/raw/satellite/martinique_copernicus_s2_30m.tif"
 OUTPUT_PATH = "output_bloc_martinique.png"
 
 
