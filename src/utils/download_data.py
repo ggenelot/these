@@ -20,6 +20,29 @@ except ImportError:
     Catalogue = None
 
 
+def _repo_root() -> Path:
+    """Return the repository root from this module location."""
+    return Path(__file__).resolve().parents[2]
+
+
+def _load_env_file(env_path: str | Path | None = None) -> None:
+    """Load simple KEY=VALUE pairs from a .env file into os.environ."""
+    path = Path(env_path) if env_path is not None else _repo_root() / ".env"
+    if not path.exists():
+        return
+
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+        key = key.strip().lstrip("\ufeff")
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
 def download_elevation(bbox = (-61.25, 14.35, -60.75, 14.95), 
                        dataset = "COP30",
                        output_tif = "data/raw/elevation/cop30_dem.tif"):
@@ -40,6 +63,7 @@ def download_elevation(bbox = (-61.25, 14.35, -60.75, 14.95),
     SystemExit
         If the API request fails.
     """
+    _load_env_file()
     API_KEY = os.getenv("OPENTOPO_API_KEY")
 
     if not API_KEY:
@@ -121,6 +145,7 @@ def _copernicus_access_token(
     ),
 ) -> str:
     """Return an access token for Copernicus Data Space/Sentinel Hub APIs."""
+    _load_env_file()
     client_id = (
         client_id
         or os.getenv("COPERNICUS_CLIENT_ID")
@@ -148,6 +173,16 @@ def _copernicus_access_token(
         },
         timeout=60,
     )
+    if response.status_code == 401:
+        detail = response.text[:500].strip()
+        raise ValueError(
+            "Copernicus refused the OAuth credentials (HTTP 401). "
+            "Use a Sentinel Hub OAuth client created in the Copernicus Data "
+            "Space Sentinel Hub Dashboard, not your Copernicus login/password. "
+            "Check that COPERNICUS_CLIENT_ID and COPERNICUS_CLIENT_SECRET in "
+            ".env are copied exactly and that the OAuth client is active. "
+            f"Server response: {detail}"
+        )
     response.raise_for_status()
     return response.json()["access_token"]
 
