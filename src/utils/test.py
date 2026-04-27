@@ -1,18 +1,25 @@
-from diagramme import *
-from download_data import *
+from utils.download_data import download_satellite_image
+from utils.diagramme import create_block_diagram
 
 bbox_precheur = (-61.25, 14.78, -61.18, 14.86)
-dem_path = "data/raw/elevation/precheur.tif"
-sat_path = "data/raw/satellite/precheur_s2.tif"
 
-#download_elevation(bbox=bbox_precheur, output_tif=dem_path)
-#download_satellite_image(bbox=(-61.25, 14.78, -61.18, 14.86), output_tif=sat_path)
+download_satellite_image(
+    bbox=bbox_precheur,
+    output_tif="data/raw/satellite/precheur_copernicus_s2_10m.tif",
+    provider="copernicus",
+    resolution=10,
+    max_cloud_cover=20,
+    days_back=180,
+)
 
-
-create_block_diagram(dem_path, 
-                     use_texture=True, 
-                     texture_path=sat_path, 
-                     output_path="output.png", 
-                     azimuth=230, 
-                     vertical_exaggeration=1
-                     )
+create_block_diagram(
+    "data/raw/elevation/precheur.tif",
+    "output_bloc_copernicus.png",
+    use_texture=True,
+    texture_path="data/raw/satellite/precheur_copernicus_s2_10m.tif",
+    azimuth=230,
+    elevation=28,
+    vertical_exaggeration=1.2,
+    flatten_below_sea_level=True,
+    show_base=True,
+)

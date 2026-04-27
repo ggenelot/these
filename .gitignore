@@ -2,9 +2,16 @@ data/raw/*
 data/processed/*
 data/external/*
 *.tif
+*.tiff
 *.zip
 cache/*
 scripts/cache/*
+
+# secrets
+.env
+.env.*
+!.env.example
+
 
 .vscode/*
 

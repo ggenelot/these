@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import shutil
+import math
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
@@ -12,7 +13,11 @@ import requests
 from rasterio.plot import show
 from rasterio.warp import transform_bounds
 from rasterio.windows import from_bounds
-from terracatalogueclient import Catalogue
+
+try:
+    from terracatalogueclient import Catalogue
+except ImportError:
+    Catalogue = None
 
 
 def download_elevation(bbox = (-61.25, 14.35, -60.75, 14.95), 
@@ -87,9 +92,216 @@ def _stac_datetime_to_timestamp(value: str) -> float:
         return 0.0
 
 
+def _date_range(start_date=None, end_date=None, days_back=30) -> tuple[str, str]:
+    """Resolve a date range as ISO dates."""
+    if end_date is None:
+        end_date = date.today().isoformat()
+    if start_date is None:
+        start_date = (date.fromisoformat(end_date) - timedelta(days=days_back)).isoformat()
+    return start_date, end_date
+
+
+def _print_raster_metadata(path: str | Path, title: str, preview: bool = False) -> None:
+    """Print common raster metadata and optionally preview it."""
+    with rasterio.open(path) as src:
+        print(f"\n--- {title} Metadata ---")
+        print("Projection:", src.crs)
+        print("Resolution:", src.res)
+        print("Bounds:", src.bounds)
+        if preview:
+            show(src, title=title)
+
+
+def _copernicus_access_token(
+    client_id: str | None = None,
+    client_secret: str | None = None,
+    token_url: str = (
+        "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/"
+        "protocol/openid-connect/token"
+    ),
+) -> str:
+    """Return an access token for Copernicus Data Space/Sentinel Hub APIs."""
+    client_id = (
+        client_id
+        or os.getenv("COPERNICUS_CLIENT_ID")
+        or os.getenv("SENTINELHUB_CLIENT_ID")
+    )
+    client_secret = (
+        client_secret
+        or os.getenv("COPERNICUS_CLIENT_SECRET")
+        or os.getenv("SENTINELHUB_CLIENT_SECRET")
+    )
+
+    if not client_id or not client_secret:
+        raise ValueError(
+            "Copernicus credentials are missing. Set COPERNICUS_CLIENT_ID and "
+            "COPERNICUS_CLIENT_SECRET, or SENTINELHUB_CLIENT_ID and "
+            "SENTINELHUB_CLIENT_SECRET, as environment variables."
+        )
+
+    response = requests.post(
+        token_url,
+        data={
+            "grant_type": "client_credentials",
+            "client_id": client_id,
+            "client_secret": client_secret,
+        },
+        timeout=60,
+    )
+    response.raise_for_status()
+    return response.json()["access_token"]
+
+
+def download_copernicus_sentinel2_image(
+    bbox=(-61.25, 14.35, -60.75, 14.95),
+    output_tif="data/raw/satellite/copernicus_s2_l2a_true_color.tif",
+    resolution=10,
+    max_cloud_cover=20,
+    start_date=None,
+    end_date=None,
+    days_back=90,
+    mosaicking_order="leastCC",
+    data_type="sentinel-2-l2a",
+    client_id: str | None = None,
+    client_secret: str | None = None,
+    process_url="https://sh.dataspace.copernicus.eu/api/v1/process",
+    preview=False,
+):
+    """Download a Copernicus Sentinel-2 L2A true-color GeoTIFF for a bbox.
+
+    This uses the Copernicus Data Space Ecosystem / Sentinel Hub Process API.
+    It requests a spatial subset directly as a GeoTIFF, which is lighter than
+    downloading a full Sentinel-2 SAFE product and extracting JP2 bands locally.
+
+    Parameters
+    ----------
+    bbox : tuple(float, float, float, float)
+        Bounding box in EPSG:4326 as (west, south, east, north).
+    output_tif : str
+        Output path for the GeoTIFF texture.
+    resolution : float
+        Output pixel size in metres. Sentinel-2 true color is natively 10 m.
+    max_cloud_cover : float
+        Maximum scene cloud cover percentage.
+    start_date, end_date : str or None
+        ISO dates (YYYY-MM-DD). If omitted, uses the last ``days_back`` days.
+    days_back : int
+        Number of days before ``end_date`` when ``start_date`` is omitted.
+    mosaicking_order : str
+        Copernicus/Sentinel Hub mosaicking order, e.g. ``leastCC`` or
+        ``mostRecent``.
+    data_type : str
+        Process API data type. Defaults to ``sentinel-2-l2a``.
+    client_id, client_secret : str or None
+        Optional credentials. If omitted, reads ``COPERNICUS_CLIENT_ID`` and
+        ``COPERNICUS_CLIENT_SECRET`` from the environment.
+    process_url : str
+        Process API endpoint.
+    preview : bool
+        If True, display the downloaded raster with ``rasterio.plot.show``.
+    """
+    if len(bbox) != 4:
+        raise ValueError("bbox must be a 4-value tuple: (west, south, east, north)")
+    if resolution <= 0:
+        raise ValueError("resolution must be strictly positive.")
+
+    west, south, east, north = bbox
+    if west >= east or south >= north:
+        raise ValueError("Invalid bbox order. Expected west < east and south < north.")
+
+    start_date, end_date = _date_range(start_date, end_date, days_back)
+    bbox_3857 = transform_bounds(
+        "EPSG:4326",
+        "EPSG:3857",
+        west,
+        south,
+        east,
+        north,
+        densify_pts=21,
+    )
+    width = max(1, math.ceil((bbox_3857[2] - bbox_3857[0]) / resolution))
+    height = max(1, math.ceil((bbox_3857[3] - bbox_3857[1]) / resolution))
+
+    output_path = Path(output_tif)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    evalscript = """
+//VERSION=3
+function setup() {
+  return {
+    input: ["B04", "B03", "B02", "dataMask"],
+    output: { bands: 4, sampleType: "AUTO" }
+  };
+}
+
+function evaluatePixel(sample) {
+  return [2.5 * sample.B04, 2.5 * sample.B03, 2.5 * sample.B02, sample.dataMask];
+}
+"""
+
+    payload = {
+        "input": {
+            "bounds": {
+                "bbox": list(bbox_3857),
+                "properties": {
+                    "crs": "http://www.opengis.net/def/crs/EPSG/0/3857",
+                },
+            },
+            "data": [
+                {
+                    "type": data_type,
+                    "dataFilter": {
+                        "timeRange": {
+                            "from": f"{start_date}T00:00:00Z",
+                            "to": f"{end_date}T23:59:59Z",
+                        },
+                        "maxCloudCoverage": max_cloud_cover,
+                        "mosaickingOrder": mosaicking_order,
+                    },
+                    "processing": {
+                        "upsampling": "BILINEAR",
+                        "downsampling": "BILINEAR",
+                    },
+                }
+            ],
+        },
+        "output": {
+            "width": width,
+            "height": height,
+            "responses": [
+                {
+                    "identifier": "default",
+                    "format": {"type": "image/tiff"},
+                }
+            ],
+        },
+        "evalscript": evalscript,
+    }
+
+    access_token = _copernicus_access_token(client_id, client_secret)
+    print(
+        "Downloading Copernicus Sentinel-2 L2A true-color image "
+        f"for bbox={bbox}, date={start_date}/{end_date}, resolution={resolution} m"
+    )
+    response = requests.post(
+        process_url,
+        json=payload,
+        headers={"Authorization": f"Bearer {access_token}"},
+        timeout=120,
+    )
+    response.raise_for_status()
+    output_path.write_bytes(response.content)
+
+    print(f"Download complete! File saved as: {output_path}")
+    _print_raster_metadata(output_path, "Copernicus Sentinel-2 L2A true color", preview)
+    return output_path
+
+
 def download_satellite_image(
     bbox=(-61.25, 14.35, -60.75, 14.95),
     output_tif="data/raw/satellite/sentinel2_visual.tif",
+    provider="earthsearch",
+    resolution=10,
     collection="sentinel-2-l2a",
     asset_key="visual",
     max_cloud_cover=20,
@@ -114,6 +326,11 @@ def download_satellite_image(
         Bounding box in EPSG:4326 as (west, south, east, north).
     output_tif : str
         Output path for the clipped GeoTIFF.
+    provider : {"earthsearch", "copernicus"}
+        Imagery provider. ``earthsearch`` uses public STAC COG assets.
+        ``copernicus`` uses the Copernicus Data Space / Sentinel Hub Process API.
+    resolution : float
+        Output pixel size in metres when ``provider="copernicus"``.
     collection : str
         STAC collection ID. Default is Sentinel-2 L2A.
     asset_key : str
@@ -130,6 +347,20 @@ def download_satellite_image(
     preview : bool
         If True, display the downloaded raster with ``rasterio.plot.show``.
     """
+    if provider == "copernicus":
+        return download_copernicus_sentinel2_image(
+            bbox=bbox,
+            output_tif=output_tif,
+            resolution=resolution,
+            max_cloud_cover=max_cloud_cover,
+            start_date=start_date,
+            end_date=end_date,
+            days_back=days_back,
+            preview=preview,
+        )
+    if provider != "earthsearch":
+        raise ValueError("provider must be 'earthsearch' or 'copernicus'.")
+
     if len(bbox) != 4:
         raise ValueError("bbox must be a 4-value tuple: (west, south, east, north)")
 
@@ -137,10 +368,7 @@ def download_satellite_image(
     if west >= east or south >= north:
         raise ValueError("Invalid bbox order. Expected west < east and south < north.")
 
-    if end_date is None:
-        end_date = date.today().isoformat()
-    if start_date is None:
-        start_date = (date.fromisoformat(end_date) - timedelta(days=days_back)).isoformat()
+    start_date, end_date = _date_range(start_date, end_date, days_back)
 
     output_path = Path(output_tif)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -336,6 +564,13 @@ def download_ESA():
     - Bounding box for Martinique example: (-61.3, 14.2, -60.75, 15.0).
     """
     from shapely.geometry import Polygon
+
+    if Catalogue is None:
+        raise ImportError(
+            "terracatalogueclient is required for download_ESA(). "
+            "Install the project with the dev dependencies or install "
+            "terracatalogueclient."
+        )
 
     catalogue = Catalogue().authenticate()
     bounds = (-61.3, 14.2, -60.75, 15.0)

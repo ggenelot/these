@@ -11,11 +11,12 @@ Ce module fournit une première brique analytique reproductible :
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Any, Mapping, Optional, Sequence, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
 import rasterio
+from matplotlib.colors import LightSource
 from matplotlib.figure import Figure
 from rasterio.crs import CRS
 from rasterio.transform import array_bounds
@@ -24,6 +25,7 @@ from rasterio.windows import from_bounds
 
 
 Bounds = Tuple[float, float, float, float]
+LabelSpec = Mapping[str, Any]
 USE_TEXTURE = False
 TEXTURE_PATH: Optional[str] = None
 
@@ -169,6 +171,82 @@ def _load_dem_core(
     return z, x, y, nodata, transform, work_crs
 
 
+def _normalise_rgb(rgb: np.ndarray) -> np.ndarray:
+    """Normaliser un raster RGB en 0..1 de manière robuste."""
+    rgb = rgb.astype("float32", copy=False)
+    if np.nanmax(rgb) > 1.0:
+        rgb = rgb / 255.0
+    return np.clip(rgb, 0.0, 1.0)
+
+
+def _shade_rgb(
+    rgb: np.ndarray,
+    elevation: np.ndarray,
+    *,
+    azimuth: float,
+    altitude: float,
+    fraction: float,
+) -> np.ndarray:
+    """Appliquer un hillshade léger à une texture RGB."""
+    light = LightSource(azdeg=azimuth, altdeg=altitude)
+    shade = light.hillshade(np.nan_to_num(elevation, nan=np.nanmin(elevation)))
+    shaded = _normalise_rgb(rgb) * (0.35 + 0.65 * shade[:, :, None] * fraction)
+    return np.clip(shaded, 0.0, 1.0)
+
+
+def _surface_facecolors(
+    elevation: np.ndarray,
+    *,
+    cmap: str,
+    azimuth: float,
+    altitude: float,
+    texture_rgb: Optional[np.ndarray],
+    shade_fraction: float,
+) -> np.ndarray:
+    """Construire les couleurs de surface avec texture ou colormap ombrée."""
+    if texture_rgb is not None:
+        return _shade_rgb(
+            texture_rgb,
+            elevation,
+            azimuth=azimuth,
+            altitude=altitude,
+            fraction=shade_fraction,
+        )
+
+    light = LightSource(azdeg=azimuth, altdeg=altitude)
+    safe_elevation = np.nan_to_num(elevation, nan=np.nanmin(elevation))
+    return light.shade(
+        safe_elevation,
+        cmap=plt.get_cmap(cmap),
+        vert_exag=1.0,
+        blend_mode="soft",
+        fraction=shade_fraction,
+    )
+
+
+def _resolve_label_xy(label: LabelSpec, x: np.ndarray, y: np.ndarray) -> Tuple[float, float]:
+    """Résoudre une position de label depuis x/y ou des fractions d'emprise."""
+    if "xy_fraction" in label:
+        fx, fy = label["xy_fraction"]
+        return (
+            float(x[0] + fx * (x[-1] - x[0])),
+            float(y[0] + fy * (y[-1] - y[0])),
+        )
+    if "x" in label and "y" in label:
+        return float(label["x"]), float(label["y"])
+    raise ValueError("Chaque label doit définir 'x'/'y' ou 'xy_fraction'.")
+
+
+def _z_at_xy(x0: float, y0: float, x: np.ndarray, y: np.ndarray, z: np.ndarray) -> float:
+    """Extraire l'altitude de surface la plus proche d'une coordonnée."""
+    col = int(np.nanargmin(np.abs(x - x0)))
+    row = int(np.nanargmin(np.abs(y - y0)))
+    z0 = z[row, col]
+    if np.isfinite(z0):
+        return float(z0)
+    return float(np.nanmean(z))
+
+
 def load_dem(
     dem_path: str | Path,
     *,
@@ -212,6 +290,24 @@ def create_block_diagram(
     base_level: Optional[float] = None,
     use_texture: Optional[bool] = None,
     texture_path: Optional[str | Path] = None,
+    shade_azimuth: float = 315,
+    shade_altitude: float = 45,
+    shade_fraction: float = 1.25,
+    show_sea: bool = True,
+    sea_position: str = "front",
+    sea_level: float = 0.0,
+    clip_below_sea_level: bool = False,
+    flatten_below_sea_level: bool = False,
+    sea_margin: float = 0.08,
+    sea_color: str = "#9ddfe7",
+    show_base: bool = True,
+    base_color: str = "#6f7b79",
+    side_color: str = "#78827f",
+    front_side_color: str = "#8f907f",
+    labels: Optional[Sequence[LabelSpec]] = None,
+    label_height_ratio: float = 0.45,
+    title: Optional[str] = None,
+    credit: Optional[str] = None,
 ) -> Figure:
     """Créer une vue oblique 3D simple à partir d'un MNT et exporter l'image.
 
@@ -243,6 +339,27 @@ def create_block_diagram(
     texture_path : str | pathlib.Path, optional
         Chemin vers la texture géoréférencée (GeoTIFF recommandé).
         Si None, utilise ``TEXTURE_PATH``.
+    shade_azimuth, shade_altitude, shade_fraction : float
+        Paramètres de l'ombrage appliqué à la surface supérieure.
+    show_sea : bool
+        Ajoute un plan d'eau autour du bloc.
+    sea_position : {"front", "full"}
+        Position du plan d'eau. ``front`` crée une bande d'avant-plan, ``full``
+        couvre toute l'emprise élargie.
+    clip_below_sea_level : bool
+        Masque la surface topographique sous ``sea_level`` pour laisser le plan
+        d'eau visible.
+    flatten_below_sea_level : bool
+        Ramène les zones sous ``sea_level`` au niveau de la mer tout en gardant
+        la texture satellite.
+    show_base : bool
+        Ajoute une base horizontale pleine sous le bloc.
+    labels : sequence of mappings, optional
+        Annotations verticales. Chaque entrée doit contenir ``text`` et soit
+        ``x``/``y`` en coordonnées du rendu, soit ``xy_fraction`` dans
+        l'emprise (0..1, 0..1).
+    title, credit : str, optional
+        Texte d'habillage ajouté en bas de la figure.
 
     Returns
     -------
@@ -251,6 +368,12 @@ def create_block_diagram(
     """
     if vertical_exaggeration <= 0:
         raise ValueError("vertical_exaggeration doit être strictement positif.")
+    if shade_fraction <= 0:
+        raise ValueError("shade_fraction doit être strictement positif.")
+    if sea_margin < 0:
+        raise ValueError("sea_margin doit être positif ou nul.")
+    if sea_position not in {"front", "full"}:
+        raise ValueError("sea_position doit valoir 'front' ou 'full'.")
 
     z, x, y, _, dem_transform, dem_crs = _load_dem_core(dem_path, bounds=bounds)
 
@@ -258,10 +381,13 @@ def create_block_diagram(
     zz = z * vertical_exaggeration
     z_min = float(np.nanmin(zz))
     z_base = z_min if base_level is None else float(base_level)
+    z_sea = sea_level * vertical_exaggeration
     zz_top = np.where(np.isnan(zz), z_base, zz)
 
     fig = plt.figure(figsize=figure_size)
     ax = fig.add_subplot(111, projection="3d")
+    fig.patch.set_facecolor("white")
+    ax.set_facecolor("white")
 
     use_texture_resolved = USE_TEXTURE if use_texture is None else use_texture
     texture_path_resolved = TEXTURE_PATH if texture_path is None else texture_path
@@ -274,27 +400,76 @@ def create_block_diagram(
             target_crs=dem_crs,
         )
 
+    facecolors = _surface_facecolors(
+        zz_top,
+        cmap=cmap,
+        azimuth=shade_azimuth,
+        altitude=shade_altitude,
+        texture_rgb=texture_rgb,
+        shade_fraction=shade_fraction,
+    )
+    zz_surface = zz_top
+    if flatten_below_sea_level:
+        sea_mask = np.isfinite(z) & (z <= sea_level)
+        zz_surface = np.where(sea_mask, z_sea, zz_surface)
+    if clip_below_sea_level:
+        land_mask = np.isfinite(z) & (z > sea_level)
+        zz_surface = np.where(land_mask, zz_top, np.nan)
+        facecolors = np.array(facecolors, copy=True)
+        if facecolors.shape[-1] == 3:
+            alpha = np.where(land_mask, 1.0, 0.0)
+            facecolors = np.dstack((facecolors, alpha))
+        else:
+            facecolors[..., 3] = np.where(land_mask, facecolors[..., 3], 0.0)
+
+    if show_sea:
+        x_span = abs(float(x[-1] - x[0]))
+        y_span = abs(float(y[-1] - y[0]))
+        sea_x = np.array([x[0] - x_span * sea_margin, x[-1] + x_span * sea_margin])
+        if sea_position == "front":
+            sea_y = np.array([y[0] - y_span * sea_margin, y[0]])
+        else:
+            sea_y = np.array([y[0] - y_span * sea_margin, y[-1] + y_span * sea_margin])
+        sea_xx, sea_yy = np.meshgrid(sea_x, sea_y)
+        sea_zz = np.full_like(sea_xx, z_sea, dtype=float)
+        ax.plot_surface(
+            sea_xx,
+            sea_yy,
+            sea_zz,
+            color=sea_color,
+            linewidth=0,
+            antialiased=False,
+            alpha=0.72,
+            shade=False,
+        )
+
     top_surface_kwargs = dict(
+        facecolors=facecolors,
+        shade=False,
         linewidth=0,
         antialiased=False,
         rcount=min(zz.shape[0], 300),
         ccount=min(zz.shape[1], 300),
     )
-    if texture_rgb is not None:
-        top_surface_kwargs["facecolors"] = texture_rgb
-        top_surface_kwargs["shade"] = False
-    else:
-        top_surface_kwargs["cmap"] = cmap
+
+    if show_base:
+        base_zz = np.full_like(xx, z_base, dtype=float)
+        ax.plot_surface(
+            xx,
+            yy,
+            base_zz,
+            color=base_color,
+            linewidth=0,
+            antialiased=False,
+            shade=True,
+        )
 
     ax.plot_surface(
         xx,
         yy,
-        zz_top,
+        zz_surface,
         **top_surface_kwargs,
     )
-
-    # Base horizontale retirée: avec mplot3d (tri de profondeur sans z-buffer),
-    # cette surface Z-constante peut apparaître "devant" le relief selon l'angle.
 
     # Faces latérales verticales pour fermer le volume.
     x0 = np.array([x[0], x[0]])
@@ -302,10 +477,11 @@ def create_block_diagram(
     y0 = np.array([y[0], y[0]])
     y1 = np.array([y[-1], y[-1]])
 
-    top_left = zz_top[:, 0]
-    top_right = zz_top[:, -1]
-    top_front = zz_top[0, :]
-    top_back = zz_top[-1, :]
+    zz_wall_top = np.where(np.isnan(zz_surface), z_base, zz_surface)
+    top_left = zz_wall_top[:, 0]
+    top_right = zz_wall_top[:, -1]
+    top_front = zz_wall_top[0, :]
+    top_back = zz_wall_top[-1, :]
 
     y_col = y[:, None]
     x_col = x[:, None]
@@ -318,37 +494,89 @@ def create_block_diagram(
         np.tile(x0, (len(y), 1)),
         np.tile(y_col, (1, 2)),
         z_left,
-        color="#b8ad97",
+        color=side_color,
         linewidth=0,
         antialiased=False,
+        shade=True,
     )
     ax.plot_surface(
         np.tile(x1, (len(y), 1)),
         np.tile(y_col, (1, 2)),
         z_right,
-        color="#b8ad97",
+        color=side_color,
         linewidth=0,
         antialiased=False,
+        shade=True,
     )
     ax.plot_surface(
         np.tile(x_col, (1, 2)),
         np.tile(y0, (len(x), 1)),
         z_front,
-        color="#a89d86",
+        color=front_side_color,
         linewidth=0,
         antialiased=False,
+        shade=True,
     )
     ax.plot_surface(
         np.tile(x_col, (1, 2)),
         np.tile(y1, (len(x), 1)),
         z_back,
-        color="#a89d86",
+        color=front_side_color,
         linewidth=0,
         antialiased=False,
+        shade=True,
     )
+
+    if labels:
+        z_range = float(np.nanmax(zz_top) - np.nanmin(zz_top))
+        default_label_top = float(np.nanmax(zz_top) + z_range * label_height_ratio)
+        for label in labels:
+            label_x, label_y = _resolve_label_xy(label, x, y)
+            label_z0 = _z_at_xy(label_x, label_y, x, y, zz_top)
+            label_z1 = float(label.get("z", default_label_top))
+            ax.plot(
+                [label_x, label_x],
+                [label_y, label_y],
+                [label_z0, label_z1],
+                color=label.get("color", "#222222"),
+                linewidth=float(label.get("linewidth", 1.1)),
+            )
+            ax.text(
+                label_x,
+                label_y,
+                label_z1,
+                str(label["text"]),
+                color=label.get("color", "#111111"),
+                fontsize=float(label.get("fontsize", 16)),
+                ha=label.get("ha", "center"),
+                va=label.get("va", "bottom"),
+                fontfamily=label.get("fontfamily", "serif"),
+            )
 
     ax.view_init(elev=elevation, azim=azimuth)
     ax.set_axis_off()
+    ax.set_box_aspect(
+        (
+            abs(float(x[-1] - x[0])),
+            abs(float(y[-1] - y[0])),
+            max(abs(float(np.nanmax(zz_top) - z_base)), 1.0),
+        )
+    )
+    ax.margins(0)
+
+    if title:
+        fig.text(0.04, 0.045, title, ha="left", va="bottom", fontsize=11)
+    if credit:
+        fig.text(
+            0.012,
+            0.075,
+            credit,
+            ha="left",
+            va="bottom",
+            rotation=90,
+            fontsize=7,
+            color="white",
+        )
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
