@@ -38,14 +38,14 @@ def _utm_crs_from_lonlat(lon: float, lat: float) -> CRS:
     return CRS.from_epsg(epsg)
 
 
-def _load_texture_on_dem_grid(
+def _load_texture_on_grid(
     texture_path: str | Path,
     *,
     target_shape: Tuple[int, int],
     target_transform,
     target_crs: Optional[CRS],
 ) -> Optional[np.ndarray]:
-    """Charger/reprojeter une texture raster sur la grille du MNT."""
+    """Charger/reprojeter une texture raster sur une grille cible."""
     if target_crs is None:
         return None
 
@@ -95,6 +95,22 @@ def _load_texture_on_dem_grid(
     return texture_rgb
 
 
+def _load_texture_on_dem_grid(
+    texture_path: str | Path,
+    *,
+    target_shape: Tuple[int, int],
+    target_transform,
+    target_crs: Optional[CRS],
+) -> Optional[np.ndarray]:
+    """Charger/reprojeter une texture raster sur la grille du MNT."""
+    return _load_texture_on_grid(
+        texture_path,
+        target_shape=target_shape,
+        target_transform=target_transform,
+        target_crs=target_crs,
+    )
+
+
 def _load_dem_core(
     dem_path: str | Path,
     *,
@@ -105,7 +121,16 @@ def _load_dem_core(
 
     with rasterio.open(dem_path) as src:
         if bounds is not None:
-            window = from_bounds(*bounds, transform=src.transform)
+            left = max(bounds[0], src.bounds.left)
+            bottom = max(bounds[1], src.bounds.bottom)
+            right = min(bounds[2], src.bounds.right)
+            top = min(bounds[3], src.bounds.top)
+            if left >= right or bottom >= top:
+                raise ValueError(
+                    "L'emprise demandée ne recoupe pas l'emprise du MNT."
+                )
+
+            window = from_bounds(left, bottom, right, top, transform=src.transform)
             window = window.round_offsets().round_lengths()
             z = src.read(1, window=window, masked=True).astype("float64")
             transform = src.window_transform(window)
@@ -171,6 +196,51 @@ def _load_dem_core(
     return z, x, y, nodata, transform, work_crs
 
 
+def _resample_dem_to_match_texture(
+    z: np.ndarray,
+    *,
+    src_transform,
+    src_crs: Optional[CRS],
+    texture_path: str | Path,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, Any, Optional[CRS]]:
+    """Reprojeter/rééchantillonner le MNT sur la grille de la texture."""
+    if src_crs is None:
+        return z, * _xy_from_transform(src_transform, z.shape), src_transform, src_crs
+
+    texture_path = Path(texture_path)
+    if not texture_path.exists():
+        return z, * _xy_from_transform(src_transform, z.shape), src_transform, src_crs
+
+    with rasterio.open(texture_path) as tex:
+        if tex.crs is None:
+            return z, * _xy_from_transform(src_transform, z.shape), src_transform, src_crs
+
+        dst = np.full((tex.height, tex.width), np.nan, dtype="float64")
+        reproject(
+            source=np.asarray(z, dtype="float64"),
+            destination=dst,
+            src_transform=src_transform,
+            src_crs=src_crs,
+            src_nodata=np.nan,
+            dst_transform=tex.transform,
+            dst_crs=tex.crs,
+            dst_nodata=np.nan,
+            resampling=Resampling.bilinear,
+        )
+        x, y = _xy_from_transform(tex.transform, dst.shape)
+        return dst, x, y, tex.transform, tex.crs
+
+
+def _xy_from_transform(transform, shape: Tuple[int, int]) -> Tuple[np.ndarray, np.ndarray]:
+    """Coordonnées X/Y des centres de pixels pour une transform affine."""
+    ny, nx = shape
+    cols = np.arange(nx)
+    rows = np.arange(ny)
+    x = transform.c + (cols + 0.5) * transform.a
+    y = transform.f + (rows + 0.5) * transform.e
+    return x, y
+
+
 def _normalise_rgb(rgb: np.ndarray) -> np.ndarray:
     """Normaliser un raster RGB en 0..1 de manière robuste."""
     rgb = rgb.astype("float32", copy=False)
@@ -186,11 +256,16 @@ def _shade_rgb(
     azimuth: float,
     altitude: float,
     fraction: float,
+    brightness: float,
+    gamma: float,
 ) -> np.ndarray:
     """Appliquer un hillshade léger à une texture RGB."""
     light = LightSource(azdeg=azimuth, altdeg=altitude)
     shade = light.hillshade(np.nan_to_num(elevation, nan=np.nanmin(elevation)))
-    shaded = _normalise_rgb(rgb) * (0.35 + 0.65 * shade[:, :, None] * fraction)
+    corrected = _normalise_rgb(rgb)
+    corrected = np.power(corrected, gamma) * brightness
+    corrected = np.clip(corrected, 0.0, 1.0)
+    shaded = corrected * (0.45 + 0.55 * shade[:, :, None] * fraction)
     return np.clip(shaded, 0.0, 1.0)
 
 
@@ -202,6 +277,8 @@ def _surface_facecolors(
     altitude: float,
     texture_rgb: Optional[np.ndarray],
     shade_fraction: float,
+    texture_brightness: float,
+    texture_gamma: float,
 ) -> np.ndarray:
     """Construire les couleurs de surface avec texture ou colormap ombrée."""
     if texture_rgb is not None:
@@ -211,6 +288,8 @@ def _surface_facecolors(
             azimuth=azimuth,
             altitude=altitude,
             fraction=shade_fraction,
+            brightness=texture_brightness,
+            gamma=texture_gamma,
         )
 
     light = LightSource(azdeg=azimuth, altdeg=altitude)
@@ -287,12 +366,17 @@ def create_block_diagram(
     cmap: str = "terrain",
     figure_size: Tuple[float, float] = (12, 7),
     dpi: int = 200,
+    tight_layout: bool = True,
+    surface_max_samples: int = 600,
     base_level: Optional[float] = None,
     use_texture: Optional[bool] = None,
     texture_path: Optional[str | Path] = None,
+    align_dem_to_texture: bool = True,
     shade_azimuth: float = 315,
     shade_altitude: float = 45,
     shade_fraction: float = 1.25,
+    texture_brightness: float = 1.25,
+    texture_gamma: float = 0.85,
     show_sea: bool = True,
     sea_position: str = "front",
     sea_level: float = 0.0,
@@ -331,6 +415,13 @@ def create_block_diagram(
         Taille de la figure en pouces.
     dpi : int
         Résolution d'export.
+    tight_layout : bool
+        Si True, recadre l'image autour des éléments visibles. Désactiver pour
+        conserver la taille pixel attendue ``figure_size * dpi``.
+    surface_max_samples : int
+        Nombre maximal de lignes/colonnes utilisées par ``plot_surface`` pour
+        la surface texturée. Augmenter cette valeur réduit l'effet pixelisé,
+        mais ralentit fortement le rendu.
     base_level : float, optional
         Altitude de base du bloc. Si None, prend le minimum du relief exagéré.
     use_texture : bool, optional
@@ -339,8 +430,16 @@ def create_block_diagram(
     texture_path : str | pathlib.Path, optional
         Chemin vers la texture géoréférencée (GeoTIFF recommandé).
         Si None, utilise ``TEXTURE_PATH``.
+    align_dem_to_texture : bool
+        Si True, rééchantillonne le MNT sur la grille de la texture avant le
+        rendu. Cela évite les décalages visibles entre image satellite et relief.
     shade_azimuth, shade_altitude, shade_fraction : float
         Paramètres de l'ombrage appliqué à la surface supérieure.
+    texture_brightness : float
+        Multiplicateur de luminosité appliqué aux textures raster RGB.
+    texture_gamma : float
+        Correction gamma appliquée aux textures. Une valeur sous 1 éclaircit
+        les tons moyens.
     show_sea : bool
         Ajoute un plan d'eau autour du bloc.
     sea_position : {"front", "full"}
@@ -370,12 +469,28 @@ def create_block_diagram(
         raise ValueError("vertical_exaggeration doit être strictement positif.")
     if shade_fraction <= 0:
         raise ValueError("shade_fraction doit être strictement positif.")
+    if texture_brightness <= 0:
+        raise ValueError("texture_brightness doit être strictement positif.")
+    if texture_gamma <= 0:
+        raise ValueError("texture_gamma doit être strictement positif.")
+    if surface_max_samples <= 0:
+        raise ValueError("surface_max_samples doit être strictement positif.")
     if sea_margin < 0:
         raise ValueError("sea_margin doit être positif ou nul.")
     if sea_position not in {"front", "full"}:
         raise ValueError("sea_position doit valoir 'front' ou 'full'.")
 
+    use_texture_resolved = USE_TEXTURE if use_texture is None else use_texture
+    texture_path_resolved = TEXTURE_PATH if texture_path is None else texture_path
+
     z, x, y, _, dem_transform, dem_crs = _load_dem_core(dem_path, bounds=bounds)
+    if use_texture_resolved and texture_path_resolved and align_dem_to_texture:
+        z, x, y, dem_transform, dem_crs = _resample_dem_to_match_texture(
+            z,
+            src_transform=dem_transform,
+            src_crs=dem_crs,
+            texture_path=texture_path_resolved,
+        )
 
     xx, yy = np.meshgrid(x, y)
     zz = z * vertical_exaggeration
@@ -389,11 +504,9 @@ def create_block_diagram(
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
 
-    use_texture_resolved = USE_TEXTURE if use_texture is None else use_texture
-    texture_path_resolved = TEXTURE_PATH if texture_path is None else texture_path
     texture_rgb = None
     if use_texture_resolved and texture_path_resolved:
-        texture_rgb = _load_texture_on_dem_grid(
+        texture_rgb = _load_texture_on_grid(
             texture_path_resolved,
             target_shape=zz_top.shape,
             target_transform=dem_transform,
@@ -407,10 +520,12 @@ def create_block_diagram(
         altitude=shade_altitude,
         texture_rgb=texture_rgb,
         shade_fraction=shade_fraction,
+        texture_brightness=texture_brightness,
+        texture_gamma=texture_gamma,
     )
     zz_surface = zz_top
     if flatten_below_sea_level:
-        sea_mask = np.isfinite(z) & (z <= sea_level)
+        sea_mask = ~np.isfinite(z) | (z <= sea_level)
         zz_surface = np.where(sea_mask, z_sea, zz_surface)
     if clip_below_sea_level:
         land_mask = np.isfinite(z) & (z > sea_level)
@@ -448,8 +563,8 @@ def create_block_diagram(
         shade=False,
         linewidth=0,
         antialiased=False,
-        rcount=min(zz.shape[0], 300),
-        ccount=min(zz.shape[1], 300),
+        rcount=min(zz.shape[0], surface_max_samples),
+        ccount=min(zz.shape[1], surface_max_samples),
     )
 
     if show_base:
@@ -580,7 +695,10 @@ def create_block_diagram(
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output_path, dpi=dpi, bbox_inches="tight")
+    savefig_kwargs = {"dpi": dpi}
+    if tight_layout:
+        savefig_kwargs["bbox_inches"] = "tight"
+    fig.savefig(output_path, **savefig_kwargs)
 
     return fig
 

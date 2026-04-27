@@ -29,8 +29,10 @@ def _load_env_file(env_path: str | Path | None = None) -> None:
     """Load simple KEY=VALUE pairs from a .env file into os.environ."""
     path = Path(env_path) if env_path is not None else _repo_root() / ".env"
     if not path.exists():
+        print(f"[env] No .env file found at {path}")
         return
 
+    loaded = []
     for raw_line in path.read_text(encoding="utf-8").splitlines():
         line = raw_line.strip()
         if not line or line.startswith("#") or "=" not in line:
@@ -41,6 +43,12 @@ def _load_env_file(env_path: str | Path | None = None) -> None:
         value = value.strip().strip('"').strip("'")
         if key and key not in os.environ:
             os.environ[key] = value
+            loaded.append(key)
+
+    if loaded:
+        print(f"[env] Loaded {len(loaded)} variable(s) from {path}: {', '.join(loaded)}")
+    else:
+        print(f"[env] .env already loaded or empty: {path}")
 
 
 def download_elevation(bbox = (-61.25, 14.35, -60.75, 14.95), 
@@ -143,6 +151,7 @@ def _copernicus_access_token(
         "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/"
         "protocol/openid-connect/token"
     ),
+    use_env_proxies: bool = False,
 ) -> str:
     """Return an access token for Copernicus Data Space/Sentinel Hub APIs."""
     _load_env_file()
@@ -164,7 +173,13 @@ def _copernicus_access_token(
             "SENTINELHUB_CLIENT_SECRET, as environment variables."
         )
 
-    response = requests.post(
+    print(
+        "[copernicus] Requesting OAuth token "
+        f"(client_id length={len(client_id)}, env proxies={use_env_proxies})"
+    )
+    session = requests.Session()
+    session.trust_env = use_env_proxies
+    response = session.post(
         token_url,
         data={
             "grant_type": "client_credentials",
@@ -184,7 +199,9 @@ def _copernicus_access_token(
             f"Server response: {detail}"
         )
     response.raise_for_status()
-    return response.json()["access_token"]
+    token = response.json()["access_token"]
+    print(f"[copernicus] OAuth token received (length={len(token)})")
+    return token
 
 
 def download_copernicus_sentinel2_image(
@@ -200,6 +217,7 @@ def download_copernicus_sentinel2_image(
     client_id: str | None = None,
     client_secret: str | None = None,
     process_url="https://sh.dataspace.copernicus.eu/api/v1/process",
+    use_env_proxies=False,
     preview=False,
 ):
     """Download a Copernicus Sentinel-2 L2A true-color GeoTIFF for a bbox.
@@ -232,6 +250,9 @@ def download_copernicus_sentinel2_image(
         ``COPERNICUS_CLIENT_SECRET`` from the environment.
     process_url : str
         Process API endpoint.
+    use_env_proxies : bool
+        If True, use proxy settings from environment variables. Defaults to
+        False to avoid stale local proxy settings breaking Copernicus requests.
     preview : bool
         If True, display the downloaded raster with ``rasterio.plot.show``.
     """
@@ -256,9 +277,14 @@ def download_copernicus_sentinel2_image(
     )
     width = max(1, math.ceil((bbox_3857[2] - bbox_3857[0]) / resolution))
     height = max(1, math.ceil((bbox_3857[3] - bbox_3857[1]) / resolution))
+    print(
+        "[copernicus] Output grid prepared "
+        f"(width={width}, height={height}, resolution={resolution} m, crs=EPSG:3857)"
+    )
 
     output_path = Path(output_tif)
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    print(f"[copernicus] Output path: {output_path}")
 
     evalscript = """
 //VERSION=3
@@ -313,19 +339,28 @@ function evaluatePixel(sample) {
         "evalscript": evalscript,
     }
 
-    access_token = _copernicus_access_token(client_id, client_secret)
+    access_token = _copernicus_access_token(
+        client_id,
+        client_secret,
+        use_env_proxies=use_env_proxies,
+    )
     print(
         "Downloading Copernicus Sentinel-2 L2A true-color image "
         f"for bbox={bbox}, date={start_date}/{end_date}, resolution={resolution} m"
     )
-    response = requests.post(
+    session = requests.Session()
+    session.trust_env = use_env_proxies
+    print("[copernicus] Sending Process API request")
+    response = session.post(
         process_url,
         json=payload,
         headers={"Authorization": f"Bearer {access_token}"},
         timeout=120,
     )
+    print(f"[copernicus] Process API status: {response.status_code}")
     response.raise_for_status()
     output_path.write_bytes(response.content)
+    print(f"[copernicus] Wrote {len(response.content)} bytes")
 
     print(f"Download complete! File saved as: {output_path}")
     _print_raster_metadata(output_path, "Copernicus Sentinel-2 L2A true color", preview)
@@ -391,6 +426,7 @@ def download_satellite_image(
             start_date=start_date,
             end_date=end_date,
             days_back=days_back,
+            use_env_proxies=False,
             preview=preview,
         )
     if provider != "earthsearch":
