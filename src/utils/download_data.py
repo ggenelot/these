@@ -122,6 +122,159 @@ def download_elevation(
     return Path(output_tif)
 
 
+def download_gebco_bathymetry(
+    bbox=(-61.25, 14.35, -60.75, 14.95),
+    output_tif="data/raw/elevation/gebco_bathymetry.tif",
+    source_url="https://projects.pawsey.org.au/idea-gebco-tif/GEBCO_2024.tif",
+    force_download=False,
+    preview=False,
+):
+    """Download a GEBCO terrain/bathymetry subset from a remote COG GeoTIFF.
+
+    The output contains elevations in metres relative to mean sea level:
+    positive values on land and negative values offshore.
+    """
+    if len(bbox) != 4:
+        raise ValueError("bbox must be a 4-value tuple: (west, south, east, north)")
+
+    west, south, east, north = bbox
+    if west >= east or south >= north:
+        raise ValueError("Invalid bbox order. Expected west < east and south < north.")
+
+    output_path = Path(output_tif)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    if not force_download and _raster_covers_bbox(output_path, bbox):
+        return output_path
+
+    vsi_url = source_url if source_url.startswith("/vsi") else f"/vsicurl/{source_url}"
+    print(f"Downloading GEBCO bathymetry subset for bbox={bbox}")
+    print(f"Source COG: {source_url}")
+
+    with rasterio.open(vsi_url) as src:
+        bbox_src_crs = transform_bounds(
+            "EPSG:4326",
+            src.crs,
+            west,
+            south,
+            east,
+            north,
+            densify_pts=21,
+        )
+
+        left = max(bbox_src_crs[0], src.bounds.left)
+        bottom = max(bbox_src_crs[1], src.bounds.bottom)
+        right = min(bbox_src_crs[2], src.bounds.right)
+        top = min(bbox_src_crs[3], src.bounds.top)
+        if left >= right or bottom >= top:
+            raise RuntimeError("The GEBCO source does not overlap the requested bbox.")
+
+        window = from_bounds(left, bottom, right, top, transform=src.transform)
+        window = window.round_offsets().round_lengths()
+        data = src.read(1, window=window)
+        profile = src.profile.copy()
+        profile.update(
+            driver="GTiff",
+            height=data.shape[0],
+            width=data.shape[1],
+            count=1,
+            transform=src.window_transform(window),
+            compress="LZW",
+        )
+        profile.pop("blockxsize", None)
+        profile.pop("blockysize", None)
+        profile.pop("tiled", None)
+
+    with rasterio.open(output_path, "w", **profile) as dst:
+        dst.write(data, 1)
+
+    print(f"Download complete! File saved as: {output_path}")
+    _print_raster_metadata(output_path, "GEBCO bathymetry", preview)
+    return output_path
+
+
+def _find_raster_in_directory(directory: str | Path) -> Path | None:
+    """Return the first raster file found in a directory tree."""
+    directory = Path(directory)
+    raster_suffixes = {".asc", ".grd", ".bag", ".tif", ".tiff"}
+    candidates = [
+        path
+        for path in directory.rglob("*")
+        if path.is_file() and path.suffix.lower() in raster_suffixes
+    ]
+    return sorted(candidates)[0] if candidates else None
+
+
+def download_shom_homonim_bathymetry(
+    output_dir="data/raw/elevation/shom_ants100m",
+    vertical_reference="NM",
+    force_download=False,
+) -> Path:
+    """Download and extract the SHOM HOMONIM Antilles Sud bathymetric DEM.
+
+    Parameters
+    ----------
+    output_dir : str or pathlib.Path
+        Directory where the SHOM archive and extracted rasters are stored.
+    vertical_reference : {"NM", "PBMA"}
+        Vertical datum to download: mean sea level (NM) or lowest astronomical
+        tide (PBMA).
+    force_download : bool
+        If True, re-download and re-extract even when a local raster exists.
+    """
+    vertical_reference = vertical_reference.upper()
+    if vertical_reference not in {"NM", "PBMA"}:
+        raise ValueError("vertical_reference must be 'NM' or 'PBMA'.")
+
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    extract_dir = output_dir / vertical_reference
+    existing_raster = _find_raster_in_directory(extract_dir)
+    if existing_raster is not None and not force_download:
+        print(f"[shom] Reusing local SHOM raster: {existing_raster}")
+        return existing_raster
+
+    filename = f"MNT_FACADE_ANTS_HOMONIM_{vertical_reference}.7z"
+    archive_path = output_dir / filename
+    url = (
+        "https://services.data.shom.fr/INSPIRE/telechargement/"
+        "prepackageGroup/MNT_ANTS100m_HOMONIM_PACK_DL/"
+        f"prepackage/MNT_FACADE_ANTS_HOMONIM_{vertical_reference}/"
+        f"file/{filename}"
+    )
+
+    if force_download or not archive_path.exists():
+        print(f"[shom] Downloading SHOM HOMONIM {vertical_reference}: {url}")
+        response = requests.get(url, stream=True, timeout=120)
+        response.raise_for_status()
+        written = _write_response_content(response, archive_path)
+        print(f"[shom] Wrote {written} bytes to {archive_path}")
+    else:
+        print(f"[shom] Reusing local SHOM archive: {archive_path}")
+
+    try:
+        import py7zr
+    except ImportError as exc:
+        raise ImportError(
+            "py7zr is required to extract SHOM .7z archives. "
+            "Install the project dev dependencies or run: python -m pip install py7zr"
+        ) from exc
+
+    extract_dir.mkdir(parents=True, exist_ok=True)
+    print(f"[shom] Extracting {archive_path} to {extract_dir}")
+    with py7zr.SevenZipFile(archive_path, mode="r") as archive:
+        archive.extractall(path=extract_dir)
+
+    raster_path = _find_raster_in_directory(extract_dir)
+    if raster_path is None:
+        raise RuntimeError(
+            f"No supported raster (.asc, .grd, .bag, .tif) found in {extract_dir}"
+        )
+
+    print(f"[shom] SHOM raster ready: {raster_path}")
+    return raster_path
+
+
 def _stac_datetime_to_timestamp(value: str) -> float:
     """Convert STAC datetime string to a sortable UNIX timestamp."""
     if not value:
