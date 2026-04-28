@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 
-SRC_DIR = Path(__file__).resolve().parent / "src"
+SRC_DIR = Path(__file__).resolve().parents[2]
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
@@ -22,7 +22,7 @@ BBOX_BAIE_FORT_DE_FRANCE = BBOX_PRECHEUR
 DEM_PATH = "data/raw/elevation/cop30_dem.tif"
 SHOM_BATHYMETRY_DIR = "data/raw/elevation/shom_ants100m"
 GEBCO_BATHYMETRY_PATH = "data/raw/elevation/gebco_baie_fort_de_france.tif"
-OUTPUT_PATH = "output_bloc_baie_fort_de_france_mnt_bathymetrie.png"
+OUTPUT_PATH = "figures/cartes/output_bloc_baie_fort_de_france_mnt_bathymetrie.png"
 
 
 download_elevation(

@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 
-SRC_DIR = Path(__file__).resolve().parent / "src"
+SRC_DIR = Path(__file__).resolve().parents[2]
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
@@ -20,7 +20,7 @@ BBOX_PRECHEUR = (-61.2501, 14.7889, -61.1802, 14.8313)
 DEM_PATH = "data/raw/elevation/precheur.tif"
 SHOM_BATHYMETRY_DIR = "data/raw/elevation/shom_ants100m"
 GEBCO_BATHYMETRY_PATH = "data/raw/elevation/gebco_precheur.tif"
-OUTPUT_PATH = "output_bloc_precheur_mnt_bathymetrie.png"
+OUTPUT_PATH = "figures/cartes/output_bloc_precheur_mnt_bathymetrie.png"
 
 
 download_elevation(

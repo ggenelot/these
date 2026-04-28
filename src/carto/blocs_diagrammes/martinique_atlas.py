@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 
-SRC_DIR = Path(__file__).resolve().parent / "src"
+SRC_DIR = Path(__file__).resolve().parents[2]
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
@@ -14,7 +14,7 @@ from utils.download_data import download_elevation
 BBOX_MARTINIQUE = (-61.30, 14.35, -60.75, 14.95)
 
 DEM_PATH = "data/raw/elevation/cop30_dem_martinique.tif"
-OUTPUT_PATH = "output_bloc_martinique_atlas.png"
+OUTPUT_PATH = "figures/cartes/output_bloc_martinique_atlas.png"
 
 
 download_elevation(

@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 
-SRC_DIR = Path(__file__).resolve().parents[1]
+SRC_DIR = Path(__file__).resolve().parents[2]
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
@@ -21,7 +21,7 @@ download_satellite_image(
 
 create_block_diagram(
     "data/raw/elevation/precheur.tif",
-    "output_bloc_copernicus.png",
+    "figures/cartes/output_bloc_copernicus.png",
     use_texture=True,
     texture_path="data/raw/satellite/precheur_copernicus_s2_10m.tif",
     azimuth=230,
