@@ -3,6 +3,7 @@ import logging
 import os
 import shutil
 import math
+import zipfile
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
@@ -10,8 +11,11 @@ from urllib.parse import urlparse
 
 import rasterio
 import requests
+import numpy as np
+from rasterio.merge import merge
 from rasterio.plot import show
-from rasterio.warp import transform_bounds
+from rasterio.vrt import WarpedVRT
+from rasterio.warp import Resampling, transform_bounds
 from rasterio.windows import from_bounds
 
 try:
@@ -202,6 +206,311 @@ def _find_raster_in_directory(directory: str | Path) -> Path | None:
         if path.is_file() and path.suffix.lower() in raster_suffixes
     ]
     return sorted(candidates)[0] if candidates else None
+
+
+def _find_rasters_in_directory(directory: str | Path) -> list[Path]:
+    """Return supported raster files found in a directory tree."""
+    directory = Path(directory)
+    raster_suffixes = {".asc", ".grd", ".bag", ".tif", ".tiff"}
+    return sorted(
+        path
+        for path in directory.rglob("*")
+        if path.is_file() and path.suffix.lower() in raster_suffixes
+    )
+
+
+def _find_litto3d_mnt_rasters(directory: str | Path) -> list[Path]:
+    """Return Litto3D MNT rasters, preferring the lighter 5 m ASCII tiles."""
+    rasters = _find_rasters_in_directory(directory)
+    mnt5_asc = [
+        path
+        for path in rasters
+        if path.suffix.lower() == ".asc"
+        and "MNT5" in path.name.upper()
+        and "MNT5M" in str(path.parent).upper()
+    ]
+    if mnt5_asc:
+        return mnt5_asc
+
+    mnt_asc = [
+        path
+        for path in rasters
+        if path.suffix.lower() == ".asc" and "_MNT" in path.name.upper()
+    ]
+    return mnt_asc or rasters
+
+
+def _extract_archive(archive_path: Path, extract_dir: Path, *, force: bool = False) -> None:
+    """Extract a supported archive into ``extract_dir``."""
+    if extract_dir.exists() and force:
+        shutil.rmtree(extract_dir)
+    extract_dir.mkdir(parents=True, exist_ok=True)
+
+    suffixes = "".join(archive_path.suffixes).lower()
+    print(f"[archive] Extracting {archive_path} to {extract_dir}")
+    if archive_path.suffix.lower() == ".zip":
+        with zipfile.ZipFile(archive_path, mode="r") as archive:
+            archive.extractall(path=extract_dir)
+        return
+    if archive_path.suffix.lower() == ".7z":
+        try:
+            import py7zr
+        except ImportError as exc:
+            raise ImportError(
+                "py7zr is required to extract .7z archives. "
+                "Install the project dev dependencies or run: python -m pip install py7zr"
+            ) from exc
+        with py7zr.SevenZipFile(archive_path, mode="r") as archive:
+            archive.extractall(path=extract_dir)
+        return
+    if suffixes.endswith(".tar.gz") or archive_path.suffix.lower() in {".tar", ".tgz"}:
+        shutil.unpack_archive(str(archive_path), str(extract_dir))
+        return
+    raise ValueError(f"Unsupported archive format: {archive_path}")
+
+
+def _litto3d_prepackage_names_for_bbox(
+    bbox: tuple[float, float, float, float],
+    *,
+    tile_size_m: int = 5000,
+    crs: str = "EPSG:32620",
+) -> list[str]:
+    """Return Litto3D Martinique 5 km prepackage names intersecting a bbox."""
+    west, south, east, north = bbox
+    left, bottom, right, top = transform_bounds(
+        "EPSG:4326",
+        crs,
+        west,
+        south,
+        east,
+        north,
+        densify_pts=21,
+    )
+    x_start = math.floor(left / tile_size_m) * tile_size_m
+    x_stop = math.floor(right / tile_size_m) * tile_size_m
+    y_start = math.floor(bottom / tile_size_m) * tile_size_m
+    y_stop = math.floor(top / tile_size_m) * tile_size_m
+
+    names = []
+    for x in range(int(x_start), int(x_stop) + tile_size_m, tile_size_m):
+        for y in range(int(y_start), int(y_stop) + tile_size_m, tile_size_m):
+            names.append(f"{x // 1000:04d}_{y // 1000:04d}")
+    return names
+
+
+def _download_litto3d_prepackages(
+    bbox: tuple[float, float, float, float],
+    *,
+    output_dir: Path,
+    product_group_url: str,
+    force_download: bool = False,
+) -> Path:
+    """Download and extract Litto3D Martinique prepacks covering ``bbox``."""
+    print(f"[litto3d] Reading prepackage index: {product_group_url}")
+    response = requests.get(product_group_url, timeout=60)
+    response.raise_for_status()
+    product_group = response.json()
+    resources = product_group.get("prepackageResources", [])
+    available = {resource["prepackageName"] for resource in resources}
+
+    requested = _litto3d_prepackage_names_for_bbox(bbox)
+    selected = [name for name in requested if name in available]
+    if not selected:
+        raise RuntimeError(
+            "No Litto3D Martinique prepackage found for the requested bbox. "
+            f"Computed candidates: {', '.join(requested)}"
+        )
+
+    print(f"[litto3d] Selected prepackage(s): {', '.join(selected)}")
+    packages_dir = output_dir / "packages"
+    extract_root = output_dir / "extracted"
+    packages_dir.mkdir(parents=True, exist_ok=True)
+    extract_root.mkdir(parents=True, exist_ok=True)
+
+    for name in selected:
+        package_url = f"{product_group_url}/prepackage/{name}"
+        package_response = requests.get(package_url, timeout=60)
+        package_response.raise_for_status()
+        files = package_response.json().get("downloadFiles", [])
+        if not files:
+            raise RuntimeError(f"No download file declared for Litto3D package {name}.")
+
+        filename = files[0]["fileName"]
+        archive_path = packages_dir / filename
+        file_url = f"{package_url}/file/{filename}"
+        if force_download or not archive_path.exists():
+            print(f"[litto3d] Downloading {name}: {file_url}")
+            file_response = requests.get(file_url, stream=True, timeout=120)
+            file_response.raise_for_status()
+            written = _write_response_content(file_response, archive_path)
+            print(f"[litto3d] Wrote {written} bytes to {archive_path}")
+        else:
+            print(f"[litto3d] Reusing local package: {archive_path}")
+
+        _extract_archive(archive_path, extract_root / name, force=force_download)
+
+    return extract_root
+
+
+def download_litto3d_martinique(
+    bbox=(-61.25, 14.35, -60.75, 14.95),
+    output_tif="data/raw/elevation/litto3d_martinique.tif",
+    source_url: str | None = None,
+    source_path: str | Path | None = None,
+    output_dir="data/raw/elevation/litto3d_martinique",
+    product_group_url=(
+        "https://services.data.shom.fr/INSPIRE/telechargement/"
+        "prepackageGroup/LITTO3D_MART_2016_PACK_DL"
+    ),
+    output_crs="EPSG:32620",
+    source_crs: str | None = "EPSG:32620",
+    resolution_m: float = 5.0,
+    force_download=False,
+    preview=False,
+) -> Path:
+    """Prepare a Litto3D Martinique terrain/bathymetry subset as GeoTIFF.
+
+    Litto3D is distributed by SHOM as raster tiles, often in archive form. This
+    helper accepts either a local extracted directory/archive or a download URL,
+    extracts it when needed, mosaics the tiles overlapping ``bbox`` and writes a
+    cropped GeoTIFF suitable for ``create_block_diagram``.
+
+    If neither ``source_url`` nor ``source_path`` is provided, this function
+    uses SHOM's Litto3D prepackage service and downloads the 5 km tiles
+    intersecting ``bbox``. The catalogue record is:
+    https://services.data.shom.fr/geonetwork/srv/fre/catalog.search#/metadata/BATHYMETRIE_LITTO3D_MART_2016.xml
+    """
+    if len(bbox) != 4:
+        raise ValueError("bbox must be a 4-value tuple: (west, south, east, north)")
+    if resolution_m <= 0:
+        raise ValueError("resolution_m must be strictly positive.")
+
+    west, south, east, north = bbox
+    if west >= east or south >= north:
+        raise ValueError("Invalid bbox order. Expected west < east and south < north.")
+
+    output_path = Path(output_tif)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    if not force_download and _raster_covers_bbox(output_path, bbox):
+        return output_path
+
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    extract_dir = output_dir / "extracted"
+    effective_source_crs = source_crs or output_crs
+
+    if source_path is not None:
+        source_path = Path(source_path)
+        if source_path.is_dir():
+            extract_dir = source_path
+        elif source_path.is_file():
+            _extract_archive(source_path, extract_dir, force=force_download)
+        else:
+            raise FileNotFoundError(f"Litto3D source path not found: {source_path}")
+    elif source_url is None and not os.environ.get("LITTO3D_MARTINIQUE_URL"):
+        extract_dir = _download_litto3d_prepackages(
+            bbox,
+            output_dir=output_dir,
+            product_group_url=product_group_url,
+            force_download=force_download,
+        )
+    else:
+        source_url = source_url or os.environ.get("LITTO3D_MARTINIQUE_URL")
+        filename = Path(urlparse(source_url).path).name or "litto3d_martinique_archive"
+        archive_path = output_dir / filename
+        if force_download or not archive_path.exists():
+            print(f"[litto3d] Downloading Litto3D Martinique: {source_url}")
+            response = requests.get(source_url, stream=True, timeout=120)
+            response.raise_for_status()
+            written = _write_response_content(response, archive_path)
+            print(f"[litto3d] Wrote {written} bytes to {archive_path}")
+        else:
+            print(f"[litto3d] Reusing local archive: {archive_path}")
+        _extract_archive(archive_path, extract_dir, force=force_download)
+
+    raster_paths = _find_litto3d_mnt_rasters(extract_dir)
+    if not raster_paths:
+        raise RuntimeError(f"No supported raster found in Litto3D directory: {extract_dir}")
+
+    print(f"[litto3d] Found {len(raster_paths)} raster tile(s).")
+    dst_bounds = transform_bounds(
+        "EPSG:4326",
+        output_crs,
+        west,
+        south,
+        east,
+        north,
+        densify_pts=21,
+    )
+
+    sources = []
+    datasets = []
+    try:
+        for raster_path in raster_paths:
+            src = rasterio.open(raster_path)
+            src_vrt_kwargs = {}
+            if src.crs is None:
+                if effective_source_crs is None:
+                    src.close()
+                    continue
+                src_vrt_kwargs["src_crs"] = effective_source_crs
+
+            vrt = WarpedVRT(
+                src,
+                crs=output_crs,
+                resampling=Resampling.bilinear,
+                **src_vrt_kwargs,
+            )
+            left = max(dst_bounds[0], vrt.bounds.left)
+            bottom = max(dst_bounds[1], vrt.bounds.bottom)
+            right = min(dst_bounds[2], vrt.bounds.right)
+            top = min(dst_bounds[3], vrt.bounds.top)
+            if left < right and bottom < top:
+                sources.append(src)
+                datasets.append(vrt)
+            else:
+                vrt.close()
+                src.close()
+
+        if not datasets:
+            raise RuntimeError(
+                "No Litto3D raster tile overlaps the requested bbox. "
+                "If tiles lack CRS metadata, pass source_crs."
+            )
+
+        mosaic, transform = merge(
+            datasets,
+            bounds=dst_bounds,
+            res=(resolution_m, resolution_m),
+            nodata=np.nan,
+        )
+        profile = datasets[0].profile.copy()
+        profile.update(
+            driver="GTiff",
+            height=mosaic.shape[1],
+            width=mosaic.shape[2],
+            count=1,
+            crs=output_crs,
+            transform=transform,
+            dtype="float32",
+            nodata=np.nan,
+            compress="LZW",
+        )
+        profile.pop("blockxsize", None)
+        profile.pop("blockysize", None)
+        profile.pop("tiled", None)
+
+        with rasterio.open(output_path, "w", **profile) as dst:
+            dst.write(mosaic.astype("float32"))
+    finally:
+        for dataset in datasets:
+            dataset.close()
+        for src in sources:
+            src.close()
+
+    print(f"[litto3d] GeoTIFF ready: {output_path}")
+    _print_raster_metadata(output_path, "Litto3D Martinique", preview)
+    return output_path
 
 
 def download_shom_homonim_bathymetry(
