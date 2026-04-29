@@ -366,9 +366,19 @@ def _inject_chapter_abstract(app, docname, source):
     ):
         return
 
-    keywords_md = (
-        f"**Mots-clés :** {', '.join(keywords)}\n\n" if keywords else ""
-    )
+    keywords_md = ""
+    if keywords:
+        keywords_md = (
+            "```{raw} latex\n"
+            "\\vspace{1cm}\n"
+            "\\begingroup\\small\\itshape\\color{gray}\n"
+            "```\n\n"
+            f"Mots-clés : {', '.join(keywords)}\n\n"
+            "```{raw} latex\n"
+            "\\par\\endgroup\n"
+            "\\vspace{-0.25em}\n"
+            "```\n\n"
+        )
     metadata_gap_md = ""
     if keywords and keypoints:
         metadata_gap_md = (
@@ -408,7 +418,7 @@ def _inject_chapter_abstract(app, docname, source):
     if abstract and (chapter_fields_md or keywords or keypoints):
         metadata_sep_md = (
             "```{raw} latex\n"
-            "\\vspace{0.6em}\n"
+            "\\vspace{0.2em}\n"
             "\\noindent\\rule{\\linewidth}{0.3pt}\n"
             "\\vspace{0.6em}\n"
             "```\n\n"
