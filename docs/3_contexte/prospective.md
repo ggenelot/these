@@ -66,33 +66,19 @@ mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coû
 
 ```{bibliography}
 :list: bullet
-:filter: keywords % "IAM" and (keywords % "critique" or keywords % "justice" or keywords % "histoire" or ( keywords % "GIEC" and keywords % "prospective))
+:filter: keywords % "IAM" and (keywords % "critique" or keywords % "justice" or keywords % "histoire" or ( keywords % "GIEC" and keywords % "prospective"))
 ```
 
 ## Quelles nouvelles techniques ?
 
 ```{bibliography}
 :list: bullet
-:filter: keywords % "modélisation d'accompagnement" or keywords % "géoprospective" 
+:filter: keywords % "modelisation d'accompagnement" or keywords % "geoprospective" 
 ```
 
-### Réfénces non-citées
+### Références non-citées
 
+```{bibliography}
 :list: bullet
-:filter: not (
-  keywords % "processus de recherche"
-  or keywords % "gouvernance"
-  or keywords % "histoire"
-  or (keywords % "GIEC" and keywords % "prospective")
-  or (
-    keywords % "IAM"
-    and (
-      keywords % "critique"
-      or keywords % "justice"
-      or keywords % "histoire"
-      or (keywords % "GIEC" and keywords % "prospective")
-    )
-  )
-  or keywords % "modélisation d'accompagnement"
-  or keywords % "géoprospective"
-)
+:filter: not (keywords % "processus de recherche" or keywords % "gouvernance" or keywords % "histoire" or (keywords % "GIEC" and keywords % "prospective") or (keywords % "IAM" and (keywords % "critique" or keywords % "justice" or keywords % "histoire" or (keywords % "GIEC" and keywords % "prospective"))) or keywords % "modelisation d'accompagnement" or keywords % "geoprospective")
+```
