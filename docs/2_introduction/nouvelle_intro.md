@@ -12,8 +12,14 @@ exports:
     template: lapreprint
     output: exports/intro.pdf
     id: intro
+  - format: docx
+    output: exports/intro.docx
+    id: intro-docx
 downloads:
   - id: intro
+    title: "PDF"
+  - id: intro-docx
+    title: "Word"
 ---
 % amener le lecteur au sujet
 
