@@ -18,7 +18,7 @@ parts:
     Nous nous appuyons sur plusieurs sources de littérature : 
     - une littérature physique sur les cyclones et leur évolution
     - une littérature scientifique et grise sur les écosystèmes côtiers
-    - 
+    - la littérature essentiellement issue de la géographie, qui donne des exemples de cyclones tropicaux (notamment le projet TIREX - IRMA)
   partial_conclusion: | 
     Les cyclones tropicaux et leur évolution dans un contexte de changement climatique sont un risque fort pour les bandes littorales. Celui-ci peut être modulé par la qualité des écosystèmes côtiers et / ou des aménagement littoraux. Comprendre de manière systèmique ces relations permet de mieux identifier les actions permettant de réduire le risque. 
 exports:
