@@ -9,6 +9,9 @@ scripts/cache/*
 .vscode/*
 
 .env
+_build/
+docs/**/exports/
+
 
 # Python
 __pycache__/
