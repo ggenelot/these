@@ -64,14 +64,14 @@ mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coû
 
 ```{bibliography}
 :list: bullet
-:filter: keywords % "IAM" or keywords % "gouvernance" or keywords % "histoire"
+:filter: keywords % "processus de recherche" or keywords % "gouvernance" or keywords % "histoire" or ( keywords % "GIEC" and keywords % "prospective)
 ```
 
 ## Les défis à la prospective
 
 ```{bibliography}
 :list: bullet
-:filter: keywords % "prospective"
+:filter: keywords % "IAM" and (keywords % "critique" or keywords % "justice" or keywords % "histoire" or ( keywords % "GIEC" and keywords % "prospective))
 ```
 
 ## Quelles nouvelles techniques ?
