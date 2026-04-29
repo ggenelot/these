@@ -161,12 +161,12 @@ latex_elements = {
 
 \newenvironment{chapterabstract}{
   \par\noindent
-  \begin{minipage}{\linewidth}
+  \begingroup
   \small
   \textbf{Résumé. }\ignorespaces
 }{
   \par
-  \end{minipage}
+  \endgroup
   \par
 }
 
@@ -381,18 +381,16 @@ def _inject_chapter_abstract(app, docname, source):
             "\\vspace{-0.25em}\n"
             "```\n\n"
         )
-    metadata_gap_md = ""
-    if keywords and keypoints:
-        metadata_gap_md = (
-            "```{raw} latex\n"
-            "\\vspace{0.7em}\n"
-            "```\n\n"
-        )
     keypoints_md = ""
     if keypoints:
-        keypoints_md = "**Points clés :**\n\n" + "\n".join(
-            f"- {point}" for point in keypoints
-        ) + "\n\n"
+        keypoints_md = (
+            "## Points clés\n\n"
+            + "\n".join(f"- {point}" for point in keypoints)
+            + "\n\n"
+            + "```{raw} latex\n"
+            + "\\clearpage\n"
+            + "```\n\n"
+        )
 
     abstract_md = f"*{abstract}*\n\n" if abstract else ""
     chapter_fields = [
@@ -417,7 +415,7 @@ def _inject_chapter_abstract(app, docname, source):
         if value
     )
     metadata_sep_md = ""
-    if abstract and (chapter_fields_md or keywords or keypoints):
+    if abstract and (chapter_fields_md or keywords):
         metadata_sep_md = (
             "```{raw} latex\n"
             "\\vspace{0.2em}\n"
@@ -435,12 +433,11 @@ def _inject_chapter_abstract(app, docname, source):
         + keywords_md
         + metadata_sep_md
         + chapter_fields_md
-        + metadata_gap_md
-        + keypoints_md
         + "```{raw} latex\n"
         + "\\end{chapterabstract}\n"
         + "\\clearpage\n"
         + "```\n\n"
+        + keypoints_md
     )
     prefix = text[: match.end()]
     if not prefix.endswith(("\n", "\r")):
