@@ -1,17 +1,25 @@
 ---
 title: Le risque en Martinique, entre enjeux socio-historique et perspectives
+keywords: 
+  - colonialité
+  - esclavage
+  - peuplement
+  - plantanocène
+keypoints:
+  - la trajectoire historique singulière de la Martinique (esclavage, colonisation, abolition) est un facteur important des formes de peuplement passées et contemporaines
+  - les politiques d'adaptation sont une opportunité de réaliser une forme de justice climatique
+  - à défaut, elles risquent d'accentuer des vulnérabilités et des inégalités
 parts:
-  abstract: >
-    Dans ce chapitre, nous présentons des enjeux spécifique au changement climatique en Martinique. Nous développerons l’idée qu’au delà de son exposition à de nombreux aléas naturels, la Martinique présente un contexte socio-historique qui conditionne son adaptation au changement climatique. Nous nous intéresserons en particulier aux formes de peuplement et à l’origine, notamment au prisme de l’histoire coloniale. Nous montrerons que ces formes structurent encore l’espace martiniquais. En écho au concept de plantationocène de Malcom Ferdinand, nous tenterons de relier usage de sols et justice climatique.
-  keypoints:
-    - le passé historique particulier de la Martinique est inscrit dans son territoire 
-    - les politiques d'adaptation sont une opportunité de réaliser une forme de justice climatique
-    - à défaut, elles risquent d'accentuer des vulnérabilités et des inégalités
-  keywords: 
-    - colonialité
-    - esclavage
-    - peuplement
-    - plantanocène
+  abstract: |
+    Dans ce chapitre, nous présentons des enjeux spécifique au changement climatique en Martinique. Nous développerons l’idée qu’au delà de son exposition à de nombreux aléas naturels, la Martinique présente un contexte socio-historique qui conditionne son adaptation au changement climatique. Nous nous intéresserons en particulier aux formes de peuplement et à l’origine, notamment au prisme de l’histoire coloniale. Nous montrerons que ces formes structurent encore l’espace martiniquais. En écho au concept de plantationocène de Malcom Ferdinand, nous tenterons de relier usage des sols et justice climatique.
+  problematic: |
+    Quelles formes d'habiter se retranscrivent dans le peuplement en Martinique ? 
+  literature_note: |
+    - littérature générale sur le peuplement, et notamment approches et définition
+    - histoire du peuplement en Martinique
+  partial_conclusion: |
+    L'aménagement de l'espace, et notamment les formes de peuplement, plannifiées ou spontanées, sont révélatrices du contexte historique et social de la Martinique. Inscrire la plannification de l'adaptation dans ce cadre conceptuel permet de prendre en compte cet héritage historique dans l'aménagement du futur.
+
 ---
 
 :::{tip} Idées en vrac
