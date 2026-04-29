@@ -385,9 +385,9 @@ def _inject_chapter_abstract(app, docname, source):
         "\\begin{chapterabstract}\n"
         "```\n\n"
         + abstract_md
+        + keywords_md
         + metadata_sep_md
         + chapter_fields_md
-        + keywords_md
         + metadata_gap_md
         + keypoints_md
         + "```{raw} latex\n"

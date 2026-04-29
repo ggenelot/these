@@ -174,6 +174,18 @@ class AlphaWithAnnotationsStyle(AlphaStyle):
             field_text(entry.fields.get("title"), fallback="Sans titre"),
         )
 
+        keywords = clean_keywords(entry.fields.get("keywords", ""))
+        if keywords:
+            text = Text(
+                text,
+                LatexOnly(
+                    r"\par\vspace{-0.15em}{\scriptsize\color{gray}\leftskip=2em\noindent"
+                    r"\textit{Mots-clés :}\enspace "
+                ),
+                field_text(keywords),
+                LatexOnly(r"\par}"),
+            )
+
         annotation = clean_annotation(entry.fields.get("annotation", ""))
         if annotation:
             text = Text(
@@ -184,18 +196,6 @@ class AlphaWithAnnotationsStyle(AlphaStyle):
                 ),
                 field_text(annotation),
                 LatexOnly(r"\par\end{adjustwidth}"),
-            )
-
-        keywords = clean_keywords(entry.fields.get("keywords", ""))
-        if keywords:
-            text = Text(
-                text,
-                LatexOnly(
-                    r"\par\vspace{-0.35em}{\scriptsize\color{gray}\noindent"
-                    r"\textit{Mots-clés :}\enspace "
-                ),
-                field_text(keywords),
-                LatexOnly(r"\par}"),
             )
 
         return FormattedEntry(entry.key, text, label)
