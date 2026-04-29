@@ -1,8 +1,9 @@
-"""Local bibliography style that displays Zotero annotations.
+"""Local bibliography style that displays Zotero annotations and keywords.
 
 Zotero/Better BibTeX exports comments from the Extra field as BibTeX
 ``annotation`` fields.  The default pybtex styles ignore that field, so this
-style appends it to the formatted bibliography entry.
+style appends it to the formatted bibliography entry. It also displays the
+``keywords`` field used by bibliography filters.
 """
 
 from pybtex.plugin import register_plugin
@@ -90,6 +91,23 @@ def clean_annotation(annotation):
     return annotation
 
 
+def clean_keywords(keywords):
+    """Return displayable keywords, or None when the field is empty."""
+    keywords = keywords.strip()
+    if not keywords:
+        return None
+
+    values = []
+    for keyword in keywords.replace(";", ",").split(","):
+        keyword = keyword.strip()
+        if keyword:
+            values.append(keyword)
+
+    if not values:
+        return None
+    return ", ".join(values)
+
+
 def field_text(value, fallback=""):
     """Return a rich text field, preserving LaTeX markup when possible."""
     if not value:
@@ -144,7 +162,7 @@ def format_author(entry):
 
 
 class AlphaWithAnnotationsStyle(AlphaStyle):
-    """Compact alpha bibliography style with an added annotation block."""
+    """Compact alpha bibliography style with annotation and keyword blocks."""
 
     def format_entry(self, label, entry, bib_data=None):
         text = Text(
@@ -157,20 +175,29 @@ class AlphaWithAnnotationsStyle(AlphaStyle):
         )
 
         annotation = clean_annotation(entry.fields.get("annotation", ""))
-        if not annotation:
-            return FormattedEntry(entry.key, text, label)
+        if annotation:
+            text = Text(
+                text,
+                LatexOnly(
+                    r"\par\vspace{-0.45em}\begin{adjustwidth}{0.25\linewidth}{0pt}"
+                    r"\small\color{gray}\noindent\(\rightarrow\)\enspace "
+                ),
+                field_text(annotation),
+                LatexOnly(r"\par\end{adjustwidth}"),
+            )
 
-        annotation_text = field_text(annotation)
+        keywords = clean_keywords(entry.fields.get("keywords", ""))
+        if keywords:
+            text = Text(
+                text,
+                LatexOnly(
+                    r"\par\vspace{-0.35em}\begin{adjustwidth}{0.25\linewidth}{0pt}"
+                    r"\scriptsize\color{gray}\noindent\textit{Mots-clés :}\enspace "
+                ),
+                field_text(keywords),
+                LatexOnly(r"\par\end{adjustwidth}"),
+            )
 
-        text = Text(
-            text,
-            LatexOnly(
-                r"\par\vspace{-0.45em}\begin{adjustwidth}{0.25\linewidth}{0pt}"
-                r"\small\color{gray}\noindent\(\rightarrow\)\enspace "
-            ),
-            annotation_text,
-            LatexOnly(r"\par\end{adjustwidth}"),
-        )
         return FormattedEntry(entry.key, text, label)
 
 
