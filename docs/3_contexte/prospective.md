@@ -29,13 +29,7 @@ exports:
     output: exports/prospective.pdf
 ---
 
-```{bibliography}
-:list: bullet
-:filter: keywords % "prospective"
-```
-
-
-Grandes idées:
+:::{tip} Idées en vrac
 
 - la prospective vise à éclairer la politique publique
 - une forme de politique publique qui a particulièrement besoin de prospective est la plannification, qui a besoin d'une vision systémique et à long-terme
@@ -54,6 +48,7 @@ Grandes idées:
 - ce qui nous amène à la question : à quelle questions un modèle pour l'adaptation doit-il être en mesure de répondre ?
 - ce qui nous amène à la question : quelles sont les limitations actuelles des modèles pour répondre à ces questions ?
 - ce qui nous amène à la question : à quoi ressemblerait un modèle qui permettrait de répondre à ces questions ?
+:::
 
 Trame du raisonnement :
 La gouvernance climatique change de phase (I.1). Orientée initialement vers la mitigation, elle doit aujourd'hui répondre à des questions d'adaptation (I.2). Pour rester pertinents, les modèles de prospective doivent permettre de répondre à ces nouvelles questions(I.3). Or, celles-ci posent des contraintes techniques difficiles : prise en compte de données qualitatives et spatiales (II). De nouvelles techniques et approches permettraient cependant de répondre à ces contraintes (III).
@@ -64,7 +59,7 @@ mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coû
 
 ```{bibliography}
 :list: bullet
-:filter: keywords % "processus de recherche" or keywords % "gouvernance" or keywords % "histoire" or ( keywords % "GIEC" and keywords % "prospective)
+:filter: keywords % "processus de recherche" or keywords % "gouvernance" or keywords % "histoire" or ( keywords % "GIEC" and keywords % "prospective")
 ```
 
 ## Les défis à la prospective
@@ -78,5 +73,26 @@ mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coû
 
 ```{bibliography}
 :list: bullet
-:filter: keywords % "prospective"
+:filter: keywords % "modélisation d'accompagnement" or keywords % "géoprospective" 
 ```
+
+### Réfénces non-citées
+
+:list: bullet
+:filter: not (
+  keywords % "processus de recherche"
+  or keywords % "gouvernance"
+  or keywords % "histoire"
+  or (keywords % "GIEC" and keywords % "prospective")
+  or (
+    keywords % "IAM"
+    and (
+      keywords % "critique"
+      or keywords % "justice"
+      or keywords % "histoire"
+      or (keywords % "GIEC" and keywords % "prospective")
+    )
+  )
+  or keywords % "modélisation d'accompagnement"
+  or keywords % "géoprospective"
+)
