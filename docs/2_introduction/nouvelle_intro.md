@@ -13,6 +13,7 @@ exports:
     output: exports/intro.pdf
     id: intro
   - format: docx
+    template: ../templates/docx/these
     output: exports/intro.docx
     id: intro-docx
 downloads:
