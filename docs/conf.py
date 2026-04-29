@@ -151,6 +151,14 @@ latex_elements = {
     "extraclassoptions": "nobib",
     "passoptionstopackages": r"\PassOptionsToPackage{nobottomtitles*}{titlesec}",
     "preamble": r"""
+\usepackage[most]{tcolorbox}
+\definecolor{chapterwhyborder}{HTML}{FF6666}
+\definecolor{chapterwhybg}{HTML}{FFF0F0}
+\definecolor{chapterstatementborder}{HTML}{E56EEE}
+\definecolor{chapterstatementbg}{HTML}{FDEFFD}
+\definecolor{chapteryellowborder}{HTML}{FFD400}
+\definecolor{chapteryellowbg}{HTML}{FFF9D9}
+
 \newenvironment{chapterabstract}{
   \par\noindent
   \begin{minipage}{\linewidth}
@@ -160,6 +168,22 @@ latex_elements = {
   \par
   \end{minipage}
   \par
+}
+
+\newtcolorbox{chaptermetabox}[2]{
+  enhanced,
+  breakable,
+  colback=#2,
+  colframe=#2,
+  borderline west={1.6pt}{0pt}{#1},
+  boxrule=0pt,
+  arc=0.6mm,
+  left=0.85em,
+  right=0.85em,
+  top=0.45em,
+  bottom=0.45em,
+  before skip=0.35em,
+  after skip=0.35em,
 }
 """,
 }
@@ -360,13 +384,24 @@ def _inject_chapter_abstract(app, docname, source):
 
     abstract_md = f"*{abstract}*\n\n" if abstract else ""
     chapter_fields = [
-        ("Problématique", problematic),
-        ("Littérature mobilisée", literature_note),
-        ("Apport du chapitre", partial_conclusion),
+        ("Problématique", problematic, "chapterwhyborder", "chapterwhybg"),
+        (
+            "Littérature mobilisée",
+            literature_note,
+            "chapterstatementborder",
+            "chapterstatementbg",
+        ),
+        ("Apport du chapitre", partial_conclusion, "chapteryellowborder", "chapteryellowbg"),
     ]
     chapter_fields_md = "".join(
+        "```{raw} latex\n"
+        f"\\begin{{chaptermetabox}}{{{border}}}{{{background}}}\n"
+        "```\n\n"
         f"**{label} :** {value}\n\n"
-        for label, value in chapter_fields
+        "```{raw} latex\n"
+        "\\end{chaptermetabox}\n"
+        "```\n\n"
+        for label, value, border, background in chapter_fields
         if value
     )
     metadata_sep_md = ""
