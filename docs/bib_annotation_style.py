@@ -191,11 +191,11 @@ class AlphaWithAnnotationsStyle(AlphaStyle):
             text = Text(
                 text,
                 LatexOnly(
-                    r"\par\vspace{-0.35em}\begin{adjustwidth}{0.25\linewidth}{0pt}"
-                    r"\scriptsize\color{gray}\noindent\textit{Mots-clés :}\enspace "
+                    r"\par\vspace{-0.35em}{\scriptsize\color{gray}\noindent"
+                    r"\textit{Mots-clés :}\enspace "
                 ),
                 field_text(keywords),
-                LatexOnly(r"\par\end{adjustwidth}"),
+                LatexOnly(r"\par}"),
             )
 
         return FormattedEntry(entry.key, text, label)

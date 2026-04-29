@@ -80,5 +80,5 @@ mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coû
 
 ```{bibliography}
 :list: bullet
-:filter: not (keywords % "processus de recherche" or keywords % "gouvernance" or keywords % "histoire" or (keywords % "GIEC" and keywords % "prospective") or (keywords % "IAM" and (keywords % "critique" or keywords % "justice" or keywords % "histoire" or (keywords % "GIEC" and keywords % "prospective"))) or keywords % "modelisation d'accompagnement" or keywords % "geoprospective")
+:filter: keywords % "prospective" and (not (keywords % "processus de recherche" or keywords % "gouvernance" or keywords % "histoire" or (keywords % "GIEC" and keywords % "prospective") or (keywords % "IAM" and (keywords % "critique" or keywords % "justice" or keywords % "histoire" or (keywords % "GIEC" and keywords % "prospective"))) or keywords % "modelisation d'accompagnement" or keywords % "geoprospective"))
 ```
