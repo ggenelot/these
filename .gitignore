@@ -8,6 +8,8 @@ scripts/cache/*
 
 .vscode/*
 
+.env
+
 # Python
 __pycache__/
 *.pyc

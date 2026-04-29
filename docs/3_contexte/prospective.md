@@ -4,14 +4,25 @@ keywords:
   - modélisation
   - prospective
   - épistémologie
-  - histoire de la modélisation 
+  - histoire de la modélisation
+keypoints: 
+  - la plannification de l'adaptation au changement climatique nécessite de la prospective, et donc des modèles appropriés
+  - la gouvernance climatique a cadré et a été cadré par les modèles de prospective énergétique, qui orientent vers des stratégies de mitigation et des instruments quantitatifs (taxes carbones, quotas, etc)
+  - de nombreuses questions sont restées en suspens : adaptation, distribution des impacts ou de la charge, aménagement de l'espace, justice climatique
+  - prendre en compte ces dimensions requière de nouvelles techniques de modélisation, et notamment une plus grande prise en compte de la spatialité et de données qualitatives
 parts:
   abstract: |
-    Les modèles de prospective, notamment ceux qui informent les rapports du GIEC, sont issus de la prospective énergétique. Ils sont orientés vers l'évaluation de politiques de mix énergétiques, et répondent à des questions de transition énergétique. Cependant, ils peinent à prendre en compte des données qui ne sont pas quantifiées, et sont souvent très abstraits spatialement. Ces deux caractéristiques rendent difficile l'évaluation de politiques d'adapation, et pose la question de leur transformation pour répondre à des questions contemporaines. Nous développons ici l'idée que de nouveaux modèles de prospective sont requis pour permettre de répondre à des questions d'adaptation et de justice climatique.
+    Les modèles de prospective, notamment ceux qui informent les rapports du GIEC, sont issus de la prospective énergétique. Ils sont orientés vers l'évaluation de politiques de mix énergétiques, et répondent à des questions de transition énergétique. Cependant, ils peinent à prendre en compte des données qui ne sont pas quantifiées, et sont souvent très abstraits spatialement. Ces deux caractéristiques rendent difficile l'évaluation de politiques d'adapation, et posent la question de leur transformation pour répondre à des questions contemporaines. Nous développons ici l'idée que de nouveaux modèles de prospective sont requis pour permettre de répondre à des questions d'adaptation et de justice climatique.
   problematic: |
-    Quels sont les atouts et contraintes de modèles pour répondre à des questions d'adaptation au changement climatique ?
-  literature_note: |
-  partial_conclusion: |
+    En quoi l'évolution de la gouvernance climatique appelle-t-elle à une évolution des techniques de modélisation prospective ? 
+  literature_note: | 
+    On s'appuie sur : 
+    - une littérature critique de la gouvernance climatique (Gouverner le climat, Fressoz, Cointe)
+    - une littérature d'épistémologie de la modélisation () qui appelle à une meilleure prise en compte de la dimension éthique de la modélisation
+    - la littérature modélisation d'accompagnement
+    - suites de mon mémoire
+  partial_conclusion: | 
+    Pour bien aménager le territoire pour l'adaptation, les modèles de prospective doivent évoluer pour prendre en compte la spatialité et l'aspect qualitatif de phénomènes climatiques.
 exports:
   - format: pdf
     template: ./templates/these-chapitre
