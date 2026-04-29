@@ -5,10 +5,10 @@ keywords:
     - submersion marine
     - littoral
 keypoints: 
-    - l'aléa cyclonique provoque des dommages par trois canaux principaux : les vents violents; les précipitations intenses; et des vagues / submersion
-    - le phénomène de vague / submersion cyclonique est assimilable à une version exceptionnelle de vagues / submersion habituelles
-    - associé à des phénomènes d'érosion ou de recul du trait de côte, et d'hausse du niveau de la mer, l'aléa vague - submersion est fortement renforcé
-    - la qualité des écosystème côtier (corail, mangrove) est déterminant dans la puissance effective des vagues
+    - "l'aléa cyclonique provoque des dommages par trois canaux principaux : les vents violents; les précipitations intenses; et des vagues / submersion"
+    - "le phénomène de vague / submersion cyclonique est assimilable à une version exceptionnelle de vagues / submersion habituelles"
+    - "associé à des phénomènes d'érosion ou de recul du trait de côte, et d'hausse du niveau de la mer, l'aléa vague - submersion est fortement renforcé"
+    - "la qualité des écosystème côtier (corail, mangrove) est déterminant dans la puissance effective des vagues"
 parts:
   abstract: |
     Dans ce chapitre, nous décrivons l’aléa cyclonique dans le bassin nord-atlantique. Nous détaillerons ainsi les mécanismes qui produisent des cyclones, leur évolution et les canaux par lequels ils peuvent provoquer des dommages. Nous nous intéresserons également aux autres risques côtiers, tels que l’érosion et le recul du trait de côte.
@@ -29,6 +29,13 @@ exports:
 
 
 Partie sur les cyclones. La biblio devrait apparaitre ici.
+
+## Points clés
+
+- L'aléa cyclonique provoque des dommages par trois canaux principaux : les vents violents, les précipitations intenses et les vagues / submersions.
+- Le phénomène de vague / submersion cyclonique est assimilable à une version exceptionnelle des vagues / submersions habituelles.
+- Associé aux phénomènes d'érosion, de recul du trait de côte et de hausse du niveau de la mer, l'aléa vague-submersion est fortement renforcé.
+- La qualité des écosystèmes côtiers, notamment les coraux et les mangroves, est déterminante dans l'atténuation de la puissance effective des vagues.
 
 ```{bibliography}
 :list: bullet

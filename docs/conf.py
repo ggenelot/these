@@ -347,6 +347,8 @@ def _inject_chapter_abstract(app, docname, source):
         keywords = []
 
     raw_keypoints = parts.get("keypoints")
+    if raw_keypoints is None:
+        raw_keypoints = metadata.get("keypoints")
     if isinstance(raw_keypoints, str):
         keypoints = [raw_keypoints]
     elif isinstance(raw_keypoints, list):
