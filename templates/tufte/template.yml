@@ -1,0 +1,12 @@
+jtex: v1
+title: Tufte Book Test
+description: Template Tufte minimal pour test MyST PDF
+version: 0.1.0
+license: CC-BY-4.0
+
+files:
+  - template.tex
+
+doc:
+  - id: title
+    required: true

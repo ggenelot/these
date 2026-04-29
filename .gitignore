@@ -8,6 +8,8 @@ scripts/cache/*
 
 .vscode/*
 
+.env
+
 # Python
 __pycache__/
 *.pyc
@@ -19,9 +21,11 @@ __pycache__/
 .pytest_cache/
 
 # Sphinx
+_build/
 docs/build/
 docs/_build/
 docs/cache/
+docs/**/exports/
 
 # Data
 data/
