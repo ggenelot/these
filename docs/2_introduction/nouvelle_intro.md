@@ -138,8 +138,8 @@ Ici encore, elles se déclinent en différentes sous-questions.
 
 D'abord, celle de la justice climatique. Le changement climatique ne va pas toucher de la même manière tous les pays / groupes sociaux. Les politiques publiques associées ont le potentiels de corriger des inégalités, ou au contraire de les accentuer. Prendre en compte cette dimension dans les exercices de prospective apparait dès lors comme une nécessité pour tendre vers un futur désirable. Cependant, cette volonté soulève de nouvelles questions :
 
-- Comment représenter la justice climatique ? 
-- Quels indicateurs prendre en compte ? 
+- Comment représenter la justice climatique ?
+- Quels indicateurs prendre en compte ?
 - Une participation élargie à l'exercice de modélisation permet-elle de mieux prendre en compte une pluralité de point de vue ?
 
 Se pose aussi des questions plus méthodologiques, telle que la question du type de données. Les politiques d'adaptation sont par essence locales, spécifiques et situées. A la différences de politiques de mitigation classiques, qui s'appuient sur des éléments quantitatifs (limitation des émissions de CO2e, taxe carbone, etc.), les politiques d'adaptation passent souvent par des canaux différents. Pour garder un intérêt, les modèles doivent donc intégrer ces éléments. Se posent dès lors différentes questions.
@@ -183,7 +183,10 @@ S'incrivant dans une démarche de géographe, cette thèse cherche à partir de 
 
 Une première phase de terrain exploratoire a été réalisée entre février et avril 2026, principalement en Martinique. Elle a permis de mieux cerner la problématique ainsi que le socio-écosystème de référence.
 
+:::{tip} Remarque
+:class: dropdown
 Une deuxième phase de terrain à venir ? là on est dans le cas un peu bizarre de rédiger l'intro au début qui est que je ne sais pas encore ce que j'aurais fait à l'avenir
+:::
 
 ### La variété comme ouverture
 
@@ -204,7 +207,6 @@ L'apport principal de ce travail de thèse consiste en l'aggrégation de ces don
 ## Plan
 
 % affirmer le sérieux de sa démarche
-
 
 ### Cadre historique et conceptuel
 
