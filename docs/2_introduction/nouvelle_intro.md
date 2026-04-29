@@ -1,30 +1,35 @@
 ---
+title: Introduction générale
+keypoints:
+  - Nous associons des données qualitatives et quantitatives, dans une démarche de prospective spatialisée
 parts:
-  abstract: >
+  abstract: |
     A travers cette thèse, nous mobilisons des méthodes et matériaux variés (données qualitatives issues du terrain, données spatiales, données climatologique) pour évaluer les effets systèmique de projets d'adaptation du littoral au risque cyclonique. Nous nous intéressons à plusieurs cas d'étude en Martinique.
-  keypoints:
-    - Quels sont les effets systémique de l'adaptation au risque cyclonique ? 
-    - Nous associons des données qualitatives et quantitatives, dans une démarche de prospective spatialisée
+  problematic: 
+    Quels sont les effets systémique de l'adaptation au risque cyclonique ? 
 exports:
   - format: pdf
     template: lapreprint
     output: exports/intro.pdf
     id: intro
+  - format: docx
+    output: exports/intro.docx
+    id: intro-docx
 downloads:
   - id: intro
+    title: "PDF"
+  - id: intro-docx
+    title: "Word"
 ---
-
-# Introduction générale
-
 % amener le lecteur au sujet
 
-Les zones littorales des régions tropicales sont particulièrement exposées aux effets du changement climatique. D'une part, les aléas sont renforcés : cyclones plus fréquents ou plus intense, fragilisation du littoral par l'érosion, etc. D'autre part, les enjeux sont concentrés en zone côtière. Des mutations de l'organisation spatiale sont dès lors inévitables. Plannifiées ou subies, certaines sont déjà encore, tandis que la préparation de l'avenir nécessite de penser la recomposition spatiale. Si ces transformations constituent un risque de renforcer des situations inégalitaires, elles sont aussi une opprtunité de penser l'adaptation comme outil de justice climatique. Pour celà, il est nécessaire de comprendre les effets systémiques, à moyen et à long-terme, des décisions d'aujourd'hui.
+Les zones littorales des régions tropicales sont particulièrement exposées aux effets du changement climatique. D'une part, les aléas sont renforcés : cyclones plus fréquents ou plus intenses, fragilisation du littoral par l'érosion, etc. D'autre part, les enjeux sont concentrés en zone côtière. Des mutations de l'organisation spatiale sont dès lors inévitables. Plannifiées ou subies, certaines sont déjà en cours, tandis que la préparation de l'avenir nécessite de penser la recomposition spatiale. Si ces transformations constituent un risque de renforcer des situations inégalitaires, elles sont aussi une opprtunité de penser l'adaptation comme outil de justice climatique. Pour celà, il faut comprendre les effets systémiques futurs, à moyen et à long-terme, des décisions d'aujourd'hui.
 
 La modélisation prospective cherche justement à proposer des éclairages sur les effets de politiques publiques. En particulier, les modèles intégrés jouent un rôle de premier plan dans la gouvernance climatique. Ceux-ci se sont essentiellement concentrés sur la mitigation du changement climatique, notamment les émissions de gaz à effet de serre. Ces modèles sont très globaux, et ne permettent pas de prendre en compte les spécificités locales nécessaires à l'adaptation.
 
-A l'inverse, les effets du changement climatique renforcent des risques en Martinique, et nécessitent de s'y préparer. Adapter les territoires par des mesures d'aménagement de l'espace semble un des outils disponibles. Or, les risques sont étroitement liés les uns aux autres, ainsi qu'à des caractéristiques socio-historiques anciennnes. Il y a donc une nécessité d'avoir des outils permettant de prendre des décisions éclairées sur les effets systèmiques de mesures d'adaptation, pour éviter la maladaptation.
+A l'inverse, les effets du changement climatique renforcent des risques en Martinique, et nécessitent de s'y préparer. Adapter les territoires par des mesures d'aménagement de l'espace semble un des outils disponibles. Or, les risques sont étroitement liés les uns aux autres, ainsi qu'à des caractéristiques socio-historiques anciennnes. Il y a donc une nécessité d'avoir des outils permettant de prendre des décisions éclairées sur les effets systèmiques de mesures d'adaptation, pour éviter la maladaptation et favoriser une transition juste.
 
-L'aménagement du territoire est à la fois un outil et un état de fait. Oeuvre de la politique publique, par le biais de ses différents documents d'aménagment ou de stratégie (PLU, SCoT, PPRN, etc.) c'est la matérialisation physique d'un projet de société. Etat de fait, c'est aussi le constat de dynamiques anciennes, de rapports de force présents ou historiques. C'est ainsi une entrée permettant d'appréhender le risque à travers ces outils habituels (zonages réglementaires, etc.). On y voit les effets désirés de politiques publiques, comme le fait de rendre des zones inconstructibles, mais aussi ceux induits, tels que l'habitat informel. Entrer dans la question de l'adaptation par l'espace permet donc à la fois de s'intégrer dans l'écosystème du risque et de l'aménagement, mais aussi de percepvoir les éléments qui échappent à ces politiques publiques.
+L'aménagement du territoire est à la fois un outil et un état de fait. Oeuvre de la politique publique, par le biais de ses différents documents d'aménagment ou de stratégie (PLU, SCoT, PPRN, etc.) c'est la matérialisation physique d'un projet de société. Etat de fait, c'est aussi le constat de dynamiques anciennes, de rapports de force présents ou historiques. C'est ainsi une entrée permettant d'appréhender le risque à travers ces outils habituels (zonages réglementaires, etc.). On y voit autant les effets attendus de politiques publiques, comme le fait de rendre des zones inconstructibles, mais aussi ceux induits, tels que l'habitat informel. Entrer dans la question de l'adaptation par l'espace permet donc à la fois de s'intégrer dans l'écosystème du risque et de l'aménagement, mais aussi de percepvoir les éléments qui échappent à ces politiques publiques.
 
 ## Description des principaux termes utilisés
 
@@ -50,7 +55,7 @@ La prospective est une discipline visant à explorer les futurs possibles pour �
 
 ### Adaptation
 
-D'adaptation ensuite. L'adaptation, c'est une modification souhaitée d'un système pour faire face à une perturbation. Dans notre cas, le système est la bande littorale en Martinique, et la perturbation est le changement climatique. Plus précisément, à travers différents canaux, celui-ci induit plusieurs perturbations, notamment l'augmentation de la puissance des vagues, le recul du trait de côte et une surcôte marine.
+D'adaptation ensuite. L'adaptation est une modification souhaitée d'un système pour faire face à une perturbation. Dans notre cas, le système est la bande littorale en Martinique, et la perturbation est le changement climatique. Plus précisément, à travers différents canaux, celui-ci induit plusieurs perturbations, notamment l'augmentation de la puissance des vagues, le recul du trait de côte et une surcôte marine.
 
 ### Aménagement du territoire
 
@@ -76,6 +81,11 @@ D'autre part, il existe de la littérature scientifique sur ce sujet.
 Du côté de la géographie, on peut retrouver de nombreux travaux, notamment ceux du Dr Saffache / Audrey Pastel / travaux de littoralistes notamment. De nombreux travaux existent sur l'évolution de la bande littoralle, et notamment autour des notions d'érosion [@nicolas-bragance_littoraux_2016], d'évolution du trait de côte
 @saffache_avancee_1999, ou d'urbanisation @pastel_coastal_2023 dans le contexte martiniquais. En particulier, on peut citer la récente thèse d'Audrey Pastel, qui montre que l'adaptation au changement climatique est un moteur de recomposition spatiale, et permet de traiter des enjeux qui dépassent la seule adaptation au changement climatique @pastel_adaptation_2023 . Elle montre que la recomposition spatiale est une nécessité, mais que les outils disponibles acutellement sont limités.
 Du côté de l'évolution de l'aléa, on peut citer un certain nombre de travaux de météo france.
+
+:::{note} TODO
+:class: dropdown
+Continuer à rédiger cette partie sur la littérature
+:::
 
 L'évaluation du risque cyclonique dans un contexte de changement climatique peut se décomposer en trois catégories : la description des impacts actuels; les changements des cyclones en eux-mêmes, et les changements des impacts.
 
@@ -114,13 +124,15 @@ En effet, l'aménagement est au coeur de la politique locale. Compétence de la 
 Cette question se décline en sous-questions :
 
 - d'abord, quelles sont les options disponibles ?
-- ensuite, quels effets systémiques ont chacune de ces options ? Nous nous intéressons ici en particulier à deux types d'effets.
+- ensuite, quels effets systémiques ont chacune de ces options ?
+- enfin, comment ces effets s'articulent-ils entre eux ? Au cours du temps ? Entre les groupes sociaux ?
+
+Nous nous intéressons ici en particulier à deux types d'effets.
 D'une part, aux effets en cascade. En effet, les aménagement ont des conséquences directes sur les éléments qui les composent ou sont en relation directe avec eux. Ces conséquences sont déjà difficile à percevoir. Par ailleurs, ces conséquences (ou perturbations) sur d'autres éléments auront elles aussi des conséquences sur d'autres éléments, et ainsi de suite. L'approche systémique permet de s'intéresser à ces phénomènes. Plus que de caractériser précisément telle ou telle relation / conséquence, ce qui nous intéresse ici ce sont les effets systémiques des choix d'aménagement.
 D'autre part, aux effets de distribution. En utilisant une approche spatiale avec une résolution fine, nous cherchons à désagréger les résultats pour avoir une vision fine des impacts à la fois du risque cyclonique, mais aussi des effets de politiques d'aménagement. Nous ne cherchons pas à qualifier l'exposition globale d'un territoire, en obtenant une valeur monétaire agrégée de dommages matériels, par exemple. Au contraire, nous cherchons à voir les effets distributionnels de politiques d'aménagement. Ce questionnement ce décline sous plusieurs questions : qui est le plus exposé ? quel augmentation ou diminution de l'exposition au risque provoque une mesure ? pour qui ? Ainsi, nous cherchons à décomposer les effets par publics, pour identifier d'éventuels mécanismes d'adaptation. On entend par là des mesures qui en permettant l'adaptation d'un groupe spécifique exposerait davantages d'autres groupes.
-- enfin, comment ces effets s'articulent-ils entre eux ?
 
-par rapport à l'aménagement : l'apport du futur / prospective
-par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation
+%par rapport à l'aménagement : l'apport du futur / prospective
+%par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation
 
 ### Réflexions autour de la prospective
 
@@ -128,16 +140,44 @@ par rapport à la prospective : la recherche de méthodes spatialisées ; des te
 
 Derrière ces questions d'aménagement se cachent des interrogations sur le rôle d'un modèle et ses évolutions potentielles pour devenir un outil d'aide à l'adaptation au changement climatique. Elles pourraient se résumer dans la question de recherche suivante : quelles caractéristiques sont requises par un modèle de prospective permettant l'adapatation ?
 
-Ici encore, elles se déclinent en différentes sous-questions :
+Ici encore, elles se déclinent en différentes sous-questions.
 
-- comment intégrer la justice climatique dans un exercice de prospective ? Le changement climatique ne va pas toucher de la même manière tous les pays / groupes sociaux. De la même manière, les politiques publiques associées ont le potentiels de corriger des inégalités, ou au contraire de les accentuer. Prendre en compte cette dimension dans les exercices de prospective apparait dès lors comme une nécessité pour tendre vers un futur désirable. Cependant, cette volonté soulève de nouvelles questions. Comment représenter la justice climatique ? Quels indicateurs prendre en compte ? Une participation élargie à l'exercice de modélisation permet-elle de mieux prendre en compte une pluralité de point de vue ?
-- comment intégrer des éléments qualitatifs ? Les politiques d'adaptation sont par essence locales, spécifiques et situées. A la différences de politiques de mitigation classiques, qui s'appuient sur des éléments quantitatifs (limitation des émissions de CO2e, taxe carbone, etc.), les politiques d'adaptation passent souvent par des canaux différents. Pour garder un intérêt, les modèles doivent donc intégrer ces éléments. Se posent dès lors différentes questions. Comment intégrer des éléments qualitatifs ? Comment les coupler à des données quatitatives ?
+D'abord, celle de la justice climatique. Le changement climatique ne va pas toucher de la même manière tous les pays / groupes sociaux. Les politiques publiques associées ont le potentiels de corriger des inégalités, ou au contraire de les accentuer. Prendre en compte cette dimension dans les exercices de prospective apparait dès lors comme une nécessité pour tendre vers un futur désirable. Cependant, cette volonté soulève de nouvelles questions :
+
+- Comment représenter la justice climatique ?
+- Quels indicateurs prendre en compte ?
+- Une participation élargie à l'exercice de modélisation permet-elle de mieux prendre en compte une pluralité de point de vue ?
+
+Se pose aussi des questions plus méthodologiques, telle que la question du type de données. Les politiques d'adaptation sont par essence locales, spécifiques et situées. A la différences de politiques de mitigation classiques, qui s'appuient sur des éléments quantitatifs (limitation des émissions de CO2e, taxe carbone, etc.), les politiques d'adaptation passent souvent par des canaux différents. Pour garder un intérêt, les modèles doivent donc intégrer ces éléments. Se posent dès lors différentes questions.
+
+- Comment intégrer des éléments qualitatifs ? 
+- Comment les coupler à des données quatitatives ?
 
 % introduire une partie sur le paradoxe / contre-paradoxe (enjeu) ?
 
 ## Méthode
 
 % description des différentes méthodes utilisées : construction du modèle, terrain, etc.
+
+:::{tip}idées en vrac:
+:class: dropdown
+:open: true
+
+- le terrain permet d'avoir une approche plus large
+- le concept de socio-écosystème prend en compte les phénomènes physiques, les dynamiques humaines et la biodiversité
+- une approche globale est intéressante parce qu'elle permet de décloisonner
+- or le risque est l'intersection entre toutes ces sphères
+- l'approche par le paysage permet de bien appréhender le socio-écosystème
+- le terrain permet d'avoir une approche par le paysage et des entretiens
+- les entretiens permettent d'éclairer d'obtenir des données non quantifiables: attachement à un lieu, violence symbolique, désirs, aspirations
+- le framework PARDI permet de représenter un socio-écosystème en partant de la manière dont celui-ci est vécu
+- des données quantitatives massives et précises existent aujourd'hui
+- ces données permettent de mieux comprendre des phénomènes physiques (cyclone, submersion)
+- des modèles quantitifs permettent de facilement croiser ces données et d'en dire des choses intéressantes
+- il est difficile d'intégrer des données qualitative dans un modèle quantitatif
+- c'est pourtant peut être pertinent si on veut tirer le meilleur des deux mondes
+- les données spatiales, notamment les zonages, sont l'expression de volontées qualitative tout en étant dans un format qui est possible d'utiliser de manière quantitative
+:::
 
 Pour répondre à ces questions, nous deployons plusieurs méthodes, qualitatives et quantitatives. Celles-ci incluent une phase de terrain, l'apport de données qualitatives à l'aide de techniques de modélisation d'accompagnement, et la construction d'un modèle permettant de faire de la prospective au niveau d'un territoire.
 
@@ -149,7 +189,10 @@ S'incrivant dans une démarche de géographe, cette thèse cherche à partir de 
 
 Une première phase de terrain exploratoire a été réalisée entre février et avril 2026, principalement en Martinique. Elle a permis de mieux cerner la problématique ainsi que le socio-écosystème de référence.
 
+:::{tip} Remarque
+:class: dropdown
 Une deuxième phase de terrain à venir ? là on est dans le cas un peu bizarre de rédiger l'intro au début qui est que je ne sais pas encore ce que j'aurais fait à l'avenir
+:::
 
 ### La variété comme ouverture
 
@@ -170,7 +213,6 @@ L'apport principal de ce travail de thèse consiste en l'aggrégation de ces don
 ## Plan
 
 % affirmer le sérieux de sa démarche
-
 
 ### Cadre historique et conceptuel
 
