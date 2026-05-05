@@ -52,7 +52,21 @@ mermaid_version = "10.9.1"  # version bundled via sphinxcontrib-mermaid CDN
 mermaid_init_js = """
 mermaid.initialize({
   startOnLoad: true,
-  securityLevel: "loose"
+  securityLevel: "loose",
+  theme: "base",
+  themeVariables: {
+    primaryColor: "#f6f3ee",
+    primaryTextColor: "#222222",
+    primaryBorderColor: "#555555",
+    lineColor: "#666666",
+    secondaryColor: "#e9ecef",
+    tertiaryColor: "#ffffff",
+    fontFamily: "Inter, Arial, sans-serif"
+  },
+  flowchart: {
+    curve: "basis"
+  },
+  deterministicIds: true
 });
 """
 
