@@ -8,6 +8,8 @@ scripts/cache/*
 
 .vscode/*
 
+.env
+
 # Python
 __pycache__/
 *.pyc
@@ -22,6 +24,8 @@ __pycache__/
 docs/build/
 docs/_build/
 docs/cache/
+_build/*
+docs/*/exports
 
 # Data
 data/
