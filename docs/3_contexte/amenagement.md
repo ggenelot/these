@@ -38,47 +38,43 @@ parts:
 - aménager les territoires est une bonne stratégie pour s'adapter au changement climatique
 - c'est une manière de se prémunir contre les risques, mais aussi de repenser la société au regard de ces nouvelles configurations
 - c'est un outil qui permet de porter à l'échelle collective les raisonnements, et pas seulement au niveau individuel, contrairement à des contraintes réglementaires batimentaires par exemple
+- les documents de l'améngaement
 
 :::
 
+## Penser l'espace, penser dans l'espace
 
-:::{figure}
-:name: fig-test
-:align: center
+=> qu'est-ce que l'aménagement, quels sont ses outils ? en quoi est-ce un exercice de plannification qui requière de la prospective ?
 
-```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f6f3ee","primaryTextColor":"#222222","primaryBorderColor":"#555555","lineColor":"#666666","secondaryColor":"#e9ecef","tertiaryColor":"#ffffff","fontFamily":"Inter, Arial, sans-serif"},"flowchart":{"curve":"basis"},"deterministicIds":true}}%%
-flowchart TD
+=> définition de termes de l'espace, de l'aménagement (ancrage théorique et épistémologique dans géographie / aménagement)
+=> l'aménagement : plannification, à la fois spatiale et temporelle (lien conceptuel assez clair avec la notion de prospective et le chapitre 1)
+=> outils et mesures de l'aménagement (présentation plus concrète de la fabrique des territoires, notamment toute la partie avec les dispositifs réglementaires : PPRN, PLU, etc.)
+  => il y des sphères et des lieux sur lesquels elle a des impacts, d'autre moins;  
+  => dans tous les cas, même non recherchés, les mesures ont des conséquences
 
-I1["Prospective"]:::input
-I2["Cyclones"]:::input
+## L'aménagement pour le changement climatique, une nécessaire adaptation
 
-subgraph CH["Chapitre 3 : aménagement, spatialité et équité"]
-    direction TB
-    P["Quelle pratique de la plannification l'aménagement révèle-t-elle ?"]:::core
-    H["L'aménagement de l'espace est la matérialisation de la volonté publique"]:::core
-    A1["Argument 1"]:::core
-    A2["Argument 2"]:::core
-    C["Conclusion / apport"]:::core
+=> quel réponse au changement climatique par l'aménagement du territoire ? Marge de manoeuvre et exemples pratiques. 
 
-    P --> H
-    H --> A1
-    H --> A2
-    A1 --> C
-    A2 --> C
-end
+=> les territoires doivent s'adapter au changement climatique pour limiter leur exposition
+=> exemples de mesures d'adaptation
+=> l'aménagement est une échelle pertinente pour mener des politiques d'adaptation
+  => comprendre le territoire pour lutter contre la maladaptation
+  => connaitre les spécificités locales
+  => mobiliser des acteurs, des ressources diverses et variées
+  == "pour une géographie intégrée"
 
-O1["Concept transmis au chap. 5"]:::output
-O2["Question ouverte"]:::weak
+## Section 3 => lien avec le reste de la thèse
 
-I1 --> P
-I2 --> H
-C --> O1
-C --> O2
+aménagement et participation ?
+aménagement et politique locale ?
+le caractère hautement politique de l'aménagement ?
 
-
-
-```
+=> ce serait super d'avoir un lien avec le reste de la thèse
+le lien avec le chapitre 1 sur la prospective a déjà été fait; le lien avec les écosystèmes cotiers un petit peu aussi, dans la partie aménagement pour l'adaptation. Maintenant, ce chapitre introduit potentiellement : la Martinique, et la réflexion sur les risques. Je vois assez bien une transiiton douce sur l'aménagement en Martinique, mais je ne suis pas sûr de vouloir développer dans ce chapitre les spécificités de l'aménagement en Martinique, j'ai l'impression que je veux plutôt garder ça pour le chapitre suivant (notamment la réflexion sur aménagement x plantationocène)
 
 Position du chapitre par rapport aux autres chapitres
-:::
+
+Lien entre le concept de plantationocène et l'aménagement : 
+
+Dans une écologie décoloniale, Malcom Ferdinand montre que 
