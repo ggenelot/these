@@ -25,6 +25,7 @@ docs/cache/
 _build/*
 docs/*/exports/*
 .mcp*
+.claude/*
 
 # Data
 data/

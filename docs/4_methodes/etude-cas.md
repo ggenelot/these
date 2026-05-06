@@ -1,15 +1,10 @@
 ---
+title: Cas d'étude du risque cyclonique en Martinique
+keypoints:
+keywords: 
 parts:
   abstract: >
-    Dans cette partie, nous revenons sur une brève histoire de la modélisation prospective. Nous y montrerons que les modèles actuels, principalement tournés vers la mitigation, souffrent de contrainte structurelles qui ne leur permet pas de bien représenter des politiques d’adaptation. Nous détaillerons ces limitations et tenterons d’identifier des caractéristiques nécessaire à des modèles pour l’adaptation.
-  keypoints:
-    - les modèles actuels sont tournés vers la mitigation
-    - ils sont limités dans leur représentation de l'adaptation
-    - pour conserver leur intérêt pour la politique publique, ils doivent répondre à ces enjeux
-  keywords: 
-    - adaptation 
-    - aménagement
-    - plannification
+    Dans cette partie, nous présentons plusieurs études de cas. A travers des sources de terrain, des documents d'urbanisme et des représentation graphiques, nous présentons les spécificités de chacun des territoires étudiés. Nous essayons d'en tirer de grandes caractéristiques.
 ---
 
 idées en vrac :
@@ -26,6 +21,39 @@ idées en vrac :
 - des zones construites en dehors d'un cadre formel sont aujourd'hui réintégrées dans ce cadre formel (Volga plage, zone des 50 pas)
 - on peut voir à travers le croisement de données de l'INSEE et de données d'urbanisme qui est le plus exposé
 - cette information permet de prendre en compte des vulnérabilités existantes dans des mesures d'adaptation
-- 
 
-trame: 
+trame: une trame pas tellement analytique, mais plutot différentes descriptions d'espaces et de leurs caractéristiques. Chaque exemple peut apporter une facette particulière d'un problème ceci dit, et ça permet d'avancer ensemble. Donc commençons par lister les endroits auxquels j'ai pensé :
+
+- le Précheur
+- Macouba
+- Volga Plage (Fort de France)
+- Décathlon du Lamentin
+- Sainte-Luce
+- grand rivière
+
+On peut déjà regrouper ces différents endroits par catégories :
+
+- des endroits où il y a en cours / eu des stratégies d'adaptation :
+  - Sainte-Luce et le Lamentin avec des stratégies fondées sur la nature (+ infrastructure pour le décathlon)
+  - Précheur et Macouba avec des stratégies fondées sur le peuplement
+  - grand rivière, une stratégie fondée sur l'infrastructure matérielle
+- des endroits qui sont particulièrement exposés aux risques futurs :
+  - le quartier de Volga plage, qui est apparu de manière informelle, qui est très vulnérable
+
+J'aimerais adopter une structure commune pour tous mes paragraphes :
+
+- contexte
+  => comprendre quels sont les spécificité de ce lieu particulier, notamment au regard du reste de la Martinique (l'idée est qu'au travers de plusieurs exemples, on ai accès à la variété de paysages physiques et sociaux qu'offre la Martinique)
+  - commencer par une présentation générale, avec les grandes caractéristiques, éventuellement la trajectoire historique du lieu
+  - une présentation de site / situation
+  - puis plus localisée avec un bloc diagramme qui présente le socio-écosystème à cet endroit précisement
+- éléments particuliers
+  => identifier les spécificités de cet endroit en terme de risque cyclonique / d'adaptation
+  - documents d'urbanisme
+  - verbatims d'entretiens
+  - photos de terrain
+- interprétation, mesures
+  => interpréter cet espace, commenter les mesures mises en place
+  => commencer à tendre vers une stylisation des faits, pour pouvoir les modéliser ensuite
+
+On adopte une approche par le paysage, donc il faudra commencer par développer cette question en premier : qu'est-ce qu'un paysage, quel est l'apport de cette notion, en quoi est-ce que ça peut devenir une méthode, et comment l'articuler avec la (géo)prospective et la notion de socio-écosystème. 
