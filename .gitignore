@@ -22,6 +22,10 @@ __pycache__/
 docs/build/
 docs/_build/
 docs/cache/
+_build/*
+docs/*/exports/*
+.mcp*
+.claude/*
 
 # Data
 data/
