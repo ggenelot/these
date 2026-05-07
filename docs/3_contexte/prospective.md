@@ -53,3 +53,36 @@ Trame du raisonnement :
 La gouvernance climatique change de phase (I.1). Orientée initialement vers la mitigation, elle doit aujourd'hui répondre à des questions d'adaptation (I.2). Pour rester pertinents, les modèles de prospective doivent permettre de répondre à ces nouvelles questions(I.3). Or, celles-ci posent des contraintes techniques difficiles : prise en compte de données qualitatives et spatiales (II). De nouvelles techniques et approches permettraient cependant de répondre à ces contraintes (III).
 
 mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coût social du carbone, monétarisation
+
+## Coévolution de la recherche scientifique et de la gouvernance climatique
+
+=> il y a une double évolution de la gouvernance et de la recherche, qui s'alimentent mutuellement
+
+- la gouvernance climatique (comme définie par Aykut) a évolué depuis 40 ans : logique monétaire / quantitative / globale / marché (taxes carbones, etc), à une logique local / qualitatif / adaptation
+- La production scientifique a évolué aussi : elle est passée d'une logique de compréhension / mitigation (donc un évitement du phénomène) à une logique de (p)réparation / adaptation (donc une acceptation du problème)
+- cette coévolution illustre et questionne les liens entre science et politique
+  - une influence sur la recherche par le système international (GIEC, etc) (Cointe, aykut)
+  - les effets du cadrage de la recherche sur la politique climatique (Fressoz, notion de cadrage)
+  - 
+
+## Les contraintes structurelles des modèles numériques d'optimisation
+
+=> les limites historiques des simulations numériques type DICE, World3, etc. 
+
+- le monétaire et la commensurabilité : la nécessité d'avoir une unité de compte dans un modèle d'optimisation
+  - une simulation numérique / un modèle d'optimisation nécessite une unité de compte commune pour pouvoir comparer des choses différentes
+  - cette généralisation réduit la précision de la compréhension, notamment sur des phénomènes qui ne sont pas directement monétaires
+  - reproduction nécessaire des inégalités déjà existante : donc un outil pas adaptaté pour des questions de justice climatique
+- un manque de finesse spatiale
+  - les modèles intégrés (pas les modèles de climat) sont historiquement peu spatially-aware (notamment ceux dans la tradition de DICE)
+  - ça limite la prise en compte de réalités locales / de spécificités territoriales (pré-introduction au chapitre aménagement)
+  - pourtant, la spatialité est prise en compte dans certaines approches (données spatiales quantitatives, liens avec les GCM, géoprospective)
+  - et en même temps, la question de l'abstraction : à quoi bon avoir des modèles trop précis (mythe de l'empereur et du cartographe)
+- la question de la justice et des normes
+  - une recherche de la neutralité, inscrite dans la pensée scientifique classique
+  - pourtant, l'impossibilité d'être neutre quand on fait de la modélisation
+  - effets de cette non-neutralité et marge de manoeuvre
+
+## Outils possibles et nécessaire pour la formation de la connaissance scientifique de demain
+
+- 
