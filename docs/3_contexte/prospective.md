@@ -63,11 +63,10 @@ mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coû
 - cette coévolution illustre et questionne les liens entre science et politique
   - une influence sur la recherche par le système international (GIEC, etc) (Cointe, aykut)
   - les effets du cadrage de la recherche sur la politique climatique (Fressoz, notion de cadrage)
-  - 
 
 ## Les contraintes structurelles des modèles numériques d'optimisation
 
-=> les limites historiques des simulations numériques type DICE, World3, etc. 
+=> les limites historiques des simulations numériques type DICE, World3, etc.
 
 - le monétaire et la commensurabilité : la nécessité d'avoir une unité de compte dans un modèle d'optimisation
   - une simulation numérique / un modèle d'optimisation nécessite une unité de compte commune pour pouvoir comparer des choses différentes
@@ -85,4 +84,23 @@ mots-clés permettant de distinguer la biblio : spatial, socio-ecosystème, coû
 
 ## Outils possibles et nécessaire pour la formation de la connaissance scientifique de demain
 
-- 
+///////////////////////////
+
+J'aime bien l'idée de changement d'objet, de questionnement scientifique et de cadre politique (en fait plutot objet, échelle et régime de preuve) :
+
+objet :
+
+- climat comme objet purement physique, un peu partout, gazeux (littéralement) => adaptation, espace, territoire : objets beaucoup plus concrets, matériels (morphologie urbaine), politiques
+- instruments financiers à aménagement de l'espace
+
+échelle : échelle globale (et abstraite):
+
+- échelle de la perception : globale et abstraite à échelle locale et perceptible
+  - une idée intéressante là : la perception du changement climatique : avant il n'y avait pas de perception, c'était quelque chose d'imperceptible, alors que maintenant c'est quelque chose de très sensible (chaleur, catastrophes, odeur des sargasses)
+- échelle du cadrage du problème
+  - un prblème global à des solutions localisées
+  - un problème collectif à un problème spécifiques à certaines personnes, injuste
+
+régime de preuve:
+
+- preuve numériques, quantitative
