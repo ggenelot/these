@@ -9,6 +9,10 @@ parts:
     On s'appuie sur :
   partial_conclusion: |
     Pour bien aménager le territoire pour l'adaptation, les modèles de prospective doivent évoluer pour prendre en compte la spatialité et l'aspect qualitatif de phénomènes climatiques.
+exports:
+- format: pdf
+  template: ./templates/these-chapitre
+  output: exports/prospective.pdf
 ---
 
 Grandes idées: [changement bien visible pour tester] => devrait aller sur test2 dernier changement avant de tester le plugin sur mon repo en prod / test avec le choix du dossier
