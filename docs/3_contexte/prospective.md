@@ -15,7 +15,7 @@ exports:
   output: exports/prospective.pdf
 ---
 
-Grandes idées: [changement bien visible pour tester] => devrait aller sur test2 dernier changement avant de tester le plugin sur mon repo en prod / test avec le choix du dossier / test sans la branche (export sans chemin) cahngement quelconque
+Grandes idées: [changement bien visible pour tester] => devrait aller sur test2 dernier changement avant de tester le plugin sur mon repo en prod / test avec le choix du dossier / test sans la branche (export sans chemin) cahngement quelconque 2
 - la prospective vise à éclairer la politique publique
 - une forme de politique publique qui a particulièrement besoin de prospective est la plannification, qui a besoin d'une vision systémique et à long-terme
 - la plupart des modèles de prospective actuels viennent de plannification énergétique issus des chocs pétroliers
