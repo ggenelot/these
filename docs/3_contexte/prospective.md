@@ -8,14 +8,14 @@ parts:
   literature_note: |
     On s'appuie sur :
   partial_conclusion: |
-    Pour bien aménager le territoire pour l'adaptation, les modèles de prospective doivent évoluer pour prendre en compte la spatialité et l'aspect qualitatif de phénomènes climatiques.
+    Pour bien aménager le territoire pour l'adaptation, les modèles de prospective doivent évoluer pour prendre en compte la spatialité et l'aspect qualitatif de phénomènes climatiques
 exports:
 - format: pdf
   template: ./templates/these-chapitre
   output: exports/prospective.pdf
 ---
 
-Grandes idées: [changement bien visible pour tester] => devrait aller sur test2 dernier changement avant de tester le plugin sur mon repo en prod / test avec le choix du dossier / test sans la branche
+Grandes idées: [changement bien visible pour tester] => devrait aller sur test2 dernier changement avant de tester le plugin sur mon repo en prod / test avec le choix du dossier / test sans la branche (export sans chemin)
 - la prospective vise à éclairer la politique publique
 - une forme de politique publique qui a particulièrement besoin de prospective est la plannification, qui a besoin d'une vision systémique et à long-terme
 - la plupart des modèles de prospective actuels viennent de plannification énergétique issus des chocs pétroliers
