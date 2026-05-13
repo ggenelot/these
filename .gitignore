@@ -8,6 +8,11 @@ scripts/cache/*
 
 .vscode/*
 
+.env
+_build/
+docs/**/exports/
+
+
 # Python
 __pycache__/
 *.pyc
@@ -31,3 +36,6 @@ data/
 # OS
 .DS_Store
 Thumbs.db
+
+.claude*
+.mcp*
