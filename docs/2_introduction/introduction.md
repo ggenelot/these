@@ -209,13 +209,9 @@ S'inscrivant dans une démarche de géographe, cette thèse cherche à partir de
 
 Une première phase de terrain exploratoire a été réalisée entre février et avril 2026, principalement en Martinique. Elle a permis de mieux cerner la problématique ainsi que le socio-écosystème de référence.
 
-:::{tip} Remarque
-
-:class: dropdown
+Remarque
 
 Une deuxième phase de terrain à venir ? là on est dans le cas un peu bizarre de rédiger l'intro au début qui est que je ne sais pas encore ce que j'aurais fait à l'avenir
-
-:::
 
 ### La variété comme ouverture
 
