@@ -13,8 +13,6 @@ exports:
 
 Pré_introduction
 
-Une première introduction un peu générale, comme une accroche
-
 Les zones littorales des régions tropicales sont particulièrement exposées aux effets du changement climatique. D'une part, les aléas sont renforcés : cyclones plus fréquents ou plus intenses, fragilisation du littoral par l'érosion, etc. D'autre part, les enjeux sont concentrés en zone côtière. Des mutations de l'organisation spatiale sont dès lors inévitables. Planifiées ou subies, certaines sont déjà en cours, tandis que la préparation de l'avenir nécessite de penser la recomposition spatiale. Si ces transformations constituent un risque de renforcer des situations inégalitaires, elles sont aussi une opportunité de penser l'adaptation comme outil de justice climatique. Pour cela, il faut comprendre les effets systémiques futurs, à moyen et à long-terme, des décisions d'aujourd'hui.
 
 La modélisation prospective cherche justement à proposer des éclairages sur les effets de politiques publiques. En particulier, les modèles intégrés jouent un rôle de premier plan dans la gouvernance climatique. Ceux-ci se sont essentiellement concentrés sur la mitigation du changement climatique, notamment les émissions de gaz à effet de serre. Ces modèles sont très globaux, et ne permettent pas de prendre en compte les spécificités locales nécessaires à l'adaptation.
@@ -23,27 +21,11 @@ A l'inverse, les effets du changement climatique renforcent des risques en Marti
 
 L'aménagement du territoire est à la fois un outil et un état de fait. Oeuvre de la politique publique, par le biais de ses différents documents d'aménagement ou de stratégie (PLU, SCoT, PPRN, etc.) c'est la matérialisation physique d'un projet de société. Etat de fait, c'est aussi le constat de dynamiques anciennes, de rapports de force présents ou historiques. C'est ainsi une entrée permettant d'appréhender le risque à travers ces outils habituels (zonages réglementaires, etc.). On y voit autant les effets attendus de politiques publiques, comme le fait de rendre des zones inconstructibles, mais aussi ceux induits, tels que l'habitat informel. Entrer dans la question de l'adaptation par l'espace permet donc à la fois de s'intégrer dans l'écosystème du risque et de l'aménagement, mais aussi de percevoir les éléments qui échappent à ces politiques publiques.
 
-Description des principaux termes utilisés
-
-Introduction des différents termes dans la problématique
-
-J'introduis trois termes : modélisation, adaptation et aménagement. J'en profite pour en donner une définition particulière, ainsi que les enjeux associés
-
-*% aménagmenent du territoire / risque cyclonique / changement climatique / adaptation*
-
-*% Martinique / peuplement / informalité / justice climatique*
-
-*% modélisation / prospective / monographie / appui aux décisions publiques*
-
-*% données qualitatives et quantitatives / SIG / savoirs situés / accompagnement*
-
-Objectif : donner déjà au lecteur une idée des termes qu'on va manipuler (idée que les idées sont des croisements de termes) + susciter l'intérêt
-
-Lire le document de problématique que [[6a030d62-8f6c-4723-a0c3-d3701eb4f4c8]] m'a envoyé
+## Description des principaux termes utilisés
 
 Avant d'aller plus loin, commençons par définir les termes de notre sujet. De quoi allons-nous parler ?
 
-Modélisation prospective
+### Modélisation prospective
 
 De modélisation d'abord. La modélisation désigne l'action de construction d'un modèle, c'est à dire une représentation schématique d'un phénomène, dans le but de rendre celui-ci intelligible. Il s'agit ici de modélisation prospective, et il convient de définir les deux termes pour bien les distinguer l'un de l'autre.
 
@@ -51,37 +33,7 @@ La modélisation fabrique des modèles; outils pour mieux comprendre un phénom�
 
 La prospective est une discipline visant à explorer les futurs possibles pour éclairer la décision actuelle. Elle se distingue de la prévision, qui a une perspective déterministe. Ainsi, la prévision s'attache à approximer le mieux possible la valeur future d'une variable : on cherche par exemple à savoir, avec le plus de précision possible, quelle quantité de pluie va tomber demain. La prospective fait l'hypothèse qu'il y a plusieurs futurs possible, dont la réalisation dépend de décisions, et non de paramètres. Le but est ainsi d'identifier des ensembles cohérents d'actions ou de conditions, appelés scénarios, et d'explorer quel serait le futur dans ces conditions. On n'obtiens pas de prévisions sur l'état futur du monde, mais plutôt une indication sur les actions à entreprendre aujourd'hui pour tendre vers le futur souhaité.
 
-Adaptation
-
-Ici, il faut continuer la rédaction sur la partie [[6a030d62-068f-4b04-856c-de01aafc4826]] :
-
-Objectifs de la rédaction :
-
-Qu'est-ce que ça veut dire ?
-
-Pourquoi c'est une notion intéressante, voire controversée ?
-
-Comment on va la mobiliser nous ?
-
-Taches
-
-Rédiger une petit paragraphe sur une première définition de l'adaptation : quelle définition on prend, pourquoi est-ce que c'est une bonne première approche
-
-lire l'article Note de recherche. L’adaptation, un concept systémique pour mieux panser les changements climatiques
-
-Reprendre l'article de Reghezza-Zitt sur l'adaptation et sur la résilience, et en faire une synthèse pour cette partie
-
-Rédiger un petit paragraphe sur l'enjeu, pourquoi cette notion est intéessante à mobiliser
-
-Rédiger un petit paragraphe sur comment on va mobiliser cette notion
-
-Trame :
-
-D'abord, on montre une définition générale de l'adaptation comme un concept technique, facilement opérationnalisable directement (définition des agences de l'état par exemple)
-
-Ensuite, on montre que cette approche est limitée parce que le concept est très polysémique, donc on ne sait pas vraiment ce que c'est l'adaptation
-
-Enfin, on montre que cette polysémie, cette nécessité de trancher / d'exprimer une volonté, est ce qui est intéressant. L'adaptation n'est pas seulement une mesure technique, mais une évolution politique (et en même temps il y a une rétroaction évolution de ce qu'est l'adaptation et ce qu'elle veut dire)
+### Adaptation
 
 D'adaptation ensuite. L'adaptation est une modification souhaitée d'un système pour faire face à une perturbation. Dans notre cas, le système est la bande littorale en Martinique, et la perturbation est le changement climatique. Plus précisément, à travers différents canaux, celui-ci induit plusieurs perturbations, notamment l'augmentation de la puissance des vagues, le recul du trait de côte et une surcote marine.
 
@@ -111,43 +63,11 @@ Comment on va la mobiliser ?
 
 Justement, le fait que le terme adaptation ne veuille pas dire la même chose pour tout le monde fait qu'il est nécessaire de réfléchir à ce qu'il veut dire avant de pouvoir le représenter. Pourquoi ? Parce que sinon on n'est pas sûr de ce qu'on représente, puisque ça désigne plusieurs choses à la fois. Aussi parce que c'est intéressant que ça veuille dire plusieurs choses à la fois, et qu'on peut pas choisir nous. Pourquoi ? Parce que c'est une décision qui doit être prise par les gens que ça concerne ([[6a0ad737-44ac-4b2f-86d8-739b2f8604c5]]) Pourquoi ? Parce que en soit choisir le sens que ça a ça a une valeur importante.
 
-Aménagement du territoire
+### Aménagement du territoire
 
 D'aménagement du territoire enfin. Ce terme désigne immédiatement l'action d'aménager, c'est à dire d'organiser, un territoire, c'est à dire un espace que l'on s'est préalablement approprié. C'est ainsi l'incarnation dans l'espace de la politique publique, mais aussi de ses limites et ses failles.
 
-Ici, il faut continuer la rédaction sur la partie aménagement :
-
-Objectifs de la rédaction :
-
-Qu'est-ce que ça veut dire ?
-
-Pourquoi c'est une notion intéressante, voire controversée ? C'est à dire plus intéressante qu'elle n'en a l'air initialement
-
-Comment on va la mobiliser nous ?
-
-Taches
-
-Rédiger une petit paragraphe sur une première définition de l'aménagement : quelle définition on prend, pourquoi est-ce que c'est une bonne première approche => définition simple, proche de celle que les gens connaissent
-
-Rédiger un petit paragraphe sur l'enjeu, pourquoi cette notion est intéressante à mobiliser => comment ça dépasse cette première définition
-
-Rédiger un petit paragraphe sur comment on va mobiliser cette notion => comment cet enjeu s'inscrit dans une question plus profonde = la problématique
-
-**Littérature**
-
-expliquer ce qui existe / les trous dans la littérature
-
-L'objectif de cette partie c'est de montrer en quoi ma thèse correspond à un trou dans la littérature / des pistes for further research. L'idée est donc de dire : ça a été fait, mais ... (et ma thèse est l'intersection de ces "mais")
-
-=> on a montré avant que les termes étaient plus intéressant qu'ils n'en ont l'air
-
-=> on a montré qu'à l'intersection de leur enjeu, il y a une question vraiment intéressante
-
-=> et maintenant on montre que la littérature frôle cette question, mais tourne autour
-
-A faire :
-
-je pense qu'il faut d'abord commencer par rédiger la partie termes, pour en dégager de grandes idées
+## **Littérature**
 
 *% se démarquer intelligemment / correspond à la doxa dans le plan de dissertation*
 
@@ -193,11 +113,11 @@ De manière plus générale, une réflexion globale émerge au sein de la modél
 
 *% poser l'originalité de sa thèse*
 
-Problématique
+## Problématique
 
 *% correspond à l'intitulé du sujet dans le plan de dissertation*
 
-Réflexions autour de l'aménagement
+### Réflexions autour de l'aménagement
 
 Nous tentons donc ici de répondre à la question suivante : quels seront les effets systémiques de choix d'aménagement du territoire pour l'adaptation au risque cyclonique ?
 
@@ -221,7 +141,7 @@ D'autre part, aux effets de distribution. En utilisant une approche spatiale ave
 
 *%par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation*
 
-Réflexions autour de la prospective
+### Réflexions autour de la prospective
 
 *% qu'est-ce qu'un modèle pour l'adaptation ? à quelles questions doit-il répondre ? quelles en seraient les limites ? Les nouvelles perspectives?*
 
@@ -245,7 +165,7 @@ Comment les coupler à des données quantitatives ?
 
 *% introduire une partie sur le paradoxe / contre-paradoxe (enjeu) ?*
 
-Méthode
+## Méthode
 
 *% description des différentes méthodes utilisées : construction du modèle, terrain, etc.*
 
@@ -283,7 +203,7 @@ Pour répondre à ces questions, nous déployons plusieurs méthodes, qualitativ
 
 Cette démarche se veut profondément interdisciplinaire. On cherche donc à mobiliser des outils issus de différentes cultures académiques, en faisant l'hypothèse que ces différentes perspectives permettent d'éclairer leurs angles morts respectifs. Cette approche est par essence très exploratoire. Les incompatibilités, frictions et échecs sont donc à la fois des résultats attendus et des pistes de nouvelles réflexions sur les causes profondes de ces (in)compatibilités entre approches qualitatives et quantitatives.
 
-Le terrain comme ancrage
+### Le terrain comme ancrage
 
 S'inscrivant dans une démarche de géographe, cette thèse cherche à partir de la pratique du terrain.
 
@@ -297,7 +217,7 @@ Une deuxième phase de terrain à venir ? là on est dans le cas un peu bizarre 
 
 :::
 
-La variété comme ouverture
+### La variété comme ouverture
 
 Le parti pris méthodologique est que la variété des données comme des méthodes est à la fois une ressource et un défi. Une ressource puisqu'en croisant des perspectives, on suppose que l'on peut mettre en évidence des phénomènes qui sont invisible par une seule source. Un défi, car les méthodologies variées sont parfois diamétralement opposées, et que les matériaux associés ne sont pas nécessairement aisés à combiner.
 
@@ -309,15 +229,15 @@ A cela s'ajoutent des données hybrides. Ce sont notamment les documents publié
 
 Enfin, des données quantitatives classiques sont également mobilisées. Ce sont essentiellement des données spatialisées, notamment des données sur l'évolution des cyclones (blooemendall, TRACC); des données de géographie physique (relief, couverture des sols); des données socio-économiques (DVF, filosofi)
 
-La prospective comme ligne de mire
+### La prospective comme ligne de mire
 
 L'apport principal de ce travail de thèse consiste en l'agrégation de ces données variées dans un modèle permettant d'évaluer les effets systémiques de choix d'adaptation du territoire. La dimension prospective est au coeur de la démarche. L'objectif est de pouvoir évaluer des politiques d'adaptation, et comparer entre elles différentes alternatives.
 
-Plan
+## Plan
 
 *% affirmer le sérieux de sa démarche*
 
-Cadre historique et conceptuel
+### Cadre historique et conceptuel
 
 La première partie s'attache à décrire plus précisément les objets de notre étude.
 
@@ -331,7 +251,7 @@ Nous nous intéresserons ensuite plus précisément à la Martinique. Nous déve
 
 Enfin, nous aborderons de manière plus conceptuelle le champ lexical du risque. Pour ancrer notre travail dans un cadre conceptuel rigoureux, nous détaillerons des réflexions autour des notions de risque, de résilience, d'adaptation et de justice climatique.
 
-De l'espace au modèle : intégrer la spatialité et le qualitatif
+### De l'espace au modèle : intégrer la spatialité et le qualitatif
 
 Dans une seconde partie, nous proposons une modélisation du socio-écosystème littoral martiniquais. Nous nous appuyons pour cela sur une démarche en plusieurs étapes, qui va du plus proche du phénomène étudié au plus abstrait.
 
@@ -341,7 +261,7 @@ Dans un second temps, nous sélectionnerons des éléments clés pour réaliser 
 
 Dans un troisième temps, nous implémentons ce système sous la forme de simulation numériques. Il s'agit de simulation multi-agents (agent-based modelling), où chaque élément du système (zone habitable, enrochement, mangrove, etc.) réagit à une perturbation (houle cyclonique, etc.) selon des caractéristiques qui lui sont propres.
 
-Expériementations et interprétations
+### Expériementations et interprétations
 
 Dans une troisième partie, nous utilisons le modèle construit précédemment pour répondre à nos questions.
 
