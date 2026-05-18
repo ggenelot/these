@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "beaver-zotero": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\ggenelot\\Zotero\\beaver-mcp-stdio.mjs"
+      ]
+    }
+  }
+}
