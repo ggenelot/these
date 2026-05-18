@@ -19,5 +19,9 @@ project:
     - file: 6_discussion/index.md
       children:
     - file: 7_conclusion/index.md
+    - file: notions/index.md
       children:
+        - file: notions/modele.md
+        - file: notions/commod.md
+        - file: notions/adaptation.md
     
