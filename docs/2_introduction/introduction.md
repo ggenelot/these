@@ -18,7 +18,7 @@ Pré_introduction
 - A l'inverse, les effets du changement climatique renforcent des risques en Martinique, et nécessitent de s'y préparer. Adapter les territoires par des mesures d'aménagement de l'espace semble un des outils disponibles. Or, les risques sont étroitement liés les uns aux autres, ainsi qu'à des caractéristiques socio-historiques anciennes. Il y a donc une nécessité d'avoir des outils permettant de prendre des décisions éclairées sur les effets systémiques de mesures d'adaptation, pour éviter la mal-adaptation et favoriser une transition juste.
 - L'aménagement du territoire est à la fois un outil et un état de fait. Oeuvre de la politique publique, par le biais de ses différents documents d'aménagement ou de stratégie (PLU, SCoT, PPRN, etc.) c'est la matérialisation physique d'un projet de société. Etat de fait, c'est aussi le constat de dynamiques anciennes, de rapports de force présents ou historiques. C'est ainsi une entrée permettant d'appréhender le risque à travers ces outils habituels (zonages réglementaires, etc.). On y voit autant les effets attendus de politiques publiques, comme le fait de rendre des zones inconstructibles, mais aussi ceux induits, tels que l'habitat informel. Entrer dans la question de l'adaptation par l'espace permet donc à la fois de s'intégrer dans l'écosystème du risque et de l'aménagement, mais aussi de percevoir les éléments qui échappent à ces politiques publiques.
 
-**Description des principaux termes utilisés**
+Description des principaux termes utilisés
 - Introduction des différents termes dans la problématique
   - J'introduis trois termes : modélisation, adaptation et aménagement. J'en profite pour en donner une définition particulière, ainsi que les enjeux associés
     - *% aménagmenent du territoire / risque cyclonique / changement climatique / adaptation*
@@ -106,11 +106,10 @@ Pré_introduction
 
 *% poser l'originalité de sa thèse*
 
-## **Problématique**
+Problématique
 
 *% correspond à l'intitulé du sujet dans le plan de dissertation*
-
-- **Réflexions autour de l'aménagement**
+- Réflexions autour de l'aménagement
   - Nous tentons donc ici de répondre à la question suivante : quels seront les effets systémiques de choix d'aménagement du territoire pour l'adaptation au risque cyclonique ?
   - En effet, l'aménagement est au coeur de la politique locale. Compétence de la commune ou de l'intercommunalité, c'est, comme nous l'avons écrit plus haut, l'expression matérielle et spatiale d'un projet de société. Loin d'être un simple outil technique ou réglementaire, elle fixe dans le temps long des orientations profondes. C'est le cas de choix d'adaptation, qui reflètent à la fois des opportunités techniques et un choix de société pour le futur. L'objet de ce travail est précisément d'éclairer les conséquences de tels ou tels choix d'adaptation, pour informer la prise de décision.
   - Cette question se décline en sous-questions :
@@ -122,7 +121,7 @@ Pré_introduction
     - D'autre part, aux effets de distribution. En utilisant une approche spatiale avec une résolution fine, nous cherchons à désagréger les résultats pour avoir une vision fine des impacts à la fois du risque cyclonique, mais aussi des effets de politiques d'aménagement. Nous ne cherchons pas à qualifier l'exposition globale d'un territoire, en obtenant une valeur monétaire agrégée de dommages matériels, par exemple. Au contraire, nous cherchons à voir les effets distributionnels de politiques d'aménagement. Ce questionnement ce décline sous plusieurs questions : qui est le plus exposé ? quel augmentation ou diminution de l'exposition au risque provoque une mesure ? pour qui ? Ainsi, nous cherchons à décomposer les effets par publics, pour identifier d'éventuels mécanismes d'adaptation. On entend par là des mesures qui en permettant l'adaptation d'un groupe spécifique exposerait davantage d'autres groupes.
   - *%par rapport à l'aménagement : l'apport du futur / prospective*
   - *%par rapport à la prospective : la recherche de méthodes spatialisées ; des techniques qui permettent l'adaptation*
-- **Réflexions autour de la prospective**
+- Réflexions autour de la prospective
   - *% qu'est-ce qu'un modèle pour l'adaptation ? à quelles questions doit-il répondre ? quelles en seraient les limites ? Les nouvelles perspectives?*
   - Derrière ces questions d'aménagement se cachent des interrogations sur le rôle d'un modèle et ses évolutions potentielles pour devenir un outil d'aide à l'adaptation au changement climatique. Elles pourraient se résumer dans la question de recherche suivante : quelles caractéristiques sont requises par un modèle de prospective permettant l'adaptation ?
   - Ici encore, elles se déclinent en différentes sous-questions.
@@ -135,7 +134,7 @@ Pré_introduction
       - Comment les coupler à des données quantitatives ?
   - *% introduire une partie sur le paradoxe / contre-paradoxe (enjeu) ?*
 
-**Méthode**
+Méthode
 - *% description des différentes méthodes utilisées : construction du modèle, terrain, etc.*
   - idées en vrac:
     - le terrain permet d'avoir une approche plus large
@@ -154,7 +153,7 @@ Pré_introduction
     - les données spatiales, notamment les zonages, sont l'expression de volontées qualitative tout en étant dans un format qui est possible d'utiliser de manière quantitative
   - Pour répondre à ces questions, nous déployons plusieurs méthodes, qualitatives et quantitatives. Celles-ci incluent une phase de terrain, l'apport de données qualitatives à l'aide de techniques de modélisation d'accompagnement, et la construction d'un modèle permettant de faire de la prospective au niveau d'un territoire.
   - Cette démarche se veut profondément interdisciplinaire. On cherche donc à mobiliser des outils issus de différentes cultures académiques, en faisant l'hypothèse que ces différentes perspectives permettent d'éclairer leurs angles morts respectifs. Cette approche est par essence très exploratoire. Les incompatibilités, frictions et échecs sont donc à la fois des résultats attendus et des pistes de nouvelles réflexions sur les causes profondes de ces (in)compatibilités entre approches qualitatives et quantitatives.
-- **Le terrain comme ancrage**
+- Le terrain comme ancrage
   - S'inscrivant dans une démarche de géographe, cette thèse cherche à partir de la pratique du terrain.
 
 Une première phase de terrain exploratoire a été réalisée entre février et avril 2026, principalement en Martinique. Elle a permis de mieux cerner la problématique ainsi que le socio-écosystème de référence.
@@ -166,7 +165,7 @@ Une première phase de terrain exploratoire a été réalisée entre février et
 Une deuxième phase de terrain à venir ? là on est dans le cas un peu bizarre de rédiger l'intro au début qui est que je ne sais pas encore ce que j'aurais fait à l'avenir
 
 :::
-- **La variété comme ouverture**
+- La variété comme ouverture
   - Le parti pris méthodologique est que la variété des données comme des méthodes est à la fois une ressource et un défi. Une ressource puisqu'en croisant des perspectives, on suppose que l'on peut mettre en évidence des phénomènes qui sont invisible par une seule source. Un défi, car les méthodologies variées sont parfois diamétralement opposées, et que les matériaux associés ne sont pas nécessairement aisés à combiner.
 
 De cette approche résulte le choix de matériaux.
@@ -176,12 +175,12 @@ D'une part, des matériaux purement qualitatifs, issus de la démarche de terrai
 A cela s'ajoutent des données hybrides. Ce sont notamment les documents publiés par les différents acteurs et institutions qui traitent de l'aménagement de l'espace ou du risque.
 
 Enfin, des données quantitatives classiques sont également mobilisées. Ce sont essentiellement des données spatialisées, notamment des données sur l'évolution des cyclones (blooemendall, TRACC); des données de géographie physique (relief, couverture des sols); des données socio-économiques (DVF, filosofi)
-- **La prospective comme ligne de mire**
+- La prospective comme ligne de mire
   - L'apport principal de ce travail de thèse consiste en l'agrégation de ces données variées dans un modèle permettant d'évaluer les effets systémiques de choix d'adaptation du territoire. La dimension prospective est au coeur de la démarche. L'objectif est de pouvoir évaluer des politiques d'adaptation, et comparer entre elles différentes alternatives.
 
-**Plan**
+Plan
 - *% affirmer le sérieux de sa démarche*
-- **Cadre historique et conceptuel**
+- Cadre historique et conceptuel
 
 La première partie s'attache à décrire plus précisément les objets de notre étude.
   - Tout d'abord, nous reviendrons sur une brève histoire de la modélisation prospective. Nous y montrerons que les modèles actuels, principalement tournés vers la mitigation, souffrent de contrainte structurelles qui ne leur permet pas de bien représenter des politiques d'adaptation. Nous détaillerons ces limitations et tenterons d'identifier des caractéristiques nécessaire à des modèles pour l'adaptation.
@@ -189,13 +188,13 @@ La première partie s'attache à décrire plus précisément les objets de notre
   - Nous définirons ensuite les concepts d'aménagement, de spatialité et d'action publique. Nous y développerons l'idée que l'aménagement permet d'incarner l'action publique dans l'espace, mais aussi dans le quotidien de ses habitants. Dès lors, étudier la spatialité de l'action publique permet de mettre en évidence sa portée, y compris dans ses marges où elle ne parvient pas aux effets anticipés.
   - Nous nous intéresserons ensuite plus précisément à la Martinique. Nous développerons l'idée qu'au delà de son exposition à de nombreux aléas naturels, la Martinique présente un contexte socio-historique qui conditionne son adaptation au changement climatique. Nous nous intéresserons en particulier aux formes de peuplement et à l'origine, notamment au prisme de l'histoire coloniale. Nous montrerons que ces formes structurent encore l'espace martiniquais. En écho au concept de plantationocène de Malcom Ferdinand, nous tenterons de relier usage de sols et justice climatique.
   - Enfin, nous aborderons de manière plus conceptuelle le champ lexical du risque. Pour ancrer notre travail dans un cadre conceptuel rigoureux, nous détaillerons des réflexions autour des notions de risque, de résilience, d'adaptation et de justice climatique.
-- **De l'espace au modèle : intégrer la spatialité et le qualitatif**
+- De l'espace au modèle : intégrer la spatialité et le qualitatif
 
 Dans une seconde partie, nous proposons une modélisation du socio-écosystème littoral martiniquais. Nous nous appuyons pour cela sur une démarche en plusieurs étapes, qui va du plus proche du phénomène étudié au plus abstrait.
   - Nous décrirons d'abord plusieurs sites d'intérêt en Martinique, sous la forme d'études de cas. Au travers de la notion de paysages, nous y définirons notre socio-écosystème. A travers des exemples localisés, nous décrirons les éléments qui composeront le système pris en compte dans le reste de la thèse, en clarifiant les choix de sélection ou d'exclusion d'élément ou de relations entre ces éléments.
   - Dans un second temps, nous sélectionnerons des éléments clés pour réaliser un modèle conceptuel. Loin de toute formalisation informatique, ce modèle intermédiaire met en évidence les éléments et relations qui nous paraissent nécessaires et pertinents pour représenter les dynamiques de la zone littoral face au risque cyclonique. Cette partie nous permettra également de préciser la portée et les questions associées à notre exercice de prospective. En effet, cette phase se fait sous la forme d'aller retour entre un questionnement et le choix de ce qui constitue notre système.
   - Dans un troisième temps, nous implémentons ce système sous la forme de simulation numériques. Il s'agit de simulation multi-agents (agent-based modelling), où chaque élément du système (zone habitable, enrochement, mangrove, etc.) réagit à une perturbation (houle cyclonique, etc.) selon des caractéristiques qui lui sont propres.
-- **Expériementations et interprétations**
+- Expériementations et interprétations
 
 Dans une troisième partie, nous utilisons le modèle construit précédemment pour répondre à nos questions.
   - Tout d'abord dans une perspective statique. A travers un croisement de données spatiales (zonage de risque et de régimes d'urbanismes) et de données socio-économiques, nous caractériserons la distribution du risque cyclonique par zone et selon d'autres caractéristiques (âge moyen, revenu, etc.).
