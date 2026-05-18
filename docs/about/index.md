@@ -4,11 +4,6 @@ Les liens ci-dessous permettent de mieux se repérer dans la démarche de thèse
 
 ## Contenus
 
-```{toctree}
-:maxdepth: 1
-:caption: Table of Contents
-
-README
-LICENSE
-CONTRIBUTING
-```
+- [README](README.md)
+- [LICENSE](LICENSE.md)
+- [CONTRIBUTING](CONTRIBUTING.md)
